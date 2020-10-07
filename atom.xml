@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Carl Young&#39;s Blog</title>
   
+  <subtitle>Welcome to My Blog</subtitle>
+  <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/atom.xml" rel="self"/>
-  
-  <link href="http://example.com/"/>
-  <updated>2020-10-07T08:08:27.795Z</updated>
-  <id>http://example.com/</id>
+  <link href="http://yc1999.github.io/"/>
+  <updated>2020-10-07T13:09:38.168Z</updated>
+  <id>http://yc1999.github.io/</id>
   
   <author>
     <name>杨程</name>
@@ -17,9 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>研究生推免系统操作流程</title>
+    <link href="http://yc1999.github.io/2020/10/07/yan-jiu-sheng-tui-mian-xi-tong-cao-zuo-liu-cheng/"/>
+    <id>http://yc1999.github.io/2020/10/07/yan-jiu-sheng-tui-mian-xi-tong-cao-zuo-liu-cheng/</id>
+    <published>2020-10-07T11:41:08.000Z</published>
+    <updated>2020-10-07T13:09:38.168Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1gjh2q9empxj21h90p17b5.jpg&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="保研" scheme="http://yc1999.github.io/tags/%E4%BF%9D%E7%A0%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>article title4</title>
-    <link href="http://example.com/2020/10/07/article-title4/"/>
-    <id>http://example.com/2020/10/07/article-title4/</id>
+    <link href="http://yc1999.github.io/2020/10/07/article-title4/"/>
+    <id>http://yc1999.github.io/2020/10/07/article-title4/</id>
     <published>2020-10-07T08:08:27.000Z</published>
     <updated>2020-10-07T08:08:27.795Z</updated>
     
@@ -31,8 +54,8 @@
   
   <entry>
     <title>article title3</title>
-    <link href="http://example.com/2020/10/07/article-title3/"/>
-    <id>http://example.com/2020/10/07/article-title3/</id>
+    <link href="http://yc1999.github.io/2020/10/07/article-title3/"/>
+    <id>http://yc1999.github.io/2020/10/07/article-title3/</id>
     <published>2020-10-07T07:47:45.000Z</published>
     <updated>2020-10-07T07:47:45.218Z</updated>
     
@@ -44,8 +67,8 @@
   
   <entry>
     <title>article title2</title>
-    <link href="http://example.com/2020/10/07/article-title2/"/>
-    <id>http://example.com/2020/10/07/article-title2/</id>
+    <link href="http://yc1999.github.io/2020/10/07/article-title2/"/>
+    <id>http://yc1999.github.io/2020/10/07/article-title2/</id>
     <published>2020-10-07T07:13:36.000Z</published>
     <updated>2020-10-07T07:13:36.547Z</updated>
     
@@ -57,8 +80,8 @@
   
   <entry>
     <title>article title</title>
-    <link href="http://example.com/2020/10/07/article-title/"/>
-    <id>http://example.com/2020/10/07/article-title/</id>
+    <link href="http://yc1999.github.io/2020/10/07/article-title/"/>
+    <id>http://yc1999.github.io/2020/10/07/article-title/</id>
     <published>2020-10-07T06:54:30.000Z</published>
     <updated>2020-10-07T06:55:56.398Z</updated>
     
@@ -78,8 +101,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2020/10/07/hello-world/"/>
-    <id>http://example.com/2020/10/07/hello-world/</id>
+    <link href="http://yc1999.github.io/2020/10/07/hello-world/"/>
+    <id>http://yc1999.github.io/2020/10/07/hello-world/</id>
     <published>2020-10-07T06:39:12.343Z</published>
     <updated>2020-10-07T06:39:12.343Z</updated>
     
