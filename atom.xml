@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Carl Young&#39;s Blog</title>
+  <title>杨程的博客</title>
   
-  <subtitle>Welcome to My Blog</subtitle>
+  <subtitle>欢迎来到我的博客(*^▽^*)</subtitle>
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-09T13:26:01.429Z</updated>
+  <updated>2020-11-09T14:13:39.175Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
-    <name>杨程</name>
+    <name>CarlYoung</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>A Survey of Open Domain Event Extraction</title>
+    <link href="http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/"/>
+    <id>http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/</id>
+    <published>2020-11-09T13:32:40.000Z</published>
+    <updated>2020-11-09T14:13:39.175Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="论文阅读" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="综述" scheme="http://yc1999.github.io/tags/%E7%BB%BC%E8%BF%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>「开放域事件抽取」入门了解</title>
     <link href="http://yc1999.github.io/2020/11/08/kai-fang-yu-shi-jian-chou-qu-ru-men-liao-jie/"/>
     <id>http://yc1999.github.io/2020/11/08/kai-fang-yu-shi-jian-chou-qu-ru-men-liao-jie/</id>
     <published>2020-11-08T07:43:15.000Z</published>
-    <updated>2020-11-09T13:26:01.429Z</updated>
+    <updated>2020-11-09T13:40:25.759Z</updated>
     
     
       

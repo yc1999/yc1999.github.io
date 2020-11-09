@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>A Survey of Open Domain Event Extraction</title>
+      <link href="2020/11/09/a-survey-of-open-domain-event-extraction/"/>
+      <url>2020/11/09/a-survey-of-open-domain-event-extraction/</url>
+      
+        <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>为了从无结构的文本语料库中挖掘有用的结构化知识，人们创造了许多的信息抽取系统。其中一种十分重要的就是开放域事件抽取，它是在没有预先给定域假设（domain assumption）的情况下抽取有用的事件信息。</p><p>在这篇综述中，首先介绍事件抽取的pipeline是怎样一个流程，然后介绍一些目前比较好的开放域事件抽取。</p><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>事件抽取的主要任务有：</p><ol><li>判别事件的类型；</li><li>提取出事件的每一个role所对应的argument。</li></ol><p>一个简单的例子如下：</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkj9wmhf3tj20jh09yjsd.jpg" alt="an example for event extraction"></p><p>在整篇综述中：</p><ul><li>Section 2介绍有哪些不同种类的事件抽取；</li><li>Section 3介绍两个东西，一是常用于事件抽取中的知识库，二是可自动生成用于事件抽取训练数据的技术；</li><li>Section 4，5，6介绍最近比较火的事件抽取方法和开放域事件抽取方法；</li><li>最后就是总结</li></ul><h2 id="2-Types-of-Event-Extraction"><a href="#2-Types-of-Event-Extraction" class="headerlink" title="2. Types of Event Extraction"></a>2. Types of Event Extraction</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> NLP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 论文阅读 </tag>
+            
+            <tag> NLP </tag>
+            
+            <tag> 综述 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「开放域事件抽取」入门了解</title>
       <link href="2020/11/08/kai-fang-yu-shi-jian-chou-qu-ru-men-liao-jie/"/>
       <url>2020/11/08/kai-fang-yu-shi-jian-chou-qu-ru-men-liao-jie/</url>
