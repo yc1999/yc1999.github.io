@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -601,6 +601,37 @@
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmw921loj20o405mmyc.jpg"></p>
 <hr>
 <p>什么叫做localize呢？我们再次回顾我们在CNN中学到的那些东西~</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkln395l84j20jf0bswf6.jpg"></p>
+<p>receptive field：接受域</p>
+<h3 id="ChebNet"><a href="#ChebNet" class="headerlink" title="ChebNet"></a>ChebNet</h3><p>第一个Spectral-based GNN就是咱们的ChebNet啦~需要注意的是，我们的每一个模型都应该能够解决我们之前提到的两个图神经网络的问题：</p>
+<ol>
+<li>Learning Complexity</li>
+<li>Not Localize</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmcr7nsjlj20n60chjso.jpg" alt="ChebMet"></p>
+<p>通过让$g_{\theta}(L)$是$L$的多项式函数，我们就能让$g_{\theta}(L)$是一个$K-localized$的函数。同时，此时要学的参数也是$K$个了，复杂度为$O(K)$。</p>
+<p>现在还存在一个问题就是在计算$U(\sum^K_{k=0}\theta_k\Lambda^k)$的时候，时间复杂度（time-complexity）为$O(N^2)$，同时，计算eigenvector本身就是一个计算量特别大的问题。</p>
+<p>综合以上种种的问题，ChebNet使用了一个特殊的多项式来解决这个问题。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmcrxy9nnj20lk0b5q4w.jpg" alt="Chebyshev Polynomial是一个使用递归进行定义的多项式函数家族~据说是数值分析里面的？"></p>
+<p>我们将Chebyshev Polynomial中的$x$替换成$\tilde \Lambda$，这样变形的原因就是为了满足在[-1,1]之间。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmcz9vau7j20k30admxz.jpg" alt="我们用新的Chebyshev Polynomial来代替之前的函数得到上面的结果"></p>
+<p>至于为什么要使用这个Chebyshev Polynomial代替呢？原因如下：</p>
+<p>目的是为了使得$T_k(\tilde \Lambda)$是很好算的。至于为什么要这样代换呢？好像没讲清。</p>
+<p>利用切比雪夫正交且递归的性质减少计算量。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmdhoatlnj20ky09rwfj.jpg"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmdi4cmb4j20mv0argmt.jpg"></p>
+<hr>
+<p>就想CNN里面，你可以有不同的channel，</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkmdk8pq26j20lv07j74u.jpg" alt="YI%ng"></p>
+<hr>
+<h3 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h3><p>迷迷糊糊没有看懂</p>
+<h2 id="Comparison-between-the-above-GNNS——Tasks-Dataset-and-Benchmark"><a href="#Comparison-between-the-above-GNNS——Tasks-Dataset-and-Benchmark" class="headerlink" title="Comparison between the above GNNS——Tasks,Dataset,and Benchmark"></a>Comparison between the above GNNS——Tasks,Dataset,and Benchmark</h2><p>benchmark test有下面这5个：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkme6a8v4oj20fg0823z1.jpg" alt="9BV@L~HGQQMEE$80WI8~D%C.png"></p>
+<p>因为要做benchmark，那么dataset一定要大~</p>
+<p>下面使用的是SuperPixel MNIST 和 CIFAR10</p>
+<p>第二个是ZINC molecule graphs dataset，预测溶解度</p>
+<p>第三个，任务是辨认graph里面的pattern，以及聚类。</p>
+<p>第四个，旅行商问题</p>
 
             </div>
             <hr/>
