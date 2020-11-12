@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-09T14:13:39.175Z</updated>
+  <updated>2020-11-11T12:34:30.462Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,18 +17,103 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>傅里叶分析之掐死教程</title>
+    <link href="http://yc1999.github.io/2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/"/>
+    <id>http://yc1999.github.io/2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/</id>
+    <published>2020-11-11T07:56:17.000Z</published>
+    <updated>2020-11-11T12:34:30.462Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;作 者：韩 昊&lt;/p&gt;
+&lt;p&gt;知 乎：Heinrich&lt;/p&gt;
+&lt;p&gt;微</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="傅里叶分析" scheme="http://yc1999.github.io/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>台大李宏毅助教讲解GNN图神经网络</title>
+    <link href="http://yc1999.github.io/2020/11/11/tai-da-li-hong-yi-zhu-jiao-jiang-jie-gnn-tu-shen-jing-wang-luo/"/>
+    <id>http://yc1999.github.io/2020/11/11/tai-da-li-hong-yi-zhu-jiao-jiang-jie-gnn-tu-shen-jing-wang-luo/</id>
+    <published>2020-11-11T01:46:18.000Z</published>
+    <updated>2020-11-11T15:11:06.768Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;Outline&quot;&gt;&lt;a href=&quot;#Outline&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息抽取 从零入门</title>
+    <link href="http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/"/>
+    <id>http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/</id>
+    <published>2020-11-10T14:13:46.000Z</published>
+    <updated>2020-11-10T15:27:14.910Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原文链接：&lt;a href=&quot;https://ivenwang.com/2020/06/06/knowledgeextraction/&quot;&gt;信息抽取</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>A Survey of Open Domain Event Extraction</title>
     <link href="http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/"/>
     <id>http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/</id>
     <published>2020-11-09T13:32:40.000Z</published>
-    <updated>2020-11-09T14:13:39.175Z</updated>
+    <updated>2020-11-10T14:11:17.567Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;0-摘要&quot;&gt;&lt;a href=&quot;#0-摘要&quot; class=&quot;headerlink&quot; title=&quot;0. 摘要&quot;&gt;&lt;/a&gt;0.</summary>
         
       
     
