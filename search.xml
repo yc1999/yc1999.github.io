@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Heterogeneous Graph Neural Networks for Malicious Account Detection</title>
+      <link href="2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/"/>
+      <url>2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/</url>
+      
+        <content type="html"><![CDATA[<p>[TOC]</p><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了<strong>GEM（Graph Embedding for Malicious accounts）模型</strong>，是一个异质图神经网络方法，用于支付宝恶意账户的检测。</p><p>本文的方法受到<strong>连通子图方法</strong>的启发，基于攻击者的两个基本弱点（device aggregation和activity aggregation），从异质的<strong>账户-设备</strong>（account-device）图中自适应地学习到embedding。</p><p>使用<strong>注意力机制</strong>，为不同类型的节点分配不同的注意力。聚合每种节点的信息时，使用的是求和的方式。</p><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><p>要能检测出恶意账户，首先要研究恶意账户的攻击<strong>特征</strong>。现有的研究主要从三个方面展开：</p><ol><li>基于规则的方法：使用复杂的规则，识别恶意账户</li><li>基于图的方法：考虑用户之间的关联，恶意账户和正常账户之间有关联</li><li>基于机器学习的方法：利用大量的历史数据，建立统计模型</li></ol><p>攻击者的攻击策略是会不断变化的，所以需要一个能够适应这种变化的检测系统。</p><p>作者总结了来自攻击者的两个主要特征：</p><ol><li><p>设备聚集（device aggregation）</p><p>攻击者要承受计算资源带来的成本，所以大多数攻击者只在少数计算资源上注册或频繁地登录。</p></li><li><p>行为聚集（activity aggregation）</p><p>攻击者受攻击时间的限制，通常要在很短的时间内完成既定目标，所以恶意账户的行为可能在有限的时间内爆发。</p></li></ol><p>虽然我们已经广泛地分析了攻击者的弱点，但保证识别的高准确率和高召回率还是非常具有挑战性的。</p><p>现有的方法通常假阳率（FP，模型判断是恶意账户，实际上不是）很低，也就是假阴率（FN，模型判断不是恶意账户，实际上是）很高。</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gknv7smwwzj20m203odfx.jpg" alt="准确率，召回率与FP，FN之间的关系"></p><p>这样虽然对用户友好，避免误伤，但是可能<strong>会错过识别出更多可疑账户的机会</strong>。产生这种情况的原因在于大量的良性账户和少量的可以账户交织在一起，形成了<strong>低信噪比</strong>。</p><p>因此，在不同设备构成的异构图中同时考虑”设备聚集”和”行为聚集”是很重要的。</p><blockquote><p>Representation Learning  on Graphs: Methods and Applications.</p></blockquote><p>本文提出**GEM模型(Graph Embeddings for Malicious accounts)**，同时考虑了异质图中的“设备聚集”和“行为聚集”，是一种基于图网络的图表示学习方法。</p><p>本文提出的方法本质上是对异质的account-device图进行建模，同时考虑了局部结构中账户的行为特征。</p><p>模型的基本思想是：账户是正常的还是恶意的，取决于其他账户是如何通过设备与该设备聚集的，以及那些与该账户共享同一设备的账户的行为表现是什么样子的。</p><p>本文的贡献如下：</p><ol><li>提出基于图表示学习方法的神经网络，同时关注攻击者“设备聚集”和“行为聚集”两个特点，以实现对恶意账户的检测。是第一个使用GNN方法进行欺诈检测的工作；</li><li>本文的模型已在支付宝中应用，每天可以有效检测出上万的恶意账户。</li></ol><h2 id="2-预备知识"><a href="#2-预备知识" class="headerlink" title="2 预备知识"></a>2 预备知识</h2><h3 id="2-1-图神经网络"><a href="#2-1-图神经网络" class="headerlink" title="2.1 图神经网络"></a>2.1 图神经网络</h3><p>Kipf提出的GCN是在一阶邻居上进行卷积。$X\in R^{N,D}$是节点特征向量$x_i\in R^D$组成的矩阵。无向图$G=(V,E)$,有$N$个节点$v_i\in V$，边$ (v_i,v_j)\in E$，邻接矩阵为$A\in R^{N\times N}$。卷积层计算如下：</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gknw9f5nwtj20m902jdfn.jpg" alt="卷积核"></p><p>其中$\tilde{A}$是$A$添加self-loops后对称归一化(symmetric normalization )的结果：$\tilde{A}=\hat{D}^{-\frac{1}{2}}\hat{A}\hat{D}^{-\frac{1}{2}}$, $\hat{A}=A+I$,$\hat{D}$是$\hat{A}$中节点度的对角矩阵。</p><blockquote><p>关于GCN的解释可以参考这位大佬的博客，总结的非常好：<br><a href="https://blog.csdn.net/yyl424525/article/details/100058264">图卷积网络 GCN Graph Convolutional Network（谱域GCN）的理解和详细推导-持续更新</a></p></blockquote><p>GCN学习到了函数$f(X,A)$，使用$A$中节点$v_i$的邻居信息表示该节点。</p><blockquote><p>文章中还介绍了两个GNN的工作</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> GNN </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 论文笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>傅里叶分析之掐死教程</title>
       <link href="2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/"/>
       <url>2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/</url>
