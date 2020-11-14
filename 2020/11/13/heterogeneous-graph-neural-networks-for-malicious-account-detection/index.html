@@ -543,17 +543,18 @@
 <p>正如前面所说的，为了快速完成任务，恶意账号只会在一小段时间内活跃。而正常账号则是均匀的活动~</p>
 </blockquote>
 <h3 id="3-2-A-Motivation-Subgraph-Components"><a href="#3-2-A-Motivation-Subgraph-Components" class="headerlink" title="3.2  A Motivation: Subgraph Components"></a>3.2  A Motivation: Subgraph Components</h3><p>上述的<strong>设备聚集</strong>和<strong>行为聚集</strong>模式启发了作者。</p>
-<p>第一步尝试称为“**连通子图(connected subgraph)**”。</p>
+<p>第一步尝试称为<strong>“连通子图(connected subgraph)”</strong>。</p>
 <p>基本思想是建立账户构成的图，希望用边建立起一组账户。连通子图方法由<strong>以下三步</strong>组成：</p>
 <p><strong>（1）给定图$G=(V,E)$，有$N$个节点，$M$条边。${(i,j)}$表示账户$i$在设备$j$上有登录行为。目标是构建一个由账户节点构成的同质图</strong>$G^a=(V^a,E^a)$，边$ (i,i^{‘})$表示账户$i$和$i^{‘}$有一段时间在同一设备上登录。</p>
 <p>这样，同质图$G^a$就由多个连通子图所构成，每个子图表示一组账户。这组账户数量越多，则为恶意账户的风险越大。</p>
 <p><strong>但是实际操作中有很多噪声</strong>，例如不同账户登录相同的ip地址，混淆正常账户和恶意账户的现象很普遍。</p>
-<p><strong>（2）接着按照如下的方法删除掉一些边</strong>。由<strong>图2</strong>所示，异常账户的行为通常在特定的<strong>一天</strong>内爆发。为了衡量$G^a$中两个账户节点间的相似性，使用向量$x_i=[x_{i,1},…,x_{i,p}]^\top$表示账户$i$的行为，$x_{i,t}$表示账户$i$在第$t$小时行为的频率。</p>
-<p>使用内积运算$x^{\top}<em>i x</em>{i^{‘}}$衡量两个账户之间的相似度。<strong>若$x^{\top}<em>i x</em>{i^{‘}}&lt;\theta$，则在图$G^a$中删除边$(i,i^{‘})$。</strong>$\theta$是一个调节$G^a$稀疏性的超参数。</p>
+<p><strong>（2）接着按照如下的方法删除掉一些边</strong>。由<strong>图2</strong>所示，异常账户的行为通常在特定的<strong>一天</strong>内爆发。为了衡量$G^a$中两个账户节点间的相似性，使用向量$x_i=[x_{i,1},…,x_{i,p}]^{\mathrm T}$表示账户$i$的行为，$x_{i,t}$表示账户$i$在第$t$小时行为的频率。</p>
+<p>使用内积运算$x^{\mathrm{ T }}_i  x_i^{\prime}$ 衡量两个账户之间的相似度。</p>
+<p>若$x^{\mathrm{ T }}_i  x_i^{\prime} &lt; \theta$，则在图$G^a$中删除边$(i,i^{\prime})$。$\theta$是一个调节$G^a$稀疏性的超参数。</p>
 <p><strong>（3）使用每个账户所属</strong>的<strong>子图的大小</strong>为其打分。</p>
 <p><strong>从上述构建连通子图的3步可以观察到两点：</strong></p>
 <p>（1）连通子图的评分由以下两点确定：1）每个点和邻居的连通性；2）一个连通子图中的节点数目，</p>
-<p>连通性取决于$G^a$(设备聚集)的结构以及节点间的向量内积(行为聚集)。子图中节点的数目反映了连通性的强度。</p>
+<p>连通性取决于$G^{ a }$（设备聚集）的结构以及节点间的向量内积（行为聚集）。子图中节点的数目反映了连通性的强度。</p>
 <p>（2）还需要一个将account-device图$G$转换为account-account图$G^a$的转换函数。</p>
 <h3 id="3-3-Heterogeneous-Graph-Construction"><a href="#3-3-Heterogeneous-Graph-Construction" class="headerlink" title="3.3 Heterogeneous Graph Construction"></a>3.3 Heterogeneous Graph Construction</h3><p>假定$N$个节点包括账户和设备，每个设备都对应一个类型$d\in D。$给出在时间范围$[0,T)$的$M$条账户和设备之间的连边${\lbrace (i,j) \rbrace}$。每条边都表示账户$i$在设备$j$上有行为，例如注册、登录等。对于包含$N$个节点的图$G=(V,E)$，有邻接矩阵$A\in \lbrace 0,1 \rbrace ^{N,N}$。</p>
 <p>图$G$中的一个连通子图展示如下，其中蓝色节点是正常账户，黄色节点是异常账户：</p>
@@ -572,7 +573,32 @@
 <p>我们希望通过聚合转换后的行为矩阵$X$，从而为每个节点$i$学习到有效的embedding $h_i$：</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkoh7rezudj20mb05ywey.jpg" alt="undefined"></p>
 <p>其中，$H^{(t)}\in R^{N,k}$,<em>k</em>表示$t$层的嵌入矩阵，每行表示一个节点的embedding。$T$表示节点跳数，也表示隐藏层的层数。$W, $是需要优化的参数。</p>
-<p>关于模型的解释：</p>
+<p>随着迭代的加深(例如T步)，节点就可以在隐层聚合T-step的邻居信息，这就和<strong>连通子图</strong>中定义的<strong>打分函数</strong>（计算连通子图中的节点数）有相似之处。区别在于，我们的方法是在原始的account-device图上工作的，通过将T-step邻居的行为<strong>嵌入求和</strong>，来将节点映射到隐层空间。</p>
+<p>损失函数定义如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkoieuo7juj20mh03bjrl.jpg" alt="undefined"></p>
+<p>使用EM算法优化，在e-step，基于参数$W$和$$使用（6）式计算embeddings；在m-step，优化（7）式中的参数并调整embeddings。</p>
+<blockquote>
+<p>本文的方法可以看成是<strong>GCN的变形</strong>，主要区别在于：<br>1）本文的算法可以用于HIN；<br>2）聚合函数是不同的，本文的模型对不同类型的图$G^{(d)}$中的两种模式（设备聚集和行为聚集）进行的是求和操作，然后按照图类型的数目取了均值。</p>
+</blockquote>
+<h3 id="3-5-注意力机制"><a href="#3-5-注意力机制" class="headerlink" title="3.5 注意力机制"></a>3.5 注意力机制</h3><p>引入注意力机制，在学习过程中自适应地为不同类型的子图分配注意力：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkoilzef87j20mc02udg2.jpg" alt="undefined"></p>
+<h3 id="4-实验"><a href="#4-实验" class="headerlink" title="4 实验"></a>4 实验</h3><p><strong>数据集</strong>：Alipay(支付宝)</p>
+<p><strong>实验任务</strong>：</p>
+<p><strong>对比方法</strong>：</p>
+<ol>
+<li>连通子图：4.2中提出的方法</li>
+<li>GBDT+Graph：一种基于机器学习的方法，GBDT全称为Gradient Boosting Decision Tree</li>
+<li>GBDT+Node2Vec：基于随机游走的节点嵌入方法</li>
+<li>GCN：经典的图卷积网络方法，聚合公式是（1）式</li>
+</ol>
+<p><strong>实验结果</strong>：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gkooynm81vj20mb0lwtdo.jpg" alt="undefined"></p>
+<p>不同方法在测试集上，第1,2,3,4周的precision-recall曲线对比如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gkooyygvnhj20x70mpwle.jpg" alt="undefined"></p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p>本文提出了<strong>GEM</strong>模型，用于日常在支付宝中恶意账户的发现。</p>
+<p>总结了攻击者的<strong>两个基本特点</strong>：设备聚集、行为聚集。</p>
+<p>是<strong>第一个</strong>使用GNN方法实现欺诈检测的方法。</p>
+<p>未来的工作：在随时间变化的<strong>动态图</strong>上建立恶意账户检测系统。</p>
 
             </div>
             <hr/>
