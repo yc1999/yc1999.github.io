@@ -32,8 +32,8 @@
 
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -555,6 +555,24 @@
 <p>（1）连通子图的评分由以下两点确定：1）每个点和邻居的连通性；2）一个连通子图中的节点数目，</p>
 <p>连通性取决于$G^a$(设备聚集)的结构以及节点间的向量内积(行为聚集)。子图中节点的数目反映了连通性的强度。</p>
 <p>（2）还需要一个将account-device图$G$转换为account-account图$G^a$的转换函数。</p>
+<h3 id="3-3-Heterogeneous-Graph-Construction"><a href="#3-3-Heterogeneous-Graph-Construction" class="headerlink" title="3.3 Heterogeneous Graph Construction"></a>3.3 Heterogeneous Graph Construction</h3><p>假定$N$个节点包括账户和设备，每个设备都对应一个类型$d\in D。$给出在时间范围$[0,T)$的$M$条账户和设备之间的连边${\lbrace (i,j) \rbrace}$。每条边都表示账户$i$在设备$j$上有行为，例如注册、登录等。对于包含$N$个节点的图$G=(V,E)$，有邻接矩阵$A\in \lbrace 0,1 \rbrace ^{N,N}$。</p>
+<p>图$G$中的一个连通子图展示如下，其中蓝色节点是正常账户，黄色节点是异常账户：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkofqaosdnj20i50mb77p.jpg" alt="undefined"></p>
+<p>为了方便，作者按照设备(device)的类型，抽取出了$|D|$个子图$\lbrace G^{(d)} =(V,E^{(d)}) \rbrace$，每个子图都包含了$G$中的所有节点。</p>
+<blockquote>
+<p>注意，这里<strong>设备的概念比较宽泛</strong>，例如设备可以是IP地址、电话号码、User Machine ID(UMID)、MAC地址、IMSI(International Mobile Subscriber Identity)、APDID(Alipay Device ID)、TID，这就构成了异质图。</p>
+</blockquote>
+<p>在这些图的基础上，进一步处理每个账户的行为。假定矩阵$X\in R^{N,p+|D|}$，若$i$是账户节点则每一行$x_i$表示了节点$i$的行为。</p>
+<p>账户$i$在时间范围$[0,T)$内的行为可以分$p$个时间小段，每一个时间小段表示账户在这段时间产生行为的次数。</p>
+<p>对于和该账户相关联的设备，只需使用将向量的最后$|D|$维根据所属设备，编码成one-hot向量就可以了。</p>
+<p>最终的目的：</p>
+<p>给定邻接矩阵$A$、在$[0,T)$时间内的行为矩阵$X$，以及在$[0,T-1)$时间内$N_0$个已标注账户是否为恶意账户的标签，学习到函数$f(,X)$，正确预测在$T$时刻的恶意账户。</p>
+<h3 id="3-4-Models"><a href="#3-4-Models" class="headerlink" title="3.4 Models"></a>3.4 Models</h3><p>上述章节讨论了数据中发现的模式(“设备聚集”和“行为聚集”)，以及异质图的构建。并且说明了这些模式可以通过给定$A, X$的函数学习得到。</p>
+<p>仍然需要一个强大的函数来捕获这些模式。</p>
+<p>我们希望通过聚合转换后的行为矩阵$X$，从而为每个节点$i$学习到有效的embedding $h_i$：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkoh7rezudj20mb05ywey.jpg" alt="undefined"></p>
+<p>其中，$H^{(t)}\in R^{N,k}$,<em>k</em>表示$t$层的嵌入矩阵，每行表示一个节点的embedding。$T$表示节点跳数，也表示隐藏层的层数。$W, $是需要优化的参数。</p>
+<p>关于模型的解释：</p>
 
             </div>
             <hr/>
