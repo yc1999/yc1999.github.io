@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-14T11:11:11.136Z</updated>
+  <updated>2020-11-14T16:06:38.050Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
+    <link href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
+    <id>http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</id>
+    <published>2020-11-14T11:28:17.000Z</published>
+    <updated>2020-11-14T16:06:38.050Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-Introduction&quot;&gt;&lt;a href=&quot;#1-Introduction&quot; class=&quot;headerlink&quot; title=&quot;1. Introduction;&quot;&gt;&lt;/a&gt;1. Introduction;&lt;/h2&gt;&lt;h2 id=&quot;graph的分类&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Heterogeneous Graph Neural Networks for Malicious Account Detection</title>

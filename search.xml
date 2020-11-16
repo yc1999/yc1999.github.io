@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
+      <link href="2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
+      <url>2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction;"></a>1. Introduction;</h2><h2 id="graph的分类"><a href="#graph的分类" class="headerlink" title="graph的分类"></a>graph的分类</h2><p>（1）Networks (also known as Natural Graphs):其实就是我们实际生活中会遇到的真实的图，比如社会人际关系、基因组、我们的想法</p><p><strong>本质上这些是给定了一个domain，上面的所有信息可以建立一个networks，我们好利用networks/graphs更好的理解这个domain</strong></p><p>（2）information graphs:这一类更关心的是<strong>各个个体之间的联系</strong>，从而可以做比如分类任务等</p><p><img src="https://pic3.zhimg.com/80/v2-6e8c501e83e7e9d8fe52c9e9a10cd442_720w.jpg" alt="img"></p><p><img src="https://pic4.zhimg.com/80/v2-320eddd58a088fafc6c37a0894a0e01b_720w.jpg" alt="img"></p><p>比如social networks：可以查询到谁follow了谁等信息；information networks可以查询谁引用了谁的文章等、或者研究科学的进化是一个怎样的进程</p><p><strong>研究graph的目的/意义</strong></p><p><img src="https://pic3.zhimg.com/80/v2-f29fb4d3d1e1af099b007729fb55b1ca_720w.jpg" alt="img"></p><blockquote><p>举一个笔者个人认为很重要的现实意义：目前新型冠状病毒，因为春运的原因，人员走动非常的广，没有办法人工去追踪，那么这时候利用大数据建立一个social networks，可以较好的将所有潜在的感染者找出来，从而切断传染源。</p></blockquote><h2 id="2-structure-of-graphs"><a href="#2-structure-of-graphs" class="headerlink" title="2 structure of graphs"></a>2 structure of graphs</h2><p>怎么描述一个网络？</p><p><img src="https://pic4.zhimg.com/80/v2-3558d0afbab4fc445f7807aef2b54c9b_720w.jpg" alt="img">图其实是network的一种数学表示</p><ul><li>networks可以视为一种通用的语言，用来描述不同domain下个体之间的联系。</li><li>根据什么样的属性来考虑个体之间的联系，就称为xxxnetwork（xxx表示的就是你基于的联系属性）。</li></ul><p>所以如何选择graph representation？</p><p><img src="https://pic3.zhimg.com/80/v2-d90b9beaf3c2687ade99cbba0dc24cf2_720w.jpg" alt="img"></p><ul><li>undirected graphs（无向图）：比如像微博上，我关注了你，你并没有关注我或者你也关注了我。即互相之间的关系是无所谓主从关系</li><li>directed graphs（有向图）： 电话-一定有一人拨打电话和另一断接听电话，是明确知道方向，我打给了你和你打给我是不一样的箭头方向</li></ul><p><img src="https://pic1.zhimg.com/80/v2-1acda607b157e2c719d51cbff4ed7d84_720w.jpg" alt="img"></p><p>节点的度：（1）在undirected graph中这个度表明的就是这个节点连接的其他节点数量</p><pre class=" language-text"><code class="language-text">我们也可以理解为微博中，你的粉丝数量+关注数量-互粉数量</code></pre><p>（2）在directed graph中这个度反映的就更加精准：分为in-degree和out-degree</p><pre class=" language-text"><code class="language-text">in-degree可以理解为粉丝数量，out-degree可以理解为关注数量（你关注别人）。注意到这里ppt上的C是没有双向箭头的。</code></pre><p>有一类特殊的图：二分图</p><p><img src="https://pic4.zhimg.com/80/v2-154ea94eaf4755a6655ebbe44e47485b_720w.jpg" alt="img"></p><p>这种图结构很有用：当你的nodes是不同的类型的时候，按照类型分类(disjoint sets)。如作者作为U类，论文作为V类。</p><p><strong>怎么表示一个图？</strong></p><p>（1）邻近矩阵A：通俗的理解就是将每个节点之间是否存在连接（1 or 0)通过矩阵形式表示出来</p><p><img src="https://pic2.zhimg.com/80/v2-26feec271b1a0cfa7973b19ae9b02411_720w.jpg" alt="img"></p><p>我们可以试一下将0表示为白色，1表示为黑色点将邻近矩阵画出来：可以发现邻近矩阵是<strong>稀疏</strong>的</p><p><img src="https://pic2.zhimg.com/80/v2-e2f5830d4470cea1a121fdd34eb91ad1_720w.jpg" alt="img"></p><p><strong>note</strong></p><p><strong>现实中大部分networks都是稀疏的（**<em>稀疏–非常好的性质</em></strong>）**</p><pre class=" language-text"><code class="language-text">这样我们把graph表示成矩阵-稀疏矩阵，所占内存将减少很多</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> GNN </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 课程笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Heterogeneous Graph Neural Networks for Malicious Account Detection</title>
       <link href="2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/"/>
       <url>2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/</url>
