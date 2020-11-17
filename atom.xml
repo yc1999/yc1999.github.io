@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-14T16:06:38.050Z</updated>
+  <updated>2020-11-17T08:58:12.013Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,18 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
-    <link href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
-    <id>http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</id>
-    <published>2020-11-14T11:28:17.000Z</published>
-    <updated>2020-11-14T16:06:38.050Z</updated>
+    <title>【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models</title>
+    <link href="http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/"/>
+    <id>http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/</id>
+    <published>2020-11-16T12:44:07.000Z</published>
+    <updated>2020-11-17T08:58:12.013Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;1-Introduction&quot;&gt;&lt;a href=&quot;#1-Introduction&quot; class=&quot;headerlink&quot; title=&quot;1. Introduction;&quot;&gt;&lt;/a&gt;1. Introduction;&lt;/h2&gt;&lt;h2 id=&quot;graph的分类&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2</summary>
         
       
     
@@ -38,6 +41,40 @@
     
     
     <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
+    <link href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
+    <id>http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</id>
+    <published>2020-11-14T11:28:17.000Z</published>
+    <updated>2020-11-16T12:21:41.824Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Motivation&quot;&gt;&lt;a href=&quot;#Motivation&quot; class=&quot;headerlink&quot; title=&quot;Motivation&quot;&gt;&lt;/a&gt;Motivation&lt;/h2&gt;&lt;p&gt;两种常见的关于图的分类：&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
     
   </entry>
   

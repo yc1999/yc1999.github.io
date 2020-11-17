@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs, 杨程的博客">
+    <meta name="keywords" content="【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs | 杨程的博客</title>
+    <title>【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,7 +313,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</h1>
+                    <h1 class="description center-align post-title">【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models</h1>
                 </div>
             </div>
         </div>
@@ -463,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-14
+                    2020-11-16
                 </div>
                 
 
@@ -479,128 +479,158 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>两种常见的关于图的分类：</p>
-<p><img src="https://pic3.zhimg.com/80/v2-6e8c501e83e7e9d8fe52c9e9a10cd442_720w.jpg" alt="概念的区分"></p>
-<ol>
-<li><p>Networks (also known as Natural Graphs)</p>
-<p>其实就是我们实际生活中会遇到的真实的图，比如社会人际关系、基因组、我们的想法</p>
-<p><strong>本质上这些是给定了一个domain，上面的所有信息可以建立一个networks，我们好利用networks/graphs更好的理解这个domain</strong></p>
-</li>
-<li><p>information graphs</p>
-<p>这一类更关心的是<strong>各个个体之间的联系</strong>，从而可以来做分类，预测等任务。</p>
-</li>
-</ol>
-<p><img src="https://pic4.zhimg.com/80/v2-320eddd58a088fafc6c37a0894a0e01b_720w.jpg"></p>
-<hr>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8lz76b7j20nu0hswkj.jpg"></p>
-<p><strong>研究graph的目的/意义：</strong></p>
-<p><img src="https://pic3.zhimg.com/80/v2-f29fb4d3d1e1af099b007729fb55b1ca_720w.jpg" alt="img"></p>
-<blockquote>
+                <blockquote>
+<p>在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。</p>
+</blockquote>
+<h2 id="Measuring-Networks-via-Network-Properties"><a href="#Measuring-Networks-via-Network-Properties" class="headerlink" title="Measuring Networks via Network Properties"></a>Measuring Networks via Network Properties</h2><p>在本节中，我们将研究四个关键网络属性以表征图形：</p>
 <ul>
-<li>model就是之前说的natural graph，而predict就是之前说的information graph。</li>
-<li>举一个笔者个人认为很重要的现实意义：目前新型冠状病毒，因为春运的原因，人员走动非常的广，没有办法人工去追踪，那么这时候利用大数据建立一个social networks，可以较好的将所有潜在的感染者找出来，从而切断传染源。</li>
+<li><p><strong>度分布——$P(k)$</strong></p>
+</li>
+<li><p><strong>路径长度——$h$</strong></p>
+</li>
+<li><p><strong>聚类系数——$C$</strong> </p>
+</li>
+<li><p><strong>连接组件——$s$</strong></p>
+<p>这些定义主要是针对无向图的，但可以轻松地将其扩展为有向图。</p>
+</li>
 </ul>
+<h3 id="Degree-Distribution"><a href="#Degree-Distribution" class="headerlink" title="Degree Distribution"></a>Degree Distribution</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gks9ixekdkj20t607u3yy.jpg" alt="度分布示意图"></p>
+<p>度分布 $P(k)$ 表示随机选择一个节点，它具有度 $k$ 的概率是多少。对于一个已知的图 $G$ ，它的度分布可以通过归一化的直方图来概括，其中我们通过节点总数来归一化直方图。</p>
+<p>我们可以通过 $P(k)=N_{k}/N$ 计算图的度分布。其中，$N_{k}$ 是度为 $k$ 的节点数，$N$ 为节点总数。可以将度分布视为随机选择的节点具有度 $k$ 的概率。</p>
+<p>如果要将这些定义扩展为有向图，需要分别计算入度和出度的分布。</p>
+<h3 id="Paths-in-a-Graph"><a href="#Paths-in-a-Graph" class="headerlink" title="Paths in a Graph"></a>Paths in a Graph</h3><h4 id="path"><a href="#path" class="headerlink" title="path"></a>path</h4><p><strong>路径</strong>是一系列节点，其中每个节点都链接到下一个节点：<br>$$<br>P_{n} = \lbrace {i_{0},i_{1},i_{2},…,i_{n}} \rbrace<br>$$<br>其中 $\lbrace{(i_{0},i_{1}),(i_{1},i_{2}),(i_{2},i_{3}),…(i_{n-1},i_{n})\rbrace} \in E$</p>
+<h4 id="distance"><a href="#distance" class="headerlink" title="distance"></a>distance</h4><p>一对节点之间的<strong>距离</strong>(也称最短路径，geodesic)定义为沿着连接这对节点的最短路径的边数。 </p>
+<blockquote>
+<p>如果两个节点未连接，则距离通常定义为无限(或零)。 人们还可以将距离视为遍历从一个节点到另一个节点所需的最少节点数。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8o8hi0dj20nf0gtjt9.jpg"></p>
-<h2 id="Networks-and-Application"><a href="#Networks-and-Application" class="headerlink" title="Networks and Application"></a>Networks and Application</h2><blockquote>
-<p>这一节主要讲解一些常见的networks和这些networks的应用</p>
+<p>在有向图中，路径需要遵循箭头的方向。 因此，有向图的距离不是对称的。 对于具有加权边的图，距离是从一个节点到另一个节点所需要遍历的最小边权重。</p>
+<h4 id="Average-path-length"><a href="#Average-path-length" class="headerlink" title="Average path length"></a>Average path length</h4><p><strong>图的平均路径长度（Average path length）</strong>是所有连接的节点之间中最短路径的平均值。 我们将计算平均路径长度定义为 $$ \hat{h}=\frac{1}{2 E_{max }} \sum_{i, j \neq i} h_{i j} $$ 其中 $E_{max}$ 是边或节点对的最大数目；也就是说 $E_{max}=n(n-1)/2$ 和 $h_{ij}$ 是从 $i$ 节点到 $j$ 节点的距离。注意，我们仅计算连接的节点对上的平均路径长度，因此忽略了无限长度的路径。</p>
+<h3 id="Clustering-Coefficient"><a href="#Clustering-Coefficient" class="headerlink" title="Clustering Coefficient"></a>Clustering Coefficient</h3><p>聚类系数(针对无向图)用于衡量节点 $i$ 的邻居相互联系的程度。</p>
+<p>对于度数为 $k_{i}$的节点 $i$，我们计算聚类系数为 $$ C_{i}=\frac{2e_{i}}{k_{i}(k_{i}-1)} $$ 其中 $e_{i}$ 是节点 $i$ 的相邻节点之间的边数。 注意 $C_{i}\in[0,1]$ 。</p>
+<blockquote>
+<p> 此外，对于度数为0或1的节点，聚类系数是不确定的。</p>
 </blockquote>
-<p>我们分析networks，主要分析哪些方面呢？也就是研究者们主要研究哪些方面呢？</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8q00wpij20nh0eimys.jpg"></p>
+<p>同样，可以计算平均聚类系数为： $$ C=\frac{1}{N}\sum_{i}^{N}C_{i} $$ 平均聚类系数使我们能够看到边在网络的某些部分是否显得更加密集。</p>
+<p>在社交网络中，平均聚类系数趋于很高，表明如我们期望的那样，朋友的朋友倾向于彼此认识。</p>
+<h3 id="Connectivity"><a href="#Connectivity" class="headerlink" title="Connectivity"></a>Connectivity</h3><p>图的连通性可衡量最大连通组件的大小。 最大的连通组件是可以通过路径将任意两个顶点连接在一起的图的最大的集合。</p>
+<p>查找连接的组件：</p>
+<ol>
+<li>从随机节点开始并执行广度优先搜索(BFS)</li>
+<li>标记BFS访问的节点</li>
+<li>如果访问了所有节点，则表明网络是连通的</li>
+<li>否则，找到一个未访问的节点并重复BFS</li>
+</ol>
+<h3 id="Erdos-Renyi随机图模型"><a href="#Erdos-Renyi随机图模型" class="headerlink" title="Erdös-Rényi随机图模型"></a>Erdös-Rényi随机图模型</h3><p>Erdös-Rényi随机图模型是最简单的图模型。 这个简单的模型具有经过验证的网络属性，并且是比较实际现实世界图属性的良好基准。</p>
+<p>此随机图模型有两个变体：</p>
+<ol>
+<li>$G_{np}$: 具有 $n$ 个节点的无向图，并且每条边 $(u,v)$ 出现的概率符合概率为 $p$ 的独立同步分布</li>
+<li>$G_{nm}$: 具有n个节点的无向图，随机地均匀地选择 $m$ 条边</li>
+</ol>
+<p>请注意，$G_{np}$ 和 $ G_{nm}$图不是唯一确定的，而是随机产生的。 每次生成图会产生不同的结果。</p>
+<h4 id="Some-Network-Properties-of-G-np"><a href="#Some-Network-Properties-of-G-np" class="headerlink" title="Some Network Properties of $G_{np}$"></a>Some Network Properties of $G_{np}$</h4><p>$G_{np}$ 的度分布符合二项分布，设 $P(k)$ 表示具有度为 $k$ 的节点数，则 $$ P(k)=\left(\begin{array}{c} n-1 \ k \end{array}\right) p^{k}(1-p)^{n-1-k} $$ 二项分布的均值和方差分别为 $\bar{k}=p(n-1)$，$\sigma^{2}=p(1-p)(n-1)$。下面，我们提供了不同参数的二项分布图。注意，二项分布与高斯的离散形式类似，并且具有钟形。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/3793fb286388e81693788f4395d8574c7e9fca4e78189848fc64bdead53ad87e/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31362f6a7149734e614270384a6f773437392e706e67"><img src="https://camo.githubusercontent.com/3793fb286388e81693788f4395d8574c7e9fca4e78189848fc64bdead53ad87e/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31362f6a7149734e614270384a6f773437392e706e67" alt="img"></a></p>
+<p>二项式分布的一个特性是，根据数字定律，随着网络规模的增加，分布变得越来越狭窄。 因此，我们越来越有信心，节点的度在 $k$ 附近。 如果图具有无限个节点，则所有节点将具有相同的度数。</p>
+<h4 id="The-Clustering-Coefficient-of-G-np"><a href="#The-Clustering-Coefficient-of-G-np" class="headerlink" title="The Clustering Coefficient of $G_{np}$"></a>The Clustering Coefficient of $G_{np}$</h4><p>回顾一下，聚类系数的计算公式为 $C_{i}=\frac{2e_{i}}{k_{i}(k_{i}-1)}$ 其中 $e_{i}$ 是节点 $i$ 的相邻节点之间的边数。因为在 $G_{np}$ 中边出现的概率符合概率为 $p$ 的独立同分布，所以图 $G_{np}$ 中期望的 $e_{i}$ 为 $$ \mathbb{E}\left[e_{i}\right]=p \frac{k_{i}\left(k_{i}-1\right)}{2} $$ 这是因为 $\frac {k_{i}(k_{i}-1)} {2}$ 是度为 $k_{i}$ 的节点 $i$ 的邻居的不同对的数量，并且每一对以概率 $p$ 相连接。</p>
+<p>因此，期望的聚类系数为： $$ \mathbb{E}\left[C_{i}\right]=\frac{p \cdot k_{i}\left(k_{i}-1\right)}{k_{i}\left(k_{i}-1\right)}=p=\frac{\bar{k}}{n-1} \approx \frac{\bar{k}}{n} $$ $\bar{k}$ 表示平均度，从上面公式可以得到，$G_{np}$ 的聚类系数非常小，如果我们以固定的平均度 生成 $\bar{k}$ 一个非常非常大的图，那么 $C$ 随着规模 $n$ 的增大而减小。$\mathbb{E}\left[C_{i}\right] \rightarrow 0$ as $n \rightarrow \infty$。</p>
+<h4 id="The-Path-Length-of-G-np"><a href="#The-Path-Length-of-G-np" class="headerlink" title="The Path Length of $G_{np}$"></a>The Path Length of $G_{np}$</h4><p>讨论 $G_{np}$ 的路径长度，我们首先介绍<strong>扩展系数</strong>的概念。图 $G(V,E)$ 对于 $\forall S \subset V$ 具有扩展系数 $\alpha$ ，剩下的边的数量 $S \geq \alpha \cdot \min (|S|,|V \backslash S|)$。扩展系数回答了一个问题，即“如果我们随机选择一组节点，那么有多少条边要离开该组？” 扩展系数是一种鲁棒性的度量：要断开 $ℓℓ$ 个节点，必须切断 $≥α⋅ℓ$边缘。</p>
+<p>同样的，我们也可以认为图 $G(V,E)$ 具有扩展系数 $\alpha$ $$ \alpha=\min <em>{S \subset V} \frac{ # \text { edges leaving } S}{\min (|S|,|V \backslash S|)} $$ 关于扩展系数的一个重要事实是，在具有 $n$ 个节点且扩展系数为 $α$ 的图中，对于所有的节点对，将有 $O((\log n)/\alpha)$ 条路径连接他们。对于一个随机的 $G</em>{np}$ 图，$\log n&gt;n p&gt;c$，所以，$diam(G_{np})=O(\log n/ \log(np))$，因此，我们可以看到随机图具有良好的扩展性，因此BFS访问所有节点的步数为对数。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/67a08f6aecf7dc9d095853eee7db7680c84945b3b2e67cc4ebc1a76d748f6bf4/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31372f4d36723245474e6a6b63316c735a562e706e67"><img src="https://camo.githubusercontent.com/67a08f6aecf7dc9d095853eee7db7680c84945b3b2e67cc4ebc1a76d748f6bf4/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31372f4d36723245474e6a6b63316c735a562e706e67" alt="img"></a></p>
+<p>因此 $G_{np}$ 的路径长度为 $O(\log n)$。从这个结果中，我们可以看到 $G_{np}$ 可以增长得很大，但是节点之间仍然相距几跳。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/aa139412c3a46d454199122ebf23ff8ebfe9fc6c4e4605e45610d09ed4c72718/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31372f75776a4d4a437a48534f6b374265662e706e67"><img src="https://camo.githubusercontent.com/aa139412c3a46d454199122ebf23ff8ebfe9fc6c4e4605e45610d09ed4c72718/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30352f31372f75776a4d4a437a48534f6b374265662e706e67" alt="img"></a></p>
+<h4 id="The-Connectivity-of-G-np"><a href="#The-Connectivity-of-G-np" class="headerlink" title="The Connectivity of $G_{np}$"></a>The Connectivity of $G_{np}$</h4><p>下图显示了随机图 $G_{np}$ 的演变。我们可以看到当平均度 $\bar{k}=2E/n$ 或 $p=\bar{k}/(n-1)$ 时，出现了一个巨大的连通组件。如果 $k=1-\epsilon$ ，则所有组件的大小均符合 $\Omega(\log n)$。如果 $\bar{k}=1+\epsilon$ ，则存在1个连通组件的大小为 $\Omega(n)$，而所有其他组件大小都为 $\Omega(\log n)$。换句话说，如果 $\bar{k}&gt;1$，我们希望具有一个大的连通组件。另外，在这种情况下，每个节点在期望中至少具有一条边。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/4335ec1544de8b2c16fe8eec834c3114b528f8ee2333400b88f50b5ee79e1045/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4d7839614b5867713445637952376b2e706e67"><img src="https://camo.githubusercontent.com/4335ec1544de8b2c16fe8eec834c3114b528f8ee2333400b88f50b5ee79e1045/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4d7839614b5867713445637952376b2e706e67" alt="evol_of_rand_grapg.png"></a></p>
+<h4 id="Analyzing-the-Properties-of-G-np"><a href="#Analyzing-the-Properties-of-G-np" class="headerlink" title="Analyzing the Properties of $G_{np}$"></a>Analyzing the Properties of $G_{np}$</h4><p>在网格网络中，我们实现了三角闭合和高聚类系数，但是平均路径长度较长。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/acb703a2a3dab41bfcd9905e0db3074708d6a7334eede2e62473ec58f9f0be09/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a78757a4358386f3669546b47416a2e706e67"><img src="https://camo.githubusercontent.com/acb703a2a3dab41bfcd9905e0db3074708d6a7334eede2e62473ec58f9f0be09/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a78757a4358386f3669546b47416a2e706e67" alt="grid_network.png"></a></p>
+<p>在随机网络中，我们实现了较短的平均路径长度，但聚类系数较低。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/9b4d8e5c5911176896a017e1c0130c5ed29e8b105e54b9f53da15c5d0172ed66/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f73426c676e316b41536452786554372e706e67"><img src="https://camo.githubusercontent.com/9b4d8e5c5911176896a017e1c0130c5ed29e8b105e54b9f53da15c5d0172ed66/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f73426c676e316b41536452786554372e706e67" alt="random_network"></a></p>
+<p>基于以上两个图结构，似乎不能直观地得到一个具有较短的平均路径长度，同时也具有较高的聚类系数的图，这。但是，大多数现实世界网络具有如下表所示的属性，其中 $h$ 是平均最短路径长度，$c$ 是平均聚类系数为，了便于比较，随机图的平均度与实际网络相同。</p>
 <table>
 <thead>
 <tr>
-<th>Networks</th>
-<th>Application</th>
+<th>网络类型</th>
+<th><strong>$h_{actual}$</strong></th>
+<th><strong>$h_{random}$</strong></th>
+<th><strong>$c_{actual}$</strong></th>
+<th><strong>$c_{random}$</strong></th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Social Networks</td>
-<td>Social Circle Detection</td>
+<td>电影演员</td>
+<td>3.65</td>
+<td>2.99</td>
+<td>0.79</td>
+<td>0.00027</td>
 </tr>
 <tr>
-<td>Infrastructure Networks</td>
-<td>Aug 15，2003 blackout</td>
+<td>电力网络</td>
+<td>18.70</td>
+<td>12.40</td>
+<td>0.080</td>
+<td>0.005</td>
 </tr>
 <tr>
-<td>Knowledge Networks</td>
-<td>Link Prediction</td>
-</tr>
-<tr>
-<td>Online Media</td>
-<td>Polarization on Twitter、Misinformation、Predicting Virality、Product Adoption</td>
-</tr>
-<tr>
-<td>Biomedicine</td>
-<td>Side effects</td>
+<td>C.elegans</td>
+<td>2.65</td>
+<td>2.25</td>
+<td>0.28</td>
+<td>0.05</td>
 </tr>
 </tbody></table>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8xzjcd1j20om0hw0va.jpg" alt="Embedding Nodes"></p>
-<p>what are the images that are nearby in this embedding space？接下来的五节课我们都会学习怎么来映射到高维空间中。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8ypkgdoj20ob0bjgrq.jpg" alt="比较1"></p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr8z78btej20oe09wq8u.jpg" alt="比较2"></p>
-<p>上面的结果是只是用了image feature，没有使用graph。而下面的是使用了graph的。明显看到下面的结果会更好。 </p>
-<h2 id="Course-Outline"><a href="#Course-Outline" class="headerlink" title="Course Outline"></a>Course Outline</h2><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr929btt6j20p809madz.jpg" alt="course outline"></p>
+<p>同时满足以上标准的高聚类系数和小平均路径长度的网络（数学上定义为 $L\propto \log N$，其中 $L$ 是平均路径长度，$N$ 是网络中的节点的总数）称为小型世界网络。</p>
+<h4 id="The-Small-World-Random-Graph-Model"><a href="#The-Small-World-Random-Graph-Model" class="headerlink" title="The Small World Random Graph Model"></a>The Small World Random Graph Model</h4><p>1998年，Duncan J. Watts和Steven Strogatz提出了一个模型，该模型用于构建具有高聚类和较短平均路径长度的网络。他们将此模型称为“小世界模型”。要创建这样的模型，我们采用以下步骤：</p>
+<ol>
+<li>从低维度的常规环开始，通过将每个节点连接到右侧的 $k$ 个邻居和左侧的 $k$ 个邻居， $k\geq2$ 。</li>
+<li>通过将端点移动到随机选择的节点，以概率 $p$ 重新连接每条边(重新布线)。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/127d2e2feb9b71c64c33b760d36fb24cfb737e66c66df8293f3a81e6482ba6bc/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4d51596136755771453966414956352e706e67"><img src="https://camo.githubusercontent.com/127d2e2feb9b71c64c33b760d36fb24cfb737e66c66df8293f3a81e6482ba6bc/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4d51596136755771453966414956352e706e67" alt="small_world"></a></p>
+<p>然后，我们进行以下观察：</p>
 <ul>
-<li>蓝色部分：Algorithm for analyzing networks</li>
-<li>黄色部分：Statistical machine learning on networks</li>
-<li>绿色部分：public applications and lectures focused on the use cases those applications</li>
+<li>在 $p=0$ 没有发生重新连接边的地方，这仍然是具有高簇集，大直径的网格网络。</li>
+<li>对于 $0&lt;p&lt;1$ ，某些边缘已经进行了重新连线，但是大部分结构仍然保留。这意味着**(localoity)<strong>和</strong>(shortcuts)**。这允许高聚类和低直径。</li>
+<li>对于 $p=1$，所有边缘都进行了随机重新连接，这是一个具有低聚类，低直径的Erdős-Rényi (ER)随机图。</li>
 </ul>
-<h2 id="Structure-of-Graphs"><a href="#Structure-of-Graphs" class="headerlink" title="Structure of Graphs"></a>Structure of Graphs</h2><p>怎么描述一个网络？首先理解图的基本单元有哪些：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-3558d0afbab4fc445f7807aef2b54c9b_720w.jpg">Network和Graphs是在课程中是不同的概念。但是大家也不要太在意这些区别：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr944y46bj20mz0hngne.jpg" alt="Networks or Graphs"></p>
-<h3 id="How-do-you-define-a-networks"><a href="#How-do-you-define-a-networks" class="headerlink" title="How do you define a networks?"></a>How do you define a networks?</h3><p>其实是network的一种数学表示</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/b4f57cdf08a5142f7ccd194dd3754571b506760f5ff29556dc5e2018cfe70261/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f5147683342314954504436564561722e706e67"><img src="https://camo.githubusercontent.com/b4f57cdf08a5142f7ccd194dd3754571b506760f5ff29556dc5e2018cfe70261/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f5147683342314954504436564561722e706e67" alt="clustering_path.png"></a></p>
+<p>小世界模型通过重新连接概率 $p \in[0,1]$ 来参数化。通过观察聚类系数和平均路径长度如何随 $p$ 的变化，我们看到平均路径长度随着 $p$ 增加而下降得更快，而聚类系数仍然相对较高。重新布线引入了shortcuts，这使得在结构保持相对坚固（高度聚类）的情况下，平均路径长度也可以减小。</p>
+<p>从社交网络的角度来看，这种现象是直观的。虽然我们的大多数朋友都是本地人，但我们在不同国家/地区也有一些远距离的友谊，这足以使人类社交网络的直径崩溃，从而解释了流行的“六度分离”概念。</p>
+<p>Watts-Strogatz小世界模型的两个局限性在于其度的分布与现实网络的幂律分布不匹配，并且由于假定了网络的大小，因此无法对网络的增长进行建模。</p>
+<h4 id="The-Kronecker-Random-Graph-Model"><a href="#The-Kronecker-Random-Graph-Model" class="headerlink" title="The Kronecker Random Graph Model"></a>The Kronecker Random Graph Model</h4><p>图生成的模型已被广泛研究。这些模型使我们能够在收集实际图困难时生成用于仿真和假设检验的图，并且还使我们可以检查生成模型应遵循的某些现实属性。</p>
+<p>在制定图生成模型时，有两个重要的考虑因素。首先是生成现实网络的能力，其次是模型的数学易处理性，这允许对网络属性进行严格的分析。</p>
+<p>Kronecker图模型是一个递归图生成模型，结合了数学易处理性和实际的静态和时态网络属性。Kronecker图模型的直观感受是自相似性，整体具有一个或多个部分的形状相同。</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/7e98d2ee551e9c6a455de04a064e2e571eaeb6d92b3bf4b056d844a6a214869b/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f395266654b57453264436f787038742e706e67"><img src="https://camo.githubusercontent.com/7e98d2ee551e9c6a455de04a064e2e571eaeb6d92b3bf4b056d844a6a214869b/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f395266654b57453264436f787038742e706e67" alt="community_growth.png"></a></p>
+<p>Kronecker积是一种非标准的矩阵运算，是一种生成自相似矩阵的方法。</p>
+<h4 id="The-Kronecker-Product"><a href="#The-Kronecker-Product" class="headerlink" title="The Kronecker Product"></a>The Kronecker Product</h4><p>Kronecker积使用 $\otimes$ 来表示。对于两个任意矩阵 $A \in \mathbb{R}^{m \times n}$ 和 $B \in \mathbb{R}^{p \times q}$， $A\otimes B \in \mathbb{R}^{mp \times nq}$，即： $$ \textbf{A} \otimes \textbf{B} = \begin{bmatrix}a_{11}\textbf{B} &amp; \dots &amp; a_{1n}\textbf{B} \ \vdots &amp;\ddots &amp; \vdots \ a_{m1}\textbf{B} &amp; \dots &amp; a_{mn}\textbf{B} \ \end{bmatrix} $$ 例如， $$ \begin{bmatrix} 1&amp;2\3&amp;4 \end{bmatrix} \otimes \begin{bmatrix} 0&amp;5\6&amp;7 \end{bmatrix} = \begin{bmatrix} 1 \begin{bmatrix} 0&amp;5\6&amp;7 \end{bmatrix} &amp;2 \begin{bmatrix} 0&amp;5\6&amp;7 \end{bmatrix} \3 \begin{bmatrix} 0&amp;5\6&amp;7 \end{bmatrix} &amp;4 \begin{bmatrix} 0&amp;5\6&amp;7 \end{bmatrix} \end{bmatrix} = \begin{bmatrix} 1 \times 0 &amp; 1 \times 5 &amp; 2 \times 0 &amp; 2 \times 5\ 1 \times 6 &amp; 1 \times 7 &amp; 2 \times 6 &amp; 2 \times 7\ 3 \times 0 &amp; 3 \times 5 &amp; 4 \times 0 &amp; 4 \times 5\ 3 \times 6 &amp; 3 \times 7 &amp; 4 \times 6 &amp; 4 \times 7 \end{bmatrix} = \begin{bmatrix} 0 &amp; 5 &amp; 0 &amp; 10\ 6 &amp; 7 &amp; 12 &amp; 14\ 0 &amp; 15 &amp; 0 &amp; 20\ 18 &amp; 21 &amp; 24 &amp; 28 \end{bmatrix} $$ 为了在图生成中使用Kronecker积，我们将两个图的Kronecker积定义为两个图的邻接矩阵的Kronecker积。 从初始矩阵$K_{1}$(图的邻接矩阵)开始，我们迭代Kronecker积以生成更大的图 $K_{2}=K_{1}\otimes K_{1},K_{3}=K_{2}\otimes K_{1} \dots$，$m$ 阶的Kronecker图定义为 $$ K_{1}^{[m]}=\dots K_{m}=\underbrace{K_1 \otimes K_1 \otimes \dots K_1}<em>{\text{m times}}=K</em>{m-1} \otimes K_1 $$ <a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/0316428d46823d1e4f973f2aa0b11a0274bef13c77db5d9eecd48f61d8ca73d8/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f3944624d6849736c314e6b7763514f2e706e67"><img src="https://camo.githubusercontent.com/0316428d46823d1e4f973f2aa0b11a0274bef13c77db5d9eecd48f61d8ca73d8/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f3944624d6849736c314e6b7763514f2e706e67" alt="small_kronecker"></a></p>
+<p>直观地，可以将Kronecker幂构造想象为图中的社区的递归增长，其中社区中的节点递归地扩展为社区的微型副本。Kronecker初始矩阵 $K_1$ 的选择可以改变，这会迭代影响较大图形的结构。<a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/62a12336b9e7f7f21d3e30f063c9f07a8bad76763fb4b03af5db7e9ef81f234d/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a69686b44377a436647454d7333482e706e67"><img src="https://camo.githubusercontent.com/62a12336b9e7f7f21d3e30f063c9f07a8bad76763fb4b03af5db7e9ef81f234d/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a69686b44377a436647454d7333482e706e67" alt="initiator"></a></p>
+<h4 id="Stochastic-Kronecker-Graphs"><a href="#Stochastic-Kronecker-Graphs" class="headerlink" title="Stochastic Kronecker Graphs"></a>Stochastic Kronecker Graphs</h4><p>到目前为止，我们仅考虑了具有二进制值 ${0,1}$的初始矩阵 $K_1$。但是，从此类初始矩阵生成的图在度数分布和其他属性中具有“阶梯”效应：由于 $K_1$ 的离散性质，个别值非常频繁地出现。</p>
+<p>为了消除这种影响，通过放宽初<strong>始矩阵中的条目只能采用二进制值</strong>这个假设来引入随机性。取而代之的是可以采用 $[0,1]$ 范围上的值的矩阵 $\Theta_1$，并且每个值都代表该特定边出现的概率。这样矩阵（以及所有生成的较大矩阵乘积）表示该矩阵在所有可能图上的概率分布。</p>
+<p>更具体地说，对于概率矩阵 $\Theta_1$，我们计算 $k^{th}$ Kronecker幂 $\Theta_k$ 作为大型随机邻接矩阵。每个 $\Theta_k$ 中的值 $p_{uv}$ 则代表边 $(u,v)$ 出现的概率。（请注意，概率总和不必为1，因为每个边缘出现的概率与其他边缘无关）</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/679a513d5df779f1685df0a43a0eb61ca01a969e93e85c05be56dcb89bf39f59/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a6f6979584876724c4d596c7461652e706e67"><img src="https://camo.githubusercontent.com/679a513d5df779f1685df0a43a0eb61ca01a969e93e85c05be56dcb89bf39f59/68747470733a2f2f692e6c6f6c692e6e65742f323032302f30362f31322f4a6f6979584876724c4d596c7461652e706e67" alt="stochastic_graphs"></a></p>
+<p>为了获得图的一个实例，通过以随机邻接矩阵中相应条目给出的概率对每个边进行采样，然后从该分布中进行采样。采样可以被认为是抛具有偏差的硬币的结果，其中偏差被矩阵中的每个条目参数化。</p>
+<p>但是，这意味着简单的生成实例的时间是图形大小的平方，即 $O(N^2)$；当具有100万个节点，我们抛100万$\times$100万次硬币。</p>
+<h4 id="Fast-Generation-of-Stochastic-Kronecker-Graphs"><a href="#Fast-Generation-of-Stochastic-Kronecker-Graphs" class="headerlink" title="Fast Generation of Stochastic Kronecker Graphs"></a>Fast Generation of Stochastic Kronecker Graphs</h4><p>存在一种快速启发式生成图形的过程，该过程所需时间随着边数量线性变化。</p>
+<p>总体思路可以描述如下：对于每个边缘，我们以概率 $p_{uv} \in \Theta_1$递归地选择大随机矩阵的子区域，直到我们下降到大随机矩阵的单个单元为止。我们将边缘放置在那里。对于Kronecker图的 $k^{th}$ 幂 $\Theta_k$，将需要 $k$ 次下降步骤。</p>
+<p>例如，考虑 $\Theta_1$ 是一个 $2 \times 2$ 的矩阵 $$ \Theta =\begin{bmatrix} a &amp; b \ c &amp; d \end{bmatrix} $$ 对于具有 $n=2^k$ 个节点的图 $G$</p>
 <ul>
-<li>networks可以视为一种通用的语言，用来描述不同domain下个体之间的联系。</li>
-<li>根据什么样的属性来考虑个体之间的联系，就称为xxxnetwork（xxx表示的就是你基于的联系属性）。</li>
+<li>创建归一化矩阵 $L_{uv}=\frac{p_{uv}}{\sum_{u,v}p_{uv}},\quad p_{uv} \in \Theta_1$</li>
+<li>对于每个边缘：<ul>
+<li>For $i=1 \dots k:$<ul>
+<li>初始 $x=0,y=0$</li>
+<li>以概率 $L_{uv}$ 选择行和列</li>
+<li>下降到 $G$ 的第 $i$ 级象限$(u,v)$<ul>
+<li>$x=x+u \cdot 2^{k-1}$</li>
+<li>$y=y+v \cdot 2^{k-1}$</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr963wl50j20nv0hxjtb.jpg"></p>
-<h3 id="Choice-of-Network-Representation"><a href="#Choice-of-Network-Representation" class="headerlink" title="Choice of Network Representation"></a>Choice of Network Representation</h3><p><img src="https://pic3.zhimg.com/80/v2-d90b9beaf3c2687ade99cbba0dc24cf2_720w.jpg" alt="img"></p>
-<ul>
-<li>undirected graphs（无向图）：比如像微博上，我关注了你，你并没有关注我或者你也关注了我。即互相之间的关系是无所谓主从关系</li>
-<li>directed graphs（有向图）： 电话-一定有一人拨打电话和另一断接听电话，是明确知道方向，我打给了你和你打给我是不一样的箭头方向</li>
-</ul>
-<p><img src="https://pic1.zhimg.com/80/v2-1acda607b157e2c719d51cbff4ed7d84_720w.jpg" alt="img"></p>
-<p>节点的度：（1）在undirected graph中这个度表明的就是这个节点连接的其他节点数量</p>
-<pre class=" language-text"><code class="language-text">我们也可以理解为微博中，你的粉丝数量+关注数量-互粉数量</code></pre>
-<p>（2）在directed graph中这个度反映的就更加精准：分为in-degree和out-degree</p>
-<pre class=" language-text"><code class="language-text">in-degree可以理解为粉丝数量，out-degree可以理解为关注数量（你关注别人）。注意到这里ppt上
-的C是没有双向箭头的。</code></pre>
-<p>完全图</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr98pxrarj20nl0dmju9.jpg" alt="完全图"></p>
-<p>二分图</p>
-<p><img src="https://pic4.zhimg.com/80/v2-154ea94eaf4755a6655ebbe44e47485b_720w.jpg" alt="img"></p>
-<p>这种图结构很有用：</p>
-<ul>
-<li><p>当你的nodes是不同的类型的时候，按照类型分类(disjoint sets)。如作者作为U类，论文作为V类。</p>
 </li>
-<li><p>同时二分图也可以衍生出新的图</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9a8kx6nj20nv0giae9.jpg" alt="新图"></p>
+<li>将边 $(x,y)$ 添加到 $G$</li>
+</ul>
 </li>
 </ul>
-<h3 id="怎么表示-存储一个图？"><a href="#怎么表示-存储一个图？" class="headerlink" title="怎么表示/存储一个图？"></a>怎么表示/存储一个图？</h3><h4 id="Adjacency-Matrix"><a href="#Adjacency-Matrix" class="headerlink" title="Adjacency Matrix"></a>Adjacency Matrix</h4><p>通俗的理解就是将每个节点之间是否存在连接（1 or 0)通过矩阵形式表示出来</p>
-<p><img src="https://pic2.zhimg.com/80/v2-26feec271b1a0cfa7973b19ae9b02411_720w.jpg" alt="img"></p>
-<p>我们可以试一下将0表示为白色，1表示为黑色点将邻近矩阵画出来：可以发现邻近矩阵是<strong>稀疏</strong>的</p>
-<p><img src="https://pic2.zhimg.com/80/v2-e2f5830d4470cea1a121fdd34eb91ad1_720w.jpg" alt="img"></p>
-<p><strong>note</strong></p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9dww9k0j20lf0ctq4t.jpg"></p>
-<p><strong>现实中大部分networks都是稀疏的（稀疏–非常好的性质）</strong></p>
-<pre class=" language-text"><code class="language-text">这样我们把graph表示成矩阵-稀疏矩阵，所占内存将减少很多</code></pre>
-<h4 id="Edge-List"><a href="#Edge-List" class="headerlink" title="Edge List"></a>Edge List</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9ckish3j20lq0bpjs0.jpg"></p>
-<h4 id="Adjacency-List"><a href="#Adjacency-List" class="headerlink" title="Adjacency List"></a>Adjacency List</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9d0q1ejj20n60dugme.jpg"></p>
-<h3 id="Edge-Attributes"><a href="#Edge-Attributes" class="headerlink" title="Edge Attributes"></a>Edge Attributes</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9erg717j20mc0a70ti.jpg"></p>
-<p>下面是示例：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9g6ae27j20no0eqq4l.jpg"></p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9g6bzu0j20o00extai.jpg"></p>
-<h3 id="连通性"><a href="#连通性" class="headerlink" title="连通性"></a>连通性</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9lqosk6j20p50e70uc.jpg"></p>
-<hr>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9m341lyj20mf0f4wj2.jpg"></p>
-<hr>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9mbmmlqj20na0e5mym.jpg"></p>
-<hr>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9n0b8bzj20mr0edq4p.jpg"></p>
-<h3 id="Network-Representations"><a href="#Network-Representations" class="headerlink" title="Network Representations"></a>Network Representations</h3><p>不同的network具有不同的graph：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkr9o1oorbj20oe0dgt9t.jpg"></p>
+</li>
+</ul>
+<p>如果 $k=3$，且对于每一步 $i$，选择象限 $b_{(0,1)},c_{(0,1)},d_{(0,1)}$ 分别基于 $L$ 的归一化概率，有 $$ x=0\cdot 2^{3-1}+1\cdot 2^{3-2}+1\cdot 2^{3-3}=0\cdot 2^2+1\cdot 2^1+1\cdot2^{0}=3\ y=1\cdot 2^{3-1}+0\cdot 2^{3-2}+1\cdot 2^{3-3}=1\cdot 2^2+0\cdot 2^1+1\cdot2^{0}=5 $$ 因此，我们将边$(3,5)$添加到图中。</p>
+<p>在实践中，随机Kronecker图模型能够生成与现实网络的属性非常匹配的图。要阅读有关Kronecker图模型的更多信息，请参阅 *J Leskovec et al., Kronecker Graphs: An Approach to Modeling Networks (2010)*。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.khanacademy.org/math/algebra-home/alg-exp-and-log/alg-logarithmic-scale/v/logarithmic-scale">关于logarithmic scale/axis的理解</a></li>
+</ol>
 
             </div>
             <hr/>
@@ -626,7 +656,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/">http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</a>
+                    <a href="http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/">http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -841,9 +871,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/">
                     <div class="card-image">
@@ -863,9 +894,9 @@ Measuring Networks via Network Properties在本节中，我们将研究四个关
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -878,6 +909,7 @@ Measuring Networks via Network Properties在本节中，我们将研究四个关
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -904,24 +936,23 @@ Measuring Networks via Network Properties在本节中，我们将研究四个关
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/">
+                <a href="/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/">
                     <div class="card-image">
                         
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs">
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Heterogeneous Graph Neural Networks for Malicious Account Detection">
-                        
-                        <span class="card-title">Heterogeneous Graph Neural Networks for Malicious Account Detection</span>
+                        <span class="card-title">【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            支付宝2018年CIKM论文《Heterogeneous Graph Neural Networks for Malicious Account Detection》阅读笔记
+                            讲解为什么要研究Networks/Graphs,它们的应用在何处，以及复习图论的一些知识
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-14
                             </span>
                         <span class="publish-author">
                             
@@ -938,12 +969,16 @@ Measuring Networks via Network Properties在本节中，我们将研究四个关
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">论文笔记</span>
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
                     </a>
                     
                     <a href="/tags/GNN/">
                         <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
                     </a>
                     
                 </div>
@@ -1081,6 +1116,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
