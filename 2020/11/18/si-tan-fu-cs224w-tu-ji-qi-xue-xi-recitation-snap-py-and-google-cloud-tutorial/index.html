@@ -308,7 +308,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -428,12 +428,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">课程笔记</span>
+                            </a>
+                        
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                            <a href="/tags/cs224w/">
+                                <span class="chip bg-color">cs224w</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -458,7 +479,149 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <blockquote>
+<p>这节课主要讲解两个工具：snap.py和google cloud</p>
+</blockquote>
+<h2 id="Introduction-to-SNAP（Standford-Network-Analysis-Platform）"><a href="#Introduction-to-SNAP（Standford-Network-Analysis-Platform）" class="headerlink" title="Introduction to SNAP（Standford Network Analysis Platform）"></a>Introduction to SNAP（Standford Network Analysis Platform）</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy28vkj20u00migq5.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhxywwyj20u00mimxu.jpg">
+
+<p>上图是本节的outline。</p>
+<h3 id="What‘s-SNAP？"><a href="#What‘s-SNAP？" class="headerlink" title="What‘s SNAP？"></a>What‘s SNAP？</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy1tpvj20u00mijsq.jpg">
+
+<blockquote>
+<ul>
+<li><p>SNAP能够在大型网络上进行工作。</p>
+</li>
+<li><p>原始的SNAP是用C++写的，后来又用Python在C++的基础上套了一层壳，写了一个Python接口，其实底层还是C++实现的~这很重要！</p>
+</li>
+<li><p>自带了大量的网络数据集，便于我们学习；</p>
+</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy180kj20u00miwfe.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy53p4j20u00migmj.jpg">
+
+<p>下面是一些自带的网络数据集：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy3if2j20u00miab7.jpg">
+
+<h3 id="What‘s-Snap-py"><a href="#What‘s-Snap-py" class="headerlink" title="What‘s Snap.py?"></a>What‘s Snap.py?</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy74bqj20u00miaas.jpg">
+
+<p>由于C++代码运行速度更快，而python对用户使用更友好，所以采用折中的方式~trade-off</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhy8rg6j20u00mit99.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyadbbj213g0tl45i.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhycwiej20u00mi74s.jpg">
+
+<h3 id="Snap-py-Tutorial"><a href="#Snap-py-Tutorial" class="headerlink" title="Snap.py Tutorial"></a>Snap.py Tutorial</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhye3ykj20u00miq3j.jpg">
+
+<p>关于snap.py的tutorial主要包括上面的部分，这节课也会简单的介绍这些东西。</p>
+<blockquote>
+<ol>
+<li>基本数据类型</li>
+<li>vectors，hash tables和pairs</li>
+<li>图和网络</li>
+<li>生成图</li>
+<li>添加和遍历节点和边</li>
+<li>保存和加载图</li>
+<li>绘图和可视化</li>
+</ol>
+</blockquote>
+<h4 id="Snap-py中的一些命名规定"><a href="#Snap-py中的一些命名规定" class="headerlink" title="Snap.py中的一些命名规定"></a>Snap.py中的一些命名规定</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhydkgaj20u00mijsh.jpg">
+
+<blockquote>
+<ul>
+<li>所有以<code>T</code>开头的变量，表示的是<code>class type</code>；</li>
+<li>所有以<code>P</code>开头的变量，表示的是<code>graph object</code>；</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyeupoj20u00mijsd.jpg">
+
+<blockquote>
+<p>老师说这个库很好，他保证我们的作业里面的代码不会超过50行，hhh</p>
+</blockquote>
+<h4 id="Basic-Types-in-Snap-py"><a href="#Basic-Types-in-Snap-py" class="headerlink" title="Basic Types in Snap.py"></a>Basic Types in Snap.py</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyglv3j20u00mimya.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyjw9mj20u00mitdc.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyouv3j20u00miwiz.jpg">
+
+<h4 id="Vector-Types"><a href="#Vector-Types" class="headerlink" title="Vector Types"></a>Vector Types</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhykisej20u00miq3m.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyky2xj20u00mi74w.jpg">
+
+<h4 id="Hash-Type-Types"><a href="#Hash-Type-Types" class="headerlink" title="Hash Type Types"></a>Hash Type Types</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhym3ivj20u00midgm.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhypto7j20u00mi3z4.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhysa19j20u00mi0te.jpg">
+
+<h4 id="Pair-Types"><a href="#Pair-Types" class="headerlink" title="Pair Types"></a>Pair Types</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhys38bj20u00mimxp.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyst80j20u00mi74v.jpg">
+
+<h4 id="Basic-Graph-and-Networks-Classes"><a href="#Basic-Graph-and-Networks-Classes" class="headerlink" title="Basic Graph and Networks Classes"></a>Basic Graph and Networks Classes</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyuontj20u00mijsk.jpg">
+
+<blockquote>
+<p>上图中给出了使用<code>T</code>和<code>P</code>的指南。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhywaeej20u00miwfj.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhyx55yj20u00miwf4.jpg">
+
+<h4 id="图的保存以及加载"><a href="#图的保存以及加载" class="headerlink" title="图的保存以及加载"></a>图的保存以及加载</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz0lq4j20u00mimy2.jpg">
+
+<blockquote>
+<p>根据老师的说法，text文件加载的速度要明显慢于binary文件，所以建议存储为binary文件</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz096xj20u00midgd.jpg">
+
+<h4 id="Plotting-in-Snap-py"><a href="#Plotting-in-Snap-py" class="headerlink" title="Plotting in Snap.py"></a>Plotting in Snap.py</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz5vbmj20u00miwf5.jpg">
+
+<blockquote>
+<ul>
+<li>使用<code>Gnuplot</code>来绘制图的各种属性</li>
+<li>使用<code>Graphviz</code>来绘制图的形状</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz1ui8j20u00mi751.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz42saj21cc10940l.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzabsuj20u00migma.jpg">
+
+<blockquote>
+<p>不知道为啥，我的电脑执行完函数之后，只会生成<code>.plt</code>和<code>.tab</code>文件，后面需要自己点积<code>plt</code>生成<code>.png</code>，就很神奇。</p>
+</blockquote>
+<h4 id="Drawing-Graphs"><a href="#Drawing-Graphs" class="headerlink" title="Drawing Graphs"></a>Drawing Graphs</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhz60c4j20u00mimxq.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzccifj20u00mijst.jpg">
+
+<h4 id="Print-Graph-Information"><a href="#Print-Graph-Information" class="headerlink" title="Print Graph Information"></a>Print Graph Information</h4><blockquote>
+<p>当我们在网络上找到一个图的数据集，我们想要知道这个图的一些properties，可以使用<code>PrintInfo()</code>函数来获得图的基本信息。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzddoij20u00mi0tp.jpg">
+
+<h4 id="Basic-Graph-Generators"><a href="#Basic-Graph-Generators" class="headerlink" title="Basic Graph Generators"></a>Basic Graph Generators</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzdqmcj214u0unq6g.jpg">
+
+<h4 id="Advanced-Graph-Generators"><a href="#Advanced-Graph-Generators" class="headerlink" title="Advanced Graph Generators"></a>Advanced Graph Generators</h4><blockquote>
+<p>也可以生成一些高级的图形，其实我也不太懂。。。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzku3lj21f412cn6f.jpg">
+
+<h4 id="Subgraphs-and-Conversions"><a href="#Subgraphs-and-Conversions" class="headerlink" title="Subgraphs and Conversions"></a>Subgraphs and Conversions</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzjb6lj20u00miq54.jpg">
+
+<h4 id="Connected-Components"><a href="#Connected-Components" class="headerlink" title="Connected Components"></a>Connected Components</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzl7xoj20u00miwfi.jpg">
+
+<h4 id="Node-Degrees"><a href="#Node-Degrees" class="headerlink" title="Node Degrees"></a>Node Degrees</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzoa7ej22bc1qidki.jpg">
+
+<h4 id="Node-Centrality"><a href="#Node-Centrality" class="headerlink" title="Node Centrality"></a>Node Centrality</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzplevj20u00mi74y.jpg">
+
+<h4 id="Triads-and-Clustering-Coefficient"><a href="#Triads-and-Clustering-Coefficient" class="headerlink" title="Triads and Clustering Coefficient"></a>Triads and Clustering Coefficient</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzyfjxj20u00migmo.jpg">
+
+<h4 id="Breadth-and-Depth-First-Search"><a href="#Breadth-and-Depth-First-Search" class="headerlink" title="Breadth and Depth First Search"></a>Breadth and Depth First Search</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzsp2xj20u00mimy6.jpg">
+
+
+
+<h4 id="Community-Detection"><a href="#Community-Detection" class="headerlink" title="Community Detection"></a>Community Detection</h4><blockquote>
+<p>在sanp中实现了大多出名的community detection算法</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfhzzlm5j20u00mimxz.jpg">
+
+<h4 id="Spectral-properties-of-a-Graph"><a href="#Spectral-properties-of-a-Graph" class="headerlink" title="Spectral properties of a Graph"></a>Spectral properties of a Graph</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfi021wfj20u00miab1.jpg">
+
+<h4 id="K-core-decomposition"><a href="#K-core-decomposition" class="headerlink" title="K-core decomposition"></a>K-core decomposition</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gktfi02kh1j214k0ufgr6.jpg">
+
+<h2 id="Google-Cloud"><a href="#Google-Cloud" class="headerlink" title="Google Cloud"></a>Google Cloud</h2><p>中国的话，用不了。。。</p>
+
             </div>
             <hr/>
 
@@ -520,7 +683,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">课程笔记</span>
+                                </a>
+                            
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                                <a href="/tags/cs224w/">
+                                    <span class="chip bg-color">cs224w</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -694,8 +869,7 @@
                 <a href="/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial">
                         
                         <span class="card-title">【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial</span>
                     </div>
@@ -703,7 +877,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            这节课主要讲解两个工具：snap.py和google cloud
                         
                     </div>
                     <div class="publish-info">
@@ -712,13 +886,33 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CarlYoung
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -740,10 +934,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。
-
-Measuring Networks via Network Properties在本节中，我们将研究四个关键网络属性以表征图形
+                            在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。
                         
                     </div>
                     <div class="publish-info">
@@ -912,6 +1103,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
