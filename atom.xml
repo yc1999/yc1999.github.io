@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-17T08:58:12.013Z</updated>
+  <updated>2020-11-18T08:54:23.340Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,11 +17,24 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial</title>
+    <link href="http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/"/>
+    <id>http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/</id>
+    <published>2020-11-18T08:54:23.000Z</published>
+    <updated>2020-11-18T08:54:23.340Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models</title>
     <link href="http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/"/>
     <id>http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/</id>
     <published>2020-11-16T12:44:07.000Z</published>
-    <updated>2020-11-17T08:58:12.013Z</updated>
+    <updated>2020-11-17T15:13:16.365Z</updated>
     
     
       
