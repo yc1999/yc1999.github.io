@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks, 杨程的博客">
+    <meta name="keywords" content="【斯坦福cs224w-图机器学习】4. Community Structure in Networks, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks | 杨程的博客</title>
+    <title>【斯坦福cs224w-图机器学习】4. Community Structure in Networks | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,7 +313,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks</h1>
+                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】4. Community Structure in Networks</h1>
                 </div>
             </div>
         </div>
@@ -463,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-19
+                    2020-11-20
                 </div>
                 
 
@@ -479,363 +479,314 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkvdr3rgn1j21840r241r.jpg" alt="Motifs and Structural Roles in Networks"></p>
+                <p><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvvoq03dwj21hv0g340q.jpg" alt="Community Structure in Networks"></p>
 <blockquote>
-<p>本节开篇从subgraph出发，指出subgraph是一个非常重要的概念，能够描述一个network的特征。于是，顺水推舟地讲解了两个利用到subgraph的度量指标：motifs and graphlets；</p>
-<p>最后又讲解了如何提取network中每个node的structural roles；</p>
-<p>但是很奇怪的是老师似乎并未将<code>motifs，graphlets</code>和<code>structural roles</code>之间的联系讲解清楚🤔</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998qx23j20u00mi78l.jpg">
-
-<h2 id="前导知识：Subnetworks"><a href="#前导知识：Subnetworks" class="headerlink" title="前导知识：Subnetworks"></a>前导知识：Subnetworks</h2><h3 id="概念及其研究意义"><a href="#概念及其研究意义" class="headerlink" title="概念及其研究意义"></a>概念及其研究意义</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998umnoj21ng18l7a5.jpg">
-
-<blockquote>
-<ul>
-<li>你可以想象一个network是像搭乐高一样，由一个一个subnetworks搭起来的。</li>
-<li>从小至大的思想（或者称为分解思想）：<br>较大的问题=若干个小问题之和，<br>较难的问题=若干个简单的子问题之和<br>如同乐高</li>
-<li><font color="red">subgraph的好处在于<strong>能够刻画和区分网络</strong>，所以它是十分有用的，这也是这节课的出发点所在。后面讲的<code>motif</code>和<code>graphlet</code>都是基于subgraph的！！！</font></li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998worpj20u00mi448.jpg">
-
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998r56bj20u00mijsa.jpg">
-
-<blockquote>
-<p><strong>non-isomorphic</strong>：非同构的</p>
-</blockquote>
-<h3 id="Subgraphs’-Significance"><a href="#Subgraphs’-Significance" class="headerlink" title="Subgraphs’ Significance"></a>Subgraphs’ Significance</h3><p>我们接下来会给每种类型的子图赋予上一个值，这个值刻画了这个子图在这个图中的重要性：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998svq1j20u00miq3z.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998zysmj212m0sz7kk.jpg">
-
-<p>在上图中：</p>
-<ul>
-<li>横坐标是前面提到的13个subgraph；</li>
-<li>纵坐标是significance profile，比如对于第一个subgraph，它在Language networks是over-representation（表现充足），而在Web and social是under-representation（表现不足）；</li>
-<li>右边表示的是在对应domain里面选择不同的networks，可以发现只要是在相同的domain里面，即使是不同的networks也表现出大致相同的significance profile。</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999uibfj20vo0oek5y.jpg">
-
-<p>通过上面的例子，我们知道subgraph及其significance是非常重要的，那么如何计算significance呢？接下来我们来学习如何去计算significance。</p>
-<p>下图是这节课的安排：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999n8ysj22vx25xn27.jpg">
-
-<blockquote>
-<p>首先给出两个notion——motifs和graphlets，然后利用这两个notion来得到structural roles of nodes，最后讲解structural roles 的应用~</p>
-</blockquote>
-<h2 id="Motifs"><a href="#Motifs" class="headerlink" title="Motifs"></a>Motifs</h2><blockquote>
-<p>motif的中文意思是模块</p>
-</blockquote>
-<h3 id="What-is-Motifs？"><a href="#What-is-Motifs？" class="headerlink" title="What is Motifs？"></a>What is Motifs？</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku9993ya1j20u00miaap.jpg">
-
-<blockquote>
-<ul>
-<li><strong>网络主题(Motifs)**是网络中</strong>反复出现的重要的连接模式**（recurring, significant patterns of interconnections ）（有点抽象~）</li>
-<li>从上面的定义中，我们可以抽取3个重要部分：<ul>
-<li><code>Pattern</code>：指<code>induced subgraph</code>，也就是离散数学中学的导出子图~</li>
-<li><code>Recurring</code>：意味着出现的频率很高；</li>
-<li><code>Significant</code>：这是一个通过比较出来的概念，需要一些图模型作为baseline~</li>
-</ul>
-</li>
-<li>随机图的概念再次出现，后续可以发现随机图给我们研究现实网络提供了一个很好的参照作用</li>
-</ul>
-</blockquote>
-<h4 id="Why-Do-We-Need-Motifs？"><a href="#Why-Do-We-Need-Motifs？" class="headerlink" title="Why Do We Need Motifs？"></a>Why Do We Need Motifs？</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99962sbj20u00midgs.jpg">
-
-<blockquote>
-<p><strong>motif的用途：</strong></p>
+<p>讲解两个知识点：</p>
 <ol>
-<li>弄明白网络如何工作；</li>
-<li>在给定情境下预测网络的操作和反应</li>
+<li>community structure in networks（What）</li>
+<li>how to detection of them（How）</li>
 </ol>
-<p><strong>上图中展示了几种不同类型的motifs</strong>：</p>
-<ul>
-<li>Feed-forward loops ：老师说有点像ResNet中的skip connection</li>
-<li>Parallel loops：在food web中发现的，说明这个motif在food web中是非常常见的！</li>
-<li>Single-input modules：在基因控制网络中发现的，说明它在其中非常重要！</li>
-</ul>
 </blockquote>
-<h3 id="Pattern-induced-subgraph"><a href="#Pattern-induced-subgraph" class="headerlink" title="Pattern: induced subgraph"></a>Pattern: induced subgraph</h3><p>下面讲解一下啥叫<code>induced subgraph</code>：</p>
-<p>首先，我们事先定义了我们想要研究的一个motif——<code>aka motif</code>，然后在图中寻找，寻找的方式严格按照<strong>导出子图</strong>来定义：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999ncxvj20u00mi42v.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyisykqj20u00mijvn.jpg">
 
-<h3 id="Recurrence"><a href="#Recurrence" class="headerlink" title="Recurrence"></a>Recurrence</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999l56dj20ve0nrwfh.jpg">
+<p>回顾一下在lecture 3中学到的roles和communities的区别：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyixkkqj21qs1b3aw1.jpg">
+
+<p>承上启下，上节课讲解Roles，从大家的社会常识来看，不同的角色汇聚一起构成了社区（社会）community，这节课顺水推舟讲解communities</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyis448j20uk0mxwgq.jpg">
 
 <blockquote>
-<p>最重要的概念是允许<font color="red"><strong>overlap</strong></font></p>
+<p>上图是<strong>从community的角度</strong>来看待networks，感觉这样的方式才是我们最常用的吧，不然直接怼一张啥都没有的network给用户，用户会懵逼？所以，community之于network是非常重要的！</p>
 </blockquote>
-<h3 id="Significance"><a href="#Significance" class="headerlink" title="Significance"></a>Significance</h3><p>下图再次说明了significance的出现就是一个比较的概念！！！：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999mkjej20z00q9765.jpg">
+<p>艺术来源于生活，科研也是~我们的community观点也来自生活，下面来看看社会学是怎么给我们motivations？😮</p>
+<h2 id="Motivations——From-Society"><a href="#Motivations——From-Society" class="headerlink" title="Motivations——From Society"></a>Motivations——From Society</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyir6q6j20u00migmm.jpg">
 
-<blockquote>
-<p>从上图中可以看出，在real network中feed-forward loop是比randomized networks更加over-representation的！</p>
-</blockquote>
-<hr>
-<p><strong>既然说到significance是通过和随机图的对比来看出现频率的，那么如何转换为数学语言来表示这个significance？</strong></p>
-<p>接下来是计算significance的算法：</p>
-<h3 id="Significance计算方法📊"><a href="#Significance计算方法📊" class="headerlink" title="Significance计算方法📊"></a>Significance计算方法📊</h3><p>首先是计算z-score<a target="_blank" rel="noopener" href="https://youtu.be/5S-Zfa-vOXs">^1</a>：</p>
-<blockquote>
-<p>z-score：# of $\sigma$s from $\mu$ for a particular data point.</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999mtscj20u00mit9l.jpg">
-
-<blockquote>
-<ul>
-<li>这个$SP_i$的公式是人为定义的，不必过于纠结。</li>
-<li>注意$SP_i$的作用~这是算法继z-score后的第二次normalized！</li>
-</ul>
-</blockquote>
-<p><strong>现在还有一个问题就是<code>randomized networks</code>是怎么生成的？</strong></p>
-<h3 id="怎么生成Randomized-Networks？"><a href="#怎么生成Randomized-Networks？" class="headerlink" title="怎么生成Randomized Networks？"></a>怎么生成Randomized Networks？</h3><p>在第2节课中，我们学习了<code>Erdös-Rényi</code>随机图模型（我们知道这个随机图模型与现实中的网络还是有所差别的），所以我们想能不能认为对这个随机图加一些限制，使其更能够模拟现实网络的模型？</p>
-<p>我们想增加的限制有：</p>
-<ul>
-<li><strong>$G^{rand}$具有和$G^{real}$相同点的数量</strong></li>
-<li><strong>$G^{rand}$具有和$G^{real}$相同边的数量</strong></li>
-<li><strong>$G^{rand}$中每个点具有和$G^{real}$相同的度数</strong></li>
-</ul>
-<h4 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm 1"></a>Algorithm 1</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999sijsj20u00mimy2.jpg">
-
-<blockquote>
-<ul>
-<li>steps：<ol>
-<li>给定节点和其“触角”</li>
-<li>随机配对</li>
-<li>产生图</li>
-</ol>
-</li>
-<li>注意上面的操作过程，最后的图中B只有3个度，老师说实验证明，这样的噪声结果不会太影响实验效果！即<code>ignore double edges and self-loops</code>对实验结果没影响！</li>
-</ul>
-</blockquote>
-<h4 id="Algorithm-2"><a href="#Algorithm-2" class="headerlink" title="Algorithm 2"></a>Algorithm 2</h4><p>接下来是另外一种生成随机图的方法：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999vml2j20u00migmq.jpg">
-
-<blockquote>
-<ul>
-<li><p>其实就是一个<code>cross</code>的操作~如果做了很多次这样的cross操作，那么就能够生成random graph。</p>
-</li>
-<li><p>老师说<code>cross</code>是操作非常耗时的，cross操作的起点是原图。</p>
-</li>
-<li><p><strong>其实建模随机图主要看你的问题是什么，老师说他这里只是考虑了度，你当然可以考虑更多，只要你认为是有意义的即可！</strong></p>
-</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99brsqrj212m0szdw0.jpg">
-
-<p>上图使用的是switching的方式生成的random graph。</p>
-<h3 id="Motif小节"><a href="#Motif小节" class="headerlink" title="Motif小节"></a>Motif小节</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hbemyj24o23i24qp.jpg">
-
-<p>那么需要生成多少个随机图？—基本上是成千上万，甚至更多（也取决于真实图的大小）</p>
-<p>其实motif是一个研究甚多的领域，比如它的定义就有很多的变体：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99a42xlj21ih14u78i.jpg">
-
-<blockquote>
-<ul>
-<li>canonical definition：规范定义</li>
-</ul>
-</blockquote>
-<p>skip this：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99boi9vj20zk0qo47k.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bhe5nj20yq0q2alm.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ey8y9j251e3s2u0x.jpg">
-
-<h2 id="Graphlets"><a href="#Graphlets" class="headerlink" title="Graphlets"></a>Graphlets</h2><p>接下来讲解<code>motif</code>的一个扩展——<code>graphlets</code>。</p>
-<p><code>motif</code>和<code>graphlet</code>的联系：</p>
-<ul>
-<li>我们使用<code>motif</code>来描述一个图；</li>
-<li>而我们使用<code>graphlets</code>来描述每一个node；</li>
-</ul>
-<p>也就是说我们之前在讨论整个network的性质，现在我们讨论每个node的性质，主要的考虑是每个node的neighborhood。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ajigmj20u00miwgn.jpg">
-
-<p><strong>Graphlet：连通的非同构子图</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99b7rgmj20u00mi7ak.jpg">
-
-<blockquote>
-<ul>
-<li><p>在上图中，注意其中的标号，每个标号代表一个新的点的位置，即后面会提到的<code>orbit</code>！</p>
-</li>
-<li><p>graphlet同样是induced subgraph</p>
-</li>
-<li><p>结合上图，我们的研究点就是：</p>
-<p>如果我现在是一个node，那么我就要想，我在哪个graphlets上呀，我在哪个graphlets的哪个位置上呢？</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="Graphlet-Degree-Vector（GDV）"><a href="#Graphlet-Degree-Vector（GDV）" class="headerlink" title="Graphlet Degree Vector（GDV）"></a>Graphlet Degree Vector（GDV）</h3><p>之前我们用<code>motif</code>得到了一个度量指标——<code>significance</code>，现在我们用<code>graphlets</code>来作为一个在节点层面的子图度量。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bewgrj20u00mi755.jpg">
-
-<ul>
-<li>graphlets的作用就是作为计算<code>node-level subgraph metric</code>的输入。</li>
-<li>通过类比Degree，得到Graphlet degree vector的概念：<ul>
-<li>degree是一个节点上的边的个数</li>
-<li>一个节点touch的graphlets的个数</li>
-</ul>
-</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cg2y1j215e0v2791.jpg">
-
-<p>注意是导出子图！！！</p>
-<p><strong>所以graphlet度向量表示的是给定节点touch的给定轨迹的子图个数：</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bsvdaj20u00mimye.jpg">
-
-<blockquote>
-<p>1个73维的向量，实际描述的是1个node的邻居信息。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bxjykj20u00mimyo.jpg">
-
-<p><strong>现在学习如何找motifs和graphlets：</strong></p>
-<h2 id="Finding-Motifs-and-Graphlets"><a href="#Finding-Motifs-and-Graphlets" class="headerlink" title="Finding Motifs and Graphlets"></a>Finding Motifs and Graphlets</h2><p>这里涉及两个步骤：</p>
-<p>（1）列举所有size-k连通的子图 </p>
-<p>（2）数每一个子图类型出现的次数</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99c3tesj20u00mijsf.jpg">
-
-<blockquote>
-<p>look at这两个步骤就可以看出来工作量很大</p>
-<p>所以基本上<strong>可行的模块(motif)规模是比较小</strong>的：3–8</p>
-</blockquote>
-<h3 id="Counting-Subgraphs——ESU"><a href="#Counting-Subgraphs——ESU" class="headerlink" title="Counting Subgraphs——ESU"></a>Counting Subgraphs——ESU</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ce6c3j20u00mi0tl.jpg">
-
-<blockquote>
-<p>我们讲解ESU（exact subgraph enumeration）</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cddwxj20u00miwfn.jpg">
-
-<ul>
-<li><p>id大的原因在于不想重复之前产生的subgraph</p>
-</li>
-<li><p><code>be neighbored to some newly added node</code>的原因也是为了不做重复的事情！</p>
-</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99esiqsj22081ie1kx.jpg">
-
-<p>主要还是看下面的图说话：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99con5wj20u00mi0um.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99d1oc5j20u00mijsl.jpg">
-
-<p>如何counting呢？步骤如下：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99d2redj20u00mi0tv.jpg">
-
-<blockquote>
-<ul>
-<li><p>bijection：双射</p>
-</li>
-<li><p>在数个数这一个步骤存在一个问题：如何分类—即要把子图分为不同构的类型（同构的图属于一个类型）—用的是McKay的nauty algorihtm，具体参见以下网站</p>
-<p><a href="https://link.zhihu.com/?target=http://users.cecs.anu.edu.au/~bdm/nauty/">https://link.zhihu.com/?target=http%3A//users.cecs.anu.edu.au/~bdm/nauty/</a></p>
-</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cy8n7j21400u0wgu.jpg">
-
-<blockquote>
-<p>图G和图H是同构的，如果存在双射f，使得在G中相邻的节点在H中也是相邻的。</p>
-<p>从定义上看检验两个图是否同构核心在于找到这个映射f，但是实际操作上等于要对每两两节点要去判断，计算量是很大的。</p>
-</blockquote>
-<h2 id="Structural-roles-in-networks"><a href="#Structural-roles-in-networks" class="headerlink" title="Structural roles in networks"></a>Structural roles in networks</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fifktj264k4lf1bk.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99dhpb2j20u00mignj.jpg">
-
-<h3 id="What-are-Roles？"><a href="#What-are-Roles？" class="headerlink" title="What are Roles？"></a>What are Roles？</h3><p>关于<code>role</code>这个<code>idea</code>的来源也是来自于我们的生活的：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99n0dlbj22p820x1ky.jpg">
-
-<p>在接下来的讲解中，我们主要考虑3中role：</p>
-<ul>
-<li>center of stars： Are you a center of a star？</li>
-<li>member of cliques： Are you a member of fully connected graph？</li>
-<li>peripheral nodes：是否是外围节点？</li>
-</ul>
-<blockquote>
-<p><strong>一个无向图的一个派系是指</strong>：这个无向图的顶点集有这样一个子顶点集，子顶点集里的任意两个顶点都有一条边相连（也即子顶点集中的任意两个顶点都是相邻的），那么这个子顶点集及其边构成的图就是这个无向图的一个派系。如果这个派系的顶点有k个，就称这个派系为<strong>k-派系（k-clique）</strong>。</p>
-<p>其实也就是<strong>一个无向图里的一个子完全图就是这个无向图的一个派系</strong>。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99h56dnj23022927wh.jpg">
-
-<hr>
-<p>我们首先来区分一下<code>role</code>和<code>groups</code>，虽然它们都是集合，但是它们还是有很大区别的！</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99dr58mj20u00migmp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99e04h7j20u00mimy7.jpg">
-
-<p>这里要注意区分role（角色）和group的概念：</p>
-<ul>
-<li>role是根据在network中相似的功能来决定：例如公司中作为测试工程师的每个人，因为做着相似的工作所以扮演相同的role，可是在公司这个network中，这些人<strong>不一定互相连接。即role取决于相似性而不是相互连接性</strong></li>
-<li>group/community则是互相连接的个体（节点），核心在于<strong>连接性</strong></li>
-</ul>
-<p>举个例子：学生、教师这是role，AI实验室、 Info实验室这是group/community</p>
-<p>roles和groups是一种互补的概念</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fo4zyj21qs1b3qpp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fcn50j20u00midgn.jpg">
-
-<p>结构等价性（structural equivalence)——两个节点称为结构等价的，如果它们和<strong>所有其他节点</strong>都有着相同的关系</p>
-<blockquote>
-<p>这是从社会网络中引用过来的一个概念</p>
-</blockquote>
-<p><strong>上面的定义很严格，要求的是all other nodes，必须要一模一样的nodes关系！</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fk5roj20u00mit9n.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gs9y6j264k4lfatj.jpg">
-
-<h3 id="RolX"><a href="#RolX" class="headerlink" title="RolX"></a>RolX</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99g3hblj20u00mijtm.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gm2vvj20u00migmj.jpg">
-
-<p>那么怎么去发现网络中的roles？这里介绍RoIX</p>
-<p>RoIX是一种<strong>无监督</strong>学习方式来自动探测网络中节点的结构角色，具备以下优点：</p>
-<ul>
-<li>无需先验信息</li>
-<li>给每个节点分配<strong>a mixed-membership of roles</strong>（这个的最终体现就是一个概率分布）</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gvp6aj20u00mit9z.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99h05ilj20u00mimy7.jpg">
-
-
-
-<p>根据上图来分析：</p>
-<p><strong>step 1：输入节点信息</strong></p>
-<p><strong>step 2: 递归特征提取</strong></p>
-<p><strong>step 3: 得到节点特征矩阵（例如度、平均权重等）</strong></p>
-<p><strong>step 4: 提取role</strong></p>
-<p><strong>step 5: 输出节点角色矩阵和角色特征矩阵</strong></p>
-<h4 id="Recursive-Feature-Extraction"><a href="#Recursive-Feature-Extraction" class="headerlink" title="Recursive Feature Extraction"></a>Recursive Feature Extraction</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hi84zj20u00mitbd.jpg">
-
-<ul>
-<li><p>这里的<code>feature</code>列自左到右，所summarize的范围越来越大！local-&gt;egonet-&gt;recursive</p>
-</li>
-<li><p>egonet的定义：ego network is simply if u have a node it’s a network composed of the node its neighbors and the edges between them.</p>
-</li>
-</ul>
-<p>具体的思想和算法如下：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ho4y5j22r622en6c.jpg">
-
-<blockquote>
-<p>递归特征提取的基本思想是聚合节点的特征，并使用它们生成新的递归特征。通过这种方式，我们可以将网络连接变成结构化的功能。</p>
-<p>节点的邻域特征的基本集合包括：</p>
+<p><strong>网络其实是信息流（flow of information）</strong>，那么对于网络中信息流有一个基本问题：信息是如何在网络中流通（传播）的？比如咱们流言蜚语是怎么在我们的社交网络上散播开来的？</p>
+<p>由于图是由node和edge构成，所以分解出的两个子问题：</p>
 <ol>
-<li>局部特征，它们都是节点度的度量。</li>
-<li>Egonet功能是在节点的egonet上计算的，可能包括在egonet内的边数量以及进入/离开egonet的边数量。这里节点的egonet包括节点本身，其邻居和这些节点上的诱导子图中的任何边。</li>
+<li>节点在信息流中到底扮演了哪些不同的角色？</li>
+<li>不同的连接（比如长的或者短的）在信息流中扮演什么角色？</li>
 </ol>
+<p>这里通过一个实践问题来研究——人们怎么找到新工作？（这是Mark Granovetter, part of his PhD in 1960s在他博士论文中的部分工作）</p>
+<p>在大家的认知里，应该是通过亲近的朋友那里可以获得更多的信息。<strong>通过研究发现：新工作的信息来源自acquaintances(一般认识的人），而不是close friends。</strong></p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyituhzj20u00migmh.jpg">
+
+<p>上图中提出从两种角度来考虑friendship：</p>
+<ul>
+<li>单纯从<strong>结构（也就是网络拓扑）</strong>上来说，将friendship看作一个边，能够跨越网络的不同部分；<ul>
+<li>如上所说，我们可以得知friendship的structural role是Triadic Closure。</li>
+</ul>
+</li>
+<li>考虑了<strong>人际关系</strong>的层面，我们知道人们之间的friendship有深厚和浅薄。</li>
+</ul>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyixs26j20u00mi75b.jpg">
+
+<blockquote>
+<p>Granovetter在friendship的两个角度之间架起了联系的桥梁：</p>
+<pre class=" language-text"><code class="language-text">从信息角度上来看：
+(1)长的edge可以将“较远”的人群和目前所在人群连接起来，从而获取更“不一样”的信息（找到新工作）；
+(2)而结构性强的连接（edges）在信息层面上就显得比较冗余。（这也是人们找到新工作来自接触较少的人的信息的原因所在）</code></pre>
 </blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hcg7mj20u00mi75h.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyiyr5sj20u00miq3w.jpg">
 
 <blockquote>
 <ul>
-<li>为了生成递归特征，首先我们从节点特征的基本集合开始，然后使用当前节点特征的集合来生成其他特征并迭代此操作。每次递归迭代时，可能的递归特征的数量呈指数增长。</li>
-<li>graphlet  degree vector也可以作为feature</li>
+<li><p>所谓的Triadic closure可以简单地理解为两个人拥有一个common friend；</p>
+</li>
+<li><p><strong>结构上的三角闭合（Triadic closure) = 高聚合系数（high clustering coefficient）</strong></p>
+<p>从我们平时的认知是可以比较直观的理解triadic closure的：如果B和C有一个共同朋友A，那么：</p>
+<p>（1）B很可能会接触到C（在与A 的接触时间中）</p>
+<p>（2）因为B、C有共同的朋友，所以会相互信任</p>
+<p>（3）A很可能会介绍B和C认识</p>
+<p>【一个来自Bearman and Moody的研究】表明：青少年女孩如果社交网络的聚合系数很低，则容易有自杀的倾向</p>
+</li>
 </ul>
 </blockquote>
-<h4 id="Role-Extraction"><a href="#Role-Extraction" class="headerlink" title="Role Extraction"></a>Role Extraction</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99lsr0yj255k3v6u0x.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyiyu0dj20u00miaau.jpg">
+
+
+
+<p>they want to define the <strong>structural strength</strong> of a friendship,which is called <code>edge overlap</code>：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyj48a7j21e011itbr.jpg">
 
 <blockquote>
-<p>RoleX使用的聚类算法是<code>non-negative matrix factorization</code>，这个算法老师在之后的课程会讲解。</p>
+<p>从edge覆盖的定义：分子是i,j节点周围<strong>共同</strong>节点的集合（除去i,j两个node），分母是i,j周围所有node的集合（同样剔除i,j两个node）</p>
+<p>所以从这个定义很显然，当i和j这两个node是两个小“block”的一个连接时候，覆盖=0（i和j的连接的这条edge看成是两个区域连接的一座桥），而Oij=1则意味相互的连接是很强的，同时这些连接可能也有点冗余。</p>
 </blockquote>
-<h2 id="Application：Structural-Similarity"><a href="#Application：Structural-Similarity" class="headerlink" title="Application：Structural Similarity"></a>Application：Structural Similarity</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hrwdyj20u00mi0tu.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyj3obnj21040r3wgs.jpg">
 
 <blockquote>
-<p>注意得到的是一个distribution！</p>
+<p>先看蓝色的线，横坐标是打电话的次数（特别close的人，比如我和我妈妈，天天打电话，次数很多），电话次数越多，覆盖的值越大。那红色的线，是把网络中结构保持不变，而edge strength随机重分配后得到的线，是平的，也就是和打电话的次数无关。</p>
 </blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99mdmbaj24vb3nox6p.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyj76q6j20u00min26.jpg">
+
+<p>这里不同颜色表示打电话的次数，红色表示打的次数较多，可以看到红色的部分集中在一些小区域中，而其他（例如绿色和蓝色）的edges就表示弱很多的联系。那如果我们保持网络结构不变，但是随机的干扰edge strengths（随机扰动），会出现怎样的结果？（如下图）</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyjb197j20u00mitdo.jpg">
+
+<p>regardless of the network structure，随机赋值，这时候，红色的edges就不是像前面那个图只是集中在一些小区域了。</p>
+<p>我们知道如果我们去掉两个cluster之间的那个连接，这两个部分就分开了，下面做这样的尝试：<strong>把edges从弱到强，和从强到弱连接的去除，去除后对这个网络的影响是怎样的</strong>（见下图）</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyj88bsj20u00mimzx.jpg">
+
+<p>当把那个弱连接的edge去掉后，网络中最大component的规模一下子就掉下去了，同样，<strong>去掉覆盖值小的edge，也得到类似的结果。</strong>：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyj9z29j20u00mi41c.jpg">
+
+<p>无论是最初的社会学研究，还是之后的电话网络，无不证明了我们可以以下面这种角度来看待我们的网络：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyjctyaj20uk0mx0vc.jpg">
+
+<h2 id="Network-Communities"><a href="#Network-Communities" class="headerlink" title="Network Communities"></a>Network Communities</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyjc6cpj20u00mi765.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyjmn8kj211s0scdip.jpg">
 
 <blockquote>
-<p>Gray rectangle是排除其他三种节点之后的任意节点。</p>
+<ul>
+<li>在这一章节中，communities，clusters，groups以及modules都是一个概念，老师会都用到。</li>
+<li>前面介绍了这么多，那么现在来研究网络community，什么是community？那就是前面所说的：<font color="red"><strong>网络中内部联系很多（很强）而外部（网络的其余部分）联系较少（较弱）的nodes集合</strong></font></li>
+</ul>
 </blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99l4d2wj264k4lfnel.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyk6kvaj20zu0qwte1.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyjqhiij20u00mi77w.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyk4igtj20u00mi77w.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyldes1j20uu0minb0.jpg">
+
+<p><strong>所以我们需要学习的是最后的输出是（如下图：除了个别节点判断错误，其余都是正确）:</strong></p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyl2oaaj21360ttdu8.jpg">
+
+<p>下面进入正题：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdykdcn5j21400u0ad4.jpg">
+
+<blockquote>
+<ul>
+<li><p><strong>什么是社区？</strong></p>
+<p>社区是紧密连接的节点集合</p>
+</li>
+<li><p><strong>什么是划分partition？</strong></p>
+<p>一个整体划分成不同的不相交的子部分。（这和聚类的思想很接近）</p>
+</li>
+<li><p><strong>什么是Modularity Q？</strong></p>
+<p>Q是用来衡量网络是否较好的被划分成多个社区的。</p>
+</li>
+<li><p><strong>那这个Q如何衡量划分是否够好呢？</strong></p>
+<p>如上图的计算公式。组s内的edges数量和预期的edges数量之差，如果差别大，那么应该是分对组了。既然说到这个预期的edges数量，就需要定义一个空模型。</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Modularity"><a href="#Modularity" class="headerlink" title="Modularity"></a>Modularity</h3><p>我们要计算$Q$，所以我们需要一个Null Model，在这里它也是一个Configuration Model：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyk310rj20u00miwfl.jpg">
+
+<blockquote>
+<ul>
+<li><p><strong>什么是空模型？</strong></p>
+<p>模型的定义其实就是为了“<strong>对比划分的结果和随机网络的差异”，</strong>给定一个m个连接，n个节点的网络G，构造一个重新分配的随机网络G’。</p>
+</li>
+<li><p>这里的G‘与lecture 3中的G’不相同，这里的G‘可以为<code>multigraph</code>；</p>
+</li>
+<li><p>老师解释了<code>expected number of edges</code>计算方法的正确性，是通过计算整体边的期望值证明的，具体可以参见iPad笔记。</p>
+</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdykc9kij20u00mit9e.jpg">
+
+<blockquote>
+<ul>
+<li>我们之前是从cluster这样一个宏观的角度计算$Q$的，在上图中，我们细化到cluster里面的pair中，同时对$Q$进行正则化，保证它的范围在<code>[-1,1]</code>之间！！！（其中的数学看iPad笔记）</li>
+<li>对于$A_{i,j}=1$这件事，我觉得并不太严谨。</li>
+</ul>
+</blockquote>
+<p>这个计算公式太多求和符号，看上去不是很好处理，所以我们对其进行一个等价的变化：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdylazhyj21400u0whe.jpg">
+
+<p>这个modularity除了作为度量指标，其实还有一个非常大的用处，就是：<font color="red"><strong>对Q最大化——得到最好的社区划分。</strong></font></p>
+<p>Modularity Q 可以用来衡量网络划分为社区的好坏程度，那么最重要的还是原始问题，到底怎么发现社区？</p>
+<h2 id="Detecting-Non-Overlapping-Communities-Louvain-Algorithm"><a href="#Detecting-Non-Overlapping-Communities-Louvain-Algorithm" class="headerlink" title="Detecting Non-Overlapping Communities: Louvain Algorithm"></a>Detecting Non-Overlapping Communities: Louvain Algorithm</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdykmd0cj20u00mijt2.jpg">
+
+<blockquote>
+<p><font color="red"><strong>Louvain Algorithm的核心思想：Maximize the modularity</strong></font></p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyl8kbpj219a0xzn16.jpg">
+
+<blockquote>
+<ul>
+<li>一种贪心算法，时间复杂度为$O(nlogn)$，可能是因为树形结构的原因~</li>
+<li>支持带权图</li>
+<li>a heuristic algorithm：具有启发式，探索的算法；</li>
+<li>dendrogram：树枝状图</li>
+</ul>
+</blockquote>
+<p>算法的概述如下：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyl5bqrj22441l3gx5.jpg">
+
+<blockquote>
+<ul>
+<li><p>关于Phase 1，老师的解释是：</p>
+<blockquote>
+<p>if I move a node from it’s current community to another community，will the modularity increase？——keep moving every until I get stuck~</p>
+</blockquote>
+</li>
+<li><p>Partitioning and restructuring</p>
+</li>
+<li><p>老师说这个贪心算法最后一定会收敛的。。。</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Phase-1-Partitioning"><a href="#Phase-1-Partitioning" class="headerlink" title="Phase 1: Partitioning"></a>Phase 1: Partitioning</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdylacfxj20u00mi0tw.jpg">
+
+<blockquote>
+<ul>
+<li>注意输出的结果跟操作时结点的顺序是相关的。</li>
+</ul>
+</blockquote>
+<p>下面介绍一种全新的计算Modularity Gain的方法，它由两个部分构成，下面是第一部分：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyltjjyj21860x50xa.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyln7x7j21400u0tbq.jpg">
+
+<blockquote>
+<p>我们以原来的Modularity of C来讲解一下式子是怎么得来的：<br>$$<br>\frac 1 {2m} \sum_{i \in C} \sum_{j \in C} (A_{i,j}-\frac {k_{i}k_{j}} {2m})\<br>= \frac 1 {2m} \sum_{i \in C}( (\sum_{j \in C} A_{i,j})-\frac {k_{i}} {2m}\sum_{j \in C} (k_{j}))\<br>=\frac 1 {2m} \sum_{i \in C}( (\sum_{j \in C} A_{i,j})-\frac {k_{i}} {2m}*\sum_{tot})\<br>=\frac 1 {2m} (\sum_{in} - (\frac {\sum_{tot}^2} {2m})) \<br>$$</p>
+</blockquote>
+<h3 id="Phase-2-Restructuring"><a href="#Phase-2-Restructuring" class="headerlink" title="Phase 2: Restructuring"></a>Phase 2: Restructuring</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyllx5cj20u00midgw.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdym9mxvj20ve0n545q.jpg">
+
+<blockquote>
+<p>上面的伪代码描述的非常详细，可以细细地品读~</p>
+</blockquote>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyn40xgj21720wbaoe.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyuyvqvj23rk2thu12.jpg">
+
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyluk4ej20u00mi3z6.jpg">
+
+<h2 id="Detecting-Overlapping-Communities-BigCLAM"><a href="#Detecting-Overlapping-Communities-BigCLAM" class="headerlink" title="Detecting Overlapping Communities: BigCLAM"></a>Detecting Overlapping Communities: BigCLAM</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdylyezjj20u00midi7.jpg">
+
+<h3 id="Non-Overlapping-vs-overlapping-communities"><a href="#Non-Overlapping-vs-overlapping-communities" class="headerlink" title="Non-Overlapping vs. overlapping communities"></a>Non-Overlapping vs. overlapping communities</h3><p>我们之前考虑的community都是要求每一个node只能从属于一个community，但是我们现实生活中的情景比这复杂多了，比如有的人拥有双国籍？🤔所以我们要考虑overlapping的情况！接下来就是讲解怎么得到具有overlapping性质的community~</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyo0c3yj21040r3du7.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyolnkej219u0yeqtt.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdynllwbj20x20otaqf.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdynn28dj21540wiqfh.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdynf6upj20u00min45.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyodj4pj21040r3q88.jpg">
+
+<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdynxy62j20u00migm8.jpg">
+
+<h3 id="Affiliation-Graph-Model-AGM"><a href="#Affiliation-Graph-Model-AGM" class="headerlink" title="Affiliation Graph Model(AGM)"></a>Affiliation Graph Model(AGM)</h3><blockquote>
+<p><strong>another way to generate random graph</strong></p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyodbucj21900xracy.jpg">
+
+<blockquote>
+<ul>
+<li>如上图所示，这个模型包含两个层次：Community Affiliation和Graph，是通过Community Affiliation得到Graph~</li>
+<li>模型的参数包括：<ul>
+<li>Nodes $V$</li>
+<li>Communities $C$</li>
+<li>Memberships $M$</li>
+<li>Each community $c$ has a single probability $p_c$：how likely nodes in this community to link to each other？</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyosfz3j219k0y6tbo.jpg">
+
+<blockquote>
+<p>上面的计算公式涉及到了概率论里面的计算技巧，正面很难算，那么从反面出发~</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyp9krbj20u00mijz4.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyoxxlwj20u00miadk.jpg">
+
+<p>接下来我们本末倒置，通过graph生成community affiliation，这样才是我们这节课的目标。</p>
+<h3 id="Detecting-Communities"><a href="#Detecting-Communities" class="headerlink" title="Detecting Communities"></a>Detecting Communities</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyozugyj21hc140tck.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypf5tuj22k81x6aky.jpg">
+
+<blockquote>
+<ul>
+<li>老师说概率$P(G|F)$可以理解为model $F$的<code>generated graph</code>与<code>real graph</code>$G$之间的相似度~但是，我还是想以概率论中MLE的概念进行理解；</li>
+<li>优化式子有了，接下来就是逐个解决两个问题：<ul>
+<li>$P(G|F)$的定义</li>
+<li>怎么得到最大的$P(G|F)$</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Graph-Likelihood-P-G-F"><a href="#Graph-Likelihood-P-G-F" class="headerlink" title="Graph Likelihood $P(G|F)$"></a>Graph Likelihood $P(G|F)$</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypde3ij20u00miwfh.jpg">
+
+<h3 id="“Relaxing”-AGM-and-BigCLAM-Model"><a href="#“Relaxing”-AGM-and-BigCLAM-Model" class="headerlink" title="“Relaxing” AGM and BigCLAM Model"></a>“Relaxing” AGM and BigCLAM Model</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyph71fj212m0szdil.jpg">
+
+
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypgc5rj20u00miwg7.jpg">
+
+<blockquote>
+<p>优化的步骤：</p>
+<ol>
+<li>随机选取一组$F$的参数；</li>
+<li>每次固定其他结点，只有话一个结点；</li>
+</ol>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdyppn8zj20u00mitbe.jpg">
+
+<blockquote>
+<ul>
+<li>这里的求梯度，好像涉及到了向量求导，喵喵喵~</li>
+<li>最后Jure讲到的一点就是上面的这个求导的计算是很慢的，不过有一个Dynamic Programming的技巧，可以让这个求导的时间变成线性的，从而加快速度，使得这个算法能实际使用。</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypjlg6j20u00mimzb.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypoxu4j20u00miq44.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypq7qbj20u00midh6.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvdypptinj20u00mi0tq.jpg">
 
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/5S-Zfa-vOXs">可汗学院——z-score</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121710980">CS224W 4.1–Community Structure in Networks</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/infovisthinker/article/details/104724677">CS224W笔记-第四课</a></li>
 </ol>
 
             </div>
@@ -862,7 +813,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/">http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/</a>
+                    <a href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/">http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1077,9 +1028,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/">
                     <div class="card-image">
@@ -1096,9 +1048,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1111,6 +1063,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1137,23 +1090,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/">
+                <a href="/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks">
                         
-                        <span class="card-title">【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial</span>
+                        <span class="card-title">【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这节课主要讲解两个工具：snap.py和google cloud
+                            本节开篇从subgraph出发，指出subgraph是一个非常重要的概念，能够描述一个network的特征。于是，顺水推舟地讲解了两个利用到subgraph的度量指标：motifs and graphlets；最后又讲解了如何提取network中每个node的structural roles；
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-19
                             </span>
                         <span class="publish-author">
                             
