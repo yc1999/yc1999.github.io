@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-20T11:58:32.012Z</updated>
+  <updated>2020-11-21T06:12:33.158Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】homework 0</title>
+    <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/"/>
+    <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/</id>
+    <published>2020-11-20T12:17:20.000Z</published>
+    <updated>2020-11-21T06:12:33.158Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; snap&lt;/code&gt;&lt;/pre&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
   
   <entry>
     <title>【斯坦福cs224w-图机器学习】4. Community Structure in Networks</title>
@@ -79,17 +109,18 @@
     <link href="http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/"/>
     <id>http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/</id>
     <published>2020-11-18T08:54:23.000Z</published>
-    <updated>2020-11-19T01:42:27.611Z</updated>
+    <updated>2020-11-21T01:52:31.258Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;这节课主要讲解两个工具：snap.py和google cloud&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;Introduction-to-SNAP（Standford-Network-Analysis-Platform）&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
