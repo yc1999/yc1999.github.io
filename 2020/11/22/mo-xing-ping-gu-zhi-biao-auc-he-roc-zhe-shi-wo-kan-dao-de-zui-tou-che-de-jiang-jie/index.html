@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks, 杨程的博客">
+    <meta name="keywords" content="模型评估指标AUC和ROC，这是我看到的最透彻的讲解, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks | 杨程的博客</title>
+    <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解 | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks</h1>
+                    <h1 class="description center-align post-title">模型评估指标AUC和ROC，这是我看到的最透彻的讲解</h1>
                 </div>
             </div>
         </div>
@@ -430,16 +430,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">课程笔记</span>
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
                             </a>
                         
-                            <a href="/tags/GNN/">
-                                <span class="chip bg-color">GNN</span>
+                            <a href="/tags/AUC/">
+                                <span class="chip bg-color">AUC</span>
                             </a>
                         
-                            <a href="/tags/cs224w/">
-                                <span class="chip bg-color">cs224w</span>
+                            <a href="/tags/ROC/">
+                                <span class="chip bg-color">ROC</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/">
+                                <span class="chip bg-color">混淆矩阵</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
                     </div>
@@ -450,8 +458,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/GNN/" class="post-category">
-                                GNN
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                机器学习
                             </a>
                         
                     </div>
@@ -463,7 +471,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-19
+                    2020-11-22
                 </div>
                 
 
@@ -479,364 +487,102 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkvdr3rgn1j21840r241r.jpg" alt="Motifs and Structural Roles in Networks"></p>
-<blockquote>
-<p>本节开篇从subgraph出发，指出subgraph是一个非常重要的概念，能够描述一个network的特征。于是，顺水推舟地讲解了两个利用到subgraph的度量指标：motifs and graphlets；</p>
-<p>最后又讲解了如何提取network中每个node的structural roles；</p>
-<p>但是很奇怪的是老师似乎并未将<code>motifs，graphlets</code>和<code>structural roles</code>之间的联系讲解清楚🤔</p>
+                <blockquote>
+<p> 文章来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liweibin1994/article/details/79462554">模型评估指标AUC（area under the curve）</a></p>
 </blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998qx23j20u00mi78l.jpg">
-
-<h2 id="前导知识：Subnetworks"><a href="#前导知识：Subnetworks" class="headerlink" title="前导知识：Subnetworks"></a>前导知识：Subnetworks</h2><h3 id="概念及其研究意义"><a href="#概念及其研究意义" class="headerlink" title="概念及其研究意义"></a>概念及其研究意义</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998umnoj21ng18l7a5.jpg">
-
+<p>AUC在机器学习领域中是一种模型评估指标。根据维基百科的定义，AUC(area under the curve)是ROC曲线下的面积。所以，在理解AUC之前，要先了解ROC是什么。而ROC的计算又需要借助混淆矩阵，因此，我们先从混淆矩阵开始谈起。</p>
+<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><p>假设，我们有一个任务：给定一些患者的样本，构建一个模型来预测肿瘤是不是恶性的。在这里，肿瘤要么良性，要么恶性，所以这是一个典型的二分类问题。</p>
+<p>假设我们用y=1表示肿瘤是良性，y=0表示肿瘤是恶性。则我们可以制作如下图的表格： </p>
+<p><img src="https://img-blog.csdn.net/20180306192541902?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="混淆矩阵"></p>
 <blockquote>
 <ul>
-<li>你可以想象一个network是像搭乐高一样，由一个一个subnetworks搭起来的。</li>
-<li>从小至大的思想（或者称为分解思想）：<br>较大的问题=若干个小问题之和，<br>较难的问题=若干个简单的子问题之和<br>如同乐高</li>
-<li><font color="red">subgraph的好处在于<strong>能够刻画和区分网络</strong>，所以它是十分有用的，这也是这节课的出发点所在。后面讲的<code>motif</code>和<code>graphlet</code>都是基于subgraph的！！！</font></li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998worpj20u00mi448.jpg">
-
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998r56bj20u00mijsa.jpg">
-
-<blockquote>
-<p><strong>non-isomorphic</strong>：非同构的</p>
-</blockquote>
-<h3 id="Subgraphs’-Significance"><a href="#Subgraphs’-Significance" class="headerlink" title="Subgraphs’ Significance"></a>Subgraphs’ Significance</h3><p>我们接下来会给每种类型的子图赋予上一个值，这个值刻画了这个子图在这个图中的重要性：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998svq1j20u00miq3z.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku998zysmj212m0sz7kk.jpg">
-
-<p>在上图中：</p>
-<ul>
-<li>横坐标是前面提到的13个subgraph；</li>
-<li>纵坐标是significance profile，比如对于第一个subgraph，它在Language networks是over-representation（表现充足），而在Web and social是under-representation（表现不足）；</li>
-<li>右边表示的是在对应domain里面选择不同的networks，可以发现只要是在相同的domain里面，即使是不同的networks也表现出大致相同的significance profile。</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999uibfj20vo0oek5y.jpg">
-
-<p>通过上面的例子，我们知道subgraph及其significance是非常重要的，那么如何计算significance呢？接下来我们来学习如何去计算significance。</p>
-<p>下图是这节课的安排：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999n8ysj22vx25xn27.jpg">
-
-<blockquote>
-<p>首先给出两个notion——motifs和graphlets，然后利用这两个notion来得到structural roles of nodes，最后讲解structural roles 的应用~</p>
-</blockquote>
-<h2 id="Motifs"><a href="#Motifs" class="headerlink" title="Motifs"></a>Motifs</h2><blockquote>
-<p>motif的中文意思是模块</p>
-</blockquote>
-<h3 id="What-is-Motifs？"><a href="#What-is-Motifs？" class="headerlink" title="What is Motifs？"></a>What is Motifs？</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku9993ya1j20u00miaap.jpg">
-
-<blockquote>
-<ul>
-<li><strong>网络主题(Motifs)**是网络中</strong>反复出现的重要的连接模式**（recurring, significant patterns of interconnections ）（有点抽象~）</li>
-<li>从上面的定义中，我们可以抽取3个重要部分：<ul>
-<li><code>Pattern</code>：指<code>induced subgraph</code>，也就是离散数学中学的导出子图~</li>
-<li><code>Recurring</code>：意味着出现的频率很高；</li>
-<li><code>Significant</code>：这是一个通过比较出来的概念，需要一些图模型作为baseline~</li>
-</ul>
+<li><p><code>T</code>:True;</p>
 </li>
-<li>随机图的概念再次出现，后续可以发现随机图给我们研究现实网络提供了一个很好的参照作用</li>
+<li><p><code>F</code>:False;</p>
+</li>
+<li><p><code>P</code>:Positive;</p>
+</li>
+<li><p><code>N</code>:Negative;</p>
+</li>
 </ul>
 </blockquote>
-<h4 id="Why-Do-We-Need-Motifs？"><a href="#Why-Do-We-Need-Motifs？" class="headerlink" title="Why Do We Need Motifs？"></a>Why Do We Need Motifs？</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99962sbj20u00midgs.jpg">
-
+<p>如上图：</p>
+<ul>
+<li>TP表示预测为良性，而实际也是良性的样例数； </li>
+<li>FN表示预测为恶性，而实际是良性的样例数； </li>
+<li>FP表示预测为良性，而实际是恶性的样例数； </li>
+<li>TN表示预测为恶性，而实际也是恶性的样例数；</li>
+</ul>
+<p>所以，上面这四个数就形成了一个矩阵，称为<strong>混淆矩阵</strong>。</p>
+<p>那么接下来，我们如何利用混淆矩阵来计算ROC呢？ </p>
+<p>首先我们需要定义下面两个变量：<br>$$<br>FPR=\frac {FP} {FP+TN}<br>$$<br>FPR表示，在所有的恶性肿瘤中，被预测成良性的比例。称为伪阳性率。伪阳性率告诉我们，随机拿一个恶性的肿瘤样本，有多大概率会将其预测成良性肿瘤。<strong>显然我们会希望<code>FPR</code>越小越好。</strong><br>$$<br>TPR=\frac {TP} {TP+FN}<br>$$<br>TPR表示，在所有良性肿瘤中，被预测为良性的比例。称为真阳性率。真阳性率告诉我们，随机拿一个良性的肿瘤样本时，有多大的概率会将其预测为良性肿瘤。<strong>显然我们会希望<code>TPR</code>越大越好。</strong></p>
+<p>如果以FPR为横坐标，TPR为纵坐标，就可以得到下面的坐标系： </p>
+<p><img src="https://img-blog.csdn.net/20180306194149907?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="坐标系"></p>
+<p>可能看到这里，你会觉得有点奇怪，用FPR和TPR分别作横纵坐标有什么用呢？我们先来考察几个特殊的点。</p>
+<ul>
+<li>**点(0,1)**，即FPR=0，TPR=1。FPR=0说明FP=0，也就是说，没有假正例。TPR=1说明，FN=0，也就是说没有假反例。这不就是最完美的情况吗？所有的预测都正确了。良性的肿瘤都预测为良性，恶性肿瘤都预测为恶性，分类百分之百正确。这也体现了FPR 与TPR的意义。就像前面说的我们本来就希望FPR越小越好，TPR越大越好。</li>
+<li>**点(1,0)**，即FPR=1，TPR=0。这个点与上面那个点形成对比，刚好相反。所以这是最糟糕的情况。所有的预测都预测错了。</li>
+<li>**点(0,0)**，即FPR=0，TPR=0。也就是FP=0，TP=0。所以这个点的意义是所有的样本都预测为恶性肿瘤。也就是说，无论给什么样本给我，我都无脑预测成恶性肿瘤就是了。</li>
+<li>**点(1,1)**，即FPR=1，TPR=1。显然，这个点跟点(0,0)是相反的，这个点的意义是将所有的样本都预测为良性肿瘤。</li>
+</ul>
+<p>考察完这四个点，我们可以知道：</p>
 <blockquote>
-<p><strong>motif的用途：</strong></p>
+<p><strong>如果一个点越接近左上角，那么说明模型的预测效果越好。如果能达到左上角(点(0,1))，那就是最完美的结果了。</strong></p>
+</blockquote>
+<h2 id="ROC曲线和AUC"><a href="#ROC曲线和AUC" class="headerlink" title="ROC曲线和AUC"></a>ROC曲线和AUC</h2><p>介绍了混淆矩阵之后，我们就可以了解一下ROC（receiver operating characteristic curve）曲线是怎么定义的。</p>
+<p>我们知道，在二分类（0，1）的模型中，一般我们最后的输出是一个概率值，表示结果是1的概率。那么我们最后怎么决定输入的x是属于0或1呢？我们需要一个阈值，超过这个阈值则归类为1，低于这个阈值就归类为0。所以，不同的阈值会导致分类的结果不同，也就是混淆矩阵不一样了，FPR和TPR也就不一样了。所以当阈值从0开始慢慢移动到1的过程，就会形成很多对(FPR, TPR)的值，将它们画在坐标系上，就是所谓的ROC曲线了。</p>
+<p>我们来举一个例子。比如我们有5个样本：<br>真实的类别(label)为y = c(1,1,0,0,1).<br>一个分类器预测样本为1的概率为p=c(0.5, 0.6, 0.55, 0.4, 0.7)。</p>
+<p>看到这里，也许我们还有一点难理解。这里要注意: </p>
 <ol>
-<li>弄明白网络如何工作；</li>
-<li>在给定情境下预测网络的操作和反应</li>
+<li><p>阈值的范围是[0,1]，当阈值从1到0慢慢移动时，FPR会越来越大。因为FP(假正例)会越来越多。</p>
+</li>
+<li><p>如果在给定的样本中，我都随机预测，也就是0.5概率预测为良性肿瘤，0.5概率预测为恶性肿瘤。那么这条曲线会是怎样的呢？可以想象，如果数据是均匀，那么这条曲线就是y=x。</p>
+<blockquote>
+<p>这里需要理解：<font color="red"><strong>为什么在随机预测的情况下，无论阈值$\alpha$取何值，<code>FPR</code>和<code>TPR</code>一直都是相等的？</strong></font></p>
+<ul>
+<li>首先，这里的<strong>随机预测</strong>表示的含义是对于<code>ground-truth</code>为<code>True</code>的样本集，最终其样本点的预测值都是均匀分布在区间<code>[0,1]</code>。对于<code>ground-truth</code>为<code>False</code>的样本集同样是如此；</li>
+<li>因此，无论阈值$\alpha$取什么，低于$\alpha$的<code>groudtruth</code>为<code>True</code>和<code>groudtruth</code>为<code>False</code>的样本数量应该是一样多的；</li>
+<li>综上，<code>FPR</code>和<code>TPR</code>一直都是相等的。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>注意曲线一定是从(0,0)开始最终到达(1,1)的。</p>
+</li>
+<li><p>事实上，ROC曲线不是光滑的，而是阶梯型的。为什么呢？因为样本的数量是有限的，而FPR和TPR的变化需要至少有一个样本变化了，在没有变化的间隙里，就不会有变化。也就是说，步进是1/样本数。</p>
+</li>
 </ol>
-<p><strong>上图中展示了几种不同类型的motifs</strong>：</p>
-<ul>
-<li>Feed-forward loops ：老师说有点像ResNet中的skip connection</li>
-<li>Parallel loops：在food web中发现的，说明这个motif在food web中是非常常见的！</li>
-<li>Single-input modules：在基因控制网络中发现的，说明它在其中非常重要！</li>
-</ul>
-</blockquote>
-<h3 id="Pattern-induced-subgraph"><a href="#Pattern-induced-subgraph" class="headerlink" title="Pattern: induced subgraph"></a>Pattern: induced subgraph</h3><p>下面讲解一下啥叫<code>induced subgraph</code>：</p>
-<p>首先，我们事先定义了我们想要研究的一个motif——<code>aka motif</code>，然后在图中寻找，寻找的方式严格按照<strong>导出子图</strong>来定义：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999ncxvj20u00mi42v.jpg">
-
-<h3 id="Recurrence"><a href="#Recurrence" class="headerlink" title="Recurrence"></a>Recurrence</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999l56dj20ve0nrwfh.jpg">
-
-<blockquote>
-<p>最重要的概念是允许<font color="red"><strong>overlap</strong></font></p>
-</blockquote>
-<h3 id="Significance"><a href="#Significance" class="headerlink" title="Significance"></a>Significance</h3><p>下图再次说明了significance的出现就是一个比较的概念！！！：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999mkjej20z00q9765.jpg">
-
-<blockquote>
-<p>从上图中可以看出，在real network中feed-forward loop是比randomized networks更加over-representation的！</p>
-</blockquote>
-<hr>
-<p><strong>既然说到significance是通过和随机图的对比来看出现频率的，那么如何转换为数学语言来表示这个significance？</strong></p>
-<p>接下来是计算significance的算法：</p>
-<h3 id="Significance计算方法📊"><a href="#Significance计算方法📊" class="headerlink" title="Significance计算方法📊"></a>Significance计算方法📊</h3><p>首先是计算z-score<a target="_blank" rel="noopener" href="https://youtu.be/5S-Zfa-vOXs">^1</a>：</p>
-<blockquote>
-<p>z-score：# of $\sigma$s from $\mu$ for a particular data point.</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999mtscj20u00mit9l.jpg">
-
-<blockquote>
-<ul>
-<li>这个$SP_i$的公式是人为定义的，不必过于纠结。</li>
-<li>注意$SP_i$的作用~这是算法继z-score后的第二次normalized！</li>
-</ul>
-</blockquote>
-<p><strong>现在还有一个问题就是<code>randomized networks</code>是怎么生成的？</strong></p>
-<h3 id="怎么生成Randomized-Networks？"><a href="#怎么生成Randomized-Networks？" class="headerlink" title="怎么生成Randomized Networks？"></a>怎么生成Randomized Networks？</h3><p>在第2节课中，我们学习了<code>Erdös-Rényi</code>随机图模型（我们知道这个随机图模型与现实中的网络还是有所差别的），所以我们想能不能认为对这个随机图加一些限制，使其更能够模拟现实网络的模型？</p>
-<p>我们想增加的限制有：</p>
-<ul>
-<li><strong>$G^{rand}$具有和$G^{real}$相同点的数量</strong></li>
-<li><strong>$G^{rand}$具有和$G^{real}$相同边的数量</strong></li>
-<li><strong>$G^{rand}$中每个点具有和$G^{real}$相同的度数</strong></li>
-</ul>
-<h4 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm 1"></a>Algorithm 1</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999sijsj20u00mimy2.jpg">
-
-<blockquote>
-<ul>
-<li>steps：<ol>
-<li>给定节点和其“触角”</li>
-<li>随机配对</li>
-<li>产生图</li>
-</ol>
-</li>
-<li>注意上面的操作过程，最后的图中B只有3个度，老师说实验证明，这样的噪声结果不会太影响实验效果！即<code>ignore double edges and self-loops</code>对实验结果没影响！</li>
-</ul>
-</blockquote>
-<h4 id="Algorithm-2"><a href="#Algorithm-2" class="headerlink" title="Algorithm 2"></a>Algorithm 2</h4><p>接下来是另外一种生成随机图的方法：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku999vml2j20u00migmq.jpg">
-
-<blockquote>
-<ul>
-<li><p>其实就是一个<code>cross</code>的操作~如果做了很多次这样的cross操作，那么就能够生成random graph。</p>
-</li>
-<li><p>老师说<code>cross</code>是操作非常耗时的，cross操作的起点是原图。</p>
-</li>
-<li><p><strong>其实建模随机图主要看你的问题是什么，老师说他这里只是考虑了度，你当然可以考虑更多，只要你认为是有意义的即可！</strong></p>
-</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99brsqrj212m0szdw0.jpg">
-
-<p>上图使用的是switching的方式生成的random graph。</p>
-<h3 id="Motif小节"><a href="#Motif小节" class="headerlink" title="Motif小节"></a>Motif小节</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hbemyj24o23i24qp.jpg">
-
-<p>那么需要生成多少个随机图？—基本上是成千上万，甚至更多（也取决于真实图的大小）</p>
-<p>其实motif是一个研究甚多的领域，比如它的定义就有很多的变体：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99a42xlj21ih14u78i.jpg">
-
-<blockquote>
-<ul>
-<li>canonical definition：规范定义</li>
-</ul>
-</blockquote>
-<p>skip this：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99boi9vj20zk0qo47k.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bhe5nj20yq0q2alm.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ey8y9j251e3s2u0x.jpg">
-
-<h2 id="Graphlets"><a href="#Graphlets" class="headerlink" title="Graphlets"></a>Graphlets</h2><p>接下来讲解<code>motif</code>的一个扩展——<code>graphlets</code>。</p>
-<p><code>motif</code>和<code>graphlet</code>的联系：</p>
-<ul>
-<li>我们使用<code>motif</code>来描述一个图；</li>
-<li>而我们使用<code>graphlets</code>来描述每一个node；</li>
-</ul>
-<p>也就是说我们之前在讨论整个network的性质，现在我们讨论每个node的性质，主要的考虑是每个node的neighborhood。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ajigmj20u00miwgn.jpg">
-
-<p><strong>Graphlet：连通的非同构子图</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99b7rgmj20u00mi7ak.jpg">
-
-<blockquote>
-<ul>
-<li><p>在上图中，注意其中的标号，每个标号代表一个新的点的位置，即后面会提到的<code>orbit</code>！</p>
-</li>
-<li><p>graphlet同样是induced subgraph</p>
-</li>
-<li><p>结合上图，我们的研究点就是：</p>
-<p>如果我现在是一个node，那么我就要想，我在哪个graphlets上呀，我在哪个graphlets的哪个位置上呢？</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="Graphlet-Degree-Vector（GDV）"><a href="#Graphlet-Degree-Vector（GDV）" class="headerlink" title="Graphlet Degree Vector（GDV）"></a>Graphlet Degree Vector（GDV）</h3><p>之前我们用<code>motif</code>得到了一个度量指标——<code>significance</code>，现在我们用<code>graphlets</code>来作为一个在节点层面的子图度量。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bewgrj20u00mi755.jpg">
-
-<ul>
-<li>graphlets的作用就是作为计算<code>node-level subgraph metric</code>的输入。</li>
-<li>通过类比Degree，得到Graphlet degree vector的概念：<ul>
-<li>degree是一个节点上的边的个数</li>
-<li>一个节点touch的graphlets的个数</li>
-</ul>
-</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cg2y1j215e0v2791.jpg">
-
-<p>注意是导出子图！！！</p>
-<p><strong>所以graphlet度向量表示的是给定节点touch的给定轨迹的子图个数：</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bsvdaj20u00mimye.jpg">
-
-<blockquote>
-<p>1个73维的向量，实际描述的是1个node的邻居信息。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99bxjykj20u00mimyo.jpg">
-
-<p><strong>现在学习如何找motifs和graphlets：</strong></p>
-<h2 id="Finding-Motifs-and-Graphlets"><a href="#Finding-Motifs-and-Graphlets" class="headerlink" title="Finding Motifs and Graphlets"></a>Finding Motifs and Graphlets</h2><p>这里涉及两个步骤：</p>
-<p>（1）列举所有size-k连通的子图 </p>
-<p>（2）数每一个子图类型出现的次数</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99c3tesj20u00mijsf.jpg">
-
-<blockquote>
-<p>look at这两个步骤就可以看出来工作量很大</p>
-<p>所以基本上<strong>可行的模块(motif)规模是比较小</strong>的：3–8</p>
-</blockquote>
-<h3 id="Counting-Subgraphs——ESU"><a href="#Counting-Subgraphs——ESU" class="headerlink" title="Counting Subgraphs——ESU"></a>Counting Subgraphs——ESU</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ce6c3j20u00mi0tl.jpg">
-
-<blockquote>
-<p>我们讲解ESU（exact subgraph enumeration）</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cddwxj20u00miwfn.jpg">
-
-<ul>
-<li><p>id大的原因在于不想重复之前产生的subgraph</p>
-</li>
-<li><p><code>be neighbored to some newly added node</code>的原因也是为了不做重复的事情！</p>
-</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99esiqsj22081ie1kx.jpg">
-
-<p>主要还是看下面的图说话：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99con5wj20u00mi0um.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99d1oc5j20u00mijsl.jpg">
-
-<p>如何counting呢？步骤如下：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99d2redj20u00mi0tv.jpg">
-
-<blockquote>
-<ul>
-<li><p>bijection：双射</p>
-</li>
-<li><p>在数个数这一个步骤存在一个问题：如何分类—即要把子图分为不同构的类型（同构的图属于一个类型）—用的是McKay的nauty algorihtm，具体参见以下网站</p>
-<p><a href="https://link.zhihu.com/?target=http://users.cecs.anu.edu.au/~bdm/nauty/">https://link.zhihu.com/?target=http%3A//users.cecs.anu.edu.au/~bdm/nauty/</a></p>
-</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99cy8n7j21400u0wgu.jpg">
-
-<blockquote>
-<p>图G和图H是同构的，如果存在双射f，使得在G中相邻的节点在H中也是相邻的。</p>
-<p>从定义上看检验两个图是否同构核心在于找到这个映射f，但是实际操作上等于要对每两两节点要去判断，计算量是很大的。</p>
-</blockquote>
-<h2 id="Structural-roles-in-networks"><a href="#Structural-roles-in-networks" class="headerlink" title="Structural roles in networks"></a>Structural roles in networks</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fifktj264k4lf1bk.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99dhpb2j20u00mignj.jpg">
-
-<h3 id="What-are-Roles？"><a href="#What-are-Roles？" class="headerlink" title="What are Roles？"></a>What are Roles？</h3><p>关于<code>role</code>这个<code>idea</code>的来源也是来自于我们的生活的：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99n0dlbj22p820x1ky.jpg">
-
-<p>在接下来的讲解中，我们主要考虑3中role：</p>
-<ul>
-<li>center of stars： Are you a center of a star？</li>
-<li>member of cliques： Are you a member of fully connected graph？</li>
-<li>peripheral nodes：是否是外围节点？</li>
-</ul>
-<blockquote>
-<p><strong>一个无向图的一个派系是指</strong>：这个无向图的顶点集有这样一个子顶点集，子顶点集里的任意两个顶点都有一条边相连（也即子顶点集中的任意两个顶点都是相邻的），那么这个子顶点集及其边构成的图就是这个无向图的一个派系。如果这个派系的顶点有k个，就称这个派系为<strong>k-派系（k-clique）</strong>。</p>
-<p>其实也就是<strong>一个无向图里的一个子完全图就是这个无向图的一个派系</strong>。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99h56dnj23022927wh.jpg">
-
-<hr>
-<p>我们首先来区分一下<code>role</code>和<code>groups</code>，虽然它们都是集合，但是它们还是有很大区别的！</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99dr58mj20u00migmp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99e04h7j20u00mimy7.jpg">
-
-<p>这里要注意区分role（角色）和group的概念：</p>
-<ul>
-<li>role是根据在network中相似的功能来决定：例如公司中作为测试工程师的每个人，因为做着相似的工作所以扮演相同的role，可是在公司这个network中，这些人<strong>不一定互相连接。即role取决于相似性而不是相互连接性</strong></li>
-<li>group/community则是互相连接的个体（节点），核心在于<strong>连接性</strong></li>
-</ul>
-<p>举个例子：学生、教师这是role，AI实验室、 Info实验室这是group/community</p>
-<p>roles和groups是一种互补的概念</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fo4zyj21qs1b3qpp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fcn50j20u00midgn.jpg">
-
-<p>结构等价性（structural equivalence)——两个节点称为结构等价的，如果它们和<strong>所有其他节点</strong>都有着相同的关系</p>
-<blockquote>
-<p>这是从社会网络中引用过来的一个概念</p>
-</blockquote>
-<p><strong>上面的定义很严格，要求的是all other nodes，必须要一模一样的nodes关系！</strong></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99fk5roj20u00mit9n.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gs9y6j264k4lfatj.jpg">
-
-<h3 id="RolX"><a href="#RolX" class="headerlink" title="RolX"></a>RolX</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99g3hblj20u00mijtm.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gm2vvj20u00migmj.jpg">
-
-<p>那么怎么去发现网络中的roles？这里介绍RoIX</p>
-<p>RoIX是一种<strong>无监督</strong>学习方式来自动探测网络中节点的结构角色，具备以下优点：</p>
-<ul>
-<li>无需先验信息</li>
-<li>给每个节点分配<strong>a mixed-membership of roles</strong>（这个的最终体现就是一个概率分布）</li>
-</ul>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99gvp6aj20u00mit9z.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99h05ilj20u00mimy7.jpg">
-
-
-
-<p>根据上图来分析：</p>
-<p><strong>step 1：输入节点信息</strong></p>
-<p><strong>step 2: 递归特征提取</strong></p>
-<p><strong>step 3: 得到节点特征矩阵（例如度、平均权重等）</strong></p>
-<p><strong>step 4: 提取role</strong></p>
-<p><strong>step 5: 输出节点角色矩阵和角色特征矩阵</strong></p>
-<h4 id="Recursive-Feature-Extraction"><a href="#Recursive-Feature-Extraction" class="headerlink" title="Recursive Feature Extraction"></a>Recursive Feature Extraction</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hi84zj20u00mitbd.jpg">
-
-<ul>
-<li><p>这里的<code>feature</code>列自左到右，所summarize的范围越来越大！local-&gt;egonet-&gt;recursive</p>
-</li>
-<li><p>egonet的定义：ego network is simply if u have a node it’s a network composed of the node its neighbors and the edges between them.</p>
-</li>
-</ul>
-<p>具体的思想和算法如下：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99ho4y5j22r622en6c.jpg">
-
-<blockquote>
-<p>递归特征提取的基本思想是聚合节点的特征，并使用它们生成新的递归特征。通过这种方式，我们可以将网络连接变成结构化的功能。</p>
-<p>节点的邻域特征的基本集合包括：</p>
-<ol>
-<li>局部特征，它们都是节点度的度量。</li>
-<li>Egonet功能是在节点的egonet上计算的，可能包括在egonet内的边数量以及进入/离开egonet的边数量。这里节点的egonet包括节点本身，其邻居和这些节点上的诱导子图中的任何边。</li>
-</ol>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hcg7mj20u00mi75h.jpg">
-
-<blockquote>
-<ul>
-<li>为了生成递归特征，首先我们从节点特征的基本集合开始，然后使用当前节点特征的集合来生成其他特征并迭代此操作。每次递归迭代时，可能的递归特征的数量呈指数增长。</li>
-<li>graphlet  degree vector也可以作为feature</li>
-</ul>
-</blockquote>
-<h4 id="Role-Extraction"><a href="#Role-Extraction" class="headerlink" title="Role Extraction"></a>Role Extraction</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99lsr0yj255k3v6u0x.jpg">
-
-<blockquote>
-<p>RoleX使用的聚类算法是<code>non-negative matrix factorization</code>，这个算法老师在之后的课程会讲解。</p>
-</blockquote>
-<h2 id="Application：Structural-Similarity"><a href="#Application：Structural-Similarity" class="headerlink" title="Application：Structural Similarity"></a>Application：Structural Similarity</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99hrwdyj20u00mi0tu.jpg">
-
-<blockquote>
-<p>注意得到的是一个distribution！</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99mdmbaj24vb3nox6p.jpg">
-
-<blockquote>
-<p>Gray rectangle是排除其他三种节点之后的任意节点。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gku99l4d2wj264k4lfnel.jpg">
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/5S-Zfa-vOXs">可汗学院——z-score</a></li>
-</ol>
+<p>理解了上面四个点的意义就知道了。</p>
+<p><strong>得到了ROC曲线，我们就可以计算曲线下方的面积了——计算出来的面积就是AUC值了。</strong></p>
+<h2 id="AUC值的意义"><a href="#AUC值的意义" class="headerlink" title="AUC值的意义"></a>AUC值的意义</h2><p>知道了如何计算AUC值，我们当然是要来问一下AUC值的意义了。为什么我们要这么大费周章地搞出这个AUC值？</p>
+<p>假设我们有一个分类器，输出是样本输入正例的概率，所有的样本都会有一个相应的概率，这样我们可以得到下面这个图： </p>
+<p><img src="https://img-blog.csdn.net/20180307105425516?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>其中，横轴表示预测为正例的概率，纵轴表示样本数。<br>所以，蓝色区域表示所有负例样本的概率分布，红色样本表示所有正例样本的概率分布。显然，如果我们希望分类效果最好的话，那么红色区域越接近1越好，蓝色区域越接近0越好。</p>
+<p>为了验证你的分类器的效果。你需要选择一个阈值，比这个阈值大的预测为正例，比这个阈值小的预测为负例。如下图： </p>
+<p><img src="https://img-blog.csdn.net/20180307110141306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>在这个图中，阈值选择了0.5于是左边的样本都被认为是负例，右边的样本都被认为是正例。可以看到，红色区域与蓝色区域是有重叠的，所以当阈值为0.5的时候，我们可以计算出准确率为90%。</p>
+<p>好，现在我们来引入ROC曲线。 </p>
+<p><img src="https://img-blog.csdn.net/2018030711171716?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>图中左上角就是ROC曲线，其中横轴就是前面说的**<code>FPR(False Positive Rate)</code><strong>，纵轴就是</strong><code>TPR(True Positive Rate)</code>**。 </p>
+<p>然后我们选择不同的阈值时，就可以对应坐标系中一个点。</p>
+<p><img src="https://img-blog.csdn.net/20180307112223804?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>当阈值为0.8时，对应上图箭头所指的点。</p>
+<p><img src="https://img-blog.csdn.net/20180307112311768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>当阈值为0.5时，对应上图箭头所指的点。</p>
+<p>这样，不同的阈值对应不同的点。最后所有的点就可以连在一起形成一条曲线，就是ROC曲线。</p>
+<p>现在我们来看看，如果蓝色区域与红色的区域发生变化，那么ROC曲线会怎么变呢？ </p>
+<p><img src="https://img-blog.csdn.net/20180307112622811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>上图中，蓝色区域与红色区域的重叠部分不多，所以可以看到ROC曲线距离左上角很近。</p>
+<p><img src="https://img-blog.csdn.net/20180307112730574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>但是，当蓝色区域与红色区域基本重叠时，ROC曲线就和接近y=x这条线了。</p>
+<p>综上两个图，如果我们想要用ROC来评估分类器的分类质量，我们就可以通过计算AUC（ROC曲线下的面积）来评估了，这就是AUC的目的。</p>
+<h2 id="为什么选择ROC和AUC？"><a href="#为什么选择ROC和AUC？" class="headerlink" title="为什么选择ROC和AUC？"></a>为什么选择ROC和AUC？</h2><p>其实，<strong>AUC表示的是正例排在负例前面的百分比。</strong> </p>
+<p><img src="https://img-blog.csdn.net/20180306205648438?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>比如上图，第一个坐标系的AUC值表示，所有的正例都排在负例的前面。第二个AUC值，表示有百分之八十的正例排在负例的前面。</p>
+<p><strong>我们知道阈值可以取不同，也就是说，分类的结果会受到阈值的影响。如果使用AUC的话，因为阈值变动考虑到了，所以评估的效果更好。</strong></p>
+<p>另一个好处是，ROC曲线有一个很好的特性：<font color="red"><strong>当测试集中的正负样本分布发生变化了，ROC曲线可以保持不变。</strong></font>在实际的数据集中经常会出现类不平衡（class imbalance）现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化。</p>
+<p><img src="https://img-blog.csdn.net/20180306210417620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
+<p>在上图中，(a)和(c)为ROC曲线，(b)和(d)为Precision-Recall曲线。(a)和(b)展示的是分类其在原始测试集（正负样本分布平衡）的结果，(c)和(d)是将测试集中负样本的数量增加到原来的10倍后，分类器的结果。可以明显的看出，ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大。</p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://www.zybuluo.com/frank-shaw/note/152851">https://www.zybuluo.com/frank-shaw/note/152851</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39840928?from=profile_question_card">https://www.zhihu.com/question/39840928?from=profile_question_card</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/cherrylvlei/article/details/52958720">http://blog.csdn.net/cherrylvlei/article/details/52958720</a><br><a target="_blank" rel="noopener" href="http://www.dataschool.io/roc-curves-and-auc-explained/">http://www.dataschool.io/roc-curves-and-auc-explained/</a></p>
 
             </div>
             <hr/>
@@ -862,7 +608,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/">http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/</a>
+                    <a href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/">http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -900,16 +646,24 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">课程笔记</span>
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
                                 </a>
                             
-                                <a href="/tags/GNN/">
-                                    <span class="chip bg-color">GNN</span>
+                                <a href="/tags/AUC/">
+                                    <span class="chip bg-color">AUC</span>
                                 </a>
                             
-                                <a href="/tags/cs224w/">
-                                    <span class="chip bg-color">cs224w</span>
+                                <a href="/tags/ROC/">
+                                    <span class="chip bg-color">ROC</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/">
+                                    <span class="chip bg-color">混淆矩阵</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
                         </div>
@@ -1077,53 +831,64 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/">
+                <a href="/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】4. Community Structure in Networks">
                         
-                        <span class="card-title">【斯坦福cs224w-图机器学习】4. Community Structure in Networks</span>
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="模型评估指标AUC和ROC，这是我看到的最透彻的讲解">
+                        
+                        <span class="card-title">模型评估指标AUC和ROC，这是我看到的最透彻的讲解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            讲解两个知识点：community structure in networks以及how to detection of them
+                            讲解混淆矩阵，ROC以及AUC。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/GNN/" class="post-category">
-                                    GNN
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">课程笔记</span>
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
                     </a>
                     
-                    <a href="/tags/GNN/">
-                        <span class="chip bg-color">GNN</span>
+                    <a href="/tags/AUC/">
+                        <span class="chip bg-color">AUC</span>
                     </a>
                     
-                    <a href="/tags/cs224w/">
-                        <span class="chip bg-color">cs224w</span>
+                    <a href="/tags/ROC/">
+                        <span class="chip bg-color">ROC</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/">
+                        <span class="chip bg-color">混淆矩阵</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
@@ -1137,23 +902,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/">
+                <a href="/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】homework 0">
                         
-                        <span class="card-title">【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial</span>
+                        <span class="card-title">【斯坦福cs224w-图机器学习】homework 0</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这节课主要讲解两个工具：snap.py和google cloud
+                            homework 0的代码及相应的结果
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
                             </span>
                         <span class="publish-author">
                             
@@ -1317,13 +1082,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 

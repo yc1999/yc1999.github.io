@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-21T06:12:33.158Z</updated>
+  <updated>2020-11-22T12:55:55.628Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解</title>
+    <link href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/"/>
+    <id>http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</id>
+    <published>2020-11-22T08:40:44.000Z</published>
+    <updated>2020-11-22T12:55:55.628Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; 文章来源：&lt;a href=&quot;https://blog.csdn.net/liweibin1994/article/details/79462554&quot;&gt;模型评估指标AUC（area under the</summary>
+        
+      
+    
+    
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="AUC" scheme="http://yc1999.github.io/tags/AUC/"/>
+    
+    <category term="ROC" scheme="http://yc1999.github.io/tags/ROC/"/>
+    
+    <category term="混淆矩阵" scheme="http://yc1999.github.io/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/"/>
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>【斯坦福cs224w-图机器学习】homework 0</title>
@@ -51,7 +85,7 @@
     <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/"/>
     <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/</id>
     <published>2020-11-20T01:37:37.000Z</published>
-    <updated>2020-11-20T11:58:32.012Z</updated>
+    <updated>2020-11-22T07:19:50.420Z</updated>
     
     
       
