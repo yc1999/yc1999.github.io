@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="信息抽取 从零入门, 杨程的博客">
+    <meta name="keywords" content="【斯坦福cs224w-图机器学习】5. Spectral Clustering, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>信息抽取 从零入门 | 杨程的博客</title>
+    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">信息抽取 从零入门</h1>
+                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】5. Spectral Clustering</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                                <span class="chip bg-color">转载</span>
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">课程笔记</span>
                             </a>
                         
-                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/">
-                                <span class="chip bg-color">信息抽取</span>
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                            <a href="/tags/cs224w/">
+                                <span class="chip bg-color">cs224w</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
+                                <span class="chip bg-color">特征值与特征向量的应用</span>
                             </a>
                         
                     </div>
@@ -446,8 +454,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/NLP/" class="post-category">
-                                NLP
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
                             </a>
                         
                     </div>
@@ -459,7 +467,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2020-11-24
                 </div>
                 
 
@@ -476,41 +484,281 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://ivenwang.com/2020/06/06/knowledgeextraction/">信息抽取 从零入门</a></p>
+<p>本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral Clustering）算法，最后还会与前面第3节课学习的<code>motif</code>知识关联起来，讲解一种基于Motif的谱聚类算法。</p>
 </blockquote>
-<p><strong>信息抽取</strong>包括<strong>实体抽取</strong>、<strong>关系抽取</strong>、<strong>事件抽取</strong>。</p>
-<ul>
-<li>实体抽取即找出文章里的专有名词（人名地名等），方法大致是先检测，再分类；</li>
-<li>关系抽取即找出两个名词之间的动词，一般是三元组抽取，即一个谓词（predicate）带两个形参（argument）；</li>
-<li>事件抽取即将自然语言转换成结构化的信息，抽取出事件的各要素（时间、地点、人物等）。</li>
-</ul>
-<h2 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1 数据集"></a>1 数据集</h2><p>最常用的数据集有 MUC、ACE、KBP、SemEval 等。其中 ACE 数据集包括 <a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06.txt">英语</a>、<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06_ch.jpg">中文</a> 等。</p>
-<h2 id="2-实体抽取"><a href="#2-实体抽取" class="headerlink" title="2 实体抽取"></a>2 实体抽取</h2><p>主要抽取的是文本中的原子信息元素，如人名、组织/机构名、地理位置、事件/日期、字符值、金额值等。实体抽取任务有两个关键词：find &amp; classify，找到命名实体，并进行分类。</p>
-<p>传统的机器学习方法</p>
-<ol>
-<li>把每个 token 标记命名实体；</li>
-<li>特征选择；</li>
-<li>训练一个 sequence classifier 来预测数据的 label。</li>
-</ol>
-<p>…</p>
-<h2 id="4-事件抽取"><a href="#4-事件抽取" class="headerlink" title="4 事件抽取"></a>4 事件抽取</h2><p>事件抽取是从描述事件信息的文本中，识别并抽取出事件信息，并以<strong>结构化的形式</strong>呈现出来，包括发生的时间、地点、参与角色以及与之相关的动作或者状态的改变。[8]</p>
-<p>几个概念：</p>
-<ul>
-<li><strong>事件描述（Event Mention）</strong>：描述事件的词组/句子/句群，包含一个 trigger 以及任意数量的 arguments</li>
-<li><strong>事件触发（Event Trigger）</strong>：事件描述中最能代表事件发生的词汇，决定事件类别的重要特征，一般是动词或者名词</li>
-<li><strong>事件元素（Event Argument）</strong>：事件的重要信息，或者说是实体描述（entity mention），主要由实体、属性值等表达完整语义的细粒度单位组成</li>
-<li><strong>元素角色（Argument Role）</strong>：事件元素在事件中扮演的角色，事件元素与事件的语义关系，可以理解为 slot</li>
-<li><strong>事件类型（Event Type）</strong></li>
-</ul>
-<p>事件抽取基础任务是在 mention 中抽取一个 trigger 和多个 arguments，并找到每个 argument 对应的 role，以及 trigger 的 type。</p>
-<p>因此基础的方法分成几步[9]：</p>
-<ol>
-<li>Trigger Identification</li>
-<li>Trigger Type Classification</li>
-<li>Argument Identification</li>
-<li>Argument Role Classification</li>
-</ol>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hl1lxsj22bc1qiqm5.jpg">
 
+<h2 id="谱聚类算法"><a href="#谱聚类算法" class="headerlink" title="谱聚类算法"></a>谱聚类算法</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlnoatj22bc1qi1kv.jpg">
+
+<blockquote>
+<p>上面给出了谱聚类的”三步曲”，在正式讲解“三步曲”之前，我们先来定义一下谱聚类要解决什么问题？</p>
+</blockquote>
+<h3 id="Part-1-问题定义"><a href="#Part-1-问题定义" class="headerlink" title="Part 1 问题定义"></a>Part 1 问题定义</h3><p>给定一个图$G=(V,E)$，如下图所示，我们要在这个图上做<strong>bi-partition</strong>任务（后面的讲解是基于二簇划分问题的，当然谱聚类可以用于多簇划分），希望把下图划分成两个不相交的群体A，B，让组内尽可能相似，组间差异尽可能大。</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlfx0oj22bc1qi1io.jpg">
+
+<blockquote>
+<ul>
+<li>那么怎么定义一个“好”的划分？怎样快速找到这样的划分呢？</li>
+</ul>
+</blockquote>
+<h3 id="Part-2-评价指标"><a href="#Part-2-评价指标" class="headerlink" title="Part 2 评价指标"></a>Part 2 评价指标</h3><ul>
+<li>在第四节课中，我们有介绍度量聚类效果的指标<code>modularity</code>，这里我们使用一种新的聚类度量指标<code>conductance</code>；</li>
+<li>同样，我们之前的目标是最大化<code>modularity</code>，因此在本节课我们的目标是最大化<code>conductance</code>。</li>
+</ul>
+<p>对于一个好的划分，一个很自然的想法，直觉上就是<font color="red"><strong>最大化组内连接数，最小化组间连接数</strong>：</font></p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hliytij22bc1qiasg.jpg">
+
+<p>我们其实可以很形象地将图上的聚类划分问题，看做一个<strong>切割</strong>的过程：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hnt96sj22bc1qitwi.jpg">
+
+<blockquote>
+<ul>
+<li><code>cut</code>：这里的<code>cut</code>是一个名词，它有全新的意义。它是定义在两个簇共享的边集的<code>sum</code>值。</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hm3a3sj22bc1qiazv.jpg">
+
+<blockquote>
+<p>但是如果我们想最小化cut有一个问题，如上图所示，当有一个节点度数为1时，切割这一条边可最小化cut，即cut=1，但是很显然这并不是最优化的划分结果，直觉上看，最优化的划分应该为蓝色线所示。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hqb1ndj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><p>正是由于前面讲的那种degenerate case，我们需要进一步对度量指标<code>cut</code>进行归一化来考虑group内的connectivity信息——<code>conductance</code>:</p>
+</li>
+<li><p>我们想<code>conductance</code>变小，所以我们就会想让<code>vol(A)</code>和<code>vol(B)</code>都能变得尽可能大，从而避免前一张PPT上的极端情况。</p>
+</li>
+<li><p>由<code>conductance</code>计算公式的含义我们知道<strong>它能够产生相对均匀划分</strong>；</p>
+</li>
+<li><p>但是求解一个这样的最优的conductance是一个NP-hard问题。根据我们的机器学习经验，<strong>我们需要寻找一个近似解</strong><del>这个近似解就是谱聚类</del></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Part-3-谱图划分"><a href="#Part-3-谱图划分" class="headerlink" title="Part 3 谱图划分"></a>Part 3 谱图划分</h3><h4 id="重新理解-Ax-的意义——聚合邻居的信息"><a href="#重新理解-Ax-的意义——聚合邻居的信息" class="headerlink" title="重新理解$Ax$的意义——聚合邻居的信息"></a>重新理解$Ax$的意义——聚合邻居的信息</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hs4gx6j22bc1qihc1.jpg">
+
+<hr>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrcge9j22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>之前我们重新审视了$Ax$，现在让我们结合重新审视的$Ax$来回想一个啥是eigenvector，eigenvalue？</li>
+</ul>
+<blockquote>
+<p><strong>these are special vectors assigned to nodes such that when you sum up the value from your neighbors you get the same value as you had you just scaled miraculous！！！</strong></p>
+</blockquote>
+<ul>
+<li><p><code>spectrum</code>：频谱，需要注意的是<code>spectrum</code>里面的<strong>特征值</strong>是严格按照从小到大的顺序排列的！</p>
+<blockquote>
+<p>这其实与电路与信号里面的傅里叶变换联系起来了，这里的频率就是特征值。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h5 id="Example-d-Regular-Graph"><a href="#Example-d-Regular-Graph" class="headerlink" title="Example: d-Regular Graph"></a>Example: d-Regular Graph</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hr5e91j22bc1qi7wh.jpg">
+
+<blockquote>
+<p>d-regular graph</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hppnukj22bc1qib29.jpg">
+
+<h5 id="Example-Graph-on-2-Components"><a href="#Example-Graph-on-2-Components" class="headerlink" title="Example: Graph on 2 Components"></a>Example: Graph on 2 Components</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrca5ij22bc1qi7wh.jpg">
+
+<blockquote>
+<ul>
+<li><p>这里<code>eigenvalue</code>：$d$的<code>multiplicity</code>是2，也就是是说它由两个eigenvector。在这种类型的图中，the max eigenvalue的<strong>multiplicity</strong>可以告诉我们有多少的components。</p>
+</li>
+<li><p>$\lambda_n = \lambda_{n-1}$是因为multiplicity的大小</p>
+</li>
+<li><p>关于almost disconnected的时候，$\lambda_{n-1}$会非常接近$\lambda_n$的原因将会在后面学到。</p>
+</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hu3m2aj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><p><strong>Eigenvectors are orthogonal的原因在于Adjacency Matrix为对称矩阵！</strong></p>
+</li>
+<li><p>it means some coordinates should be higher than 0，一些会小于0；</p>
+</li>
+<li><p>再次提醒，老师这里举例子是2个partition的问题；</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Adjacency-Matrix"><a href="#Adjacency-Matrix" class="headerlink" title="Adjacency Matrix"></a>Adjacency Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hv2g92j22bc1qity7.jpg">
+
+<blockquote>
+<ul>
+<li>这里的n个real eigenvalues可能有重复的。</li>
+</ul>
+</blockquote>
+<h3 id="Degree-Matrix"><a href="#Degree-Matrix" class="headerlink" title="Degree Matrix"></a>Degree Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ht6rnxj22bc1qinft.jpg">
+
+<h3 id="Laplacian-Matrix"><a href="#Laplacian-Matrix" class="headerlink" title="Laplacian Matrix"></a>Laplacian Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hy23xnj22bc1qi1kx.jpg">
+
+<blockquote>
+<ul>
+<li>0是我们这个问题中最小的eigenvalue（？）</li>
+<li>Laplacian Matrix$L$是一个半正定矩阵，详细证明如下：</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvuhghj22bc1qi4qp.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvaa0pj22bc1qi4qp.jpg">
+
+<blockquote>
+<p>注意是对于每一个symmetric matrix都有这样一个fact！</p>
+<p>optimization problem</p>
+<p>$x^TLx$就是二次型的定义，所以要回顾一下二次型才是~</p>
+<p>只遍历边（i,j），所以需要乘以2。</p>
+<p>再观察一下，我们的$x_i^2$一共计算了$D_{ii}$次，也就是度的次数，于是我们根据它的边来拆分$D_{ij}$次，可以得到一个完全平方式。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hw4qusj22bc1qi7wh.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i319kaj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>eigenvector的长度为1，这个是可以Normalize的</li>
+<li>restate之前的equation</li>
+<li>我们可以想象$x$向量代表的是label，那么0两端的话，值会很大。</li>
+<li>因为sum要为1，我们尽量让两端的点的数量相等。</li>
+<li>如上所示，$\lambda_2$有着非常神奇的eigenvector；</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hz82u6j22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><code>Fiedler</code>的这个想法和我们之前得到的那个restate其实是差不多的，但是他的这个严格性太强了！这个最终结果会统计横跨0左右两端的数量。</li>
+<li>在前一页PPT里面我们不会去enforce两个集合相等</li>
+<li>我们称这里的vector为Fiedler vector</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i10cujj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>a spectral term spectral graph theory</li>
+<li>同样是之前的那个式子，这里是enforce其中的向量的总和为0，然后y的长度为1.</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i15d0yj22bc1qib29.jpg">
+
+<blockquote>
+<p>这里的证明展示了这种基于图的Laplacian矩阵的spectral clustering会给你一个近似最优解</p>
+<p>它会小于最优解的两倍，说明还是很有用的</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hzct2pj22bc1qihcb.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i0kbplj22bc1qihce.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i36bk1j22bc1qinjx.jpg">
+
+<p>前面是mathematical intuition，接下来是实打实的算法~</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i30m1tj22bc1qikhf.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i40lpoj22bc1qi1kx.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i50baxj22bc1qi4qp.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i47lurj22bc1qits5.jpg">
+
+<blockquote>
+<p>老师说 how beautifully it captures the graph structure~左图和右图完美匹配。</p>
+<p>如果有四个类别怎么办？</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i5awj4j22bc1qih66.jpg">
+
+<blockquote>
+<p>如上所示，我们依然使用之前的方法得到$x_2$，虽然它是用于二分类问题的，但是你可以发现，在0以上和0以下，依然还可以在划分为两个类别。</p>
+<p>如何$\lambda_2$和$\lambda_1$是相等的，老师说自己的理论就会不成立。那么为什么不连通的图，他的两个就是相等的呢？好像我可以分析出来。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i887mjj22bc1qie2f.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iaepxwj22bc1qi4qp.jpg">
+
+<blockquote>
+<p>这里k的数量不等于最后聚类的数量。</p>
+</blockquote>
+<h2 id="Why-Use-Multiple-Eigenvectors？"><a href="#Why-Use-Multiple-Eigenvectors？" class="headerlink" title="Why Use Multiple Eigenvectors？"></a>Why Use Multiple Eigenvectors？</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i7a3l4j22bc1qib29.jpg">
+
+<blockquote>
+<ul>
+<li></li>
+<li>emphasize cohesive clusters</li>
+<li>well-separated space</li>
+<li>amplified 放大</li>
+<li>attenuate 减弱</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i83r45j22bc1qi4nb.jpg">
+
+<p>注意是降序的。。。</p>
+<p>如果我们的图是disconnected，那么$\lambda_1$和$\lambda_2$就是相等的了，如果是近似disconnected，那么$\lambda_1$和$\lambda_2$就应该是差不多大小。</p>
+<p>for a general graph，the maximum eigenvalue will correspond to the density of the graph，now we create the graph laplacian that kind of flipped the spectrum around，so the largest eigenvalue D mapped to the trivial eigenvalue of 0。</p>
+<h2 id="基于motif的谱聚类算法"><a href="#基于motif的谱聚类算法" class="headerlink" title="基于motif的谱聚类算法"></a>基于motif的谱聚类算法</h2><p>接下来，介绍一种super exciting extension of the spectral clustering method：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i64o35j22bc1qi153.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iars1wj22bc1qi7td.jpg">
+
+<p>能否基于motif进行聚类？</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i8zt3tj22bc1qiwz1.jpg">
+
+<p>划分出上图红圈中的cluster。</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibojulj22bc1qi7v1.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibrzffj22bc1qib0u.jpg">
+
+<blockquote>
+<p>将前面提到的cut和volume的概念迁移到motif上：</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibpb0hj22bc1qie0g.jpg">
+
+<blockquote>
+<ul>
+<li>motif cut=1</li>
+<li>motif volume=10</li>
+</ul>
+</blockquote>
+<p>next,how do i automatedly find good cuts,how do I find clusters of motifs?</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibhozvj22bc1qie30.jpg">
+
+
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ief5rwj22bc1qi1f4.jpg">
+
+<blockquote>
+<p>$W^{M}$的值随着$M$的不同而变化。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iglfjzj22bc1qikja.jpg">
+
+<blockquote>
+<p>要将其变成无向图</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09if38ywj22bc1qikfd.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iewp9dj22bc1qitxx.jpg">
+
+<blockquote>
+<p>尽管我们最后变成了无向图，看起来有点像edge cut，但是实际上还是原来的motif cut</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ie9a17j22bc1qiqlp.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iebrh7j22bc1qi7q3.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij5rsxj22bc1qi7q6.jpg">
+
+<blockquote>
+<p>分情况寻找划分的点。</p>
+<p>sweep procedure：扫描过程</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ihdbc5j22bc1qinke.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09igz3gnj22bc1qitvk.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij3ubsj22bc1qitqt.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ijil96j22bc1qihdt.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ikmbuuj22bc1qittm.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iiys1ij22bc1qikbb.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iklftqj22bc1qi4n6.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iow8l0j22bc1qiu0x.jpg">
+
+<p>aquatic layer</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imqpv5j22bc1qi1kx.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imjdnnj22bc1qix0x.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ip4jpnj22bc1qinpd.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imyozdj22bc1qikcv.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09io5cqvj22bc1qi4qp.jpg">
+
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><h3 id="聚类度量指标Modularity和Conductance的对比理解"><a href="#聚类度量指标Modularity和Conductance的对比理解" class="headerlink" title="聚类度量指标Modularity和Conductance的对比理解"></a>聚类度量指标<code>Modularity</code>和<code>Conductance</code>的对比理解</h3>
             </div>
             <hr/>
 
@@ -535,7 +783,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/">http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/</a>
+                    <a href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/">http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,12 +821,20 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                                    <span class="chip bg-color">转载</span>
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">课程笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/">
-                                    <span class="chip bg-color">信息抽取</span>
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                                <a href="/tags/cs224w/">
+                                    <span class="chip bg-color">cs224w</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
+                                    <span class="chip bg-color">特征值与特征向量的应用</span>
                                 </a>
                             
                         </div>
@@ -750,44 +1006,33 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/11/tai-da-li-hong-yi-zhu-jiao-jiang-jie-gnn-tu-shen-jing-wang-luo/">
+                <a href="/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="台大李宏毅助教讲解GNN图神经网络">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning">
                         
-                        <span class="card-title">台大李宏毅助教讲解GNN图神经网络</span>
+                        <span class="card-title">【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            B站视频「台大李宏毅助教讲解GNN图神经网络」笔记
+                            在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：
+第七八两节介绍的都是关于图表示学习的，所谓万物皆可embeddin
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/GNN/" class="post-category">
-                                    GNN
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">课程笔记</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -799,31 +1044,32 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/09/a-survey-of-open-domain-event-extraction/">
+                <a href="/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="A Survey of Open Domain Event Extraction">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="深度学习框架-动态图和静态图">
                         
-                        <span class="card-title">A Survey of Open Domain Event Extraction</span>
+                        <span class="card-title">深度学习框架-动态图和静态图</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            论文《A Survey of Open Domain Event Extraction》的阅读笔记
+                            Tensorflow,Pytorch,PaddlePaddle等等深度学习框架，在介绍框架的时候都会提及到动态图和静态图。其实动态图和静态图都属于计算图，本文就来讲讲什么是动态图和静态图。
+计算图不论是动态图还是静态图，它们都属于计算图。计
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/NLP/" class="post-category">
-                                    NLP
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
                                 </a>
                             
                             
@@ -833,16 +1079,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
-                        <span class="chip bg-color">论文阅读</span>
-                    </a>
-                    
-                    <a href="/tags/NLP/">
-                        <span class="chip bg-color">NLP</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%BB%BC%E8%BF%B0/">
-                        <span class="chip bg-color">综述</span>
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
                     </a>
                     
                 </div>
@@ -980,6 +1218,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

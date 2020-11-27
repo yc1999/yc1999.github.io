@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-22T12:55:55.628Z</updated>
+  <updated>2020-11-27T02:55:45.787Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,130 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】8-Graph Neural Networks</title>
+    <link href="http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/"/>
+    <id>http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/</id>
+    <published>2020-11-26T07:38:12.000Z</published>
+    <updated>2020-11-27T02:55:45.787Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-338272ff7d5ed60dd67f5cb531d0afd0_720w.jpg&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;复习Node-Embeddings&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning</title>
+    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/"/>
+    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/</id>
+    <published>2020-11-25T11:05:42.000Z</published>
+    <updated>2020-11-25T16:11:06.135Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;无监督学习方法——Node Embedding&lt;/p&gt;
+&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl1mmh7g5vj22bc1qi1kx.jpg&quot;&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</title>
+    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/"/>
+    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/</id>
+    <published>2020-11-25T09:01:09.000Z</published>
+    <updated>2020-11-25T10:54:00.867Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：&lt;/p&gt;
+&lt;p&gt;第七八两节介绍的都是关于&lt;strong&gt;图表示学习&lt;/strong&gt;的，所谓万物皆可e</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering</title>
+    <link href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/"/>
+    <id>http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</id>
+    <published>2020-11-24T06:50:27.000Z</published>
+    <updated>2020-11-24T15:28:49.084Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+    <category term="特征值与特征向量的应用" scheme="http://yc1999.github.io/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习框架-动态图和静态图</title>
+    <link href="http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/"/>
+    <id>http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/</id>
+    <published>2020-11-24T03:29:46.000Z</published>
+    <updated>2020-11-24T06:37:30.858Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;code&gt;Tensorflow&lt;/code&gt;,&lt;code&gt;Pytorch&lt;/code&gt;,&lt;code&gt;PaddlePaddle&lt;/code&gt;等等深度学习框架，在介绍框架的时候都会提及到&lt;strong&gt;动态图&lt;/strong&gt;和&lt;strong&gt;静态图&lt;/strong&gt;。其实动</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解</title>
@@ -450,73 +574,6 @@
     
     
     <category term="工作" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求</title>
-    <link href="http://yc1999.github.io/2020/10/10/qing-hua-da-xue-2021-nian-tui-jian-mian-shi-zhi-shuo-zhi-bo-sheng-lu-xing-zheng-shi-bao-ming-shou-xu-de-tong-zhi-ji-zi-ge-fu-shen-yao-qiu/"/>
-    <id>http://yc1999.github.io/2020/10/10/qing-hua-da-xue-2021-nian-tui-jian-mian-shi-zhi-shuo-zhi-bo-sheng-lu-xing-zheng-shi-bao-ming-shou-xu-de-tong-zhi-ji-zi-ge-fu-shen-yao-qiu/</id>
-    <published>2020-10-10T15:19:36.000Z</published>
-    <updated>2020-10-10T15:51:47.159Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求&quot;&gt;&lt;a href=&quot;#清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="保研" scheme="http://yc1999.github.io/tags/%E4%BF%9D%E7%A0%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>研究生推免系统操作流程</title>
-    <link href="http://yc1999.github.io/2020/10/07/yan-jiu-sheng-tui-mian-xi-tong-cao-zuo-liu-cheng/"/>
-    <id>http://yc1999.github.io/2020/10/07/yan-jiu-sheng-tui-mian-xi-tong-cao-zuo-liu-cheng/</id>
-    <published>2020-10-07T11:41:08.000Z</published>
-    <updated>2020-10-07T13:45:53.912Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1gjh2q9empxj21h90p17b5.jpg&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="保研" scheme="http://yc1999.github.io/tags/%E4%BF%9D%E7%A0%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yc1999.github.io/2020/10/07/hello-world/"/>
-    <id>http://yc1999.github.io/2020/10/07/hello-world/</id>
-    <published>2020-10-07T06:39:12.343Z</published>
-    <updated>2020-10-07T06:39:12.343Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
