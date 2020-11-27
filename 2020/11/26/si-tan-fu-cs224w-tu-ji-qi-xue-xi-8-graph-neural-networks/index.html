@@ -32,8 +32,8 @@
 
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -308,7 +308,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -428,12 +428,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">课程笔记</span>
+                            </a>
+                        
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                            <a href="/tags/cs224w/">
+                                <span class="chip bg-color">cs224w</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -577,7 +598,7 @@
 <li>how to capture computation graph</li>
 <li>how to aggregate information</li>
 </ul>
-<p><img src="https://pic3.zhimg.com/80/v2-e170eb706dff414655c96d56536ca1aa_720w.jpg"></p>
+<h4 id="Computation-Graph"><a href="#Computation-Graph" class="headerlink" title="Computation Graph"></a>Computation Graph</h4><p><img src="https://pic3.zhimg.com/80/v2-e170eb706dff414655c96d56536ca1aa_720w.jpg"></p>
 <p>上图中的橙色部分就是Computation Graph。</p>
 <p>这里我们希望学习如何通过图的结构来<strong>传播信息（Message Passing）</strong>从而更好地计算节点的embedding，<font color="red"><strong>说白了就是不仅像node2vec那些算法那样考虑节点和节点之间的关联关系还要考虑节点的属性（特征）。</strong></font></p>
 <p>上图的<code>k=1</code>表示一度关联，<code>k=2</code>表示二度关联 。比如node $i$，我们后面介绍的方法不仅能够捕获到node $i$ 所在图的结构信息，还能够捕获node $i$ 的邻节点的属性信息从而增强embedding的表达能力。</p>
@@ -589,77 +610,95 @@
 <blockquote>
 <p>（这里学生问了一个我也想问的问题，如果说整个网络非常复杂，A的邻居节点B存在邻节点C，而邻节点C存在一个更远的邻节点D，邻节点D存在一个更更远的邻节点E，那么我们是不是也要统一考虑进来，这里教授的答案是“no need”。。。。额。。。）</p>
 </blockquote>
-<p><img src="https://pic4.zhimg.com/80/v2-e5669b607992ae1439f2556130035c0b_720w.jpg" alt="img"></p>
-<p>到这里还有一个问题，这些box到底是什么东西？</p>
-<p>关于box，我们目前只知道有一点需要满足，就是这个box中的函数对于输入节点的顺序是完全不敏感的，比如第一个灰色box的输入是A和C节点，我们替换A和C的顺序之后，经过这个box function之后的结果应该是不变的。这个function应该是order invariant function。</p>
-<p>后面会描述清楚的。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-a0127dd305b11831f4b00f3405b3f164_720w.jpg" alt="img"></p>
-<p>可以发现，每个结点拥有不同的Neural Network.</p>
-<p>那么通过刚才的思路，我们为每一个节点都进行了上面所说的展开的方法进行展开得到了上图。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-e5669b607992ae1439f2556130035c0b_720w.jpg"></p>
+<ul>
+<li><p>到这里还有一个问题，这些黑色的<code>box</code>到底是什么东西？</p>
+<p>关于box，我们目前只知道有一点性质，它需要满足，就是这个box中的函数对于输入节点的顺序是完全不敏感的，比如第一个灰色box的输入是$A$和$C$节点，我们替换$A$和$C$的顺序之后，经过这个box function之后的结果应该是不变的。<strong>这个function应该是order invariant function（目的是为了解决上面讲的对顺序敏感的问题）</strong>，具体后面会描述清楚的。</p>
+<h4 id="Computation-Graph-1"><a href="#Computation-Graph-1" class="headerlink" title="Computation Graph"></a>Computation Graph</h4></li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-a0127dd305b11831f4b00f3405b3f164_720w.jpg"></p>
+<p>那么通过刚才的思路，我们为每一个节点都进行了上面所说的展开的方法进行展开得到了上图。可以发现，每个结点拥有不同的Computation Graph。</p>
 <p>怎样初始化，以及怎样计算：</p>
 <p><img src="https://pic1.zhimg.com/80/v2-3b5eeaedd1efa5c79e6720500a763ddc_720w.jpg" alt="img"></p>
-<p>这里整个deep graph encoder的结构就出来了，我们的输入是target node的邻节点，输出是target node的embedding。</p>
-<p>需要注意，以节点C为例，layer-0节点C是C的features，比如C是一个用户，那么就可能是用户的age、gender、nationality等，但是除了layer-0之外，其它的layer里，C都是一个embedding。这是一个很奇怪很有意思的地方。</p>
-<p>模型可以是任意深度的：</p>
-<p>1、nodes在每一层都有embeddings；</p>
-<p>2、layers-0的embedding是就是每一个节点的属性对应的Xu，就是特征向量了；</p>
-<p>3、第K层的embeddings 从k hops 远的nodes获得信息。</p>
-<p>上图是一个二层的结构（这里box代表了层），这意味着我们取的是node A的2 hops away的邻节点，这里又提到了为什么我们不继续go deep的问题，如果我们考虑太远的节点，会把太多的结构信息考虑进来，举一个极端的例子，比如我们go 20 steps deeper，可能会把整个网络结构的信息考虑进来（这里是我自己的思考，我们以word2vec为例，假设一个句子有10个单词，而我们的windows是10，这就意味着在这个句子中，每个单词的embedding表示最终都是由这个句子中所有的单词一同参与训练的，这会导致最终这个句子中所有的单词训练出来的embedding接近一致，这显然不是我们想要的结果。）</p>
+<p>这里整个Deep Graph Encoder的结构就出来了，我们的输入是target node的二阶邻居节点，输出是target node的embedding。</p>
+<p>需要注意，以节点$C$为例，layer-0节点$C$是$C$的原有的features，比如$C$是一个用户，那么就可能是用户的age、gender、nationality等，但是除了layer-0之外，其它的layer里，$C$都是该层对应的embedding。这是一个很奇怪很有意思的地方。</p>
+<p>其实这里涉及到了两种思维方式——<strong>Top to Down</strong> 和 <strong>Down to Top</strong>（有点类似于递归的思想）：</p>
+<ul>
+<li><strong>Top to Down</strong>：是我们得到计算图的过程，类似于递归函数不断递归深入的过程。给定节点$u$，如果我们要聚合它的二阶以内邻居的信息，我们首先得到它的一阶邻居，然后通过一阶邻居的一阶邻居得到它的二阶邻居。过程类似于从左到右看上面的网络图。</li>
+<li><strong>Down to Top</strong>：是我们聚合邻居信息的过程，类似于递归函数不断返回的过程。同样是上面那个例子，首先是二阶邻居将自己的信息聚合到对应的一阶邻居，然后一阶邻居再聚合到节点$u$。过程类似于从右到左看上面的网络图。这是我们的网络计算的顺序。</li>
+</ul>
+<p>可以思考，以上两个过程的确能够确保节点$u$能够聚合到二阶邻居以内的所有信息。</p>
+<p>上图是一个二层的结构（这里的层数是$box$代表了层，并不是指Deep Neural Network里面的层数），这意味着我们取的是node $A$的2 hops away的邻节点，这里又提到了为什么我们不继续”go deep“的问题，如果我们考虑太远的节点，会把太多的结构信息考虑进来，举一个极端的例子，比如我们go 20 steps deeper，可能会把整个网络结构的信息考虑进来。</p>
+<blockquote>
+<ul>
+<li>（这里是我自己的思考，我们以word2vec为例，假设一个句子有10个单词，而我们的windows是10，这就意味着在这个句子中，每个单词的embedding表示最终都是由这个句子中所有的单词一同参与训练的，这会导致最终这个句子中所有的单词训练出来的embedding接近一致，这显然不是我们想要的结果。）</li>
+<li>但是这并不意味着你不能做很深的Deep Neural Network！我们完全可以让$box$里面的DNN非常深~</li>
+</ul>
+</blockquote>
 <p>另外，假设我们图中的F直接又接入了一个G，这个G仅仅和F连接而不和其它所有的已知节点有连接，那么我们就要在F的屁股后面接入一个box，这个box的输入是F的邻节点E、C、G。</p>
 <p>btw，问了一下，之所以我们不go太过deeper，一方面引入太多的领域信息：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-c6fc85c57ef9bdc6258329f245f562d5_720w.jpg" alt="img"></p>
 <p>90%的nodes会在8hops之内访问到，因此这意味着hops取得太大，会导致最终每个节点的embedding的计算过程中，输入的features几乎差不多，从而最终导致over-smooth的问题，即每个节点最终计算出来的embedding接近一致。</p>
 <p>这类似于我们使用word2vec对一篇文章中的每个词进行向量化，windows取得太大使得整篇文章的词语都参与了每一个词的embedding训练——换句还说，每个词都在每个词的附近。。。最终结算的结果当然是所有的embedding都差不多了。。。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-f95db64e7eb618a8279543e08acdd4d8_720w.jpg" alt="img"></p>
-<p>现在一个重要的地方在于我们如何汇总各层的信息，也就是这些带问号的box里面是什么函数？</p>
+<h4 id="Aggregation-Function"><a href="#Aggregation-Function" class="headerlink" title="Aggregation Function"></a>Aggregation Function</h4><p>现在一个重要的地方在于我们如何汇总各层的信息？做基本的思路如下：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-3d216fbdf25a72c8977ba58aee455909_720w.jpg" alt="img"></p>
-<p>最简单的思路，我们把所有来自于邻域的信息进行平均然后输入一个nn结构即可；注意，所有的box都是这样的，箭头的地方先进行average，然后送到一个nn的结构里。也就是box前面的箭头是average，box里面是一个nn。</p>
+<p>最简单的思路，我们把所有来自于邻域的信息进行平均然后输入一个$NN$结构即可；注意，所有的box都是这样的，箭头的地方先进行average，然后送到一个$NN$的结构里。也就是box前面的箭头是average，box里面是一个$NN$。</p>
 <p>把整个过程用公式来表示就是：</p>
 <p><img src="https://pic1.zhimg.com/80/v2-0379221b6a3be49372a232c88dc13a48_720w.jpg" alt="img"></p>
-<p>这个过程用公式来表示如上图，这就是狭义的GCN的整个前向传播的过程了。这里，如果Wk全是0，则意味着我们根本不考虑邻节点的信息，这个时候这个GCN的结构就退化成了普通的MLP（DNN）。如果Wk非常非常大，Bk相对非常非常小，则相当于我们只考虑了邻节点信息而忽略了自身的信息。具体应该怎么去分Wk和Bk的大小，是由整个模型训练的过程中自己决定的。</p>
-<p><img src="https://pic4.zhimg.com/80/v2-ce4bcc92f33a8d65c8520dfeefd42043_720w.jpg" alt="img"></p>
+<p>这个过程用公式来表示如上图，这就是狭义的GCN的整个前向传播的过程了。这里，如果$W_k$全是0，则意味着我们根本不考虑邻节点的信息，这个时候这个GCN的结构就退化成了普通的MLP（DNN）。如果$W_k$非常非常大，$B_k$相对非常非常小，则相当于我们只考虑了邻节点信息而忽略了自身的信息。具体应该怎么去分$W_k$和$B_k$的大小，是由<font color="red"><strong>整个模型训练的过程中自己决定的</strong></font>。</p>
+<h4 id="Training-the-Model"><a href="#Training-the-Model" class="headerlink" title="Training the Model"></a>Training the Model</h4><p><img src="https://pic4.zhimg.com/80/v2-ce4bcc92f33a8d65c8520dfeefd42043_720w.jpg" alt="img"></p>
 <p>这里我们定义完了前向传播的过程，还缺一个损失函数。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-b7a2fa86319d8e28369c0c942822d9b4_720w.jpg"></p>
 <ul>
-<li>这里，我们把上面的公式表达成矩阵的形式，如上图，其中$H(l+1)$表示所有node的在$l+1$层的embedding表示，$H(l)$同理，$A$表示graph的领接矩阵，$D$表示graph的度矩阵，关于graph常用的矩阵的含义可见：<a href="https://link.zhihu.com/?target=https://blog.csdn.net/weixin_43330946/article/details/102802768">CSDN-专业IT技术社区-登录blog.csdn.net</a></li>
-<li>这里的$W_k$和$B_k$可以用于衡量邻居和自己的作用。</li>
+<li>这里，我们把上面的公式表达成<strong>矩阵</strong>的形式，如上图，其中$H(l+1)$表示所有node的在$l+1$层的embedding表示，$H(l)$同理，$A$表示graph的领接矩阵，$D$表示graph的度矩阵，关于graph常用的矩阵的含义可见：<a href="https://link.zhihu.com/?target=https://blog.csdn.net/weixin_43330946/article/details/102802768">GNN之常用矩阵汇总</a></li>
+<li>这里的$W_k$和$B_k$可以用于衡量邻居和自己的作用的大小。</li>
 </ul>
-<p><img src="https://pic2.zhimg.com/80/v2-5d14a6d2184257209e29649bcff39cb5_720w.jpg"></p>
-<p>损失函数可以使用random walks定义的损失函数也可以用graph factorization或者node proximity的损失函数。比如第七课用过的：</p>
+<h5 id="无监督方式"><a href="#无监督方式" class="headerlink" title="无监督方式"></a>无监督方式</h5><p><img src="https://pic2.zhimg.com/80/v2-5d14a6d2184257209e29649bcff39cb5_720w.jpg"></p>
+<p>损失函数可以使用<code>random walks</code>定义的损失函数也可以用<code>graph factorization</code>或者<code>node proximity</code>的损失函数。比如第七课用过的：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-8031dd9bdddc204a162e6725af9e3e81_720w.jpg" alt="img"></p>
-<p>，这样损失函数也确定下来惹~，我们就在自动微分的框架下快乐的等待整个网络训练到收敛为止。</p>
+<p>这样损失函数也确定下来惹~，我们就在自动微分的框架下快乐的等待整个网络训练到收敛为止。</p>
+<h5 id="有监督方式"><a href="#有监督方式" class="headerlink" title="有监督方式"></a>有监督方式</h5><p>除此之外，我们可以直接在最终的输出上接一个分类层，然后使用分类的损失函数比如<strong>交叉熵</strong>作为最终的损失函数。</p>
 <p><img src="https://pic3.zhimg.com/80/v2-1b426366c3d3c3d2be95bfbecf592622_720w.jpg" alt="img"></p>
-<p>除此之外，我们可以直接在最终的输出上接一个分类层，然后使用分类的损失函数比如交叉熵作为最终的损失函数。</p>
 <p><img src="https://pic4.zhimg.com/80/v2-6af4e8a2bfcf2ffbbaa503aaad88db43_720w.jpg" alt="img"></p>
 <p>这里公式写的非常明了了。</p>
-<p>下面进行了一个完整的总结：</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>下面进行了一个完整的总结：</p>
 <p><img src="https://pic4.zhimg.com/80/v2-58331aa6bf9830a75b8769710281807b_720w.jpg" alt="img"></p>
-<p>1、我们定义一个neighborhood aggregation function，狭义的GCN使用的就是简单平均的策略；</p>
-<p>2、我们定义一个funtion用于指导GCN进行反向传播更新权重参数W和B；</p>
+<ol>
+<li><p>我们定义一个neighborhood aggregation function，狭义的GCN使用的就是简单平均的策略；</p>
+</li>
+<li><p>我们定义一个funtion用于指导GCN进行反向传播更新权重参数W和B；</p>
+</li>
+</ol>
 <p><img src="https://pic3.zhimg.com/80/v2-e4e178c1890d901beb297a3c31997cde_720w.jpg" alt="img"></p>
-<p>3、一个节点对应一个样本，我们在这些样本上进行训练；</p>
+<ol start="3">
+<li><strong>一个节点对应一个模型输入的样本</strong>，我们在这些样本上进行训练；</li>
+</ol>
 <p><img src="https://pic4.zhimg.com/80/v2-f42e8fb1942e2decf7dfd7245c3dbee3_720w.jpg" alt="img"></p>
-<p>假设我们的训练集是node A、node B和node C，那么我们直接可以把训练完的model用于预测未见过的node B、E、F，这里就比较重要了，首先我们训练完毕的模型是什么样子的？</p>
-<p>实际上我们训练完毕的model就是两个box：</p>
+<p>假设我们的训练集是node $A$、node $B$和node $C$，那么我们直接可以把训练完的model用于预测未见过的node $B$、$E$、$F$，这里就比较重要了，首先我们训练完毕的模型是什么样子的？</p>
+<p>实际上我们训练完毕的model就是<strong>两个box</strong>：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-d2dd20edbe84abce89ec038895850e95_720w.jpg" alt="img"></p>
-<p>一个是浅灰色的box，一个是深灰色的box，这两个box都是nn的结构，具体是什么结构可以自己用普通的神经网络的方法来定义。另一个重要的地方在于，可以看到深灰色的box有3个，实际上只有一个，这3个浅灰色box进行了权值共享，是不是和CNN里的卷积核非常相似？实际上CNN里的卷积核的传播形式展开之后也可以表示成上面的形式的。</p>
+<p>一个是浅灰色的box，一个是深灰色的box，这两个box都是$NN$的结构，具体是什么结构可以自己用普通的神经网络的方法来定义。另一个重要的地方在于，可以看到深灰色的box有3个，实际上只有一个，这3个浅灰色box进行了权值共享，是不是和CNN里的卷积核非常相似？实际上CNN里的卷积核的传播形式展开之后也可以表示成上面的形式的。</p>
 <p>所以，对于new node，我们可以很轻易的使用已经训练完的两个box来进行预测得到最终的结果。</p>
 <p>见下：</p>
 <h5 id="inductive-capability"><a href="#inductive-capability" class="headerlink" title="inductive capability"></a>inductive capability</h5><p>归纳能力</p>
 <p><img src="https://pic1.zhimg.com/80/v2-f9adcb6fe13068709d43f24e361aac64_720w.jpg" alt="img"></p>
-<p>我们最终share的权重如上图，这里就是体现gnn权值共享的地方。可以看到，相对于node2vec和deepwalk这种算法，deep graph encoders可以对unseen的node进行embedding，而node2vec和deepwalk无法实现这样的功能，并且deep graph encoders还考虑了node的features，使得最终的embedding结果更加expressive。</p>
+<p>我们最终share的权重如上图，这里就是体现$GNN$权值共享的地方。可以看到，相对于node2vec和deepwalk这种算法，deep graph encoders可以对unseen的node进行embedding，而node2vec和deepwalk无法实现这样的功能，并且deep graph encoders还考虑了node的features，使得最终的embedding结果更加expressive。</p>
 <p>不仅如此，即使是新的graph结果，我们也可以直接apply原来的model了！简直太牛逼了！！</p>
 <p><img src="https://pic1.zhimg.com/80/v2-47740995df57d3572f1cb06446ded854_720w.jpg" alt="img"></p>
-<p><img src="https://pic3.zhimg.com/80/v2-85f70177567e2688f83d7ba120392f0e_720w.jpg" alt="img"></p>
+<blockquote>
+<p>上面的例子很赞👍</p>
+</blockquote>
+<p><img src="https://pic3.zhimg.com/80/v2-85f70177567e2688f83d7ba120392f0e_720w.jpg"></p>
 <p><strong>还有一个非常有用的地方就是，你可以只训练一个子图，就可以获取这个全局的信息。</strong>但是这个采样子图一定要保证良好的随机性！！！</p>
 <p><img src="https://pic3.zhimg.com/80/v2-5f51ef654d2ad235c597bd903bfaa18e_720w.jpg" alt="img"></p>
 <p>需要区别聚合信息的depth和深度学习的depth。你完全可以让你的黑盒子非常的deep，因为一个黑盒子就是一个deep neural network，这个可以联想的~</p>
 <hr>
-<p>这样我们就从graph embedding过渡到了GCN，这也是我认为最好理解的方式了，后面补充一下graphsage的内容，关于gat，我得去复习下attention的内容，后面佛系更新了，</p>
+<p>这样我们就从graph embedding过渡到了GCN，这也是我认为最好理解的方式了，后面补充一下graphsage的内容，关于gat，我得去复习下attention的内容，后面佛系更新了。</p>
 <p><img src="https://pic2.zhimg.com/80/v2-425604b98f62b7a519d886198daace35_720w.jpg" alt="img"></p>
 <p>这里实际上我们就实现了在graph上slide，这两个box就是我们的“卷积核”，我们取2 hops away的节点进行展开，就类比于固定了“卷积核”的size，比如我们从D开始slide，“卷积核”的size（这里的卷积核取双引号因为是类比的关系，不是真正指cnn里的卷积核的概念），取其2hops away的节点展开成一个computation graph，得到了上面第四个图，然后我们slide到节点A，取其2hops away的邻节点，展开成一个computation graph图，得到上面第一个图。。。。。依次类推，可以看到，实际上类似于我们把每一个node当作cnn中卷积核的中心的像素点~。</p>
 <hr>
-<p>从GCN过渡到graphsage的过程是非常自然，二者的不同之处仅仅是box处做了一些修改：</p>
+<h2 id="GraphSAGE"><a href="#GraphSAGE" class="headerlink" title="GraphSAGE"></a>GraphSAGE</h2><p>从GCN过渡到GraphSAGE的过程是非常自然，二者的不同之处仅仅是$box$处做了一些修改：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-252e5eb0dc002dd7956b77647c6202f5_720w.jpg" alt="img"></p>
 <p>这里提到了weighted average，实际上指的就是当图为带权图的时候，我们进行average之前，每个节对应的要乘上edge的权重再平均，这实际上也是很好理解的，比如我认识很多大佬，但是大佬们都不认识我，所以他们收入高跟我可能没什么关系，我们之间的edge的权重可能是0.001.。。。。。</p>
 <p><img src="https://pic4.zhimg.com/80/v2-9b591856199e4690cd3b3dca0f6af10f_720w.jpg" alt="img"></p>
@@ -739,7 +778,8 @@
 
 
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/112087612">cs224w 8.1-Graph Neural Network</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/112087612">知乎——cs224w 8.1-Graph Neural Network</a></li>
+<li><a href="https://link.zhihu.com/?target=https://blog.csdn.net/weixin_43330946/article/details/102802768">CSDN——GNN之常用矩阵汇总</a></li>
 </ol>
 <h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl2m5m6mfuj22bc1qi4qp.jpg">
 <img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl2m5m0959j22bc1qihdp.jpg">
@@ -881,7 +921,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">课程笔记</span>
+                                </a>
+                            
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                                <a href="/tags/cs224w/">
+                                    <span class="chip bg-color">cs224w</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1055,8 +1107,7 @@
                 <a href="/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】8-Graph Neural Networks">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】8-Graph Neural Networks">
                         
                         <span class="card-title">【斯坦福cs224w-图机器学习】8-Graph Neural Networks</span>
                     </div>
@@ -1064,10 +1115,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-复习Node Embeddings目的将图中的节点映射到d-维度嵌入空间，使得图中的相似的节点在d-维度嵌入空间中紧密地相邻。即要使得$similarity(u,v) \approx z_u^{T}z_v$。
-
-这里的“相似的节点”并不是
+                            讲解GNN。
                         
                     </div>
                     <div class="publish-info">
@@ -1076,13 +1124,33 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CarlYoung
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1096,8 +1164,7 @@
                 <a href="/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning">
                         
                         <span class="card-title">【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning</span>
                     </div>
@@ -1105,41 +1172,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            无监督学习方法——Node Embedding
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-原始网络
-嵌入空间
-
-
-
-度量标准
-$similarity(u,v)$
-$z_{v}^{T}z_{u}$
-
-
-Embedding-lookup
-
-
-其实
+                            讲解Shallow Node Embedding——DeepWalk、node2vec
                         
                     </div>
                     <div class="publish-info">
@@ -1148,11 +1181,31 @@ Embedding-lookup
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CarlYoung
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1288,6 +1341,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
