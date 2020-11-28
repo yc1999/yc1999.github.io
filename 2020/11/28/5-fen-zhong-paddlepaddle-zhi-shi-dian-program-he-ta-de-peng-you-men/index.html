@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="模型评估指标AUC和ROC，这是我看到的最透彻的讲解, 杨程的博客">
+    <meta name="keywords" content="5分钟PaddlePaddle知识点——program和它的朋友们, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解 | 杨程的博客</title>
+    <title>5分钟PaddlePaddle知识点——program和它的朋友们 | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">模型评估指标AUC和ROC，这是我看到的最透彻的讲解</h1>
+                    <h1 class="description center-align post-title">5分钟PaddlePaddle知识点——program和它的朋友们</h1>
                 </div>
             </div>
         </div>
@@ -428,29 +428,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                                <span class="chip bg-color">转载</span>
-                            </a>
-                        
-                            <a href="/tags/AUC/">
-                                <span class="chip bg-color">AUC</span>
-                            </a>
-                        
-                            <a href="/tags/ROC/">
-                                <span class="chip bg-color">ROC</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/">
-                                <span class="chip bg-color">混淆矩阵</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">机器学习</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -458,8 +438,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                机器学习
+                            <a href="/categories/PaddlePaddle/" class="post-category">
+                                PaddlePaddle
                             </a>
                         
                     </div>
@@ -471,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-22
+                    2020-11-28
                 </div>
                 
 
@@ -487,102 +467,102 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p> 文章来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liweibin1994/article/details/79462554">模型评估指标AUC（area under the curve）</a></p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：</p>
+<pre class=" language-python"><code class="language-python">fluid<span class="token punctuation">.</span>default_main_program<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> fluid<span class="token punctuation">.</span>program_guard<span class="token punctuation">(</span>main_prog<span class="token punctuation">,</span> startup_prog<span class="token punctuation">)</span>
+     <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>unique_name<span class="token punctuation">.</span>guard<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>如果完全照着来，能跑通。但是想要实现自己的东西来点变化，不理解这块儿可能容易碰到问题。不同版本 paddle 的具体实现会有区别，但大致相似，此处以 paddle 1.6 为例子讲解这部分知识点，总的一句话：</p>
+<p><font color="red"><strong>program 只存储网络结构（比如参数的描述，算子的描述），但不存储实际参数的值，真正的参数保存在 scope 中，并且按照参数名字去重。</strong></font></p>
+<h2 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h2><blockquote>
+<p>scope：作用域。为了解释清楚 program，先介绍一个新概念：scope。</p>
 </blockquote>
-<p>AUC在机器学习领域中是一种模型评估指标。根据维基百科的定义，AUC(area under the curve)是ROC曲线下的面积。所以，在理解AUC之前，要先了解ROC是什么。而ROC的计算又需要借助混淆矩阵，因此，我们先从混淆矩阵开始谈起。</p>
-<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><p>假设，我们有一个任务：给定一些患者的样本，构建一个模型来预测肿瘤是不是恶性的。在这里，肿瘤要么良性，要么恶性，所以这是一个典型的二分类问题。</p>
-<p>假设我们用y=1表示肿瘤是良性，y=0表示肿瘤是恶性。则我们可以制作如下图的表格： </p>
-<p><img src="https://img-blog.csdn.net/20180306192541902?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="混淆矩阵"></p>
-<blockquote>
-<ul>
-<li><p><code>T</code>:True;</p>
-</li>
-<li><p><code>F</code>:False;</p>
-</li>
-<li><p><code>P</code>:Positive;</p>
-</li>
-<li><p><code>N</code>:Negative;</p>
-</li>
-</ul>
-</blockquote>
-<p>如上图：</p>
-<ul>
-<li>TP表示预测为良性，而实际也是良性的样例数； </li>
-<li>FN表示预测为恶性，而实际是良性的样例数； </li>
-<li>FP表示预测为良性，而实际是恶性的样例数； </li>
-<li>TN表示预测为恶性，而实际也是恶性的样例数；</li>
-</ul>
-<p>所以，上面这四个数就形成了一个矩阵，称为<strong>混淆矩阵</strong>。</p>
-<p>那么接下来，我们如何利用混淆矩阵来计算ROC呢？ </p>
-<p>首先我们需要定义下面两个变量：<br>$$<br>FPR=\frac {FP} {FP+TN}<br>$$<br>FPR表示，在所有的恶性肿瘤中，被预测成良性的比例。称为伪阳性率。伪阳性率告诉我们，随机拿一个恶性的肿瘤样本，有多大概率会将其预测成良性肿瘤。<strong>显然我们会希望<code>FPR</code>越小越好。</strong><br>$$<br>TPR=\frac {TP} {TP+FN}<br>$$<br>TPR表示，在所有良性肿瘤中，被预测为良性的比例。称为真阳性率。真阳性率告诉我们，随机拿一个良性的肿瘤样本时，有多大的概率会将其预测为良性肿瘤。<strong>显然我们会希望<code>TPR</code>越大越好。</strong></p>
-<p>如果以FPR为横坐标，TPR为纵坐标，就可以得到下面的坐标系： </p>
-<p><img src="https://img-blog.csdn.net/20180306194149907?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="坐标系"></p>
-<p>可能看到这里，你会觉得有点奇怪，用FPR和TPR分别作横纵坐标有什么用呢？我们先来考察几个特殊的点。</p>
-<ul>
-<li><strong>点（0,1）</strong>，即FPR=0，TPR=1。FPR=0说明FP=0，也就是说，没有假正例。TPR=1说明，FN=0，也就是说没有假反例。这不就是最完美的情况吗？所有的预测都正确了。良性的肿瘤都预测为良性，恶性肿瘤都预测为恶性，分类百分之百正确。这也体现了FPR 与TPR的意义。就像前面说的我们本来就希望FPR越小越好，TPR越大越好。</li>
-<li><strong>点（1,0）</strong>，即FPR=1，TPR=0。这个点与上面那个点形成对比，刚好相反。所以这是最糟糕的情况。所有的预测都预测错了。</li>
-<li><strong>点（0,0）</strong>，即FPR=0，TPR=0。也就是FP=0，TP=0。所以这个点的意义是所有的样本都预测为恶性肿瘤。也就是说，无论给什么样本给我，我都无脑预测成恶性肿瘤就是了。</li>
-<li><strong>点（1,1）</strong>，即FPR=1，TPR=1。显然，这个点跟点（0,0)是相反的，这个点的意义是将所有的样本都预测为良性肿瘤。</li>
-</ul>
-<p>考察完这四个点，我们可以知道：</p>
-<blockquote>
-<p><strong>如果一个点越接近左上角，那么说明模型的预测效果越好。如果能达到左上角（点（0,1)），那就是最完美的结果了。</strong></p>
-</blockquote>
-<h2 id="ROC曲线和AUC"><a href="#ROC曲线和AUC" class="headerlink" title="ROC曲线和AUC"></a>ROC曲线和AUC</h2><p>介绍了混淆矩阵之后，我们就可以了解一下ROC（receiver operating characteristic curve）曲线是怎么定义的。</p>
-<p>我们知道，在二分类（0，1）的模型中，一般我们最后的输出是一个概率值，表示结果是1的概率。那么我们最后怎么决定输入的x是属于0或1呢？我们需要一个阈值，超过这个阈值则归类为1，低于这个阈值就归类为0。所以，不同的阈值会导致分类的结果不同，也就是混淆矩阵不一样了，FPR和TPR也就不一样了。所以当阈值从0开始慢慢移动到1的过程，就会形成很多对(FPR, TPR)的值，将它们画在坐标系上，就是所谓的ROC曲线了。</p>
-<p>我们来举一个例子。比如我们有5个样本：<br>真实的类别（label）为y = c（1,1,0,0,1）.<br>一个分类器预测样本为1的概率为p=c（0.5, 0.6, 0.55, 0.4, 0.7）。</p>
-<p>看到这里，也许我们还有一点难理解。这里要注意: </p>
-<ol>
-<li><p>阈值的范围是[0,1]，当阈值从1到0慢慢移动时，FPR会越来越大。因为FP(假正例）会越来越多。</p>
-</li>
-<li><p>如果在给定的样本中，我都随机预测，也就是0.5概率预测为良性肿瘤，0.5概率预测为恶性肿瘤。那么这条曲线会是怎样的呢？可以想象，如果数据是均匀，那么这条曲线就是y=x。</p>
-<blockquote>
-<p>这里需要理解：<font color="red"><strong>为什么在随机预测的情况下，无论阈值$\alpha$取何值，<code>FPR</code>和<code>TPR</code>一直都是相等的？</strong></font></p>
-<ul>
-<li>首先，这里的<strong>随机预测</strong>表示的含义是对于<code>ground-truth</code>为<code>True</code>的样本集，最终其样本点的预测值都是均匀分布在区间<code>[0,1]</code>。对于<code>ground-truth</code>为<code>False</code>的样本集同样是如此；</li>
-<li>因此，无论阈值$\alpha$取什么，低于$\alpha$的<code>groudtruth</code>为<code>True</code>和<code>groudtruth</code>为<code>False</code>的样本数量应该是一样多的；</li>
-<li>综上，<code>FPR</code>和<code>TPR</code>一直都是相等的。</li>
-</ul>
-</blockquote>
-</li>
-<li><p>注意曲线一定是从（0,0)开始最终到达（1,1)的。</p>
-</li>
-<li><p>事实上，ROC曲线不是光滑的，而是阶梯型的。为什么呢？因为样本的数量是有限的，而FPR和TPR的变化需要至少有一个样本变化了，在没有变化的间隙里，就不会有变化。也就是说，步进是1/样本数。</p>
-</li>
-</ol>
-<p>理解了上面四个点的意义就知道了。</p>
-<p><strong>得到了ROC曲线，我们就可以计算曲线下方的面积了——计算出来的面积就是AUC值了。</strong></p>
-<h2 id="AUC值的意义"><a href="#AUC值的意义" class="headerlink" title="AUC值的意义"></a>AUC值的意义</h2><p>知道了如何计算AUC值，我们当然是要来问一下AUC值的意义了。为什么我们要这么大费周章地搞出这个AUC值？</p>
-<p>假设我们有一个分类器，输出是样本输入正例的概率，所有的样本都会有一个相应的概率，这样我们可以得到下面这个图： </p>
-<p><img src="https://img-blog.csdn.net/20180307105425516?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>其中，横轴表示预测为正例的概率，纵轴表示样本数。<br>所以，蓝色区域表示所有负例样本的概率分布，红色样本表示所有正例样本的概率分布。显然，如果我们希望分类效果最好的话，那么红色区域越接近1越好，蓝色区域越接近0越好。</p>
-<p>为了验证你的分类器的效果。你需要选择一个阈值，比这个阈值大的预测为正例，比这个阈值小的预测为负例。如下图： </p>
-<p><img src="https://img-blog.csdn.net/20180307110141306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>在这个图中，阈值选择了0.5于是左边的样本都被认为是负例，右边的样本都被认为是正例。可以看到，红色区域与蓝色区域是有重叠的，所以当阈值为0.5的时候，我们可以计算出准确率为90%。</p>
-<p>好，现在我们来引入ROC曲线。 </p>
-<p><img src="https://img-blog.csdn.net/2018030711171716?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>图中左上角就是ROC曲线，其中横轴就是前面说的**<code>FPR(False Positive Rate)</code><strong>，纵轴就是</strong><code>TPR(True Positive Rate)</code>**。 </p>
-<p>然后我们选择不同的阈值时，就可以对应坐标系中一个点。</p>
-<p><img src="https://img-blog.csdn.net/20180307112223804?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>当阈值为0.8时，对应上图箭头所指的点。</p>
-<p><img src="https://img-blog.csdn.net/20180307112311768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>当阈值为0.5时，对应上图箭头所指的点。</p>
-<p>这样，不同的阈值对应不同的点。最后所有的点就可以连在一起形成一条曲线，就是ROC曲线。</p>
-<p>现在我们来看看，如果蓝色区域与红色的区域发生变化，那么ROC曲线会怎么变呢？ </p>
-<p><img src="https://img-blog.csdn.net/20180307112622811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>上图中，蓝色区域与红色区域的重叠部分不多，所以可以看到ROC曲线距离左上角很近。</p>
-<p><img src="https://img-blog.csdn.net/20180307112730574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>但是，当蓝色区域与红色区域基本重叠时，ROC曲线就和接近y=x这条线了。</p>
-<p>综上两个图，如果我们想要用ROC来评估分类器的分类质量，我们就可以通过计算AUC（ROC曲线下的面积）来评估了，这就是AUC的目的。</p>
-<h2 id="为什么选择ROC和AUC？"><a href="#为什么选择ROC和AUC？" class="headerlink" title="为什么选择ROC和AUC？"></a>为什么选择ROC和AUC？</h2><p>其实，<strong>AUC表示的是正例排在负例前面的百分比。</strong> </p>
-<p><img src="https://img-blog.csdn.net/20180306205648438?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>比如上图，第一个坐标系的AUC值表示，所有的正例都排在负例的前面。第二个AUC值，表示有百分之八十的正例排在负例的前面。</p>
-<p><strong>我们知道阈值可以取不同，也就是说，分类的结果会受到阈值的影响。如果使用AUC的话，因为阈值变动考虑到了，所以评估的效果更好。</strong></p>
-<p>另一个好处是，ROC曲线有一个很好的特性：<font color="red"><strong>当测试集中的正负样本分布发生变化了，ROC曲线可以保持不变。</strong></font>在实际的数据集中经常会出现类不平衡（class imbalance）现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化。</p>
-<p><img src="https://img-blog.csdn.net/20180306210417620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
-<p>在上图中，(a)和(c)为ROC曲线，(b)和(d)为Precision-Recall曲线。(a)和(b)展示的是分类其在原始测试集（正负样本分布平衡）的结果，(c)和(d)是将测试集中负样本的数量增加到原来的10倍后，分类器的结果。可以明显的看出，ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大。</p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://www.zybuluo.com/frank-shaw/note/152851">https://www.zybuluo.com/frank-shaw/note/152851</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39840928?from=profile_question_card">https://www.zhihu.com/question/39840928?from=profile_question_card</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/cherrylvlei/article/details/52958720">http://blog.csdn.net/cherrylvlei/article/details/52958720</a><br><a target="_blank" rel="noopener" href="http://www.dataschool.io/roc-curves-and-auc-explained/">http://www.dataschool.io/roc-curves-and-auc-explained/</a></p>
+<p><strong>scope 在 paddle 里可以看作变量空间，存储fluid创建的变量</strong>。</p>
+<p>在 Paddle/blob/develop/paddle/fluid/framework/scope.h 中可以看到存储的数据结构的定义：</p>
+<pre class=" language-c++"><code class="language-c++">mutable std::unordered_map<std::string, std::unique_ptr<variable>, KeyHasher&gt; vars_;</std::string,></code></pre>
+<p><code>unordered_map</code> 数据结构类似于python中的dict，键是变量的名字，值是变量的指针。</p>
+<p>类似 <code>fluid.default_main_program()</code>，**默认有一个全局的 <code>fluid.global_scope()</code>**。如果我们没有主动创建 <code>scope</code> 并且通过 <code>fluid.scope_guard()</code> 替换当前 <code>scope</code>，那么所有参数都在全局 <code>scope</code> 中。</p>
+<p>参数创建的时机不是在组网时，而是在 <code>executor.run()</code> 执行时。可以从 <code>executor.run()</code> 的注释得到印证：</p>
+<pre><code>And you could specify the scope to store the `Variables`  during the executor running if the scope is not set, 
+the executor will use the global scope, i.e. `fluid.global_scope()`</code></pre>
+<h2 id="program"><a href="#program" class="headerlink" title="program"></a>program</h2><p>program 的作用是<strong>存储网络结构，但不存储实际参数的值。</strong></p>
+<p><strong>网络结构</strong>通过<strong>输入数据在各个操作(operator，即常说的OP)之间的流动</strong>来定义。我们以卷积为例，看看参数和op是如何组合到一起，并且<strong>加入到 prgram 中</strong>。在 <code>fluid.layers.nn.py</code> 文件里，可以看到 <code>conv2d</code> 的函数定义。其中有类似这样的代码：</p>
+<pre><code>helper = LayerHelper(l_type, **locals())
+...
+filter_param = helper.create_parameter(...)
+helper.append_op(...)</code></pre>
+<p>这表示，通过 <code>helper</code> 实例创建参数，然后将 <code>op</code> 添加到当前 <code>program</code> 中。</p>
+<h3 id="create-parameter"><a href="#create-parameter" class="headerlink" title="create_parameter()"></a><code>create_parameter()</code></h3><p>在 helper 的 <code>create_parameter</code> 函数里，静态图模式会运行如下代码：</p>
+<pre><code>self.startup_program.global_block().create_parameter(
+    dtype=dtype,
+    shape=shape,
+    **attr._to_kwargs(with_initializer=True))
+return self.main_program.global_block().create_parameter(
+    dtype=dtype, shape=shape, **attr._to_kwargs())</code></pre>
+<p>这表示参数会在初始化参数的 <code>startup_program</code> 和训练主体的 <code>main_program</code> 中创建。这也侧面支持我们需要通过 <code>startup_program</code> 来初始化网络参数。</p>
+<h3 id="append-op"><a href="#append-op" class="headerlink" title="append_op"></a><code>append_op</code></h3><p>在 append_op 函数里，执行部分只有一行：</p>
+<pre><code>def append_op(self, *args, **kwargs):
+    return self.main_program.current_block().append_op(*args, **kwargs)</code></pre>
+<p>这表示把 <code>op</code> 加入到训练主体的 <code>main_program</code> 中。</p>
+<p>继续跟踪，可以找到 Block 的 <code>append_op()</code> 函数在 <code>fluid.framework.py</code> 文件中的实现，部分如下：</p>
+<pre><code>op_desc = self.desc.append_op()
+op = Operator(
+    block=self,
+    desc=op_desc,
+    type=kwargs.get("type", None),
+    inputs=kwargs.get("inputs", None),
+    outputs=kwargs.get("outputs", None),
+    attrs=kwargs.get("attrs", None))
+
+self.ops.append(op)</code></pre>
+<p>这表示创建了一个操作 op，然后加入自己的一个集合中。再查看 fluid.framework.py 文件中 Operator 类的定义：</p>
+<pre><code>class Operator(object):
+    def __init__(self, block, desc, type=None, inputs=None,
+             outputs=None, attrs=None):</code></pre>
+<p>可以看到，<code>op</code> 会记录输入和输出。换个角度，把 <code>op</code> 想像成水管的各种转接头，定义流入的水和流出的水，同时对流经的水做处理。</p>
+<p>只有 <code>program</code> 和 <code>scope</code> 配合，才能表达完整模型（模型=网络结构+参数）。</p>
+<h2 id="unique-name"><a href="#unique-name" class="headerlink" title="unique_name"></a>unique_name</h2><p>前面讲了 scope 中的变量名不能重复，但是Program中声明变量的时候可能没有指定变量名，那怎么生成名字的呢？还是以 conv2d 为例子，打开一个训练好的模型，可以看到参数名形如：conv2d_0.b_0 和     conv2d_0.w_0。因为变量是在 <code>helper.create_parameter()</code> 中创建，所以跟踪进去看看里面和名字相关的部分：</p>
+<pre class=" language-python"><code class="language-python">suffix <span class="token operator">=</span> <span class="token string">'b'</span> <span class="token keyword">if</span> is_bias <span class="token keyword">else</span> <span class="token string">'w'</span>
+<span class="token keyword">if</span> attr<span class="token punctuation">.</span>name <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+    attr<span class="token punctuation">.</span>name <span class="token operator">=</span> unique_name<span class="token punctuation">.</span>generate<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> suffix<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>首先可以看到先判断变量的尾缀是 w 还是 b。然后涉及到两个部分，一个是 helper 自己的 name；一个是 unique_name.generate() 方法。<br>先关注 helper 的 name。在创建 helper 实例之前有这么一小段：</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># conv2d 的 l_type 默认是 conv2d，在特殊条件下是 depthwise_conv2d </span>
+l_type <span class="token operator">=</span> <span class="token string">'conv2d'</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>num_channels <span class="token operator">==</span> groups <span class="token operator">and</span> num_filters <span class="token operator">%</span> num_channels <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">and</span>
+        <span class="token operator">not</span> use_cudnn<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    l_type <span class="token operator">=</span> <span class="token string">'depthwise_conv2d'</span>
+
+helper <span class="token operator">=</span> LayerHelper<span class="token punctuation">(</span>l_type<span class="token punctuation">,</span> <span class="token operator">**</span>locals<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>l_type 是操作类型。在 fluid.layer_helper.py 中可以看到 LayerHelper 类的定义：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> layer_type<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>kwargs <span class="token operator">=</span> kwargs
+    <span class="token comment" spellcheck="true"># 在没有设置 name 的情况下，name 为 None</span>
+    name <span class="token operator">=</span> self<span class="token punctuation">.</span>kwargs<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> name <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>kwargs<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span> <span class="token operator">=</span> unique_name<span class="token punctuation">.</span>generate<span class="token punctuation">(</span>layer_type<span class="token punctuation">)</span>
+
+    super<span class="token punctuation">(</span>LayerHelper<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>
+        self<span class="token punctuation">.</span>kwargs<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> layer_type<span class="token operator">=</span>layer_type<span class="token punctuation">)</span></code></pre>
+<p>当没有指定 name 的情况下，也会通过 unique_name.generate() 产生名字。重点关注一下这个函数的实现。在 fluid.unique_name.py 中可以看到 generate 函数的定义，其中有一段注释：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Examples: 
+            import paddle.fluid as fluid
+            name1 = fluid.unique_name.generate('fc')
+            name2 = fluid.unique_name.generate('fc')
+            print(name1, name2) # fc_0, fc_1
+    """</span></code></pre>
+<p>简单来说，通过对每一个名字产生当前的计数，从而生成全局唯一的名字。</p>
+<p>把 conv2d_0.w_0 的过程串起来：首先生成 helper，用 conv2d 的类型产生了 conv2d_0 的 helper.name。然后生成具体参数的时候，根据类型，以 conv2d_0.w 和 conv2d_0.d 为参数送入 unique_name.generate()，产生 conv2d_0.b_0 和 conv2d_0.w_0。</p>
+<p>以上就是这个部分的知识点总结。如果有什么问题、建议或者觉得内容有误，欢迎留言。</p>
+<p>这个部分还可以参考：</p>
+<p><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/addon_development/design_idea/fluid_design_idea.html#id2">https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/addon_development/design_idea/fluid_design_idea.html#id2</a></p>
+<hr>
+<p>如果喜欢，可以在AI Studio <a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/personalcenter/thirdview/39">关注我</a></p>
+<p>还可以关注我的微信公众号：程序员宇波没有智。分享平凡程序员生活的点滴</p>
+<div align="center">
+  <img src="https://ai-studio-static-online.cdn.bcebos.com/cfebc175a587454683ffe41998b82d138f3b79f8eb7c4be2a3735aa36bbf47be">
+</div>
+
 
             </div>
             <hr/>
@@ -608,7 +588,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/">http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</a>
+                    <a href="http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/">http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -645,27 +625,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                                    <span class="chip bg-color">转载</span>
-                                </a>
-                            
-                                <a href="/tags/AUC/">
-                                    <span class="chip bg-color">AUC</span>
-                                </a>
-                            
-                                <a href="/tags/ROC/">
-                                    <span class="chip bg-color">ROC</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/">
-                                    <span class="chip bg-color">混淆矩阵</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">机器学习</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -831,50 +791,45 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/">
+                <a href="/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="深度学习框架-动态图和静态图">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="5分钟PaddlePaddle知识点——program和它的朋友们">
                         
-                        <span class="card-title">深度学习框架-动态图和静态图</span>
+                        <span class="card-title">5分钟PaddlePaddle知识点——program和它的朋友们</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tensorflow,Pytorch,PaddlePaddle等等深度学习框架，在介绍框架的时候都会提及到动态图和静态图。其实动态图和静态图都属于计算图，本文就来讲讲什么是动态图和静态图。
-计算图不论是动态图还是静态图，它们都属于计算图。计
+                            前言paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：
+fluid.default_main_program()
+with fluid.program_guard(main_p
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    学习笔记
+                            <a href="/categories/PaddlePaddle/" class="post-category">
+                                    PaddlePaddle
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                        <span class="chip bg-color">转载</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -885,51 +840,43 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/">
+                <a href="/2020/11/28/paddlepaddle-she-ji-si-xiang/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】homework 0">
                         
-                        <span class="card-title">【斯坦福cs224w-图机器学习】homework 0</span>
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="PaddlePaddle设计思想">
+                        
+                        <span class="card-title">PaddlePaddle设计思想</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            homework 0的代码及相应的结果
+                            
+转载自PaddlePaddle官方文档
+
+简介本篇文档主要介绍飞桨（PaddlePaddle，以下简称Paddle）底层的设计思想，帮助用户更好的理解框架运作过程。
+阅读本文档，您将了解：
+
+Paddle 内部的执行流程
+Program 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/GNN/" class="post-category">
-                                    GNN
+                            <a href="/categories/PaddlePaddle/" class="post-category">
+                                    PaddlePaddle
                                 </a>
                             
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">课程笔记</span>
-                    </a>
-                    
-                    <a href="/tags/GNN/">
-                        <span class="chip bg-color">GNN</span>
-                    </a>
-                    
-                    <a href="/tags/cs224w/">
-                        <span class="chip bg-color">cs224w</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1065,13 +1012,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 

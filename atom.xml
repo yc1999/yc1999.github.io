@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-11-27T12:13:36.930Z</updated>
+  <updated>2020-11-28T12:15:36.471Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>5分钟PaddlePaddle知识点——program和它的朋友们</title>
+    <link href="http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/"/>
+    <id>http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/</id>
+    <published>2020-11-28T12:08:16.000Z</published>
+    <updated>2020-11-28T12:15:36.471Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：&lt;/p&gt;
+&lt;pre</summary>
+        
+      
+    
+    
+    
+    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PaddlePaddle设计思想</title>
+    <link href="http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/"/>
+    <id>http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/</id>
+    <published>2020-11-28T10:41:03.000Z</published>
+    <updated>2020-11-28T12:09:57.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载自&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>【斯坦福cs224w-图机器学习】8-Graph Neural Networks</title>
@@ -161,7 +209,7 @@
     <link href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/"/>
     <id>http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</id>
     <published>2020-11-22T08:40:44.000Z</published>
-    <updated>2020-11-22T12:55:55.628Z</updated>
+    <updated>2020-11-28T02:30:51.057Z</updated>
     
     
       
@@ -536,60 +584,6 @@
     
     
     <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>史上最烂的4种学习方法</title>
-    <link href="http://yc1999.github.io/2020/10/30/shi-shang-zui-lan-de-4-chong-xue-xi-fang-fa/"/>
-    <id>http://yc1999.github.io/2020/10/30/shi-shang-zui-lan-de-4-chong-xue-xi-fang-fa/</id>
-    <published>2020-10-30T15:30:15.000Z</published>
-    <updated>2020-10-31T02:01:37.772Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;机械式记忆&quot;&gt;&lt;a href=&quot;#机械式记忆&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习方法" scheme="http://yc1999.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
-    
-    
-    <category term="干货" scheme="http://yc1999.github.io/tags/%E5%B9%B2%E8%B4%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法岗面试准备</title>
-    <link href="http://yc1999.github.io/2020/10/17/suan-fa-gang-mian-shi-zhun-bei/"/>
-    <id>http://yc1999.github.io/2020/10/17/suan-fa-gang-mian-shi-zhun-bei/</id>
-    <published>2020-10-17T11:08:48.000Z</published>
-    <updated>2020-10-17T15:47:55.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;准备算法岗的面试需要指导下面的东西：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;从迷茫到清晰的职业发展历程&lt;/li&gt;
-&lt;li&gt;大厂小厂的招聘逻辑&lt;/li&gt;
-&lt;li&gt;合格优秀的算法工程师的核心能力&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;模型理解&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="工作" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
     
   </entry>
   
