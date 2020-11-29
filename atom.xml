@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>杨程的博客</title>
+  
+  <subtitle>欢迎来到我的博客(*^▽^*)</subtitle>
+  <link href="http://yc1999.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://yc1999.github.io/"/>
+  <updated>2020-11-29T05:20:18.825Z</updated>
+  <id>http://yc1999.github.io/</id>
+  
+  <author>
+    <name>CarlYoung</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://yc1999.github.io/2020/11/29/test/"/>
+    <id>http://yc1999.github.io/2020/11/29/test/</id>
+    <published>2020-11-29T01:15:57.000Z</published>
+    <updated>2020-11-29T05:20:18.825Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;squares &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>5分钟PaddlePaddle知识点——program和它的朋友们</title>
+    <link href="http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/"/>
+    <id>http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/</id>
+    <published>2020-11-28T12:08:16.000Z</published>
+    <updated>2020-11-28T12:15:36.471Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：&lt;/p&gt;
+&lt;pre</summary>
+        
+      
+    
+    
+    
+    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PaddlePaddle设计思想</title>
+    <link href="http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/"/>
+    <id>http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/</id>
+    <published>2020-11-28T10:41:03.000Z</published>
+    <updated>2020-11-28T15:59:57.041Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;转载自&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】8-Graph Neural Networks</title>
+    <link href="http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/"/>
+    <id>http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/</id>
+    <published>2020-11-26T07:38:12.000Z</published>
+    <updated>2020-11-27T12:13:36.930Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-338272ff7d5ed60dd67f5cb531d0afd0_720w.jpg&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;复习Node-Embeddings&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning</title>
+    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/"/>
+    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/</id>
+    <published>2020-11-25T11:05:42.000Z</published>
+    <updated>2020-11-27T06:14:19.204Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;无监督学习方法——Node Embedding&lt;/p&gt;
+&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl1mmh7g5vj22bc1qi1kx.jpg&quot;&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</title>
+    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/"/>
+    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/</id>
+    <published>2020-11-25T09:01:09.000Z</published>
+    <updated>2020-11-25T10:54:00.867Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：&lt;/p&gt;
+&lt;p&gt;第七八两节介绍的都是关于&lt;strong&gt;图表示学习&lt;/strong&gt;的，所谓万物皆可e</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering</title>
+    <link href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/"/>
+    <id>http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</id>
+    <published>2020-11-24T06:50:27.000Z</published>
+    <updated>2020-11-27T07:06:12.621Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+    <category term="特征值与特征向量的应用" scheme="http://yc1999.github.io/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习框架-动态图和静态图</title>
+    <link href="http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/"/>
+    <id>http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/</id>
+    <published>2020-11-24T03:29:46.000Z</published>
+    <updated>2020-11-24T06:37:30.858Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;code&gt;Tensorflow&lt;/code&gt;,&lt;code&gt;Pytorch&lt;/code&gt;,&lt;code&gt;PaddlePaddle&lt;/code&gt;等等深度学习框架，在介绍框架的时候都会提及到&lt;strong&gt;动态图&lt;/strong&gt;和&lt;strong&gt;静态图&lt;/strong&gt;。其实动</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解</title>
+    <link href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/"/>
+    <id>http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</id>
+    <published>2020-11-22T08:40:44.000Z</published>
+    <updated>2020-11-28T02:30:51.057Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; 文章来源：&lt;a href=&quot;https://blog.csdn.net/liweibin1994/article/details/79462554&quot;&gt;模型评估指标AUC（area under the</summary>
+        
+      
+    
+    
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="AUC" scheme="http://yc1999.github.io/tags/AUC/"/>
+    
+    <category term="ROC" scheme="http://yc1999.github.io/tags/ROC/"/>
+    
+    <category term="混淆矩阵" scheme="http://yc1999.github.io/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/"/>
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】homework 0</title>
+    <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/"/>
+    <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/</id>
+    <published>2020-11-20T12:17:20.000Z</published>
+    <updated>2020-11-21T06:12:33.158Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; snap&lt;/code&gt;&lt;/pre&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】4. Community Structure in Networks</title>
+    <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/"/>
+    <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/</id>
+    <published>2020-11-20T01:37:37.000Z</published>
+    <updated>2020-11-22T07:19:50.420Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvvoq03dwj21hv0g340q.jpg&quot; alt=&quot;Community Structure in</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】3. Motifs and Structural Roles in Networks</title>
+    <link href="http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/"/>
+    <id>http://yc1999.github.io/2020/11/19/si-tan-fu-cs224w-tu-ji-qi-xue-xi-3-motifs-and-structural-roles-in-networks/</id>
+    <published>2020-11-19T01:52:24.000Z</published>
+    <updated>2020-11-20T07:20:42.796Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1gkvdr3rgn1j21840r241r.jpg&quot; alt=&quot;Motifs and Structural Roles in</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】Recitation: Snap.py and Google Cloud tutorial</title>
+    <link href="http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/"/>
+    <id>http://yc1999.github.io/2020/11/18/si-tan-fu-cs224w-tu-ji-qi-xue-xi-recitation-snap-py-and-google-cloud-tutorial/</id>
+    <published>2020-11-18T08:54:23.000Z</published>
+    <updated>2020-11-21T01:52:31.258Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这节课主要讲解两个工具：snap.py和google cloud&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w 图机器学习】2. Properties of Networks and Random Graph Models</title>
+    <link href="http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/"/>
+    <id>http://yc1999.github.io/2020/11/16/si-tan-fu-cs224w-tu-ji-qi-xue-xi-2-properties-of-networks-and-random-graph-models/</id>
+    <published>2020-11-16T12:44:07.000Z</published>
+    <updated>2020-11-18T14:56:57.359Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
+    <link href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
+    <id>http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</id>
+    <published>2020-11-14T11:28:17.000Z</published>
+    <updated>2020-11-16T12:21:41.824Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Motivation&quot;&gt;&lt;a href=&quot;#Motivation&quot; class=&quot;headerlink&quot; title=&quot;Motivation&quot;&gt;&lt;/a&gt;Motivation&lt;/h2&gt;&lt;p&gt;两种常见的关于图的分类：&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Heterogeneous Graph Neural Networks for Malicious Account Detection</title>
+    <link href="http://yc1999.github.io/2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/"/>
+    <id>http://yc1999.github.io/2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/</id>
+    <published>2020-11-13T12:38:58.000Z</published>
+    <updated>2020-11-14T11:11:11.136Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;本文提出了&lt;strong&gt;GEM（Graph Embedding for Malicious</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>傅里叶分析之掐死教程</title>
+    <link href="http://yc1999.github.io/2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/"/>
+    <id>http://yc1999.github.io/2020/11/11/fu-li-xie-fen-xi-zhi-qia-si-jiao-cheng/</id>
+    <published>2020-11-11T07:56:17.000Z</published>
+    <updated>2020-11-11T12:34:30.462Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;作 者：韩 昊&lt;/p&gt;
+&lt;p&gt;知 乎：Heinrich&lt;/p&gt;
+&lt;p&gt;微</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="傅里叶分析" scheme="http://yc1999.github.io/tags/%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>台大李宏毅助教讲解GNN图神经网络</title>
+    <link href="http://yc1999.github.io/2020/11/11/tai-da-li-hong-yi-zhu-jiao-jiang-jie-gnn-tu-shen-jing-wang-luo/"/>
+    <id>http://yc1999.github.io/2020/11/11/tai-da-li-hong-yi-zhu-jiao-jiang-jie-gnn-tu-shen-jing-wang-luo/</id>
+    <published>2020-11-11T01:46:18.000Z</published>
+    <updated>2020-11-12T06:55:50.724Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;Outline&quot;&gt;&lt;a href=&quot;#Outline&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息抽取 从零入门</title>
+    <link href="http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/"/>
+    <id>http://yc1999.github.io/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/</id>
+    <published>2020-11-10T14:13:46.000Z</published>
+    <updated>2020-11-10T15:27:14.910Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原文链接：&lt;a href=&quot;https://ivenwang.com/2020/06/06/knowledgeextraction/&quot;&gt;信息抽取</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Survey of Open Domain Event Extraction</title>
+    <link href="http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/"/>
+    <id>http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/</id>
+    <published>2020-11-09T13:32:40.000Z</published>
+    <updated>2020-11-10T14:11:17.567Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;0-摘要&quot;&gt;&lt;a href=&quot;#0-摘要&quot; class=&quot;headerlink&quot; title=&quot;0. 摘要&quot;&gt;&lt;/a&gt;0.</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="论文阅读" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="综述" scheme="http://yc1999.github.io/tags/%E7%BB%BC%E8%BF%B0/"/>
+    
+  </entry>
+  
+</feed>
