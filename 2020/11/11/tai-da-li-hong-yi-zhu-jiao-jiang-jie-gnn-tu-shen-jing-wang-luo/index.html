@@ -30,10 +30,12 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -509,7 +511,7 @@
 <p>我们将Graph中vertex的feature值称作signal，然后对这些signal做Fourier Transform，将它们映射到Fourier domain之中，同理，将Filter也映射到Fourier domain之中，在Fourier domain之中做multiplication就可以实现convolution的效果了。最后再将Fourier domain里面的值inverse回来就好了。</p>
 <p>这是一个很好的思想，但是问题是怎么实现呢？</p>
 <p>我们先来看看一些<strong>信号和系统</strong>的知识。</p>
-<p>![[~PX}1]HUOM`$J0C_$3Z0CR.png](<a target="_blank" rel="noopener" href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkl99jrfmhj20dq0a2wf0.jpg">http://ww1.sinaimg.cn/large/9b63ed6fgy1gkl99jrfmhj20dq0a2wf0.jpg</a>)</p>
+<p>![[~PX}1]HUOM`$J0C_$3Z0CR.png](<a href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkl99jrfmhj20dq0a2wf0.jpg" target="_blank" rel="noopener">http://ww1.sinaimg.cn/large/9b63ed6fgy1gkl99jrfmhj20dq0a2wf0.jpg</a>)</p>
 <p>一个信号可以看做是<code>N</code>维空间里面的一个vector，在《线性代数》中，我们学过一个vector可以由这个向量空间的basis<strong>线性组合</strong>得到（如上图所示），这个过程称为<strong>合成</strong>。</p>
 <p>当我们想知道这个线性组合中每个component（即$\hat v_k$）的$a_k$的大小是多少的时候，我们要使用<strong>分析</strong>。</p>
 <blockquote>
@@ -584,7 +586,7 @@
 <p>类比到我们的Spectra Graph上面就是：</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklli95b7bj20nl0d3dhx.jpg"></p>
 <p>接下来，我们来讲解一下filtering</p>
-<p>![`J){PE9TBO](<a target="_blank" rel="noopener" href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkllqnu3cwj20nq0dvmyf.jpg">http://ww1.sinaimg.cn/large/9b63ed6fgy1gkllqnu3cwj20nq0dvmyf.jpg</a>)</p>
+<p>![`J){PE9TBO](<a href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkllqnu3cwj20nq0dvmyf.jpg" target="_blank" rel="noopener">http://ww1.sinaimg.cn/large/9b63ed6fgy1gkllqnu3cwj20nq0dvmyf.jpg</a>)</p>
 <hr>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkllr4qhcoj20l40cxmyn.jpg" alt="5"></p>
 <hr>
@@ -594,7 +596,7 @@
 <hr>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmrps3kej20n20citb5.jpg" alt="GNL$7HAKFX.png"></p>
 <hr>
-<p>![5Z89Z1Z6`@)B)BDZB1OC5FC.png](<a target="_blank" rel="noopener" href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmsu93rrj20nk0cggo3.jpg">http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmsu93rrj20nk0cggo3.jpg</a>)</p>
+<p>![5Z89Z1Z6`@)B)BDZB1OC5FC.png](<a href="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmsu93rrj20nk0cggo3.jpg" target="_blank" rel="noopener">http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmsu93rrj20nk0cggo3.jpg</a>)</p>
 <p>区分L和L^2的不同</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gklmvp8k2gj20n9021754.jpg" alt="(E7SGC7E"></p>
 <hr>

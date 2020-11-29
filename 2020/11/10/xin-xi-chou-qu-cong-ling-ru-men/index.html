@@ -30,10 +30,12 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -476,7 +478,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://ivenwang.com/2020/06/06/knowledgeextraction/">信息抽取 从零入门</a></p>
+<p>原文链接：<a href="https://ivenwang.com/2020/06/06/knowledgeextraction/" target="_blank" rel="noopener">信息抽取 从零入门</a></p>
 </blockquote>
 <p><strong>信息抽取</strong>包括<strong>实体抽取</strong>、<strong>关系抽取</strong>、<strong>事件抽取</strong>。</p>
 <ul>
@@ -484,7 +486,7 @@
 <li>关系抽取即找出两个名词之间的动词，一般是三元组抽取，即一个谓词（predicate）带两个形参（argument）；</li>
 <li>事件抽取即将自然语言转换成结构化的信息，抽取出事件的各要素（时间、地点、人物等）。</li>
 </ul>
-<h2 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1 数据集"></a>1 数据集</h2><p>最常用的数据集有 MUC、ACE、KBP、SemEval 等。其中 ACE 数据集包括 <a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06.txt">英语</a>、<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06_ch.jpg">中文</a> 等。</p>
+<h2 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1 数据集"></a>1 数据集</h2><p>最常用的数据集有 MUC、ACE、KBP、SemEval 等。其中 ACE 数据集包括 <a href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06.txt" target="_blank" rel="noopener">英语</a>、<a href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06_ch.jpg" target="_blank" rel="noopener">中文</a> 等。</p>
 <h2 id="2-实体抽取"><a href="#2-实体抽取" class="headerlink" title="2 实体抽取"></a>2 实体抽取</h2><p>主要抽取的是文本中的原子信息元素，如人名、组织/机构名、地理位置、事件/日期、字符值、金额值等。实体抽取任务有两个关键词：find &amp; classify，找到命名实体，并进行分类。</p>
 <p>传统的机器学习方法</p>
 <ol>

@@ -30,10 +30,12 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -463,12 +465,78 @@
     squares<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">)</span>
 
 squares</code></pre>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
-using namespace std;
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+using namespace std<span class="token punctuation">;</span>
 
-int main&#123;
-    return 0;
-&#125;</code></pre>
+<span class="token keyword">int</span> main<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-tex"><code class="language-tex">blocks {
+  idx: 0
+  parent_idx: -1
+  vars {
+    name: "mean_1.tmp_0"
+    type {
+      type: LOD_TENSOR
+      lod_tensor {
+        tensor {
+          data_type: FP32
+          dims: 1
+        }
+      }
+    }
+    persistable: false
+  }
+  vars {
+    name: "square_error_cost_1.tmp_1"
+    type {
+      type: LOD_TENSOR
+      lod_tensor {
+        tensor {
+          data_type: FP32
+          dims: -1
+          dims: 1
+        }
+        lod_level: 0
+      }
+    }
+    persistable: false
+  }
+  vars {
+    name: "square_error_cost_1.tmp_0"
+    type {
+      type: LOD_TENSOR
+      lod_tensor {
+        tensor {
+          data_type: FP32
+          dims: -1
+          dims: 1
+        }
+        lod_level: 0
+      }
+    }
+    persistable: false
+    ...</code></pre>
+<pre class=" language-python"><code class="language-python">vars <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">"x"</span>
+    type <span class="token punctuation">{</span>
+      type<span class="token punctuation">:</span> LOD_TENSOR
+      lod_tensor <span class="token punctuation">{</span>
+        tensor <span class="token punctuation">{</span>
+          data_type<span class="token punctuation">:</span> FP32
+          dims<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span>
+          dims<span class="token punctuation">:</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+        lod_level<span class="token punctuation">:</span> <span class="token number">0</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    persistable<span class="token punctuation">:</span> false</code></pre>
+<pre class=" language-protobuf"><code class="language-protobuf"><span class="token keyword">message</span> BlockDesc <span class="token punctuation">{</span>
+  <span class="token builtin">required</span> <span class="token primitive symbol">int32</span> idx <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token builtin">required</span> <span class="token primitive symbol">int32</span> parent_idx <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token builtin">repeated</span> VarDesc vars <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token builtin">repeated</span> OpDesc ops <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -719,11 +787,10 @@ for x in range(10):
     squares.append(x**2)
 
 squares
-#include 
+#include &lt;iostream>
 using namespace std;
 
-int main&#123;
-    re
+int main
                         
                     </div>
                     <div class="publish-info">

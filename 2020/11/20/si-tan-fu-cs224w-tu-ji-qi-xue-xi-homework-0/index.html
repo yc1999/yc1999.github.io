@@ -30,10 +30,12 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -480,7 +482,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> snap</code></pre>
-<h2 id="Question-1-Analyzing-the-Wikipedia-voters-network-27-points"><a href="#Question-1-Analyzing-the-Wikipedia-voters-network-27-points" class="headerlink" title="Question 1. Analyzing the Wikipedia voters network [27 points]"></a>Question 1. Analyzing the Wikipedia voters network [27 points]</h2><p>Download the Wikipedia voting network wiki-Vote.txt.gz: <a target="_blank" rel="noopener" href="http://snap.stanford.edu/data/wiki-Vote.html">http://snap.stanford.edu/data/wiki-Vote.html</a>.</p>
+<h2 id="Question-1-Analyzing-the-Wikipedia-voters-network-27-points"><a href="#Question-1-Analyzing-the-Wikipedia-voters-network-27-points" class="headerlink" title="Question 1. Analyzing the Wikipedia voters network [27 points]"></a>Question 1. Analyzing the Wikipedia voters network [27 points]</h2><p>Download the Wikipedia voting network wiki-Vote.txt.gz: <a href="http://snap.stanford.edu/data/wiki-Vote.html" target="_blank" rel="noopener">http://snap.stanford.edu/data/wiki-Vote.html</a>.</p>
 <p>Using one of the network analysis tools above, load the Wikipedia voting network. Note that Wikipedia is a directed network. Formally, we consider the Wikipedia network as a directed graph G = (V, E), with node set V and edge set E ⊂ V × V where (edges are ordered pairs of nodes). An edge (a, b) ∈ E means that user a voted on user b.</p>
 <p>To make our questions clearer, we will use the following small graph as a running example: Gsmall = (Vsmall, Esmall), where Vsmall = {1, 2, 3} and Esmall = {(1, 2), (2, 1), (1, 3), (1, 1)}.</p>
 <p>Compute and print out the following statistics for the wiki-Vote network:</p>
@@ -576,7 +578,7 @@ fig<span class="token punctuation">.</span>axes<span class="token punctuation">.
 fig<span class="token punctuation">.</span>axes<span class="token punctuation">.</span>set_ylabel<span class="token punctuation">(</span><span class="token string">"Node Count"</span><span class="token punctuation">)</span></code></pre>
 <pre><code>Text(0, 0.5, 'Node Count')</code></pre>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkwrgxq7p5j20aw07ujrm.jpg" alt="output_36_1.png"></p>
-<h2 id="Question-3-Finding-Experts-on-the-Java-Programming-Language-on-StackOverow-40-points"><a href="#Question-3-Finding-Experts-on-the-Java-Programming-Language-on-StackOverow-40-points" class="headerlink" title="Question 3. Finding Experts on the Java Programming Language on StackOverow [40 points]"></a>Question 3. Finding Experts on the Java Programming Language on StackOverow [40 points]</h2><p>Download the StackOverflow network stackoverflow-Java.txt.gz: <a target="_blank" rel="noopener" href="http://snap.stanford.edu/class/cs224w-data/hw0/stackoverflow-Java.txt.gz">http://snap.stanford.edu/class/cs224w-data/hw0/stackoverflow-Java.txt.gz</a>. An edge (a; b) in the network<br>means that person a endorsed an answer from person b on a Java-related question.</p>
+<h2 id="Question-3-Finding-Experts-on-the-Java-Programming-Language-on-StackOverow-40-points"><a href="#Question-3-Finding-Experts-on-the-Java-Programming-Language-on-StackOverow-40-points" class="headerlink" title="Question 3. Finding Experts on the Java Programming Language on StackOverow [40 points]"></a>Question 3. Finding Experts on the Java Programming Language on StackOverow [40 points]</h2><p>Download the StackOverflow network stackoverflow-Java.txt.gz: <a href="http://snap.stanford.edu/class/cs224w-data/hw0/stackoverflow-Java.txt.gz" target="_blank" rel="noopener">http://snap.stanford.edu/class/cs224w-data/hw0/stackoverflow-Java.txt.gz</a>. An edge (a; b) in the network<br>means that person a endorsed an answer from person b on a Java-related question.</p>
 <p>Using one of the network analysis tools above, load the StackOverflow network. Note that StackOverflow is a directed network.</p>
 <p>Compute and print out the following statistics for the stackoverflow-Java network:</p>
 <pre class=" language-python"><code class="language-python">GS <span class="token operator">=</span> snap<span class="token punctuation">.</span>LoadEdgeList<span class="token punctuation">(</span>snap<span class="token punctuation">.</span>PNGraph<span class="token punctuation">,</span><span class="token string">"stackoverflow-Java.txt"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
@@ -637,8 +639,8 @@ cnt<span class="token operator">=</span><span class="token number">1</span>
 The ID of Top 2 authorities is 157882
 The ID of Top 3 authorities is 571407</code></pre>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://github.com/LFhase/Learning_CS224w/tree/master/Homework/HW0">LFhase/Learning_CS224w</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/kandluis/cs224w">kandluis/cs224w</a></li>
+<li><a href="https://github.com/LFhase/Learning_CS224w/tree/master/Homework/HW0" target="_blank" rel="noopener">LFhase/Learning_CS224w</a></li>
+<li><a href="https://github.com/kandluis/cs224w" target="_blank" rel="noopener">kandluis/cs224w</a></li>
 </ol>
 
             </div>

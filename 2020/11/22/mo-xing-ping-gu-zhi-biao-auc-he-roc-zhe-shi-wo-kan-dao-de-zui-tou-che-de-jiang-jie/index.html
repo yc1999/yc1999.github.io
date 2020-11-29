@@ -30,10 +30,12 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 
 <body>
@@ -488,7 +490,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p> 文章来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/liweibin1994/article/details/79462554">模型评估指标AUC（area under the curve）</a></p>
+<p> 文章来源：<a href="https://blog.csdn.net/liweibin1994/article/details/79462554" target="_blank" rel="noopener">模型评估指标AUC（area under the curve）</a></p>
 </blockquote>
 <p>AUC在机器学习领域中是一种模型评估指标。根据维基百科的定义，AUC(area under the curve)是ROC曲线下的面积。所以，在理解AUC之前，要先了解ROC是什么。而ROC的计算又需要借助混淆矩阵，因此，我们先从混淆矩阵开始谈起。</p>
 <h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><p>假设，我们有一个任务：给定一些患者的样本，构建一个模型来预测肿瘤是不是恶性的。在这里，肿瘤要么良性，要么恶性，所以这是一个典型的二分类问题。</p>
@@ -582,7 +584,7 @@
 <p>另一个好处是，ROC曲线有一个很好的特性：<font color="red"><strong>当测试集中的正负样本分布发生变化了，ROC曲线可以保持不变。</strong></font>在实际的数据集中经常会出现类不平衡（class imbalance）现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化。</p>
 <p><img src="https://img-blog.csdn.net/20180306210417620?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl3ZWliaW4xOTk0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"></p>
 <p>在上图中，(a)和(c)为ROC曲线，(b)和(d)为Precision-Recall曲线。(a)和(b)展示的是分类其在原始测试集（正负样本分布平衡）的结果，(c)和(d)是将测试集中负样本的数量增加到原来的10倍后，分类器的结果。可以明显的看出，ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大。</p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://www.zybuluo.com/frank-shaw/note/152851">https://www.zybuluo.com/frank-shaw/note/152851</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39840928?from=profile_question_card">https://www.zhihu.com/question/39840928?from=profile_question_card</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/cherrylvlei/article/details/52958720">http://blog.csdn.net/cherrylvlei/article/details/52958720</a><br><a target="_blank" rel="noopener" href="http://www.dataschool.io/roc-curves-and-auc-explained/">http://www.dataschool.io/roc-curves-and-auc-explained/</a></p>
+<p>参考：<br><a href="https://www.zybuluo.com/frank-shaw/note/152851" target="_blank" rel="noopener">https://www.zybuluo.com/frank-shaw/note/152851</a><br><a href="https://www.zhihu.com/question/39840928?from=profile_question_card" target="_blank" rel="noopener">https://www.zhihu.com/question/39840928?from=profile_question_card</a><br><a href="http://blog.csdn.net/cherrylvlei/article/details/52958720" target="_blank" rel="noopener">http://blog.csdn.net/cherrylvlei/article/details/52958720</a><br><a href="http://www.dataschool.io/roc-curves-and-auc-explained/" target="_blank" rel="noopener">http://www.dataschool.io/roc-curves-and-auc-explained/</a></p>
 
             </div>
             <hr/>
