@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
@@ -430,9 +430,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -469,7 +477,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：</p>
+                <blockquote>
+<p>转载自AI Studio<a href="https://aistudio.baidu.com/aistudio/personalcenter/thirdview/39" target="_blank" rel="noopener">某网友</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：</p>
 <pre class=" language-python"><code class="language-python">fluid<span class="token punctuation">.</span>default_main_program<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>program_guard<span class="token punctuation">(</span>main_prog<span class="token punctuation">,</span> startup_prog<span class="token punctuation">)</span>
      <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>unique_name<span class="token punctuation">.</span>guard<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
@@ -564,7 +575,52 @@ helper <span class="token operator">=</span> LayerHelper<span class="token punct
 <div align="center">
   <img src="https://ai-studio-static-online.cdn.bcebos.com/cfebc175a587454683ffe41998b82d138f3b79f8eb7c4be2a3735aa36bbf47be">
 </div>
+## 自身使用体会
 
+<h3 id="关于train-program和test-program变量共享问题"><a href="#关于train-program和test-program变量共享问题" class="headerlink" title="关于train_program和test_program变量共享问题"></a>关于train_program和test_program变量共享问题</h3><p>在这份PGL图神经网络课程中，有这样一段代码：</p>
+<pre class=" language-python"><code class="language-python">train_program <span class="token operator">=</span> fluid<span class="token punctuation">.</span>default_main_program<span class="token punctuation">(</span><span class="token punctuation">)</span>                
+startup_program <span class="token operator">=</span> fluid<span class="token punctuation">.</span>default_startup_program<span class="token punctuation">(</span><span class="token punctuation">)</span>           
+
+<span class="token keyword">with</span> fluid<span class="token punctuation">.</span>program_guard<span class="token punctuation">(</span>train_program<span class="token punctuation">,</span> startup_program<span class="token punctuation">)</span><span class="token punctuation">:</span> 
+    <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>unique_name<span class="token punctuation">.</span>guard<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> 
+        gw<span class="token punctuation">,</span> loss<span class="token punctuation">,</span> acc<span class="token punctuation">,</span> pred <span class="token operator">=</span> build_model<span class="token punctuation">(</span>dataset<span class="token punctuation">,</span>   
+                            config<span class="token operator">=</span>config<span class="token punctuation">,</span>
+                            phase<span class="token operator">=</span><span class="token string">"train"</span><span class="token punctuation">,</span>
+                            main_prog<span class="token operator">=</span>train_program<span class="token punctuation">)</span>
+
+
+test_program <span class="token operator">=</span> fluid<span class="token punctuation">.</span>Program<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> fluid<span class="token punctuation">.</span>program_guard<span class="token punctuation">(</span>test_program<span class="token punctuation">,</span> startup_program<span class="token punctuation">)</span><span class="token punctuation">:</span>  
+    <span class="token keyword">with</span> fluid<span class="token punctuation">.</span>unique_name<span class="token punctuation">.</span>guard<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>                        
+        _gw<span class="token punctuation">,</span> v_loss<span class="token punctuation">,</span> v_acc<span class="token punctuation">,</span> v_pred <span class="token operator">=</span> build_model<span class="token punctuation">(</span>dataset<span class="token punctuation">,</span>
+            config<span class="token operator">=</span>config<span class="token punctuation">,</span>
+            phase<span class="token operator">=</span><span class="token string">"test"</span><span class="token punctuation">,</span>
+            main_prog<span class="token operator">=</span>test_program<span class="token punctuation">)</span></code></pre>
+<p>通过两个<code>with fluid.program_guard()</code>语句，我们定义了两段<strong>局部的</strong>Program——<code>train_program</code>和<code>test_program</code>，它们是<code>Program</code>类型的，里面包含了网络框架描述信息。同时，<code>startup_program</code>同时参与了两个<code>with fluid.program_guard()</code>语句，所以它包含两者的所有信息。这里有一个非常有趣的现象就是，由于<code>Scope</code>是同名的变量是共享的内容，所以，当<code>train_program</code>训练完后<code>test_program</code>在运行时，发现自己的变量早已经被<code>train_program</code>创建了，于是它就会直接使用已有的参数值，这也是<code>PaddlePaddle</code>里面能够同时训练和测试的原因，属于一个极小的细节，如下图：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># Full Batch 训练</span>
+    <span class="token comment" spellcheck="true"># 设定图上面那些节点要获取</span>
+    <span class="token comment" spellcheck="true"># node_index: 训练节点的nid    </span>
+    <span class="token comment" spellcheck="true"># node_label: 训练节点对应的标签</span>
+    feed_dict<span class="token punctuation">[</span><span class="token string">"node_index"</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>train_index<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">"int64"</span><span class="token punctuation">)</span>
+    feed_dict<span class="token punctuation">[</span><span class="token string">"node_label"</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>train_label<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">"int64"</span><span class="token punctuation">)</span>
+
+    train_loss<span class="token punctuation">,</span> train_acc <span class="token operator">=</span> exe<span class="token punctuation">.</span>run<span class="token punctuation">(</span>train_program<span class="token punctuation">,</span>
+                                feed<span class="token operator">=</span>feed_dict<span class="token punctuation">,</span>
+                                fetch_list<span class="token operator">=</span><span class="token punctuation">[</span>loss<span class="token punctuation">,</span> acc<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                                return_numpy<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># Full Batch 验证</span>
+    <span class="token comment" spellcheck="true"># 设定图上面那些节点要获取</span>
+    <span class="token comment" spellcheck="true"># node_index: 训练节点的nid    </span>
+    <span class="token comment" spellcheck="true"># node_label: 训练节点对应的标签</span>
+    feed_dict<span class="token punctuation">[</span><span class="token string">"node_index"</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>val_index<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">"int64"</span><span class="token punctuation">)</span>
+    feed_dict<span class="token punctuation">[</span><span class="token string">"node_label"</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>val_label<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">"int64"</span><span class="token punctuation">)</span>
+    val_loss<span class="token punctuation">,</span> val_acc <span class="token operator">=</span> exe<span class="token punctuation">.</span>run<span class="token punctuation">(</span>test_program<span class="token punctuation">,</span>
+                            feed<span class="token operator">=</span>feed_dict<span class="token punctuation">,</span>
+                            fetch_list<span class="token operator">=</span><span class="token punctuation">[</span>v_loss<span class="token punctuation">,</span> v_acc<span class="token punctuation">]</span><span class="token punctuation">,</span>
+                            return_numpy<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Epoch"</span><span class="token punctuation">,</span> epoch<span class="token punctuation">,</span> <span class="token string">"Train Acc"</span><span class="token punctuation">,</span> train_acc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"Valid Acc"</span><span class="token punctuation">,</span> val_acc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 
             </div>
             <hr/>
@@ -627,7 +683,15 @@ helper <span class="token operator">=</span> LayerHelper<span class="token punct
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
