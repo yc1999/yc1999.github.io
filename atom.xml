@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-02T14:15:25.966Z</updated>
+  <updated>2020-12-04T15:26:59.703Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【ESE680 GNN】Lecture 4: Graph Neural Networks</title>
+    <link href="http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/"/>
+    <id>http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/</id>
+    <published>2020-12-04T11:13:50.000Z</published>
+    <updated>2020-12-04T15:26:59.703Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这节课主要是从&lt;strong&gt;频域&lt;/strong&gt;的角度出发介绍GNN，带大家入门GNN。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;首先讲解graph filters；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;然后通过【graph</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>torch.nn 与 torch.nn.functional 的区别</title>
@@ -181,7 +207,7 @@
     <link href="http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/"/>
     <id>http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/</id>
     <published>2020-11-28T12:08:16.000Z</published>
-    <updated>2020-11-29T07:45:56.048Z</updated>
+    <updated>2020-12-02T14:25:14.140Z</updated>
     
     
       
@@ -209,7 +235,7 @@
     <link href="http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/"/>
     <id>http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/</id>
     <published>2020-11-28T10:41:03.000Z</published>
-    <updated>2020-11-29T05:24:30.336Z</updated>
+    <updated>2020-12-02T14:21:56.939Z</updated>
     
     
       
@@ -543,36 +569,6 @@
 &lt;p&gt;在本节课中，我们首先讲述4个关于网络的重要属性，它们是我们研究图的重要指标。然后介绍几种常见的随机图模型。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w 图机器学习】1. Introduction; Structure of Graphs</title>
-    <link href="http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/"/>
-    <id>http://yc1999.github.io/2020/11/14/si-tan-fu-cs224w-tu-ji-qi-xue-xi-1-introduction-structure-of-graphs/</id>
-    <published>2020-11-14T11:28:17.000Z</published>
-    <updated>2020-11-16T12:21:41.824Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Motivation&quot;&gt;&lt;a href=&quot;#Motivation&quot; class=&quot;headerlink&quot; title=&quot;Motivation&quot;&gt;&lt;/a&gt;Motivation&lt;/h2&gt;&lt;p&gt;两种常见的关于图的分类：&lt;/p&gt;
-&lt;p&gt;&lt;img</summary>
         
       
     

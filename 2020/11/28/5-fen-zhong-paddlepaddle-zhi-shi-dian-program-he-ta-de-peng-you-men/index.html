@@ -310,7 +310,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -491,7 +491,7 @@
 </blockquote>
 <p><strong>scope 在 paddle 里可以看作变量空间，存储fluid创建的变量</strong>。</p>
 <p>在 Paddle/blob/develop/paddle/fluid/framework/scope.h 中可以看到存储的数据结构的定义：</p>
-<pre class=" language-c++"><code class="language-c++">mutable std::unordered_map<std::string, std::unique_ptr<Variable>, KeyHasher> vars_;</code></pre>
+<pre class=" language-c++"><code class="language-c++">mutable std::unordered_map<std::string, std::unique_ptr<variable="">, KeyHasher&gt; vars_;</std::string,></code></pre>
 <p><code>unordered_map</code> 数据结构类似于python中的dict，键是变量的名字，值是变量的指针。</p>
 <p>类似 <code>fluid.default_main_program()</code>，**默认有一个全局的 <code>fluid.global_scope()</code>**。如果我们没有主动创建 <code>scope</code> 并且通过 <code>fluid.scope_guard()</code> 替换当前 <code>scope</code>，那么所有参数都在全局 <code>scope</code> 中。</p>
 <p>参数创建的时机不是在组网时，而是在 <code>executor.run()</code> 执行时。可以从 <code>executor.run()</code> 的注释得到印证：</p>
@@ -909,8 +909,7 @@ int main
                 <a href="/2020/11/28/paddlepaddle-she-ji-si-xiang/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="PaddlePaddle设计思想">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg" class="responsive-img" alt="PaddlePaddle设计思想">
                         
                         <span class="card-title">PaddlePaddle设计思想</span>
                     </div>

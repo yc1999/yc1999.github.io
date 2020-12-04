@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="test, 杨程的博客">
+    <meta name="keywords" content="【ESE680 GNN】Lecture 4: Graph Neural Networks, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>test | 杨程的博客</title>
+    <title>【ESE680 GNN】Lecture 4: Graph Neural Networks | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1glc4i4neayj215m0bwdhy.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">test</h1>
+                    <h1 class="description center-align post-title">【ESE680 GNN】Lecture 4: Graph Neural Networks</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-29
+                    2020-12-04
                 </div>
                 
 
@@ -460,83 +460,85 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class=" language-python"><code class="language-python">squares <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    squares<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token operator">**</span><span class="token number">2</span><span class="token punctuation">)</span>
-
-squares</code></pre>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-using namespace std<span class="token punctuation">;</span>
-
-<span class="token keyword">int</span> main<span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-tex"><code class="language-tex">blocks {
-  idx: 0
-  parent_idx: -1
-  vars {
-    name: "mean_1.tmp_0"
-    type {
-      type: LOD_TENSOR
-      lod_tensor {
-        tensor {
-          data_type: FP32
-          dims: 1
-        }
-      }
-    }
-    persistable: false
-  }
-  vars {
-    name: "square_error_cost_1.tmp_1"
-    type {
-      type: LOD_TENSOR
-      lod_tensor {
-        tensor {
-          data_type: FP32
-          dims: -1
-          dims: 1
-        }
-        lod_level: 0
-      }
-    }
-    persistable: false
-  }
-  vars {
-    name: "square_error_cost_1.tmp_0"
-    type {
-      type: LOD_TENSOR
-      lod_tensor {
-        tensor {
-          data_type: FP32
-          dims: -1
-          dims: 1
-        }
-        lod_level: 0
-      }
-    }
-    persistable: false
-    ...</code></pre>
-<pre class=" language-python"><code class="language-python">vars <span class="token punctuation">{</span>
-    name<span class="token punctuation">:</span> <span class="token string">"x"</span>
-    type <span class="token punctuation">{</span>
-      type<span class="token punctuation">:</span> LOD_TENSOR
-      lod_tensor <span class="token punctuation">{</span>
-        tensor <span class="token punctuation">{</span>
-          data_type<span class="token punctuation">:</span> FP32
-          dims<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span>
-          dims<span class="token punctuation">:</span> <span class="token number">1</span>
-        <span class="token punctuation">}</span>
-        lod_level<span class="token punctuation">:</span> <span class="token number">0</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    persistable<span class="token punctuation">:</span> false</code></pre>
-<pre class=" language-protobuf"><code class="language-protobuf"><span class="token keyword">message</span> BlockDesc <span class="token punctuation">{</span>
-  <span class="token builtin">required</span> <span class="token primitive symbol">int32</span> idx <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token builtin">required</span> <span class="token primitive symbol">int32</span> parent_idx <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-  <span class="token builtin">repeated</span> VarDesc vars <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-  <span class="token builtin">repeated</span> OpDesc ops <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+                <blockquote>
+<p>这节课主要是从<strong>频域</strong>的角度出发介绍GNN，带大家入门GNN。</p>
+<ul>
+<li><p>首先讲解graph filters；</p>
+</li>
+<li><p>然后通过【graph filter+pointwise nonlinearity】的构造graph perceptron，多个graph perceptron的叠加就是</p>
+<p>the most simplest GNN了。</p>
+</li>
+<li><p>最后，在最基本的GNN的基础上，我们引入filter banks和multiple-input-multiple-output graph filters，得到MIMO GNNs。而MIMO GNNs就是我们常见的GNN了。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="Graph-Convolutional-Filter"><a href="#Graph-Convolutional-Filter" class="headerlink" title="Graph Convolutional Filter"></a>Graph Convolutional Filter</h2><h3 id="Graph-Convolutional-Filter的输入"><a href="#Graph-Convolutional-Filter的输入" class="headerlink" title="Graph Convolutional Filter的输入"></a>Graph Convolutional Filter的输入</h3><p>从频域的角度出发，Graph Convolutional Filter的输入和输出是Graph Signals。</p>
+<h3 id="Graph-Convolutional-Filter的优化目标"><a href="#Graph-Convolutional-Filter的优化目标" class="headerlink" title="Graph Convolutional Filter的优化目标"></a>Graph Convolutional Filter的优化目标</h3><p>Empirical Risk Minimization通常包含3个组成成分：<br><img src="https://img-blog.csdnimg.cn/20201204185558684.png"><br>而机器学习的目标就是在function class里面找到损失最小的那个function：<br><img src="https://img-blog.csdnimg.cn/20201204185908488.png"><br>那么，对于GNN来说，它的function class是什么呢？就是graph convolutional filters！</p>
+<blockquote>
+<p>注意啦，在课程中graph convolutional filters和graph filters指的都是同一种东西。</p>
+</blockquote>
+<p>给定GSO（Graph Shift Operator）$S$，其感受野为$K$的graph convolutional filters可以统一表示成下方的形式：<br><img src="https://img-blog.csdnimg.cn/2020120419093549.png"><br>在这个function class里面，$S$和$h$都应该是超参数，但是由于往往$S$都是给定的，所以超参数只剩下h了。所以，<strong>GNN的优化目标</strong>就是：<br><img src="https://img-blog.csdnimg.cn/20201204191801999.png"></p>
+<h3 id="Graph-Convolutional-Filter的输出"><a href="#Graph-Convolutional-Filter的输出" class="headerlink" title="Graph Convolutional Filter的输出"></a>Graph Convolutional Filter的输出</h3><p>从频域的角度出发，Graph Neural Networks的输入和输出是Graph Signals。</p>
+<p>但是当我们训练集上的$y$不是graph signal的时候，可以在GNN输出上加一层Readout Layer（其Transformation Matrix为$A$），将GNN输出的graph signal变成和$y$相同的维度，具体的流程图如下：<br><img src="https://img-blog.csdnimg.cn/20201204192220915.png"><br>相应的，优化目标变成了：<br><img src="https://img-blog.csdnimg.cn/20201204192734587.png"><br>那么这个$A$如何定义呢？可能我们的第一想法是将其设置为超参数，但是老师说这是不可取的，$A$最好根据实际情况，自己进行定义，例如可以定义为：<br><img src="https://img-blog.csdnimg.cn/20201204192458213.png"></p>
+<blockquote>
+<p>其实在使用PyG的Cora数据集时，里面有使用<code>train_mask</code>和<code>test_mask</code>，它们就可以看做是read out specific nodes的操作~</p>
+</blockquote>
+<h2 id="Graph-Neural-Networks（GNNs）"><a href="#Graph-Neural-Networks（GNNs）" class="headerlink" title="Graph Neural Networks（GNNs）"></a>Graph Neural Networks（GNNs）</h2><h3 id="Graph-Perceptron"><a href="#Graph-Perceptron" class="headerlink" title="Graph Perceptron"></a>Graph Perceptron</h3><p><strong>Simplest GNN是由很多graph perceptron构成的</strong>，一个graph perceptron只是在Graph Convolutional Filter之后添加了一些东西，其结构如下：<br><img src="https://img-blog.csdnimg.cn/2020120419330124.png"></p>
+<ul>
+<li>第一个component是一个graph filter；</li>
+<li>第二个component是一个Pointwise Nonlinearties👇<h4 id="Pointwise-Nonlinearties"><a href="#Pointwise-Nonlinearties" class="headerlink" title="Pointwise Nonlinearties"></a>Pointwise Nonlinearties</h4>首先是What？</li>
+</ul>
+<p>这种Pointwise非线性函数通过下面的操作图就能理解它是什么运作的了：<br><img src="https://img-blog.csdnimg.cn/20201204193615985.png"><br>我们常见的Pointwise Nonlinearities有：<br><img src="https://img-blog.csdnimg.cn/20201204193717666.png"><br>那么Why呢？<br>老师给出的答案：</p>
+<ol>
+<li><strong>Pointwise nonlinearities decrease variability. =&gt; They function as demodulators.</strong></li>
+<li>Graph lters have limited expressive power because they can only learn linear maps。所以需要引入nonlinearity。<br>我没有理解。。。<h4 id="Graph-Perceptron的优化目标"><a href="#Graph-Perceptron的优化目标" class="headerlink" title="Graph Perceptron的优化目标"></a>Graph Perceptron的优化目标</h4>正是引入了Pointwise Nonlinearities的概念，所以Graph Perceptron的优化目标和Graph Convolutional Filter有点点不同：<br><img src="https://img-blog.csdnimg.cn/20201204194625583.png"><br>其中：<br><img src="https://img-blog.csdnimg.cn/20201204194603180.png"></li>
+</ol>
+<h3 id="GNN的结构"><a href="#GNN的结构" class="headerlink" title="GNN的结构"></a>GNN的结构</h3><p><strong>Simplest GNN是由很多graph perceptron构成的</strong>，对于一个拥有3层graph perceptron的GNN来说，其结构为：<br><img src="https://img-blog.csdnimg.cn/20201204195157684.png"></p>
+<h3 id="GNN的优化目标"><a href="#GNN的优化目标" class="headerlink" title="GNN的优化目标"></a>GNN的优化目标</h3><p>通过上面的结构我们可以总结出GNN的function class为：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201204195334651.png"><br>那么它的优化目标，就是<strong>找到一组最合适的$\mathcal{H}$使得loss最小</strong>：<br><img src="https://img-blog.csdnimg.cn/20201204195809941.png"></p>
+<blockquote>
+<p>其实想想参数的数量是$K \times L$个。</p>
+</blockquote>
+<h3 id="GNN-vs-Graph-Filters"><a href="#GNN-vs-Graph-Filters" class="headerlink" title="GNN vs. Graph Filters"></a>GNN vs. Graph Filters</h3><table>
+<thead>
+<tr>
+<th>比较方面</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>结构</td>
+<td>GNN是在Graph Filter的基础上增加了<strong>pointwise nonlinearities</strong>和<strong>layer compositions</strong>；</td>
+</tr>
+<tr>
+<td>效果</td>
+<td>GNN表现更加优秀</td>
+</tr>
+<tr>
+<td>迁移性</td>
+<td>两者都具有迁移性，我们可以将$x$和$S$都看作模型的input，那么就可以在多个图之间共享$\mathcal{H}$了。</td>
+</tr>
+</tbody></table>
+<h3 id="GNN-v-s-CNN"><a href="#GNN-v-s-CNN" class="headerlink" title="GNN v.s. CNN"></a>GNN v.s. CNN</h3><p>GNNs are proper generalizations of CNNs</p>
+<h3 id="GNN-vs-FCNN"><a href="#GNN-vs-FCNN" class="headerlink" title="GNN vs. FCNN"></a>GNN vs. FCNN</h3><p>首先，回顾一下，我们常见的FCNN（Fully Connected Neural Network）的执行流程：<br><img src="https://img-blog.csdnimg.cn/20201204201231293.png?type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3ljX2N5MTk5OQ==,size_16,color_FFFFFF,t_70"><br>由于GNN可以看作是FCNN的子类，GNN只是对FCNN里面的$\mathcal{H}$增加了限制，因此FCNN的效果一定是不会弱于GNN的：<br><img src="https://img-blog.csdnimg.cn/20201204201639514.png"><br><strong>那为什么我们还要使用GNN呢？</strong></p>
+<p>这就回到我们机器学习课上面讲的<strong>过拟合</strong>和<strong>模型泛化性</strong>了，GNN在这两个方面表现得更好。</p>
+<blockquote>
+<p>Because it exploits internal symmetries of graph signals codified in the graph shift operator，涉及到了Permutation Equivariance of Graph Neural Network的知识，这里就不多讲了。</p>
+</blockquote>
+<h2 id="Graph-Filter-Banks"><a href="#Graph-Filter-Banks" class="headerlink" title="Graph Filter Banks"></a>Graph Filter Banks</h2><p><strong>A Graph Filter Bank = A Set of Filters</strong></p>
+<p>我们用$h^f$表示第$f$个filter，将$x$分别输入多个filter之后可以得到：<br><img src="https://img-blog.csdnimg.cn/20201204202743332.png"><br>上图的结果就是将我们的feature matrix从$N \times 1$变成了$N \times F$大小，扩充了feature matrix的维度。</p>
+<h3 id="Output-Energy-of-a-Graph-Filter-in-the-GFT-Domain"><a href="#Output-Energy-of-a-Graph-Filter-in-the-GFT-Domain" class="headerlink" title="Output Energy of a Graph Filter in the GFT Domain"></a>Output Energy of a Graph Filter in the GFT Domain</h3><p>接下来介绍一个关于Graph Filter的output energy的定理：<br><img src="https://img-blog.csdnimg.cn/20201204203320800.png"><br>定理的证明如下：<br><img src="https://img-blog.csdnimg.cn/20201204203639678.png"></p>
+<h2 id="Multiple-Feature-GNNs"><a href="#Multiple-Feature-GNNs" class="headerlink" title="Multiple Feature GNNs"></a>Multiple Feature GNNs</h2><blockquote>
+<p>至此，我们所讲的graph signal都是$N \times 1$大小的，也就是每个结点只有一个特征，但是实际生活中的图上，结点的特征通常是多维度的，那么怎么处理多维特征的情况呢？<br><strong>前面我们介绍了filter bank，引入它的作用就在于实现处理多维特征。</strong></p>
+</blockquote>
+<p>对于输入的特征矩阵$\mathbf{X} \in \mathbb{R}^{N \times F}$，<font color="red">我们的处理思想就是对每一维的feature都进行filter bank操作。</font></p>
+<h3 id="Multiple-Input-Multiple-Output-MIMO-Graph-Filters"><a href="#Multiple-Input-Multiple-Output-MIMO-Graph-Filters" class="headerlink" title="Multiple-Input-Multiple-Output (MIMO) Graph Filters"></a>Multiple-Input-Multiple-Output (MIMO) Graph Filters</h3><p>假设现在有一个Feature Matrix $\mathbf{X} = [\mathbf{x}^1,…,\mathbf{x}^f,…,\mathbf{x}^F]$，对于其中的每一个$\mathbf{x}^f$都使用一个大小为$G$的filter bank。</p>
+<p>下面是对某一个$\mathbf{x}^f$使用一个大小为$G$的filter bank的示例：<br><img src="https://img-blog.csdnimg.cn/2020120420515215.png"><br>下面是所有的$\mathbf{x}^f$使用一个大小为$G$的filter bank的结果：<img src="https://img-blog.csdnimg.cn/20201204205214193.png"><br>可以想象，如果不做任何的处理，最终将会产生$F \times G$个特征维度，随着网络越来越深，这样的增长会限制我们的运行速度。<font color="red"><strong>因此，在这里，我们采用了上图中相加的方式。</strong></font>其公式表示为：<br><img src="https://img-blog.csdnimg.cn/20201204205413646.png"><br>最后的矩阵计算公式也非常的漂亮，只不过要多思考一下为什么是这样的矩阵计算公式：<br><img src="https://img-blog.csdnimg.cn/20201204205845685.png"></p>
+<blockquote>
+<p>Tips：上面的矩阵乘法是从<strong>列向量线性组合</strong>的角度看待的。</p>
+</blockquote>
+<h3 id="MIMO-GNN"><a href="#MIMO-GNN" class="headerlink" title="MIMO GNN"></a>MIMO GNN</h3><p>跟graph perceptron类比，我们将MIMO Graph Filters后面再加一个pointwise nonlinearity，就组成了MIMO perceptron。</p>
+<p>再进行类比，叠加MIMO perceptron就构成了MIMO GNN（也就是我们最常用的GNN）了。<br><img src="https://img-blog.csdnimg.cn/20201204205920793.png"><br>对于拥有三个MIMO perceptron的MIMO GNN，它的执行流程图如下所示：<br><img src="https://img-blog.csdnimg.cn/20201204210004247.png"><br>再次总结一下，GNN每一层的操作如下：<br><img src="https://img-blog.csdnimg.cn/20201204232041380.png"></p>
 
             </div>
             <hr/>
@@ -562,7 +564,7 @@ using namespace std<span class="token punctuation">;</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/29/test/">http://yc1999.github.io/2020/11/29/test/</a>
+                    <a href="http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/">http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -765,30 +767,34 @@ using namespace std<span class="token punctuation">;</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/30/windows-xia-tong-yi-ge-xian-qia-pei-zhi-duo-ge-cuda-gong-ju-bao-yi-ji-ta-men-zhi-jian-de-qie-huan/">
+                <a href="/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/">
                     <div class="card-image">
                         
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glc4i4neayj215m0bwdhy.jpg" class="responsive-img" alt="【ESE680 GNN】Lecture 4: Graph Neural Networks">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Windows下同一个显卡配置多个CUDA工具包以及它们之间的切换">
-                        
-                        <span class="card-title">Windows下同一个显卡配置多个CUDA工具包以及它们之间的切换</span>
+                        <span class="card-title">【ESE680 GNN】Lecture 4: Graph Neural Networks</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            故事是这样的，我最近在学GNN，之前使用的框架是百度团队的PGL，使用的CUDA是10.0版本的。
-但是其实PYG才是主流的用于图卷积神经网络的框架，所以打算在PyTorch环境下安装PYG，但是PYG需要的PyTorch版本要大于1.4，
+                            
+这节课主要是从频域的角度出发介绍GNN，带大家入门GNN。
+
+首先讲解graph filters；
+
+然后通过【graph filter+pointwise nonlinearity】的构造graph perceptron，多个graph
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -797,6 +803,7 @@ using namespace std<span class="token punctuation">;</span>
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -807,35 +814,30 @@ using namespace std<span class="token punctuation">;</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/">
+                <a href="/2020/12/02/torch-nn-yu-torch-nn-functional-de-qu-bie/">
                     <div class="card-image">
                         
-                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg" class="responsive-img" alt="5分钟PaddlePaddle知识点——program和它的朋友们">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9va01qbbj22gw1e07wh.jpg" class="responsive-img" alt="torch.nn 与 torch.nn.functional 的区别">
                         
-                        <span class="card-title">5分钟PaddlePaddle知识点——program和它的朋友们</span>
+                        <span class="card-title">torch.nn 与 torch.nn.functional 的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-转载自AI Studio某网友
-
-前言paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：
-fluid.default_main_program()
-with fluid.pr
+                            torch.nn可以理解为类，torch.nn.functional可以理解为函数，它们在使用上有一些区别
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/PaddlePaddle/" class="post-category">
-                                    PaddlePaddle
+                            <a href="/categories/PyTorch/" class="post-category">
+                                    PyTorch
                                 </a>
                             
                             
@@ -845,12 +847,12 @@ with fluid.pr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
                     <a href="/tags/%E8%BD%AC%E8%BD%BD/">
                         <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/PyTorch/">
+                        <span class="chip bg-color">PyTorch</span>
                     </a>
                     
                 </div>
@@ -988,6 +990,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

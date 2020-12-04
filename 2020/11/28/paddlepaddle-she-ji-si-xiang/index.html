@@ -310,7 +310,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -528,15 +528,15 @@ int main() {
     int y = 4; // block 0
     int out;   // block 0
 
-    if (x < y) { // block 0
+    if (x &lt; y) { // block 0
         out = 1; // block 1
     } else {
         out = 0; // block 2
     }
 
-    std::cout << out << std::endl;
+    std::cout &lt;&lt; out &lt;&lt; std::endl;
     return 0;
-}</code></pre>
+}</iostream></code></pre>
 <p>类似的，在下列 Paddle 的 Program 包含3段block：</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> paddle<span class="token punctuation">.</span>fluid <span class="token keyword">as</span> fluid
 
@@ -603,20 +603,20 @@ out <span class="token operator">=</span> fluid<span class="token punctuation">.
 <p>Executor的C++实现代码如下：</p>
 <pre class=" language-c++"><code class="language-c++">class Executor{
     public:
-        void Run(const ProgramDesc& pdesc,
+        void Run(const ProgramDesc&amp; pdesc,
                 Scope* scope,
                 int block_id) {
-            auto& block = pdesc.Block(block_id);
+            auto&amp; block = pdesc.Block(block_id);
 
             //创建所有变量
-            for (auto& var : block.AllVars())
-                scope->Var(Var->Name());
+            for (auto&amp; var : block.AllVars())
+                scope-&gt;Var(Var-&gt;Name());
             }
 
             //创建OP并执行
-            for (auto& op_desc : block.AllOps()){
+            for (auto&amp; op_desc : block.AllOps()){
                 auto op = CreateOp(*op_desc);
-                op->Run(*local_scope, place_);
+                op-&gt;Run(*local_scope, place_);
             }
         };</code></pre>
 <p><strong>创建Executor</strong></p>
@@ -763,9 +763,9 @@ sgd_optimizer<span class="token punctuation">.</span>minimize<span class="token 
                             phase<span class="token operator">=</span><span class="token string">"train"</span><span class="token punctuation">,</span>
                             main_prog<span class="token operator">=</span>train_program<span class="token punctuation">)</span></code></pre>
 <p>执行了上面的代码后，我们打印<code>loss</code>，<code>acc</code>，<code>pred</code>的数据类型，我们直观上可能会以为它们是Tensor，但是根据之前说的它只是框架，因此会得到下面的结果：</p>
-<pre class=" language-python"><code class="language-python">type<span class="token punctuation">(</span>loss<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">></span>
-type<span class="token punctuation">(</span>acc<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">></span>
-type<span class="token punctuation">(</span>pred<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">></span></code></pre>
+<pre class=" language-python"><code class="language-python">type<span class="token punctuation">(</span>loss<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">&gt;</span>
+type<span class="token punctuation">(</span>acc<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">&gt;</span>
+type<span class="token punctuation">(</span>pred<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'paddle.fluid.framework.Variable'</span><span class="token operator">&gt;</span></code></pre>
 <p>没错，真的就是仅仅定义了框架，再看看<code>loss</code>到底是什么：</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">)</span>
 
@@ -1029,8 +1029,7 @@ output<span class="token punctuation">:</span>
                 <a href="/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="5分钟PaddlePaddle知识点——program和它的朋友们">
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg" class="responsive-img" alt="5分钟PaddlePaddle知识点——program和它的朋友们">
                         
                         <span class="card-title">5分钟PaddlePaddle知识点——program和它的朋友们</span>
                     </div>
