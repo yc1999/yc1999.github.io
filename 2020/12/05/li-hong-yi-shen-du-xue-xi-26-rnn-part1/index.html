@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【斯坦福cs224w-图机器学习】5. Spectral Clustering, 杨程的博客">
+    <meta name="keywords" content="【李宏毅-深度学习】26. RNN Part1, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering | 杨程的博客</title>
+    <title>【李宏毅-深度学习】26. RNN Part1 | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】5. Spectral Clustering</h1>
+                    <h1 class="description center-align post-title">【李宏毅-深度学习】26. RNN Part1</h1>
                 </div>
             </div>
         </div>
@@ -430,37 +430,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">课程笔记</span>
-                            </a>
-                        
-                            <a href="/tags/GNN/">
-                                <span class="chip bg-color">GNN</span>
-                            </a>
-                        
-                            <a href="/tags/cs224w/">
-                                <span class="chip bg-color">cs224w</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
-                                <span class="chip bg-color">特征值与特征向量的应用</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/GNN/" class="post-category">
-                                GNN
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -469,7 +444,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-24
+                    2020-12-05
                 </div>
                 
 
@@ -485,282 +460,102 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral Clustering）算法，最后还会与前面第3节课学习的<code>motif</code>知识关联起来，讲解一种基于Motif的谱聚类算法。</p>
+                <h1 id="Recurrent-Neural-Network-Ⅰ"><a href="#Recurrent-Neural-Network-Ⅰ" class="headerlink" title="Recurrent Neural Network(Ⅰ)"></a>Recurrent Neural Network(Ⅰ)</h1><blockquote>
+<p>RNN，或者说最常用的LSTM，一般用于记住之前的状态，以供后续神经网络的判断，它由input gate、forget gate、output gate和cell memory组成，每个LSTM本质上就是一个neuron，特殊之处在于有4个输入：$z$和三门控制信号$z_i$、$z_f$和$z_o$，每个时间点的输入都是由当前输入值+上一个时间点的输出值+上一个时间点cell值来组成</p>
 </blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hl1lxsj22bc1qiqm5.jpg">
-
-<h2 id="谱聚类算法"><a href="#谱聚类算法" class="headerlink" title="谱聚类算法"></a>谱聚类算法</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlnoatj22bc1qi1kv.jpg">
-
-<blockquote>
-<p>上面给出了谱聚类的”三步曲”，在正式讲解“三步曲”之前，我们先来定义一下谱聚类要解决什么问题？</p>
-</blockquote>
-<h3 id="Part-1-问题定义"><a href="#Part-1-问题定义" class="headerlink" title="Part 1 问题定义"></a>Part 1 问题定义</h3><p>给定一个图$G=(V,E)$，如下图所示，我们要在这个图上做<strong>bi-partition</strong>任务（后面的讲解是基于二簇划分问题的，当然谱聚类可以用于多簇划分），希望把下图划分成两个不相交的群体A，B，让组内尽可能相似，组间差异尽可能大。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlfx0oj22bc1qi1io.jpg">
-
-<blockquote>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><h5 id="Slot-Filling"><a href="#Slot-Filling" class="headerlink" title="Slot Filling"></a>Slot Filling</h5><p>在智能客服、智能订票系统中，往往会需要slot filling技术，它会分析用户说出的语句，将时间、地址等有效的关键词填到对应的槽上，并过滤掉无效的词语</p>
+<p>词汇要转化成vector，可以使用1-of-N编码，word hashing或者是word vector等方式，此外我们可以尝试使用Feedforward Neural Network来分析词汇，判断出它是属于时间或是目的地的概率</p>
+<p>但这样做会有一个问题，该神经网络会先处理“arrive”和“leave”这两个词汇，然后再处理“Taipei”，这时对NN来说，输入是相同的，它没有办法区分出“Taipei”是出发地还是目的地</p>
+<p>这个时候我们就希望神经网络是有记忆的，如果NN在看到“Taipei”的时候，还能记住之前已经看过的“arrive”或是“leave”，就可以根据上下文得到正确的答案</p>
+<p><a href="https://camo.githubusercontent.com/2b9a21b472f782cbd6c99301752fdcc69f87fe1cdd32c8391bdeb3df93c94f5a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c652e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/2b9a21b472f782cbd6c99301752fdcc69f87fe1cdd32c8391bdeb3df93c94f5a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c652e706e67" alt="img"></a></p>
+<p>这种有记忆力的神经网络，就叫做Recurrent Neural Network(RNN)</p>
+<p>在RNN中，hidden layer每次产生的output $a_1$、$a_2$，都会被存到memory里，下一次有input的时候，这些neuron就不仅会考虑新输入的$x_1$、$x_2$，还会考虑存放在memory中的$a_1$、$a_2$</p>
+<p>注：在input之前，要先给内存里的$a_i$赋初始值，比如0</p>
+<p><a href="https://camo.githubusercontent.com/4824d7458180c379b6012379921cf8824edce6109d846f92e8063b0fdb14b9f6/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/4824d7458180c379b6012379921cf8824edce6109d846f92e8063b0fdb14b9f6/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2e706e67" alt="img"></a></p>
+<p>注意到，每次NN的输出都要考虑memory中存储的临时值，而不同的输入产生的临时值也尽不相同，因此改变输入序列的顺序会导致最终输出结果的改变(Changing the sequence order will change the output)</p>
+<h5 id="Slot-Filling-with-RNN"><a href="#Slot-Filling-with-RNN" class="headerlink" title="Slot Filling with RNN"></a>Slot Filling with RNN</h5><p>用RNN处理Slot Filling的流程举例如下：</p>
 <ul>
-<li>那么怎么定义一个“好”的划分？怎样快速找到这样的划分呢？</li>
+<li>“arrive”的vector作为$x^1$输入RNN，通过hidden layer生成$a^1$，再根据$a^1$生成$y^1$，表示“arrive”属于每个slot的概率，其中$a^1$会被存储到memory中</li>
+<li>“Taipei”的vector作为$x^2$输入RNN，此时hidden layer同时考虑$x^2$和存放在memory中的$a^1$，生成$a^2$，再根据$a^2$生成$y^2$，表示“Taipei”属于某个slot的概率，此时再把$a^2$存到memory中</li>
+<li>依次类推</li>
 </ul>
-</blockquote>
-<h3 id="Part-2-评价指标"><a href="#Part-2-评价指标" class="headerlink" title="Part 2 评价指标"></a>Part 2 评价指标</h3><ul>
-<li>在第四节课中，我们有介绍度量聚类效果的指标<code>modularity</code>，这里我们使用一种新的聚类度量指标<code>conductance</code>；</li>
-<li>同样，我们之前的目标是最大化<code>modularity</code>，因此在本节课我们的目标是最大化<code>conductance</code>。</li>
-</ul>
-<p>对于一个好的划分，一个很自然的想法，直觉上就是<font color="red"><strong>最大化组内连接数，最小化组间连接数</strong>：</font></p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hliytij22bc1qiasg.jpg">
-
-<p>我们其实可以很形象地将图上的聚类划分问题，看做一个<strong>切割</strong>的过程：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hnt96sj22bc1qitwi.jpg">
-
-<blockquote>
+<p><a href="https://camo.githubusercontent.com/ce346860ed9f6ae5c9fe309f65b11d59224cbca598f6bcbea28dfe79922c4fde/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ce346860ed9f6ae5c9fe309f65b11d59224cbca598f6bcbea28dfe79922c4fde/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65322e706e67" alt="img"></a></p>
+<p>注意：上图为同一个RNN在三个不同时间点被分别使用了三次，并非是三个不同的NN</p>
+<p>这个时候，即使输入同样是“Taipei”，我们依旧可以根据前文的“leave”或“arrive”来得到不一样的输出</p>
+<p><a href="https://camo.githubusercontent.com/e4a2ae83cb0f77a47f8d6eb38ef445bbc06ad06819883c3f37813e8ca12aa539/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65332e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/e4a2ae83cb0f77a47f8d6eb38ef445bbc06ad06819883c3f37813e8ca12aa539/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65332e706e67" alt="img"></a></p>
+<h5 id="Elman-Network-amp-Jordan-Network"><a href="#Elman-Network-amp-Jordan-Network" class="headerlink" title="Elman Network &amp; Jordan Network"></a>Elman Network &amp; Jordan Network</h5><p>RNN有不同的变形：</p>
 <ul>
-<li><code>cut</code>：这里的<code>cut</code>是一个名词，它有全新的意义。它是定义在两个簇共享的边集的<code>sum</code>值。</li>
+<li>Elman Network：将hidden layer的输出保存在memory里</li>
+<li>Jordan Network：将整个neural network的输出保存在memory里</li>
 </ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hm3a3sj22bc1qiazv.jpg">
-
-<blockquote>
-<p>但是如果我们想最小化cut有一个问题，如上图所示，当有一个节点度数为1时，切割这一条边可最小化cut，即cut=1，但是很显然这并不是最优化的划分结果，直觉上看，最优化的划分应该为蓝色线所示。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hqb1ndj22bc1qi4qp.jpg">
-
-<blockquote>
+<p>由于hidden layer没有明确的训练目标，而整个NN具有明确的目标，因此Jordan Network的表现会更好一些</p>
+<p><a href="https://camo.githubusercontent.com/9dc9b147c70879900b322ff54642f14cd78cf5b5a64b9dbd084adbf5110f52d8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d747970652e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/9dc9b147c70879900b322ff54642f14cd78cf5b5a64b9dbd084adbf5110f52d8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d747970652e706e67" alt="img"></a></p>
+<h5 id="Bidirectional-RNN"><a href="#Bidirectional-RNN" class="headerlink" title="Bidirectional RNN"></a>Bidirectional RNN</h5><p>RNN 还可以是双向的，你可以同时训练一对正向和反向的RNN，把它们对应的hidden layer $x^t$拿出来，都接给一个output layer，得到最后的$y^t$</p>
+<p>使用Bi-RNN的好处是，NN在产生输出的时候，它能够看到的范围是比较广的，RNN在产生$y^{t+1}$的时候，它不只看了从句首$x^1$开始到$x^{t+1}$的输入，还看了从句尾$x^n$一直到$x^{t+1}$的输入，这就相当于RNN在看了整个句子之后，才决定每个词汇具体要被分配到哪一个槽中，这会比只看句子的前一半要更好</p>
+<p><a href="https://camo.githubusercontent.com/1d0deff740a918bfb7f2c48fa913ae5080369096e146f330aec0890066de23a0/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d62692e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/1d0deff740a918bfb7f2c48fa913ae5080369096e146f330aec0890066de23a0/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d62692e706e67" alt="img"></a></p>
+<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>前文提到的RNN只是最简单的版本，并没有对memory的管理多加约束，可以随时进行读取，而现在常用的memory管理方式叫做长短期记忆(Long Short-term Memory)，简称LSTM</p>
+<p>冷知识：可以被理解为比较长的短期记忆，因此是short-term，而非是long-short term</p>
+<h5 id="Three-gate"><a href="#Three-gate" class="headerlink" title="Three-gate"></a>Three-gate</h5><p>LSTM有三个gate：</p>
 <ul>
-<li><p>正是由于前面讲的那种degenerate case，我们需要进一步对度量指标<code>cut</code>进行归一化来考虑group内的connectivity信息——<code>conductance</code>:</p>
-</li>
-<li><p>我们想<code>conductance</code>变小，所以我们就会想让<code>vol(A)</code>和<code>vol(B)</code>都能变得尽可能大，从而避免前一张PPT上的极端情况。</p>
-</li>
-<li><p>由<code>conductance</code>计算公式的含义我们知道<strong>它能够产生相对均匀划分</strong>；</p>
-</li>
-<li><p>但是求解一个这样的最优的conductance是一个NP-hard问题。根据我们的机器学习经验，<strong>我们需要寻找一个近似解</strong><del>这个近似解就是谱聚类</del></p>
-</li>
+<li>当某个neuron的输出想要被写进memory cell，它就必须要先经过一道叫做<strong>input gate</strong>的闸门，如果input gate关闭，则任何内容都无法被写入，而关闭与否、什么时候关闭，都是由神经网络自己学习到的</li>
+<li>output gate决定了外界是否可以从memory cell中读取值，当<strong>output gate</strong>关闭的时候，memory里面的内容同样无法被读取</li>
+<li>forget gate则决定了什么时候需要把memory cell里存放的内容忘记清空，什么时候依旧保存</li>
 </ul>
-</blockquote>
-<h3 id="Part-3-谱图划分"><a href="#Part-3-谱图划分" class="headerlink" title="Part 3 谱图划分"></a>Part 3 谱图划分</h3><h4 id="重新理解-Ax-的意义——聚合邻居的信息"><a href="#重新理解-Ax-的意义——聚合邻居的信息" class="headerlink" title="重新理解$Ax$的意义——聚合邻居的信息"></a>重新理解$Ax$的意义——聚合邻居的信息</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hs4gx6j22bc1qihc1.jpg">
-
-<hr>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrcge9j22bc1qi4qp.jpg">
-
-<blockquote>
+<p><a href="https://camo.githubusercontent.com/29385e85f0c291c0f4b04519fb97509a4a9189fe01438f6469f1c062c3466a7a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/29385e85f0c291c0f4b04519fb97509a4a9189fe01438f6469f1c062c3466a7a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d2e706e67" alt="img"></a></p>
+<p>整个LSTM可以看做是4个input，1个output：</p>
 <ul>
-<li>之前我们重新审视了$Ax$，现在让我们结合重新审视的$Ax$来回想一个啥是eigenvector，eigenvalue？</li>
+<li>4个input=想要被存到memory cell里的值+操控input gate的信号+操控output gate的信号+操控forget gate的信号</li>
+<li>1个output=想要从memory cell中被读取的值</li>
 </ul>
-<blockquote>
-<p><strong>these are special vectors assigned to nodes such that when you sum up the value from your neighbors you get the same value as you had you just scaled miraculous！！！</strong></p>
-</blockquote>
+<h5 id="Memory-Cell"><a href="#Memory-Cell" class="headerlink" title="Memory Cell"></a>Memory Cell</h5><p>如果从表达式的角度看LSTM，它比较像下图中的样子</p>
 <ul>
-<li><p><code>spectrum</code>：频谱，需要注意的是<code>spectrum</code>里面的<strong>特征值</strong>是严格按照从小到大的顺序排列的！</p>
-<blockquote>
-<p>这其实与电路与信号里面的傅里叶变换联系起来了，这里的频率就是特征值。</p>
-</blockquote>
-</li>
+<li>$z$是想要被存到cell里的输入值</li>
+<li>$z_i$是操控input gate的信号</li>
+<li>$z_o$是操控output gate的信号</li>
+<li>$z_f$是操控forget gate的信号</li>
+<li>$a$是综合上述4个input得到的output值</li>
 </ul>
-</blockquote>
-<h5 id="Example-d-Regular-Graph"><a href="#Example-d-Regular-Graph" class="headerlink" title="Example: d-Regular Graph"></a>Example: d-Regular Graph</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hr5e91j22bc1qi7wh.jpg">
-
-<blockquote>
-<p>d-regular graph</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hppnukj22bc1qib29.jpg">
-
-<h5 id="Example-Graph-on-2-Components"><a href="#Example-Graph-on-2-Components" class="headerlink" title="Example: Graph on 2 Components"></a>Example: Graph on 2 Components</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrca5ij22bc1qi7wh.jpg">
-
-<blockquote>
+<p><a href="https://camo.githubusercontent.com/24bb5f15c2892bbd2734c8eaaf1319a97ed6f8f6a24984bc2b4e150a8c52f6a8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/24bb5f15c2892bbd2734c8eaaf1319a97ed6f8f6a24984bc2b4e150a8c52f6a8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d322e706e67" alt="img"></a></p>
+<p>把$z$、$z_i$、$z_o$、$z_f$通过activation function，分别得到$g(z)$、$f(z_i)$、$f(z_o)$、$f(z_f)$</p>
+<p>其中对$z_i$、$z_o$和$z_f$来说，它们通过的激活函数$f()$一般会选sigmoid function，因为它的输出在0~1之间，代表gate被打开的程度</p>
+<p>令$g(z)$与$f(z_i)$相乘得到$g(z)\cdot f(z_i)$，然后把原先存放在cell中的$c$与$f(z_f)$相乘得到$cf(z_f)$，两者相加得到存在memory中的新值$c’=g(z)\cdot f(z_i)+cf(z_f)$</p>
 <ul>
-<li><p>这里<code>eigenvalue</code>：$d$的<code>multiplicity</code>是2，也就是是说它由两个eigenvector。在这种类型的图中，the max eigenvalue的<strong>multiplicity</strong>可以告诉我们有多少的components。</p>
-</li>
-<li><p>$\lambda_n = \lambda_{n-1}$是因为multiplicity的大小</p>
-</li>
-<li><p>关于almost disconnected的时候，$\lambda_{n-1}$会非常接近$\lambda_n$的原因将会在后面学到。</p>
-</li>
+<li>若$f(z_i)=0$，则相当于没有输入，若$f(z_i)=1$，则相当于直接输入$g(z)$</li>
+<li>若$f(z_f)=1$，则保存原来的值$c$并加到新的值上，若$f(z_f)=0$，则旧的值将被遗忘清除</li>
 </ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hu3m2aj22bc1qi4qp.jpg">
-
-<blockquote>
+<p>从中也可以看出，forget gate的逻辑与我们的直觉是相反的，控制信号打开表示记得，关闭表示遗忘</p>
+<p>此后，$c’$通过激活函数得到$h(c’)$，与output gate的$f(z_o)$相乘，得到输出$a=h(c’)f(z_o)$</p>
+<h5 id="LSTM-Example"><a href="#LSTM-Example" class="headerlink" title="LSTM Example"></a>LSTM Example</h5><p>下图演示了一个LSTM的基本过程，$x_1$、$x_2$、$x_3$是输入序列，$y$是输出序列，基本原则是：</p>
 <ul>
-<li><p><strong>Eigenvectors are orthogonal的原因在于Adjacency Matrix为对称矩阵！</strong></p>
-</li>
-<li><p>it means some coordinates should be higher than 0，一些会小于0；</p>
-</li>
-<li><p>再次提醒，老师这里举例子是2个partition的问题；</p>
-</li>
+<li>当$x_2=1$时，将$x_1$的值写入memory</li>
+<li>当$x_2=-1$时，将memory里的值清零</li>
+<li>当$x_3=1$时，将memory里的值输出</li>
+<li>当neuron的输入为正时，对应gate打开，反之则关闭</li>
 </ul>
-</blockquote>
-<h3 id="Adjacency-Matrix"><a href="#Adjacency-Matrix" class="headerlink" title="Adjacency Matrix"></a>Adjacency Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hv2g92j22bc1qity7.jpg">
-
-<blockquote>
+<p><a href="https://camo.githubusercontent.com/6ce4940591d6e7e31d088d04e66395099af7b0c2820754bf33505701fef985d1/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d332e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/6ce4940591d6e7e31d088d04e66395099af7b0c2820754bf33505701fef985d1/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d332e706e67" alt="img"></a></p>
+<h5 id="LSTM-Structure"><a href="#LSTM-Structure" class="headerlink" title="LSTM Structure"></a>LSTM Structure</h5><p>你可能会觉得上面的结构与平常所见的神经网络不太一样，实际上我们只需要把LSTM整体看做是下面的一个neuron即可</p>
+<p><a href="https://camo.githubusercontent.com/f8e356b17d4433f4728c39665dd8d622c35ead0ff75291b2c063bd08bba3573a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d342e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/f8e356b17d4433f4728c39665dd8d622c35ead0ff75291b2c063bd08bba3573a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d342e706e67" alt="img"></a></p>
+<p>假设目前我们的hidden layer只有两个neuron，则结构如下图所示：</p>
 <ul>
-<li>这里的n个real eigenvalues可能有重复的。</li>
+<li>输入$x_1$、$x_2$会分别乘上四组不同的weight，作为neuron的输入以及三个状态门的控制信号</li>
+<li>在原来的neuron里，1个input对应1个output，而在LSTM里，4个input才产生1个output，并且所有的input都是不相同的</li>
+<li>从中也可以看出LSTM所需要的参数量是一般NN的4倍</li>
 </ul>
-</blockquote>
-<h3 id="Degree-Matrix"><a href="#Degree-Matrix" class="headerlink" title="Degree Matrix"></a>Degree Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ht6rnxj22bc1qinft.jpg">
+<p><a href="https://camo.githubusercontent.com/433d36a5210c5d676a7095aa7a9f75c1c634c74e3acb14f57505749b39df1344/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d352e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/433d36a5210c5d676a7095aa7a9f75c1c634c74e3acb14f57505749b39df1344/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d352e706e67" alt="img"></a></p>
+<h5 id="LSTM-for-RNN"><a href="#LSTM-for-RNN" class="headerlink" title="LSTM for RNN"></a>LSTM for RNN</h5><p>从上图中你可能看不出LSTM与RNN有什么关系，接下来我们用另外的图来表示它</p>
+<p>假设我们现在有一整排的LSTM作为neuron，每个LSTM的cell里都存了一个scalar值，把所有的scalar连接起来就组成了一个vector $c^{t-1}$</p>
+<p>在时间点$t$，输入了一个vector $x^t$，它会乘上一个matrix，通过转换得到$z$，而$z$的每个dimension就代表了操控每个LSTM的输入值，同理经过不同的转换得到$z^i$、$z^f$和$z^o$，得到操控每个LSTM的门信号</p>
+<p><a href="https://camo.githubusercontent.com/ceb6257e3be6ae1920fb3fd4c6572db853ef38773f837b34d088e06c64b8f2ae/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d362e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ceb6257e3be6ae1920fb3fd4c6572db853ef38773f837b34d088e06c64b8f2ae/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d362e706e67" alt="img"></a></p>
+<p>下图是单个LSTM的运算情景，其中LSTM的4个input分别是$z$、$z^i$、$z^f$和$z^o$的其中1维，每个LSTM的cell所得到的input都是各不相同的，但它们却是可以一起共同运算的，整个运算流程如下图左侧所示：</p>
+<p>$f(z^f)$与上一个时间点的cell值$c^{t-1}$相乘，并加到经过input gate的输入$g(z)\cdot f(z^i)$上，得到这个时刻cell中的值$c^t$，最终再乘上output gate的信号$f(z^o)$，得到输出$y^t$</p>
+<p><a href="https://camo.githubusercontent.com/cfc4fb0ad5b3b8c5c4d01e7a35013fefcdc725582b2aa9f42f137e2728384618/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d372e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/cfc4fb0ad5b3b8c5c4d01e7a35013fefcdc725582b2aa9f42f137e2728384618/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d372e706e67" alt="img"></a></p>
+<p>上述的过程反复进行下去，就得到下图中各个时间点上，LSTM值的变化情况，其中与上面的描述略有不同的是，这里还需要把hidden layer的最终输出$y^t$以及当前cell的值$c^t$都连接到下一个时间点的输入上</p>
+<p>因此在下一个时间点操控这些gate值，不只是看输入的$x^{t+1}$，还要看前一个时间点的输出$h^t$和cell值$c^t$，你需要把$x^{t+1}$、$h^t$和$c^t$这3个vector并在一起，乘上4个不同的转换矩阵，去得到LSTM的4个输入值$z$、$z^i$、$z^f$、$z^o$，再去对LSTM进行操控</p>
+<p>注意：下图是<strong>同一个</strong>LSTM在两个相邻时间点上的情况</p>
+<p><a href="https://camo.githubusercontent.com/5b72766f863503b30ed1bc0bb38d62e4277a41592e8595865eb1e49271dc02c9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d382e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/5b72766f863503b30ed1bc0bb38d62e4277a41592e8595865eb1e49271dc02c9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d382e706e67" alt="img"></a></p>
+<p>上图是单个LSTM作为neuron的情况，事实上LSTM基本上都会叠多层，如下图所示，左边两个LSTM代表了两层叠加，右边两个则是它们在下一个时间点的状态</p>
+<p><a href="https://camo.githubusercontent.com/0a71cec2b222e9aa8cb0d9ee2595d14d02379a87f102dc07d97a767e9481dcce/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d392e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/0a71cec2b222e9aa8cb0d9ee2595d14d02379a87f102dc07d97a767e9481dcce/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d392e706e67" alt="img"></a></p>
 
-<h3 id="Laplacian-Matrix"><a href="#Laplacian-Matrix" class="headerlink" title="Laplacian Matrix"></a>Laplacian Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hy23xnj22bc1qi1kx.jpg">
-
-<blockquote>
-<ul>
-<li>0是我们这个问题中最小的eigenvalue（？）</li>
-<li>Laplacian Matrix$L$是一个半正定矩阵，详细证明如下：</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvuhghj22bc1qi4qp.jpg">
-
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvaa0pj22bc1qi4qp.jpg">
-
-<blockquote>
-<p>注意是对于每一个symmetric matrix都有这样一个fact！</p>
-<p>optimization problem</p>
-<p>$x^TLx$就是二次型的定义，所以要回顾一下二次型才是~</p>
-<p>只遍历边（i,j），所以需要乘以2。</p>
-<p>再观察一下，我们的$x_i^2$一共计算了$D_{ii}$次，也就是度的次数，于是我们根据它的边来拆分$D_{ij}$次，可以得到一个完全平方式。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hw4qusj22bc1qi7wh.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i319kaj22bc1qi4qp.jpg">
-
-<blockquote>
-<ul>
-<li>eigenvector的长度为1，这个是可以Normalize的</li>
-<li>restate之前的equation</li>
-<li>我们可以想象$x$向量代表的是label，那么0两端的话，值会很大。</li>
-<li>因为sum要为1，我们尽量让两端的点的数量相等。</li>
-<li>如上所示，$\lambda_2$有着非常神奇的eigenvector；</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hz82u6j22bc1qi4qp.jpg">
-
-<blockquote>
-<ul>
-<li><code>Fiedler</code>的这个想法和我们之前得到的那个restate其实是差不多的，但是他的这个严格性太强了！这个最终结果会统计横跨0左右两端的数量。</li>
-<li>在前一页PPT里面我们不会去enforce两个集合相等</li>
-<li>我们称这里的vector为Fiedler vector</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i10cujj22bc1qi4qp.jpg">
-
-<blockquote>
-<ul>
-<li>a spectral term spectral graph theory</li>
-<li>同样是之前的那个式子，这里是enforce其中的向量的总和为0，然后y的长度为1.</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i15d0yj22bc1qib29.jpg">
-
-<blockquote>
-<p>这里的证明展示了这种基于图的Laplacian矩阵的spectral clustering会给你一个近似最优解</p>
-<p>它会小于最优解的两倍，说明还是很有用的</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hzct2pj22bc1qihcb.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i0kbplj22bc1qihce.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i36bk1j22bc1qinjx.jpg">
-
-<p>前面是mathematical intuition，接下来是实打实的算法~</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i30m1tj22bc1qikhf.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i40lpoj22bc1qi1kx.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i50baxj22bc1qi4qp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i47lurj22bc1qits5.jpg">
-
-<blockquote>
-<p>老师说 how beautifully it captures the graph structure~左图和右图完美匹配。</p>
-<p>如果有四个类别怎么办？</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i5awj4j22bc1qih66.jpg">
-
-<blockquote>
-<p>如上所示，我们依然使用之前的方法得到$x_2$，虽然它是用于二分类问题的，但是你可以发现，在0以上和0以下，依然还可以在划分为两个类别。</p>
-<p>如何$\lambda_2$和$\lambda_1$是相等的，老师说自己的理论就会不成立。那么为什么不连通的图，他的两个就是相等的呢？好像我可以分析出来。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i887mjj22bc1qie2f.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iaepxwj22bc1qi4qp.jpg">
-
-<blockquote>
-<p>这里k的数量不等于最后聚类的数量。</p>
-</blockquote>
-<h2 id="Why-Use-Multiple-Eigenvectors？"><a href="#Why-Use-Multiple-Eigenvectors？" class="headerlink" title="Why Use Multiple Eigenvectors？"></a>Why Use Multiple Eigenvectors？</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i7a3l4j22bc1qib29.jpg">
-
-<blockquote>
-<ul>
-<li></li>
-<li>emphasize cohesive clusters</li>
-<li>well-separated space</li>
-<li>amplified 放大</li>
-<li>attenuate 减弱</li>
-</ul>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i83r45j22bc1qi4nb.jpg">
-
-<p>注意是降序的。。。</p>
-<p>如果我们的图是disconnected，那么$\lambda_1$和$\lambda_2$就是相等的了，如果是近似disconnected，那么$\lambda_1$和$\lambda_2$就应该是差不多大小。</p>
-<p>for a general graph，the maximum eigenvalue will correspond to the density of the graph，now we create the graph laplacian that kind of flipped the spectrum around，so the largest eigenvalue D mapped to the trivial eigenvalue of 0。</p>
-<h2 id="基于motif的谱聚类算法"><a href="#基于motif的谱聚类算法" class="headerlink" title="基于motif的谱聚类算法"></a>基于motif的谱聚类算法</h2><p>接下来，介绍一种super exciting extension of the spectral clustering method：</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i64o35j22bc1qi153.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iars1wj22bc1qi7td.jpg">
-
-<p>能否基于motif进行聚类？</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i8zt3tj22bc1qiwz1.jpg">
-
-<p>划分出上图红圈中的cluster。</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibojulj22bc1qi7v1.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibrzffj22bc1qib0u.jpg">
-
-<blockquote>
-<p>将前面提到的cut和volume的概念迁移到motif上：</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibpb0hj22bc1qie0g.jpg">
-
-<blockquote>
-<ul>
-<li>motif cut=1</li>
-<li>motif volume=10</li>
-</ul>
-</blockquote>
-<p>next,how do i automatedly find good cuts,how do I find clusters of motifs?</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibhozvj22bc1qie30.jpg">
-
-
-
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ief5rwj22bc1qi1f4.jpg">
-
-<blockquote>
-<p>$W^{M}$的值随着$M$的不同而变化。</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iglfjzj22bc1qikja.jpg">
-
-<blockquote>
-<p>要将其变成无向图</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09if38ywj22bc1qikfd.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iewp9dj22bc1qitxx.jpg">
-
-<blockquote>
-<p>尽管我们最后变成了无向图，看起来有点像edge cut，但是实际上还是原来的motif cut</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ie9a17j22bc1qiqlp.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iebrh7j22bc1qi7q3.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij5rsxj22bc1qi7q6.jpg">
-
-<blockquote>
-<p>分情况寻找划分的点。</p>
-<p>sweep procedure：扫描过程</p>
-</blockquote>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ihdbc5j22bc1qinke.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09igz3gnj22bc1qitvk.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij3ubsj22bc1qitqt.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ijil96j22bc1qihdt.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ikmbuuj22bc1qittm.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iiys1ij22bc1qikbb.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iklftqj22bc1qi4n6.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iow8l0j22bc1qiu0x.jpg">
-
-<p>aquatic layer</p>
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imqpv5j22bc1qi1kx.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imjdnnj22bc1qix0x.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ip4jpnj22bc1qinpd.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imyozdj22bc1qikcv.jpg">
-<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09io5cqvj22bc1qi4qp.jpg">
-
-<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><h3 id="聚类度量指标Modularity和Conductance的对比理解"><a href="#聚类度量指标Modularity和Conductance的对比理解" class="headerlink" title="聚类度量指标Modularity和Conductance的对比理解"></a>聚类度量指标<code>Modularity</code>和<code>Conductance</code>的对比理解</h3>
             </div>
             <hr/>
 
@@ -785,7 +580,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/">http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</a>
+                    <a href="http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/">http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -822,23 +617,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">课程笔记</span>
-                                </a>
-                            
-                                <a href="/tags/GNN/">
-                                    <span class="chip bg-color">GNN</span>
-                                </a>
-                            
-                                <a href="/tags/cs224w/">
-                                    <span class="chip bg-color">cs224w</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
-                                    <span class="chip bg-color">特征值与特征向量的应用</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1008,25 +787,27 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/">
+                <a href="/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【李宏毅-深度学习】26. RNN Part2">
                         
-                        <span class="card-title">【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</span>
+                        <span class="card-title">【李宏毅-深度学习】26. RNN Part2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：
-第七八两节介绍的都是关于图表示学习的，所谓万物皆可embeddin
+                            Recurrent Neural Network(Ⅱ)
+上一篇文章介绍了RNN的基本架构，像这么复杂的结构，我们该如何训练呢？
+
+Learning TargetLoss Function依旧是Slot Filling的例子，我们需要把mod
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
                         </span>
                         <span class="publish-author">
                             
@@ -1046,32 +827,36 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/">
+                <a href="/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="深度学习框架-动态图和静态图">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测">
                         
-                        <span class="card-title">深度学习框架-动态图和静态图</span>
+                        <span class="card-title">深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Tensorflow,Pytorch,PaddlePaddle等等深度学习框架，在介绍框架的时候都会提及到动态图和静态图。其实动态图和静态图都属于计算图，本文就来讲讲什么是动态图和静态图。
-计算图不论是动态图还是静态图，它们都属于计算图。计
+                            
+文章转载自深度长文: 通过最两年的8篇论文全面分析和总结基于图神经网络GNN 欺诈检测
+
+[TOC]
+欺诈检测（风控）是一个近两年业界和学界颇受关注的话题，其应用方向包括金融欺诈检测，风险控制，网络水军识别，黑产灰产识别等。
+本公众号之前
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    学习笔记
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
                                 </a>
                             
                             
@@ -1081,8 +866,16 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                        <span class="chip bg-color">综述</span>
+                    </a>
+                    
                     <a href="/tags/%E8%BD%AC%E8%BD%BD/">
                         <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
                     </a>
                     
                 </div>
@@ -1220,13 +1013,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
