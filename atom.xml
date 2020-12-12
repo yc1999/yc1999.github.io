@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-05T13:17:20.503Z</updated>
+  <updated>2020-12-12T13:05:20.327Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,11 +17,175 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>A Semi-supervised Graph Attentive Network for Financial Fraud Detection</title>
+    <link href="http://yc1999.github.io/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/"/>
+    <id>http://yc1999.github.io/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/</id>
+    <published>2020-12-12T06:16:45.000Z</published>
+    <updated>2020-12-12T13:05:20.327Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;参考文章：&lt;a href=&quot;https://blog.csdn.net/weixin_40505645/article/details/105124245&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="金融反欺诈" scheme="http://yc1999.github.io/tags/%E9%87%91%E8%9E%8D%E5%8F%8D%E6%AC%BA%E8%AF%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多分类，多标签模型的Accuracy, Precision, Recall和F1-score</title>
+    <link href="http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/"/>
+    <id>http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/</id>
+    <published>2020-12-11T02:35:18.000Z</published>
+    <updated>2020-12-11T12:10:13.098Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;众所周知，机器学习分类模型常用评价指标有Accuracy, Precision,</summary>
+        
+      
+    
+    
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="机器学习" scheme="http://yc1999.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>详解深度学习中的Normalization，BN/LN/WN</title>
+    <link href="http://yc1999.github.io/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/"/>
+    <id>http://yc1999.github.io/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/</id>
+    <published>2020-12-10T12:45:51.000Z</published>
+    <updated>2020-12-10T13:27:07.428Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/33173246&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyTorch: weight decay 和 dropout</title>
+    <link href="http://yc1999.github.io/2020/12/10/pytorch-weight-decay-he-dropout/"/>
+    <id>http://yc1999.github.io/2020/12/10/pytorch-weight-decay-he-dropout/</id>
+    <published>2020-12-10T10:41:59.000Z</published>
+    <updated>2020-12-10T10:41:59.180Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>图信号处理</title>
+    <link href="http://yc1999.github.io/2020/12/10/tu-xin-hao-chu-li/"/>
+    <id>http://yc1999.github.io/2020/12/10/tu-xin-hao-chu-li/</id>
+    <published>2020-12-10T03:19:23.000Z</published>
+    <updated>2020-12-11T15:43:23.913Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;频谱（spectrum）：图信号所有的傅里叶系数合在一起称为该信号的频谱。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于一张给定的图（即图的拓扑结构不变），图信号的频谱等价于一种身份ID，给定了频谱，我们就可以推导出空域中的图信号。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DGFraud工具分析</title>
+    <link href="http://yc1999.github.io/2020/12/07/dgfraud-gong-ju-fen-xi/"/>
+    <id>http://yc1999.github.io/2020/12/07/dgfraud-gong-ju-fen-xi/</id>
+    <published>2020-12-07T10:38:44.000Z</published>
+    <updated>2020-12-07T13:55:22.589Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Datasets&quot;&gt;&lt;a href=&quot;#Datasets&quot; class=&quot;headerlink&quot; title=&quot;Datasets&quot;&gt;&lt;/a&gt;Datasets&lt;/h2&gt;&lt;h3 id=&quot;DBLP&quot;&gt;&lt;a href=&quot;#DBLP&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>How to Read a Paper</title>
+    <link href="http://yc1999.github.io/2020/12/06/how-to-read-a-paper/"/>
+    <id>http://yc1999.github.io/2020/12/06/how-to-read-a-paper/</id>
+    <published>2020-12-06T08:17:11.000Z</published>
+    <updated>2020-12-06T09:17:13.591Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;2-“三步走”方法&quot;&gt;&lt;a href=&quot;#2-“三步走”方法&quot; class=&quot;headerlink&quot; title=&quot;2. “三步走”方法&quot;&gt;&lt;/a&gt;2.</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>【李宏毅-深度学习】26. RNN Part2</title>
     <link href="http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/"/>
     <id>http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/</id>
     <published>2020-12-05T12:51:38.000Z</published>
-    <updated>2020-12-05T13:17:20.503Z</updated>
+    <updated>2020-12-05T15:28:50.414Z</updated>
     
     
       
@@ -344,209 +508,6 @@
         
     <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-338272ff7d5ed60dd67f5cb531d0afd0_720w.jpg&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;复习Node-Embeddings&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】7-Graph-Representation-Learning</title>
-    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/"/>
-    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-graph-representation-learning/</id>
-    <published>2020-11-25T11:05:42.000Z</published>
-    <updated>2020-11-27T06:14:19.204Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;无监督学习方法——Node Embedding&lt;/p&gt;
-&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl1mmh7g5vj22bc1qi1kx.jpg&quot;&gt;
-&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</title>
-    <link href="http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/"/>
-    <id>http://yc1999.github.io/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/</id>
-    <published>2020-11-25T09:01:09.000Z</published>
-    <updated>2020-11-25T10:54:00.867Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：&lt;/p&gt;
-&lt;p&gt;第七八两节介绍的都是关于&lt;strong&gt;图表示学习&lt;/strong&gt;的，所谓万物皆可e</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering</title>
-    <link href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/"/>
-    <id>http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</id>
-    <published>2020-11-24T06:50:27.000Z</published>
-    <updated>2020-11-27T07:06:12.621Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-    <category term="特征值与特征向量的应用" scheme="http://yc1999.github.io/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深度学习框架-动态图和静态图</title>
-    <link href="http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/"/>
-    <id>http://yc1999.github.io/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/</id>
-    <published>2020-11-24T03:29:46.000Z</published>
-    <updated>2020-11-24T06:37:30.858Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;code&gt;Tensorflow&lt;/code&gt;,&lt;code&gt;Pytorch&lt;/code&gt;,&lt;code&gt;PaddlePaddle&lt;/code&gt;等等深度学习框架，在介绍框架的时候都会提及到&lt;strong&gt;动态图&lt;/strong&gt;和&lt;strong&gt;静态图&lt;/strong&gt;。其实动</summary>
-        
-      
-    
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模型评估指标AUC和ROC，这是我看到的最透彻的讲解</title>
-    <link href="http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/"/>
-    <id>http://yc1999.github.io/2020/11/22/mo-xing-ping-gu-zhi-biao-auc-he-roc-zhe-shi-wo-kan-dao-de-zui-tou-che-de-jiang-jie/</id>
-    <published>2020-11-22T08:40:44.000Z</published>
-    <updated>2020-11-28T02:30:51.057Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt; 文章来源：&lt;a href=&quot;https://blog.csdn.net/liweibin1994/article/details/79462554&quot;&gt;模型评估指标AUC（area under the</summary>
-        
-      
-    
-    
-    
-    <category term="机器学习" scheme="http://yc1999.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="AUC" scheme="http://yc1999.github.io/tags/AUC/"/>
-    
-    <category term="ROC" scheme="http://yc1999.github.io/tags/ROC/"/>
-    
-    <category term="混淆矩阵" scheme="http://yc1999.github.io/tags/%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5/"/>
-    
-    <category term="机器学习" scheme="http://yc1999.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】homework 0</title>
-    <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/"/>
-    <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-homework-0/</id>
-    <published>2020-11-20T12:17:20.000Z</published>
-    <updated>2020-11-21T06:12:33.158Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; snap&lt;/code&gt;&lt;/pre&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】4. Community Structure in Networks</title>
-    <link href="http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/"/>
-    <id>http://yc1999.github.io/2020/11/20/si-tan-fu-cs224w-tu-ji-qi-xue-xi-4-community-structure-in-networks/</id>
-    <published>2020-11-20T01:37:37.000Z</published>
-    <updated>2020-11-22T07:19:50.420Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gkvvoq03dwj21hv0g340q.jpg&quot; alt=&quot;Community Structure in</summary>
         
       
     

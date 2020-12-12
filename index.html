@@ -30,10 +30,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-
+<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -627,7 +627,7 @@
     
     
     <div class="col s12" >
-        <div class="post-card" style="background-image: url('/medias/featureimages/14.jpg')">
+        <div class="post-card" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1glld3e7lcyj22yo1o01kx.jpg')">
             <div class="post-body">
                 <div class="post-categories">
                     
@@ -639,7 +639,7 @@
                 <a href="/2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/">
                     <h3 class="post-title">Heterogeneous Graph Neural Networks for Malicious Account Detection</h3>
                 </a>
-                <p class="post-description">支付宝2018年CIKM论文《Heterogeneous Graph Neural Networks for Malicious Account Detection》阅读笔记</p>
+                <p class="post-description">支付宝2018年CIKM论文，论文使用user-device图，提出device aggregation和activity aggregation的数据特征，并且利用该特征构造了GNN的消息传递函数，进行恶意账户识别。</p>
                 <a href="/2020/11/13/heterogeneous-graph-neural-networks-for-malicious-account-detection/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
                     <i class="icon far fa-eye fa-fw"></i>阅读更多
                 </a>
@@ -664,6 +664,304 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/">
+                        <div class="card-image">
+                            
+                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gllcwqjlfzj22yo1o0axg.jpg" class="responsive-img" alt="A Semi-supervised Graph Attentive Network for Financial Fraud Detection">
+                            
+                            <span class="card-title">A Semi-supervised Graph Attentive Network for Financial Fraud Detection</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                支付宝2019ICDM论文，论文采用node-level + view-level的方式构造用户的embedding，最后以supervised loss+ unsupervised loss的方式构造损失函数，良好地利用了labeled和unlabeled的数据。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">论文笔记</span>
+                        </a>
+                        
+                        <a href="/tags/%E9%87%91%E8%9E%8D%E5%8F%8D%E6%AC%BA%E8%AF%88/">
+                            <span class="chip bg-color">金融反欺诈</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/">
+                        <div class="card-image">
+                            
+                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gljpsvf998j20xc0goq48.jpg" class="responsive-img" alt="多分类，多标签模型的Accuracy, Precision, Recall和F1-score">
+                            
+                            <span class="card-title">多分类，多标签模型的Accuracy, Precision, Recall和F1-score</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                前言众所周知，机器学习分类模型常用评价指标有Accuracy, Precision, Recall和F1-score，而回归模型最常用指标有MAE和RMSE。但是我们真正了解这些评价指标的意义吗？
+在具体场景（如不均衡多分类）中到底应该以哪
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-11
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <span class="chip bg-color">学习笔记</span>
+                        </a>
+                        
+                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                            <span class="chip bg-color">转载</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">机器学习</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/">
+                        <div class="card-image">
+                            
+                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glj2dj8brsj20m80bltdq.jpg" class="responsive-img" alt="详解深度学习中的Normalization，BN/LN/WN">
+                            
+                            <span class="card-title">详解深度学习中的Normalization，BN/LN/WN</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+原文地址：https://zhuanlan.zhihu.com/p/33173246
+
+深度神经网络模型训练之难众所周知，其中一个重要的现象就是 Internal Covariate Shift. Batch Norm 大法自 2015 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-10
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CarlYoung
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                            <span class="chip bg-color">转载</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/10/pytorch-weight-decay-he-dropout/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="PyTorch: weight decay 和 dropout">
+                            
+                            <span class="card-title">PyTorch: weight decay 和 dropout</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-10
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CarlYoung
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/10/tu-xin-hao-chu-li/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="图信号处理">
+                            
+                            <span class="card-title">图信号处理</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                图信号处理（Graph Signal Process）实在是涉及太多概念了，需要好好梳理一下。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-10
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/07/dgfraud-gong-ju-fen-xi/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="DGFraud工具分析">
+                            
+                            <span class="card-title">DGFraud工具分析</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                DatasetsDBLPWe uses the pre-processed DBLP dataset from Jhy1993/HAN You can run the FdGars, Player2Vec, GeniePath and GE
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CarlYoung
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/06/how-to-read-a-paper/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="How to Read a Paper">
+                            
+                            <span class="card-title">How to Read a Paper</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                [TOC]
+2. “三步走”方法读论文不是一蹴而就的，拿到一篇论文，直接一股脑读下去是不明智的！读论文应该分“三步走”~每一步都有自己的目标，都是建立在前一步的基础上的：
+
+第一步：了解论文的idea是什么？
+第二步：理解论文的内容（但不是
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                CarlYoung
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -888,351 +1186,6 @@ RNN，或者说最常用的LSTM，一般用于记住之前的状态，以供后�
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/12/02/numpy-dui-axis-de-li-jie/">
-                        <div class="card-image">
-                            
-                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9cgjxpdhj20zk0g0t99.jpg" class="responsive-img" alt="NumPy:对Axis的理解">
-                            
-                            <span class="card-title">NumPy:对Axis的理解</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                学习NumPy中的axis概念
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/NumPy/" class="post-category">
-                                    NumPy
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">学习笔记</span>
-                        </a>
-                        
-                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                            <span class="chip bg-color">转载</span>
-                        </a>
-                        
-                        <a href="/tags/NumPy/">
-                            <span class="chip bg-color">NumPy</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/12/02/tensor.data-yu-tensor.detach-de-qu-bie/">
-                        <div class="card-image">
-                            
-                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9va01qbbj22gw1e07wh.jpg" class="responsive-img" alt="Tensor.data与Tensor.detach()的区别">
-                            
-                            <span class="card-title">Tensor.data与Tensor.detach()的区别</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                Tensor.data与Tensor.detach()的区别
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/PyTorch/" class="post-category">
-                                    PyTorch
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">学习笔记</span>
-                        </a>
-                        
-                        <a href="/tags/PyTorch/">
-                            <span class="chip bg-color">PyTorch</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/11/30/deep-learning-with-pytorch-a-60-minute-blitz/">
-                        <div class="card-image">
-                            
-                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9va01qbbj22gw1e07wh.jpg" class="responsive-img" alt="Deep Learning with PyTorch: A 60 Minute Blitz">
-                            
-                            <span class="card-title">Deep Learning with PyTorch: A 60 Minute Blitz</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                这不是PyTorch入门教程，而是入门教程的学后思考~
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/PyTorch/" class="post-category">
-                                    PyTorch
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">学习笔记</span>
-                        </a>
-                        
-                        <a href="/tags/PyTorch/">
-                            <span class="chip bg-color">PyTorch</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/11/30/windows-xia-tong-yi-ge-xian-qia-pei-zhi-duo-ge-cuda-gong-ju-bao-yi-ji-ta-men-zhi-jian-de-qie-huan/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Windows下同一个显卡配置多个CUDA工具包以及它们之间的切换">
-                            
-                            <span class="card-title">Windows下同一个显卡配置多个CUDA工具包以及它们之间的切换</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                故事是这样的，我最近在学GNN，之前使用的框架是百度团队的PGL，使用的CUDA是10.0版本的。
-但是其实PYG才是主流的用于图卷积神经网络的框架，所以打算在PyTorch环境下安装PYG，但是PYG需要的PyTorch版本要大于1.4，
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                CarlYoung
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/11/29/test/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="test">
-                            
-                            <span class="card-title">test</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                squares = []
-for x in range(10):
-    squares.append(x**2)
-
-squares
-#include &lt;iostream>
-using namespace std;
-
-int main
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                CarlYoung
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/">
-                        <div class="card-image">
-                            
-                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg" class="responsive-img" alt="5分钟PaddlePaddle知识点——program和它的朋友们">
-                            
-                            <span class="card-title">5分钟PaddlePaddle知识点——program和它的朋友们</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-转载自AI Studio某网友
-
-前言paddle 静态图的开发结构可以看成“八股文”。一般进来，按照简单例子就直接组网训练。示例代码中会看到如下语句：
-fluid.default_main_program()
-with fluid.pr
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/PaddlePaddle/" class="post-category">
-                                    PaddlePaddle
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">学习笔记</span>
-                        </a>
-                        
-                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                            <span class="chip bg-color">转载</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/11/28/paddlepaddle-she-ji-si-xiang/">
-                        <div class="card-image">
-                            
-                            <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9vk5tx86j20xc0m8769.jpg" class="responsive-img" alt="PaddlePaddle设计思想">
-                            
-                            <span class="card-title">PaddlePaddle设计思想</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-转载自PaddlePaddle官方文档
-
-简介本篇文档主要介绍飞桨（PaddlePaddle，以下简称Paddle）底层的设计思想，帮助用户更好的理解框架运作过程。
-阅读本文档，您将了解：
-
-Paddle 内部的执行流程
-Program 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/PaddlePaddle/" class="post-category">
-                                    PaddlePaddle
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                            <span class="chip bg-color">学习笔记</span>
-                        </a>
-                        
-                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                            <span class="chip bg-color">转载</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1249,7 +1202,7 @@ Program
             
         </div>
         <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 3</div>
+            <div class="center-align b-text-gray">1 / 4</div>
         </div>
         <div class="col s6 m4 l4">
             
