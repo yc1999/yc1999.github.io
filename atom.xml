@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-12T13:05:20.327Z</updated>
+  <updated>2020-12-13T14:07:05.733Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs</title>
+    <link href="http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/"/>
+    <id>http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/</id>
+    <published>2020-12-13T08:20:25.000Z</published>
+    <updated>2020-12-13T14:07:05.733Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;font color=&quot;red&quot;&gt;核心思想是将&lt;strong&gt;图生成问题&lt;/strong&gt;转变成&lt;strong&gt;序列生成问题&lt;/strong&gt;。&lt;/font&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;转载自&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【AI研习社】KDD 2020丨欺诈检测研究现状以及欺诈者对抗行为建模</title>
+    <link href="http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/"/>
+    <id>http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/</id>
+    <published>2020-12-12T13:11:29.000Z</published>
+    <updated>2020-12-12T15:14:26.279Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;直播介绍&quot;&gt;&lt;a href=&quot;#直播介绍&quot; class=&quot;headerlink&quot; title=&quot;直播介绍&quot;&gt;&lt;/a&gt;直播介绍&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>A Semi-supervised Graph Attentive Network for Financial Fraud Detection</title>
@@ -463,64 +519,6 @@
     <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PaddlePaddle设计思想</title>
-    <link href="http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/"/>
-    <id>http://yc1999.github.io/2020/11/28/paddlepaddle-she-ji-si-xiang/</id>
-    <published>2020-11-28T10:41:03.000Z</published>
-    <updated>2020-12-02T14:21:56.939Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;转载自&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】8-Graph Neural Networks</title>
-    <link href="http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/"/>
-    <id>http://yc1999.github.io/2020/11/26/si-tan-fu-cs224w-tu-ji-qi-xue-xi-8-graph-neural-networks/</id>
-    <published>2020-11-26T07:38:12.000Z</published>
-    <updated>2020-11-27T12:13:36.930Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic1.zhimg.com/80/v2-338272ff7d5ed60dd67f5cb531d0afd0_720w.jpg&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;复习Node-Embeddings&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
     
   </entry>
   

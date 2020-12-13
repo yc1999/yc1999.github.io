@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【李宏毅-深度学习】26. RNN Part1, 杨程的博客">
+    <meta name="keywords" content="【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【李宏毅-深度学习】26. RNN Part1 | 杨程的博客</title>
+    <title>【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【李宏毅-深度学习】26. RNN Part1</h1>
+                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +430,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">课程笔记</span>
+                            </a>
+                        
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                            <a href="/tags/cs224w/">
+                                <span class="chip bg-color">cs224w</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -444,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-05
+                    2020-12-13
                 </div>
                 
 
@@ -460,101 +481,85 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Recurrent-Neural-Network-Ⅰ"><a href="#Recurrent-Neural-Network-Ⅰ" class="headerlink" title="Recurrent Neural Network(Ⅰ)"></a>Recurrent Neural Network(Ⅰ)</h1><blockquote>
-<p>RNN，或者说最常用的LSTM，一般用于记住之前的状态，以供后续神经网络的判断，它由input gate、forget gate、output gate和cell memory组成，每个LSTM本质上就是一个neuron，特殊之处在于有4个输入：$z$和三门控制信号$z_i$、$z_f$和$z_o$，每个时间点的输入都是由当前输入值+上一个时间点的输出值+上一个时间点cell值来组成</p>
+                <p><font color="red">核心思想是将<strong>图生成问题</strong>转变成<strong>序列生成问题</strong>。</font></p>
+<blockquote>
+<p>转载自<a href="https://blog.csdn.net/Jenny_oxaza/article/details/107554165" target="_blank" rel="noopener">cs224w 图神经网络 学习笔记（十）Deep Generative Models for Graphs</a></p>
 </blockquote>
-<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><h5 id="Slot-Filling"><a href="#Slot-Filling" class="headerlink" title="Slot Filling"></a>Slot Filling</h5><p>在智能客服、智能订票系统中，往往会需要slot filling技术，它会分析用户说出的语句，将时间、地址等有效的关键词填到对应的槽上，并过滤掉无效的词语</p>
-<p>词汇要转化成vector，可以使用1-of-N编码，word hashing或者是word vector等方式，此外我们可以尝试使用Feedforward Neural Network来分析词汇，判断出它是属于时间或是目的地的概率</p>
-<p>但这样做会有一个问题，该神经网络会先处理“arrive”和“leave”这两个词汇，然后再处理“Taipei”，这时对NN来说，输入是相同的，它没有办法区分出“Taipei”是出发地还是目的地</p>
-<p>这个时候我们就希望神经网络是有记忆的，如果NN在看到“Taipei”的时候，还能记住之前已经看过的“arrive”或是“leave”，就可以根据上下文得到正确的答案</p>
-<p><a href="https://camo.githubusercontent.com/2b9a21b472f782cbd6c99301752fdcc69f87fe1cdd32c8391bdeb3df93c94f5a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c652e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/2b9a21b472f782cbd6c99301752fdcc69f87fe1cdd32c8391bdeb3df93c94f5a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c652e706e67" alt="img"></a></p>
-<p>这种有记忆力的神经网络，就叫做Recurrent Neural Network(RNN)</p>
-<p>在RNN中，hidden layer每次产生的output $a_1$、$a_2$，都会被存到memory里，下一次有input的时候，这些neuron就不仅会考虑新输入的$x_1$、$x_2$，还会考虑存放在memory中的$a_1$、$a_2$</p>
-<p>注：在input之前，要先给内存里的$a_i$赋初始值，比如0</p>
-<p><a href="https://camo.githubusercontent.com/4824d7458180c379b6012379921cf8824edce6109d846f92e8063b0fdb14b9f6/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/4824d7458180c379b6012379921cf8824edce6109d846f92e8063b0fdb14b9f6/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2e706e67" alt="img"></a></p>
-<p>注意到，每次NN的输出都要考虑memory中存储的临时值，而不同的输入产生的临时值也尽不相同，因此改变输入序列的顺序会导致最终输出结果的改变(Changing the sequence order will change the output)</p>
-<h5 id="Slot-Filling-with-RNN"><a href="#Slot-Filling-with-RNN" class="headerlink" title="Slot Filling with RNN"></a>Slot Filling with RNN</h5><p>用RNN处理Slot Filling的流程举例如下：</p>
+<h2 id="Recap-回顾"><a href="#Recap-回顾" class="headerlink" title="Recap: 回顾"></a>Recap: 回顾</h2><p>在上节课中GNN的学习中，我们从空域的角度理解GNN的基本思想就是<strong>邻居聚合</strong>：<br><img src="https://img-blog.csdnimg.cn/20201213162633826.png"></p>
+<blockquote>
+<p>邻居聚合的优点在于结合了<strong>Feature</strong>和<strong>Graph Structure</strong></p>
+</blockquote>
+<p>用数学公式来表示一次<strong>邻居聚合</strong>就是：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glmkmxyyiuj20e601l748.jpg" alt="消息聚合公式"></p>
+<p>经典的GNN算法有GCN和GraphSAGE两种，GraphSAGE相比于GCN的优点之一在于<strong>其有更多的不同的Aggregation Function</strong>。</p>
+<p>今天讲解的内容是如何生成图，即：<br><strong>input</strong>：a set of obeserved graphs<br><strong>output</strong>：new graphs generated by model</p>
+<h2 id="Problem-of-Graph-Generation"><a href="#Problem-of-Graph-Generation" class="headerlink" title="Problem of Graph Generation"></a>Problem of Graph Generation</h2><h3 id="图生成算法的重要性"><a href="#图生成算法的重要性" class="headerlink" title="图生成算法的重要性"></a>图生成算法的重要性</h3><p><img src="https://img-blog.csdnimg.cn/20201213164127247.png"></p>
+<h3 id="图生成算法有两大任务"><a href="#图生成算法有两大任务" class="headerlink" title="图生成算法有两大任务"></a>图生成算法有两大任务</h3><ol>
+<li><strong>Realistic graph generation</strong><br>Generate graphs that are similar to a given set of graphs（本节课的重点）</li>
+<li><strong>Goal-directed graph generation</strong><br>Generate graphs that optimize given objectives/constraints（Drug molecule generation/optimization）</li>
+</ol>
+<h3 id="图生成算法的难点"><a href="#图生成算法的难点" class="headerlink" title="图生成算法的难点"></a>图生成算法的难点</h3><ol>
+<li><strong>Large and variable output space</strong><br><img src="https://img-blog.csdnimg.cn/20201213164853330.png"></li>
+<li><strong>Non-unique representations</strong><br>即存在<strong>图同构</strong>这种性质<br><img src="https://img-blog.csdnimg.cn/20201213165030404.png"></li>
+<li><strong>Complex dependencies</strong><br>以下图的例子来看，在边的生成的过程中，存在着前后依赖关系：<br><img src="https://img-blog.csdnimg.cn/2020121316531251.png"><h2 id="Recap-ML-Basics-for-Graph-Generation"><a href="#Recap-ML-Basics-for-Graph-Generation" class="headerlink" title="Recap: ML Basics for Graph Generation"></a>Recap: ML Basics for Graph Generation</h2>基于上面讨论的图生成算法的难点，我们可以通过下面讲解的机器学习知识将其成功解决。</li>
+</ol>
+<p>首先，从机器学习的角度明确Graph Generative Model的输入和输出：<br><img src="https://img-blog.csdnimg.cn/20201213165808720.png"><br>我们假设现实生活中的图，是由“上帝之手”锻造的，它有一个潜在的<strong>概率分布</strong>$p_{data}(G)$，而这个<strong>概率分布</strong>正是我们需要去学习的。</p>
+<p>回顾一下，传统的 <strong>生成模型（Generative Models）</strong> 的含义：<br><img src="https://img-blog.csdnimg.cn/20201213170152364.png"><br>我们的目标有两个：<strong>得到一个近似的distribution（由参数$\theta$确定）</strong> 以及 <strong>能够从这个distribution里面采样出新的数据（终极目标）</strong>。</p>
+<blockquote>
+<p>需要理解的是，这里的distribution是概率分布的意思，讲得实际一点，比如数据服从正态分布、数据服从伯努利分布等等。只有有了概率分布之后，我们才能在这个概率分布中采样出无穷无尽的数据，这也是为什么第一个目标是构造概率分布的原因。</p>
+</blockquote>
+<p>定义了两个目标之后，我们就来看看怎么实现这两个目标：</p>
+<h3 id="Goal-1：Make-p-model-x-theta-close-to-p-data-x"><a href="#Goal-1：Make-p-model-x-theta-close-to-p-data-x" class="headerlink" title="Goal 1：Make $p_{model}(x; \theta)$ close to $p_{data}(x)$"></a>Goal 1：Make $p_{model}(x; \theta)$ close to $p_{data}(x)$</h3><p>关键技术：<font color="red"><strong>极大似然估计</strong></font><br><img src="https://img-blog.csdnimg.cn/20201213171503144.png"></p>
+<blockquote>
+<p>简单回顾一下概率论中关于极大似然估计的基本思想：使当前被发现的样本的概率最大化。</p>
+</blockquote>
+<h3 id="Goal-2：Sample-from-p-model-x-theta"><a href="#Goal-2：Sample-from-p-model-x-theta" class="headerlink" title="Goal 2：Sample from $p_{model}(x;\theta)$"></a>Goal 2：Sample from $p_{model}(x;\theta)$</h3><p><img src="https://img-blog.csdnimg.cn/20201213172158498.png"><br>这里不太理解，据说是生成模型的常用做法。</p>
+<p>关于生成模型的种类，老师给出了下面这张图：<br><img src="https://img-blog.csdnimg.cn/20201213172413331.png"><br>本节课使用的生成模型叫做：<font color="red"><strong>Auto-regressive models</strong></font>，它的核心思想是<strong>predicts future behavior based on past behavior.</strong></p>
+<h3 id="Auto-regressive-models"><a href="#Auto-regressive-models" class="headerlink" title="Auto-regressive models"></a>Auto-regressive models</h3><p>Auto-regressive models具有这样一种特征：$p_{model}(x;\theta)$ is used for both <strong>density estimation</strong> and <strong>sampling</strong> (from the probability density)</p>
+<blockquote>
+<p>而对于Variational Auto Encoders（VAEs），Generative Adversarial Nets（GATs）等模型，它们是分2个或者多个模型来分别完成上面两个Goals的。</p>
+</blockquote>
+<p>Auto-regressive model里面用到了概率论中的Chain Relu：<br><img src="https://img-blog.csdnimg.cn/20201213192840646.png"></p>
+<blockquote>
 <ul>
-<li>“arrive”的vector作为$x^1$输入RNN，通过hidden layer生成$a^1$，再根据$a^1$生成$y^1$，表示“arrive”属于每个slot的概率，其中$a^1$会被存储到memory中</li>
-<li>“Taipei”的vector作为$x^2$输入RNN，此时hidden layer同时考虑$x^2$和存放在memory中的$a^1$，生成$a^2$，再根据$a^2$生成$y^2$，表示“Taipei”属于某个slot的概率，此时再把$a^2$存到memory中</li>
-<li>依次类推</li>
+<li>Chain Rule揭示了一个简单的事实：后面的状态由前面的状态决定。</li>
+<li>后面讲的GraphRNN的思想就源于Chain Rule，学习的时候记得将GraphRNN类比到Chain Rule~</li>
 </ul>
-<p><a href="https://camo.githubusercontent.com/ce346860ed9f6ae5c9fe309f65b11d59224cbca598f6bcbea28dfe79922c4fde/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ce346860ed9f6ae5c9fe309f65b11d59224cbca598f6bcbea28dfe79922c4fde/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65322e706e67" alt="img"></a></p>
-<p>注意：上图为同一个RNN在三个不同时间点被分别使用了三次，并非是三个不同的NN</p>
-<p>这个时候，即使输入同样是“Taipei”，我们依旧可以根据前文的“leave”或“arrive”来得到不一样的输出</p>
-<p><a href="https://camo.githubusercontent.com/e4a2ae83cb0f77a47f8d6eb38ef445bbc06ad06819883c3f37813e8ca12aa539/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65332e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/e4a2ae83cb0f77a47f8d6eb38ef445bbc06ad06819883c3f37813e8ca12aa539/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d6578616d706c65332e706e67" alt="img"></a></p>
-<h5 id="Elman-Network-amp-Jordan-Network"><a href="#Elman-Network-amp-Jordan-Network" class="headerlink" title="Elman Network &amp; Jordan Network"></a>Elman Network &amp; Jordan Network</h5><p>RNN有不同的变形：</p>
+</blockquote>
+<h2 id="GraphRNN：Generating-Realistic-Graphs"><a href="#GraphRNN：Generating-Realistic-Graphs" class="headerlink" title="GraphRNN：Generating Realistic Graphs"></a>GraphRNN：Generating Realistic Graphs</h2><h3 id="Model-Graph-as-Sequences-将图的生成问题转换成序列生成问题"><a href="#Model-Graph-as-Sequences-将图的生成问题转换成序列生成问题" class="headerlink" title="Model Graph as Sequences 将图的生成问题转换成序列生成问题"></a>Model Graph as Sequences 将图的生成问题转换成序列生成问题</h3><p>网络的生成是通过不断地增加节点和边来实现的。<br><img src="https://img-blog.csdnimg.cn/20201213193937952.png"><br>对应一个确定的节点顺序$\pi$，图$G$可以表示为节点和边的序列$S^{\pi}$：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200805220551591.png#pic_center"><br>$S^{\pi}$实际上是序列的序列，里面包含了序列$S_{i}^{\pi}$，它有两个层次的操作：</p>
 <ul>
-<li>Elman Network：将hidden layer的输出保存在memory里</li>
-<li>Jordan Network：将整个neural network的输出保存在memory里</li>
+<li><strong>节点操作</strong>——增加节点，每个$S_{i}^{\pi}$对应一个；<br><img src="https://img-blog.csdnimg.cn/20201213194509203.png"></li>
+<li><strong>边的操作</strong>——序列 $S_i^{\pi}$中的每一步表示是否要与已有的节点增加一条边：<br><img src="https://img-blog.csdnimg.cn/2020121319473133.png"><br>那么，我们就可以将图的生成问题转换成一个<strong>序列的生成问题</strong>。这样一来，（对于无向图来说），我们只需要保存邻接矩阵的一半就行了。</li>
 </ul>
-<p>由于hidden layer没有明确的训练目标，而整个NN具有明确的目标，因此Jordan Network的表现会更好一些</p>
-<p><a href="https://camo.githubusercontent.com/9dc9b147c70879900b322ff54642f14cd78cf5b5a64b9dbd084adbf5110f52d8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d747970652e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/9dc9b147c70879900b322ff54642f14cd78cf5b5a64b9dbd084adbf5110f52d8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d747970652e706e67" alt="img"></a></p>
-<h5 id="Bidirectional-RNN"><a href="#Bidirectional-RNN" class="headerlink" title="Bidirectional RNN"></a>Bidirectional RNN</h5><p>RNN 还可以是双向的，你可以同时训练一对正向和反向的RNN，把它们对应的hidden layer $x^t$拿出来，都接给一个output layer，得到最后的$y^t$</p>
-<p>使用Bi-RNN的好处是，NN在产生输出的时候，它能够看到的范围是比较广的，RNN在产生$y^{t+1}$的时候，它不只看了从句首$x^1$开始到$x^{t+1}$的输入，还看了从句尾$x^n$一直到$x^{t+1}$的输入，这就相当于RNN在看了整个句子之后，才决定每个词汇具体要被分配到哪一个槽中，这会比只看句子的前一半要更好</p>
-<p><a href="https://camo.githubusercontent.com/1d0deff740a918bfb7f2c48fa913ae5080369096e146f330aec0890066de23a0/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d62692e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/1d0deff740a918bfb7f2c48fa913ae5080369096e146f330aec0890066de23a0/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f726e6e2d62692e706e67" alt="img"></a></p>
-<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>前文提到的RNN只是最简单的版本，并没有对memory的管理多加约束，可以随时进行读取，而现在常用的memory管理方式叫做长短期记忆(Long Short-term Memory)，简称LSTM</p>
-<p>冷知识：可以被理解为比较长的短期记忆，因此是short-term，而非是long-short term</p>
-<h5 id="Three-gate"><a href="#Three-gate" class="headerlink" title="Three-gate"></a>Three-gate</h5><p>LSTM有三个gate：</p>
+<p>综上所述：<br><strong>A graph + a node ordering = A sequence of sequences!</strong><br><img src="https://img-blog.csdnimg.cn/2020121319502638.png"><br>那么接下来，我们需要解决的就是两个过程：</p>
 <ul>
-<li>当某个neuron的输出想要被写进memory cell，它就必须要先经过一道叫做<strong>input gate</strong>的闸门，如果input gate关闭，则任何内容都无法被写入，而关闭与否、什么时候关闭，都是由神经网络自己学习到的</li>
-<li>output gate决定了外界是否可以从memory cell中读取值，当<strong>output gate</strong>关闭的时候，memory里面的内容同样无法被读取</li>
-<li>forget gate则决定了什么时候需要把memory cell里存放的内容忘记清空，什么时候依旧保存</li>
+<li>新的节点的生成——节点序列的生成</li>
+<li>对于新生成的节点，生成其相关联的边——边序列的生成</li>
 </ul>
-<p><a href="https://camo.githubusercontent.com/29385e85f0c291c0f4b04519fb97509a4a9189fe01438f6469f1c062c3466a7a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/29385e85f0c291c0f4b04519fb97509a4a9189fe01438f6469f1c062c3466a7a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d2e706e67" alt="img"></a></p>
-<p>整个LSTM可以看做是4个input，1个output：</p>
+<p><strong>而解决序列问题，我们自然而然地就能想到利用RNN来实现。</strong></p>
+<h3 id="GraphRNN"><a href="#GraphRNN" class="headerlink" title="GraphRNN"></a>GraphRNN</h3><p>GraphRNN包括两个部分：</p>
+<p>node-level RNN——生成edge-level RNN的初始状态<br>edge-level RNN——为新节点创建相关的边，并将结果更新到node-level RNN的状态中。<br><img src="https://img-blog.csdnimg.cn/20201213204549171.png"></p>
+<blockquote>
+<p>其实从上面的图中可以看出，每一步是先求解边，然后再加入点的。</p>
+</blockquote>
+<p>那么，我们怎样利用RNN来生成序列呢？</p>
+<p>首先来看看RNN的定义，对于一个RNN单元来说，有状态$s_t$，输入$x_t$，输出$y_t$。<br><img src="https://img-blog.csdnimg.cn/2020121320501081.png"><br>对于序列的表示，可以将RNN单元重复连接。序列的开始和结束都定义为特殊的标识符，开始的标示符$s_0 = SOS$，结束的标识符$y_T = EOS$（此时序列$S^{\pi}$的被定义成了$\lbrace SOS，S_1^{\pi}，….，EOS \rbrace$）。而上一个状态的输出就是下一个状态的输入，即$x_{t+1} = y_{t}$。如下图所示：<br><img src="https://img-blog.csdnimg.cn/20201213205954553.png"><br>在上述模型的基础上，我们需要给RNN模型增加随机性。首先，我们要明确的是，我们的目标是使用RNN来估计 $\prod_{t=1}^n p_{model}(x_t|x_1, \cdots, x_{t-1}; \theta)$。我们定义$y_{t} = p_{model}(x_{t}|x_1,\cdots,x_{t-1}|\theta)$，那么$x_{t+1}$是在$y_{t}$上采样的结果，即$x_{t+1} \sim y_{t}$。<br><img src="https://img-blog.csdnimg.cn/20201213210700763.png"><br><strong>RNN每一步的输出是一个概率向量，下一个状态的输入时基于该概率向量的一个取样。</strong></p>
+<p><strong>模型的测试</strong><br><img src="https://img-blog.csdnimg.cn/20201213210959608.png"><br>假设我们有一个已经训练好的模型，$y$服从伯努利分布，$y_1=0.9$表示有0.9的概率生成1，即有边连接；有 $1-0.9=0.1$的概率生成0，即没有边连接。<br><strong>模型训练</strong></p>
+<blockquote>
+<p>那么怎么去训练模型呢？我们知道训练模型肯定是需要定义损失函数的，那么怎么定义随时函数呢？</p>
+<p><img src="https://img-blog.csdnimg.cn/20201213211224369.png"><br>在进行模型训练的时候，有一个原则——Teacher Forcing，也就是加入我们检测到真实的边的序列为 [1,0,…]，在训练时我们用真实的这个序列作为输出。</p>
+</blockquote>
+<p>损失函数定义为$y^{<em>}$和$y$之间的Binary cross entropy，训练目标是使损失函数最小化：<br>$$L=-[y_1^</em> \log(y_1)+(1-y_1^*)\log (1-y_1)]$$</p>
+<p>公式的解释如下图：<br><img src="https://img-blog.csdnimg.cn/20201213212341574.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3ljX2N5MTk5OQ==,size_16,color_FFFFFF,t_70"><br>下图是一个小例子：<br><img src="https://img-blog.csdnimg.cn/20201213212856969.png"><br>从上面这个例子可以很清晰地看到，我们是分了两个维度来进行RNN，因此在Node Level上，我们有$SOS$，在每个Edge Level上，我们也有对应的$SOS$和$EOS$。</p>
+<h3 id="模型优化——图节点的编号策略"><a href="#模型优化——图节点的编号策略" class="headerlink" title="模型优化——图节点的编号策略"></a>模型优化——图节点的编号策略</h3><p>然而，我们还是面临一个问题，因为每一个新生成的点都有可能和之前的点进行关联，也就是说，当图的节点数量很大时，我需要记住很长的依赖关系来实现边的生成。<br><img src="https://img-blog.csdnimg.cn/2020121321321342.png"><br>我们的解决方案，就是在数据预处理阶段利用BFS（广度优先搜索）来给图的节点编号。<br><img src="https://img-blog.csdnimg.cn/20201213213416680.png"><br>使用广度优先搜索进行编号，有两个优点：</p>
 <ul>
-<li>4个input=想要被存到memory cell里的值+操控input gate的信号+操控output gate的信号+操控forget gate的信号</li>
-<li>1个output=想要从memory cell中被读取的值</li>
+<li>Reduce possible node orderings</li>
+<li>Reduce steps for edge generation</li>
 </ul>
-<h5 id="Memory-Cell"><a href="#Memory-Cell" class="headerlink" title="Memory Cell"></a>Memory Cell</h5><p>如果从表达式的角度看LSTM，它比较像下图中的样子</p>
-<ul>
-<li>$z$是想要被存到cell里的输入值</li>
-<li>$z_i$是操控input gate的信号</li>
-<li>$z_o$是操控output gate的信号</li>
-<li>$z_f$是操控forget gate的信号</li>
-<li>$a$是综合上述4个input得到的output值</li>
-</ul>
-<p><a href="https://camo.githubusercontent.com/24bb5f15c2892bbd2734c8eaaf1319a97ed6f8f6a24984bc2b4e150a8c52f6a8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/24bb5f15c2892bbd2734c8eaaf1319a97ed6f8f6a24984bc2b4e150a8c52f6a8/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d322e706e67" alt="img"></a></p>
-<p>把$z$、$z_i$、$z_o$、$z_f$通过activation function，分别得到$g(z)$、$f(z_i)$、$f(z_o)$、$f(z_f)$</p>
-<p>其中对$z_i$、$z_o$和$z_f$来说，它们通过的激活函数$f()$一般会选sigmoid function，因为它的输出在0~1之间，代表gate被打开的程度</p>
-<p>令$g(z)$与$f(z_i)$相乘得到$g(z)\cdot f(z_i)$，然后把原先存放在cell中的$c$与$f(z_f)$相乘得到$cf(z_f)$，两者相加得到存在memory中的新值$c’=g(z)\cdot f(z_i)+cf(z_f)$</p>
-<ul>
-<li>若$f(z_i)=0$，则相当于没有输入，若$f(z_i)=1$，则相当于直接输入$g(z)$</li>
-<li>若$f(z_f)=1$，则保存原来的值$c$并加到新的值上，若$f(z_f)=0$，则旧的值将被遗忘清除</li>
-</ul>
-<p>从中也可以看出，forget gate的逻辑与我们的直觉是相反的，控制信号打开表示记得，关闭表示遗忘</p>
-<p>此后，$c’$通过激活函数得到$h(c’)$，与output gate的$f(z_o)$相乘，得到输出$a=h(c’)f(z_o)$</p>
-<h5 id="LSTM-Example"><a href="#LSTM-Example" class="headerlink" title="LSTM Example"></a>LSTM Example</h5><p>下图演示了一个LSTM的基本过程，$x_1$、$x_2$、$x_3$是输入序列，$y$是输出序列，基本原则是：</p>
-<ul>
-<li>当$x_2=1$时，将$x_1$的值写入memory</li>
-<li>当$x_2=-1$时，将memory里的值清零</li>
-<li>当$x_3=1$时，将memory里的值输出</li>
-<li>当neuron的输入为正时，对应gate打开，反之则关闭</li>
-</ul>
-<p><a href="https://camo.githubusercontent.com/6ce4940591d6e7e31d088d04e66395099af7b0c2820754bf33505701fef985d1/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d332e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/6ce4940591d6e7e31d088d04e66395099af7b0c2820754bf33505701fef985d1/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d332e706e67" alt="img"></a></p>
-<h5 id="LSTM-Structure"><a href="#LSTM-Structure" class="headerlink" title="LSTM Structure"></a>LSTM Structure</h5><p>你可能会觉得上面的结构与平常所见的神经网络不太一样，实际上我们只需要把LSTM整体看做是下面的一个neuron即可</p>
-<p><a href="https://camo.githubusercontent.com/f8e356b17d4433f4728c39665dd8d622c35ead0ff75291b2c063bd08bba3573a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d342e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/f8e356b17d4433f4728c39665dd8d622c35ead0ff75291b2c063bd08bba3573a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d342e706e67" alt="img"></a></p>
-<p>假设目前我们的hidden layer只有两个neuron，则结构如下图所示：</p>
-<ul>
-<li>输入$x_1$、$x_2$会分别乘上四组不同的weight，作为neuron的输入以及三个状态门的控制信号</li>
-<li>在原来的neuron里，1个input对应1个output，而在LSTM里，4个input才产生1个output，并且所有的input都是不相同的</li>
-<li>从中也可以看出LSTM所需要的参数量是一般NN的4倍</li>
-</ul>
-<p><a href="https://camo.githubusercontent.com/433d36a5210c5d676a7095aa7a9f75c1c634c74e3acb14f57505749b39df1344/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d352e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/433d36a5210c5d676a7095aa7a9f75c1c634c74e3acb14f57505749b39df1344/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d352e706e67" alt="img"></a></p>
-<h5 id="LSTM-for-RNN"><a href="#LSTM-for-RNN" class="headerlink" title="LSTM for RNN"></a>LSTM for RNN</h5><p>从上图中你可能看不出LSTM与RNN有什么关系，接下来我们用另外的图来表示它</p>
-<p>假设我们现在有一整排的LSTM作为neuron，每个LSTM的cell里都存了一个scalar值，把所有的scalar连接起来就组成了一个vector $c^{t-1}$</p>
-<p>在时间点$t$，输入了一个vector $x^t$，它会乘上一个matrix，通过转换得到$z$，而$z$的每个dimension就代表了操控每个LSTM的输入值，同理经过不同的转换得到$z^i$、$z^f$和$z^o$，得到操控每个LSTM的门信号</p>
-<p><a href="https://camo.githubusercontent.com/ceb6257e3be6ae1920fb3fd4c6572db853ef38773f837b34d088e06c64b8f2ae/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d362e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ceb6257e3be6ae1920fb3fd4c6572db853ef38773f837b34d088e06c64b8f2ae/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d362e706e67" alt="img"></a></p>
-<p>下图是单个LSTM的运算情景，其中LSTM的4个input分别是$z$、$z^i$、$z^f$和$z^o$的其中1维，每个LSTM的cell所得到的input都是各不相同的，但它们却是可以一起共同运算的，整个运算流程如下图左侧所示：</p>
-<p>$f(z^f)$与上一个时间点的cell值$c^{t-1}$相乘，并加到经过input gate的输入$g(z)\cdot f(z^i)$上，得到这个时刻cell中的值$c^t$，最终再乘上output gate的信号$f(z^o)$，得到输出$y^t$</p>
-<p><a href="https://camo.githubusercontent.com/cfc4fb0ad5b3b8c5c4d01e7a35013fefcdc725582b2aa9f42f137e2728384618/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d372e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/cfc4fb0ad5b3b8c5c4d01e7a35013fefcdc725582b2aa9f42f137e2728384618/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d372e706e67" alt="img"></a></p>
-<p>上述的过程反复进行下去，就得到下图中各个时间点上，LSTM值的变化情况，其中与上面的描述略有不同的是，这里还需要把hidden layer的最终输出$y^t$以及当前cell的值$c^t$都连接到下一个时间点的输入上</p>
-<p>因此在下一个时间点操控这些gate值，不只是看输入的$x^{t+1}$，还要看前一个时间点的输出$h^t$和cell值$c^t$，你需要把$x^{t+1}$、$h^t$和$c^t$这3个vector并在一起，乘上4个不同的转换矩阵，去得到LSTM的4个输入值$z$、$z^i$、$z^f$、$z^o$，再去对LSTM进行操控</p>
-<p>注意：下图是<strong>同一个</strong>LSTM在两个相邻时间点上的情况</p>
-<p><a href="https://camo.githubusercontent.com/5b72766f863503b30ed1bc0bb38d62e4277a41592e8595865eb1e49271dc02c9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d382e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/5b72766f863503b30ed1bc0bb38d62e4277a41592e8595865eb1e49271dc02c9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d382e706e67" alt="img"></a></p>
-<p>上图是单个LSTM作为neuron的情况，事实上LSTM基本上都会叠多层，如下图所示，左边两个LSTM代表了两层叠加，右边两个则是它们在下一个时间点的状态</p>
-<p><a href="https://camo.githubusercontent.com/0a71cec2b222e9aa8cb0d9ee2595d14d02379a87f102dc07d97a767e9481dcce/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d392e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/0a71cec2b222e9aa8cb0d9ee2595d14d02379a87f102dc07d97a767e9481dcce/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6c73746d392e706e67" alt="img"></a></p>
+<p><img src="https://img-blog.csdnimg.cn/20201213213502964.png"></p>
+<h2 id="Application-and-Open-Question"><a href="#Application-and-Open-Question" class="headerlink" title="Application and Open Question"></a>Application and Open Question</h2><p>前面讲的是Graph Generation的Task 1：Generating Realistic Graphs，这一小节通过一个药物发现的例子讲解Task 2：Goal-directed graph generation。</p>
+<p>这里我就也不看了。</p>
 
             </div>
             <hr/>
@@ -580,7 +585,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/">http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/</a>
+                    <a href="http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/">http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -617,7 +622,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">课程笔记</span>
+                                </a>
+                            
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                                <a href="/tags/cs224w/">
+                                    <span class="chip bg-color">cs224w</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -783,39 +800,57 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/">
+                <a href="/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/">
                     <div class="card-image">
                         
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs">
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="【李宏毅-深度学习】26. RNN Part2">
-                        
-                        <span class="card-title">【李宏毅-深度学习】26. RNN Part2</span>
+                        <span class="card-title">【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Recurrent Neural Network(Ⅱ)
-上一篇文章介绍了RNN的基本架构，像这么复杂的结构，我们该如何训练呢？
-
-Learning TargetLoss Function依旧是Slot Filling的例子，我们需要把mod
+                            这节课通过Auto-Regressive model巧妙地将图生成问题转换成序列生成问题，利用RNN来解决图生成问题。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-13
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CarlYoung
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -827,29 +862,23 @@ Learning TargetLoss Function依旧是Slot Filling的例子，我们需要把mod
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/">
+                <a href="/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/">
                     <div class="card-image">
                         
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glldre04s1j22yo1o0tvt.jpg" class="responsive-img" alt="【AI研习社】KDD 2020丨欺诈检测研究现状以及欺诈者对抗行为建模">
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测">
-                        
-                        <span class="card-title">深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测</span>
+                        <span class="card-title">【AI研习社】KDD 2020丨欺诈检测研究现状以及欺诈者对抗行为建模</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-文章转载自深度长文: 通过最两年的8篇论文全面分析和总结基于图神经网络GNN 欺诈检测
-
-[TOC]
-欺诈检测（风控）是一个近两年业界和学界颇受关注的话题，其应用方向包括金融欺诈检测，风险控制，网络水军识别，黑产灰产识别等。
-本公众号之前
+                            本次分享将主要介绍欺诈检测问题在学术界的研究现状，以及如何将图神经网络和强化学习应用到欺诈检测问题中。嘉宾是大佬窦英通。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
                             </span>
                         <span class="publish-author">
                             
@@ -866,16 +895,8 @@ Learning TargetLoss Function依旧是Slot Filling的例子，我们需要把mod
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BB%BC%E8%BF%B0/">
-                        <span class="chip bg-color">综述</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
-                        <span class="chip bg-color">转载</span>
-                    </a>
-                    
-                    <a href="/tags/GNN/">
-                        <span class="chip bg-color">GNN</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>
@@ -1013,6 +1034,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
