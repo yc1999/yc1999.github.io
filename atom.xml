@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-13T14:07:05.733Z</updated>
+  <updated>2020-12-15T13:45:44.471Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Alleviating the Inconsistency Problem of Applying Graph Neural Netwrok to Fraud Detection</title>
+    <link href="http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/"/>
+    <id>http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/</id>
+    <published>2020-12-15T10:56:47.000Z</published>
+    <updated>2020-12-15T13:45:44.471Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;GraphConsis模型建立在异质信息网络之上，考虑反欺诈工作中的inconsistency问题，对GNN的Aggregation函数进行改进，综合了GraphSAGE的采样思想和GAT的注意力权重思想，将它们运用到异质信息网络中。&lt;/p&gt;
+&lt;/</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>硬核 | 谈一谈逆势而上的图神经网络技术（附干货资料）</title>
+    <link href="http://yc1999.github.io/2020/12/14/ying-he-tan-yi-tan-ni-shi-er-shang-de-tu-shen-jing-wang-luo-ji-zhu-fu-gan-huo-zi-liao/"/>
+    <id>http://yc1999.github.io/2020/12/14/ying-he-tan-yi-tan-ni-shi-er-shang-de-tu-shen-jing-wang-luo-ji-zhu-fu-gan-huo-zi-liao/</id>
+    <published>2020-12-14T05:47:03.000Z</published>
+    <updated>2020-12-14T11:17:50.960Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs</title>
@@ -52,14 +104,14 @@
     <link href="http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/"/>
     <id>http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/</id>
     <published>2020-12-12T13:11:29.000Z</published>
-    <updated>2020-12-12T15:14:26.279Z</updated>
+    <updated>2020-12-15T06:41:50.960Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;直播介绍&quot;&gt;&lt;a href=&quot;#直播介绍&quot; class=&quot;headerlink&quot; title=&quot;直播介绍&quot;&gt;&lt;/a&gt;直播介绍&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+    <summary type="html">&lt;h2 id=&quot;直播介绍&quot;&gt;&lt;a href=&quot;#直播介绍&quot; class=&quot;headerlink&quot; title=&quot;直播介绍&quot;&gt;&lt;/a&gt;直播介绍&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://live.yanxishe.com/room/865&quot; target=&quot;_blank&quot;</summary>
         
       
     
@@ -470,55 +522,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://yc1999.github.io/2020/11/29/test/"/>
-    <id>http://yc1999.github.io/2020/11/29/test/</id>
-    <published>2020-11-29T01:15:57.000Z</published>
-    <updated>2020-11-29T05:25:45.122Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;squares &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>5分钟PaddlePaddle知识点——program和它的朋友们</title>
-    <link href="http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/"/>
-    <id>http://yc1999.github.io/2020/11/28/5-fen-zhong-paddlepaddle-zhi-shi-dian-program-he-ta-de-peng-you-men/</id>
-    <published>2020-11-28T12:08:16.000Z</published>
-    <updated>2020-12-02T14:25:14.140Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;转载自AI Studio&lt;a href=&quot;https://aistudio.baidu.com/aistudio/personalcenter/thirdview/39&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="PaddlePaddle" scheme="http://yc1999.github.io/categories/PaddlePaddle/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
