@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-17T10:47:55.778Z</updated>
+  <updated>2020-12-17T15:08:56.530Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Graph Attention Networks</title>
-    <link href="http://yc1999.github.io/2020/12/17/graph-attention-networks/"/>
-    <id>http://yc1999.github.io/2020/12/17/graph-attention-networks/</id>
-    <published>2020-12-17T08:13:06.000Z</published>
-    <updated>2020-12-17T10:47:55.778Z</updated>
+    <title>【论文复现】Graph Attention Networks</title>
+    <link href="http://yc1999.github.io/2020/12/17/lun-wen-fu-xian-graph-attention-networks/"/>
+    <id>http://yc1999.github.io/2020/12/17/lun-wen-fu-xian-graph-attention-networks/</id>
+    <published>2020-12-17T12:13:36.000Z</published>
+    <updated>2020-12-17T15:08:56.530Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;对照PyG官方文档，源码和examples对GAT进行了代码学习。&lt;/p&gt;
+&lt;h2 id=&quot;API文档&quot;&gt;&lt;a href=&quot;#API文档&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -40,7 +40,34 @@
     
     <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
     
-    <category term="论文学习" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/"/>
+    <category term="论文复现" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Graph Attention Networks</title>
+    <link href="http://yc1999.github.io/2020/12/17/graph-attention-networks/"/>
+    <id>http://yc1999.github.io/2020/12/17/graph-attention-networks/</id>
+    <published>2020-12-17T08:13:06.000Z</published>
+    <updated>2020-12-17T12:14:27.354Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
     
   </entry>
   
@@ -496,36 +523,6 @@
     <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
     
     <category term="NumPy" scheme="http://yc1999.github.io/tags/NumPy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tensor.data与Tensor.detach()的区别</title>
-    <link href="http://yc1999.github.io/2020/12/02/tensor.data-yu-tensor.detach-de-qu-bie/"/>
-    <id>http://yc1999.github.io/2020/12/02/tensor.data-yu-tensor.detach-de-qu-bie/</id>
-    <published>2020-12-02T02:42:34.000Z</published>
-    <updated>2020-12-02T14:13:36.647Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;参考资料：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/83329768&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/categories/PyTorch/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
     
   </entry>
   
