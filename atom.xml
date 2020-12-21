@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-17T15:08:56.530Z</updated>
+  <updated>2020-12-21T12:26:39.892Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode 1109. Corporate Flight Bookings【差分数组】</title>
+    <link href="http://yc1999.github.io/2020/12/21/leetcode-1109-corporate-flight-bookings-chai-fen-shu-zu/"/>
+    <id>http://yc1999.github.io/2020/12/21/leetcode-1109-corporate-flight-bookings-chai-fen-shu-zu/</id>
+    <published>2020-12-21T12:05:37.000Z</published>
+    <updated>2020-12-21T12:26:39.892Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;读完本文，你不仅学会了算法套路，还可以顺便去 LeetCode 上拿下如下题目：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1glvqyy7v1qj20xc0m8wgt.jpg&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="LeetCode" scheme="http://yc1999.github.io/categories/LeetCode/"/>
+    
+    
+    <category term="数组" scheme="http://yc1999.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="LeetCode" scheme="http://yc1999.github.io/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CCKS（全国知识图谱与语义计算大会）</title>
+    <link href="http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/"/>
+    <id>http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/</id>
+    <published>2020-12-18T06:42:44.000Z</published>
+    <updated>2020-12-18T14:34:10.931Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天跟老师聊了一下毕设的方向，老师提出了两方面的改进目标：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从GNN的构图，表征学习，方法论上进行创新，这样一来，数据集不再是局限于金融数据集，可以是其他开源的数据集；&lt;/li&gt;
+&lt;li&gt;既然是金融反欺诈，以任务为目标，金融领域涉及到一些篇章级事件</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>【论文复现】Graph Attention Networks</title>
@@ -104,7 +156,7 @@
     <link href="http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/"/>
     <id>http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/</id>
     <published>2020-12-15T10:56:47.000Z</published>
-    <updated>2020-12-15T13:45:44.471Z</updated>
+    <updated>2020-12-18T02:40:26.884Z</updated>
     
     
       
@@ -113,7 +165,7 @@
         
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;GraphConsis模型建立在异质信息网络之上，考虑反欺诈工作中的inconsistency问题，对GNN的Aggregation函数进行改进，综合了GraphSAGE的采样思想和GAT的注意力权重思想，将它们运用到异质信息网络中。&lt;/p&gt;
-&lt;/</summary>
+&lt;p</summary>
         
       
     
@@ -466,63 +518,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>torch.nn 与 torch.nn.functional 的区别</title>
-    <link href="http://yc1999.github.io/2020/12/02/torch-nn-yu-torch-nn-functional-de-qu-bie/"/>
-    <id>http://yc1999.github.io/2020/12/02/torch-nn-yu-torch-nn-functional-de-qu-bie/</id>
-    <published>2020-12-02T13:35:38.000Z</published>
-    <updated>2020-12-02T14:15:25.966Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在初学Pytorch 创建模型的时候,总会出现不知道要把layer放在 &lt;strong&gt;&lt;code&gt;__init()__&lt;/code&gt;&lt;/strong&gt; 中还是 &lt;strong&gt;&lt;code&gt;forwad()&lt;/code&gt;&lt;/strong&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/categories/PyTorch/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NumPy:对Axis的理解</title>
-    <link href="http://yc1999.github.io/2020/12/02/numpy-dui-axis-de-li-jie/"/>
-    <id>http://yc1999.github.io/2020/12/02/numpy-dui-axis-de-li-jie/</id>
-    <published>2020-12-02T03:17:20.000Z</published>
-    <updated>2020-12-02T06:44:43.700Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/31275071&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NumPy" scheme="http://yc1999.github.io/categories/NumPy/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="NumPy" scheme="http://yc1999.github.io/tags/NumPy/"/>
     
   </entry>
   

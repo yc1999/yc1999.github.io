@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
@@ -479,6 +479,7 @@
             <div id="articleContent">
                 <blockquote>
 <p>GraphConsis模型建立在异质信息网络之上，考虑反欺诈工作中的inconsistency问题，对GNN的Aggregation函数进行改进，综合了GraphSAGE的采样思想和GAT的注意力权重思想，将它们运用到异质信息网络中。</p>
+<p>是一种Supervised的方法。<font color="red"><strong>需要区别Semi-supervised和transductive的区别！</strong></font>：Semi-supervised的损失函数包括supervised loss和unsupervised loss两个的结合，而transductive的损失函数只包含supervised loss！</p>
 </blockquote>
 <p>文章信息：</p>
 <pre class=" language-BibTex"><code class="language-BibTex">@inproceedings{liu2020alleviating,
@@ -489,9 +490,9 @@
 }</code></pre>
 <h2 id="1-Background-背景知识"><a href="#1-Background-背景知识" class="headerlink" title="1. Background 背景知识"></a>1. Background 背景知识</h2><p>随着GNN的流行，其被广泛地运用到欺诈检测领域。基于GNN的欺诈检测优点是在<strong>结合原有的Feature的基础上，引入节点与节点之间的关系</strong>，从而更好地学习Node Embedding，提供一种End-to-End的Semi-Supervised的学习方式。</p>
 <p>GNN的核心在于Neighborhood Aggregation，Neighborhood Aggregation基于的一个假设是<strong>邻居之间的feature和label应该是similar（或者说是consistent）</strong>。例如，正是因为这个假设，我们能够用GNN进行Community Detection。</p>
-<p>然而，在欺诈检测中，这个假设被削弱了，欺诈者往往潜伏在良性用户之中，因此，如果不进一步对邻居进行筛选，而是直接聚合的话，在认知上是不正确的。这就是本论文要讨论的<strong>inconsistency问题</strong>：</p>
+<p>然而，在欺诈检测中，这个假设被削弱了，欺诈者往往潜伏在良性用户之中，因此，如果不进一步对邻居进行筛选，而是直接聚合的话，在认知上是不正确的，欺诈用户会因此成功伪装自己。这就是本论文要讨论的<strong>inconsistency问题</strong>：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201215145749262.png"></p>
-<h3 id="Context-Inconsistency"><a href="#Context-Inconsistency" class="headerlink" title="Context Inconsistency"></a>Context Inconsistency</h3><p>如上图，聪明的欺诈者可以将自己与伪造的常规实体联系起来，$v_1$作为fraudster，它的邻居中包含了良性用户$v_4,v_6,v_7$，如果在邻居聚合过程中，聚合了它们的信息，无疑会使得欺诈检测的难度变大。</p>
+<h3 id="Context-Inconsistency"><a href="#Context-Inconsistency" class="headerlink" title="Context Inconsistency"></a>Context Inconsistency</h3><p>如上图，聪明的欺诈者可以将自己与良性用户联系起来，$v_1$作为fraudster，它的邻居中包含了良性用户$v_4,v_6,v_7$，如果在邻居聚合过程中，聚合了它们的信息，无疑会使得欺诈检测的难度变大。</p>
 <p>因此，要想办法在聚合的时候，筛去这些context inconsistency的邻居。</p>
 <h3 id="Feature-Inconsistency"><a href="#Feature-Inconsistency" class="headerlink" title="Feature Inconsistency"></a>Feature Inconsistency</h3><p>举一个例子，假设现在进行review fraud detection，一个user发表了两条review，因此我们将两条review之间连一条边（因为它们来自同一用户），两条review因此成了邻居，然而它们的内容可能天差地别，如果在邻居聚合过程中，聚合了它们的信息，无疑会使得欺诈检测的难度变大。</p>
 <p>例如，上图中$v_1$与$v_4,v_6,v_7$。（这个例子不太好，即使都是良性也有可能Feature Inconsistency的）</p>
@@ -507,23 +508,26 @@
 <ol>
 <li>第一个提出GNN based fraud detection中存在inconsistency问题，并且提出解决办法的；</li>
 <li>通过实验验证了3种inconsistency问题对GNN based fraud detection的结果影响；（见@4. 实验）</li>
-<li>提出GraphConsis模型，模型通过context embedding，neighborhood sampling，relational attention三种方法，解决了3中inconsistency问题。</li>
+<li>提出GraphConsis模型，模型通过context embedding，neighborhood sampling，relational attention三种方法，解决了3种inconsistency问题。</li>
 </ol>
 <h2 id="3-Model：GraphConsis⭐"><a href="#3-Model：GraphConsis⭐" class="headerlink" title="3. Model：GraphConsis⭐"></a>3. Model：GraphConsis⭐</h2><h3 id="Model-Illustration"><a href="#Model-Illustration" class="headerlink" title="Model Illustration"></a>Model Illustration</h3><p><img src="https://img-blog.csdnimg.cn/20201215153623731.png"></p>
 <h3 id="Context-Embedding"><a href="#Context-Embedding" class="headerlink" title="Context Embedding"></a>Context Embedding</h3><p>为了解决context inconsistency的问题，在模型的第一层，引入一个<strong>trainable context embedding</strong> ${\bf {c}}_v$ for every node：</p>
 <p>$$<br>{\bf {h_v}}^{(1)} = \lbrace {\bf {x_v}} || {\bf {c_v}}  \rbrace \oplus AGG^{(1)}(\lbrace {\bf {x_{v’}}} || {\bf {c_{v’}}} : v \in {\mathcal {N_v}} \rbrace)<br>$$</p>
-<p>论文中说，这个context embedding能够代表节点的local structure，至于为什么代表我就不清楚了。</p>
+<p>论文中说，这个context embedding能够代表节点的local structure，至于为什么代表我就不清楚了。而且怎么对于未知的样本生成 ${\bf {c}}_v$也是一个问题。</p>
 <h3 id="Neighbor-Sampling"><a href="#Neighbor-Sampling" class="headerlink" title="Neighbor Sampling"></a>Neighbor Sampling</h3><p>为了能够聚合更加相关的邻居，首先定义了邻居之间的<strong>consistency score</strong>：</p>
 <p>$$<br>s^{(l)} (u,v)= \exp (-|| {\bf {h_{u}}}^{(l)} -{\bf {h_{v}}}^{(l)}    ||_{2}^{2})<br>$$</p>
 <p>然后设定一个阈值$\epsilon$，筛选掉那么consistency score低于$\epsilon$的邻居。</p>
 <p>对于剩下来的邻居$\tilde {\mathcal {N}} _v$，根据它们的consistency score计算它们被采样的概率：</p>
 <p>$$<br>p^{(l)} {(u;v)} = s^{(l)} {(u,v)} / \sum_{u \in \tilde {\mathcal {N}} _v}  s^{(l)} {(u,v)}<br>$$</p>
-<p>每一层都有自己的采样概率</p>
-<h3 id="Relation-Attention"><a href="#Relation-Attention" class="headerlink" title="Relation Attention"></a>Relation Attention</h3><p>我们使用一个向量${\bf {t}} _r$表示关系$r$，然后使用这个向量得到每个neighbor的注意力分数：</p>
+<p>每一层都有重新计算采样概率。</p>
+<h3 id="Relation-Attention"><a href="#Relation-Attention" class="headerlink" title="Relation Attention"></a>Relation Attention</h3><p>我们使用一个向量${\bf {t}} _r$表示关系类型$r$，然后使用这个向量得到每个neighbor的注意力分数：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201215185343957.png"></p>
 <p>其中$r_q$表示第$q$个采样样本连接到当前节点的relation类型。</p>
 <p>得到注意力分数之后就可以直接进行“加权”聚合了：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201215185423793.png"></p>
+<blockquote>
+<p>因此，Relation Attention是寄托在邻居的消息聚合之上的，并不是独立的。</p>
+</blockquote>
 <h2 id="4-Experiments-实验"><a href="#4-Experiments-实验" class="headerlink" title="4. Experiments 实验"></a>4. Experiments 实验</h2><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>数据集名称：<strong>YelpChi spam review dataset</strong><br>这个数据集包含Yelp上酒店和餐厅的评论</p>
 <p>预处理数据集包括：</p>
 <ul>
@@ -534,11 +538,11 @@
 <h3 id="构图⭐"><a href="#构图⭐" class="headerlink" title="构图⭐"></a>构图⭐</h3><p>review作为图中的node，根据下面三种关系构建node之间的边：</p>
 <ul>
 <li>R-U-R：两条review来自同一个user；</li>
-<li>R-S-R：两条review来自同一product下的同一rating</li>
-<li>R-T-R：两条review来自同一product下的同一月份</li>
+<li>R-S-R：两条review来自同一product下的同一rating；</li>
+<li>R-T-R：两条review来自同一product下的同一月份;</li>
 </ul>
 <p>node（即review）的初始特征$\bf x$是使用Word2Vec提取出来的100维的vector。</p>
-<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p>a spam review classification，一个二分类问题。</p>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p><strong>a spam review classification，一个二分类问题。</strong></p>
 <h3 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h3><ul>
 <li>Cora</li>
 <li>PPI</li>
@@ -557,13 +561,13 @@
 <h3 id="The-Inconsistency-Problem"><a href="#The-Inconsistency-Problem" class="headerlink" title="The Inconsistency Problem"></a>The Inconsistency Problem</h3><p>下面是关于Benchmark和YelpChi数据集的统计信息，除了统计Nodes和Edges，我们还统计了$\gamma^{(f)}$和$\gamma^{(c)}$。</p>
 <p><img src="https://img-blog.csdnimg.cn/20201215194808619.png"></p>
 <ol>
-<li><p>context characteristic score</p>
-<p><img src="https://img-blog.csdnimg.cn/20201215194629194.png"></p>
-</li>
-<li><p>feature characteristic score</p>
-<p><img src="https://img-blog.csdnimg.cn/20201215194705239.png"></p>
-</li>
+<li>context characteristic score</li>
 </ol>
+<p><img src="https://img-blog.csdnimg.cn/20201215194629194.png"></p>
+<ol start="2">
+<li>feature characteristic score</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20201215194705239.png"></p>
 <p>Benckmark（Cora，PPI，Reddit）数据集并不是反欺诈数据，所以它们很难体现我们之前说的3种Inconsistency问题。</p>
 <p>使用上面的两个指标，我们可以来讨论在真实的反欺诈研究中，数据集体现的Inconsistency问题：</p>
 <ol>
@@ -574,17 +578,21 @@
 <h3 id="Performance-Evaluation"><a href="#Performance-Evaluation" class="headerlink" title="Performance Evaluation"></a>Performance Evaluation</h3><p><img src="https://img-blog.csdnimg.cn/20201215200126610.png"></p>
 <p>结果分析：</p>
 <ol>
-<li>GraphConsis在训练样本为60%和80%的时候，才能体现更优秀的结果；</li>
-<li>一个更有趣的现象是，传统的LR居然比GNN的性能更好😨为什么捏？可能正是因为存在着Inconsistency的问题，导致这些GNN方法在Aggregation的过程中聚合了很多无用的信息；</li>
-<li>Player2Vec，FdGars和GraphSAGE的结果表明，GraphConsis的neighbor sampling和relation attention的作用。</li>
+<li><p>GraphConsis在训练样本为60%和80%的时候，才能体现更优秀的结果；</p>
+</li>
+<li><p>一个更有趣的现象是，传统的LR居然比GNN的性能更好😨为什么捏？</p>
+<p>可能正是因为存在着Inconsistency的问题，导致这些GNN方法在Aggregation的过程中聚合了很多无用的信息；</p>
+</li>
+<li><p>Player2Vec，FdGars和GraphSAGE的结果表明，GraphConsis的neighbor sampling和relation attention的作用。</p>
+</li>
 </ol>
 <h2 id="我的思考"><a href="#我的思考" class="headerlink" title="我的思考"></a>我的思考</h2><ol>
 <li><p><strong>可以结合SemiGNN和GraphConsis</strong></p>
-<p>考虑到在SemiGNN的feature work种有提到要考虑不同的relation信息，因此可以引入GraphConsis的思想。关于relation的影响，也可以继续从GNN based HIN中进行探索。</p>
+<p>考虑到在SemiGNN的feature work中有提到要考虑不同的relation信息，因此可以引入GraphConsis的思想。关于relation的影响，也可以继续从GNN based HIN中进行探索。</p>
 </li>
 <li><p>GraphConsis中提到了自己的feature work</p>
 <ul>
-<li>Future work includes devising an adaptive sampling threshold for each relation to maximize the receptive field of GNNs.（这个可以考虑GeniePath，使用循环神经网络来构造感受野）</li>
+<li>Future work includes devising an adaptive sampling threshold for each relation to maximize the receptive field of GNNs.（<strong>这个可以考虑GeniePath，使用循环神经网络来构造感受野</strong>）</li>
 <li>Investigating the inconsistency problems under other fraud datasets is another avenue of future research.（比如我的任务——金融反欺诈）</li>
 </ul>
 </li>
