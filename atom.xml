@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2020-12-21T12:26:39.892Z</updated>
+  <updated>2021-01-15T13:27:58.212Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,405 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Distant supervision for relation extraction without labeled data</title>
+    <link href="http://yc1999.github.io/2021/01/15/distant-supervision-for-relation-extraction-without-labeled-data/"/>
+    <id>http://yc1999.github.io/2021/01/15/distant-supervision-for-relation-extraction-without-labeled-data/</id>
+    <published>2021-01-15T11:45:51.000Z</published>
+    <updated>2021-01-15T13:27:58.212Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这篇论文已经很老了，看它的原因主要是想了解Distant Supervision的概念，所以论文有些不会并不会读得很清楚。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Background&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Survey of Event Extraction from Text</title>
+    <link href="http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/"/>
+    <id>http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/</id>
+    <published>2021-01-14T12:46:40.000Z</published>
+    <updated>2021-01-15T02:09:55.935Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://ivenwang.com/2020/06/16/eesurvey/&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>科大讯飞大赛 事件抽取挑战赛冠军分享</title>
+    <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/"/>
+    <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/</id>
+    <published>2021-01-14T11:23:24.000Z</published>
+    <updated>2021-01-15T13:33:02.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/WXWD7fmitaFHfUAv1mNLPA&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
+    
+    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
+    
+    <category term="比赛" scheme="http://yc1999.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>科大讯飞-事件抽取挑战赛 赛事概要</title>
+    <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/"/>
+    <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/</id>
+    <published>2021-01-14T07:08:09.000Z</published>
+    <updated>2021-01-14T09:37:08.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前言：&lt;/p&gt;
+&lt;p&gt;毕设选题是事件抽取，但是这一周了解下来，我遇到了两个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;网络上关于事件抽取的论文都好杂好乱，连一篇优质综述都没找到，一点都不系统化。&lt;/li&gt;
+&lt;li&gt;自己做的评测任务——《面向金融领域的小样本跨</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="比赛" scheme="http://yc1999.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊“事件抽取”</title>
+    <link href="http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/"/>
+    <id>http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/</id>
+    <published>2021-01-14T03:23:26.000Z</published>
+    <updated>2021-01-14T07:18:33.812Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;作者：PaperWeekly&lt;br&gt;链接：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/27840591&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Transfer Learning for Small-scale Financial Event Extraction</title>
+    <link href="http://yc1999.github.io/2021/01/13/transfer-learning-for-small-scale-financial-event-extraction/"/>
+    <id>http://yc1999.github.io/2021/01/13/transfer-learning-for-small-scale-financial-event-extraction/</id>
+    <published>2021-01-13T12:28:31.000Z</published>
+    <updated>2021-01-14T02:21:29.366Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Why？Background&quot;&gt;&lt;a href=&quot;#Why？Background&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【李宏毅-深度学习】24-Transfer Learning</title>
+    <link href="http://yc1999.github.io/2021/01/13/li-hong-yi-shen-du-xue-xi-24-transfer-learning/"/>
+    <id>http://yc1999.github.io/2021/01/13/li-hong-yi-shen-du-xue-xi-24-transfer-learning/</id>
+    <published>2021-01-13T02:24:58.000Z</published>
+    <updated>2021-01-13T11:54:59.444Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Transfer-Learning&quot;&gt;&lt;a href=&quot;#Transfer-Learning&quot; class=&quot;headerlink&quot; title=&quot;Transfer Learning&quot;&gt;&lt;/a&gt;Transfer</summary>
+        
+      
+    
+    
+    
+    <category term="李宏毅-深度学习" scheme="http://yc1999.github.io/categories/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="迁移学习" scheme="http://yc1999.github.io/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CCKS 2020：面向金融领域的小样本跨类迁移事件抽取</title>
+    <link href="http://yc1999.github.io/2021/01/12/ccks-2020-mian-xiang-jin-rong-ling-yu-de-xiao-yang-ben-kua-lei-qian-yi-shi-jian-chou-qu/"/>
+    <id>http://yc1999.github.io/2021/01/12/ccks-2020-mian-xiang-jin-rong-ling-yu-de-xiao-yang-ben-kua-lei-qian-yi-shi-jian-chou-qu/</id>
+    <published>2021-01-12T01:43:07.000Z</published>
+    <updated>2021-01-13T02:18:53.911Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;数据集&quot;&gt;&lt;a href=&quot;#数据集&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="毕设" scheme="http://yc1999.github.io/tags/%E6%AF%95%E8%AE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【李宏毅-人类语言处理】17-一文看尽各种NLP任务</title>
+    <link href="http://yc1999.github.io/2021/01/04/li-hong-yi-ren-lei-yu-yan-chu-li-17-yi-wen-kan-jin-ge-chong-nlp-ren-wu/"/>
+    <id>http://yc1999.github.io/2021/01/04/li-hong-yi-ren-lei-yu-yan-chu-li-17-yi-wen-kan-jin-ge-chong-nlp-ren-wu/</id>
+    <published>2021-01-04T06:29:27.000Z</published>
+    <updated>2021-01-04T13:25:42.887Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;NLP的两大任务&quot;&gt;&lt;a href=&quot;#NLP的两大任务&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sequence to sequence model: Introduction and concepts</title>
+    <link href="http://yc1999.github.io/2021/01/03/sequence-to-sequence-model-introduction-and-concepts/"/>
+    <id>http://yc1999.github.io/2021/01/03/sequence-to-sequence-model-introduction-and-concepts/</id>
+    <published>2021-01-03T13:02:10.000Z</published>
+    <updated>2021-01-04T13:33:56.788Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;If we take a high-level view, a seq2seq model has encoder, decoder and intermediate step as its main components:&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="Seq2Seq" scheme="http://yc1999.github.io/tags/Seq2Seq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>依存句法分析</title>
+    <link href="http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/"/>
+    <id>http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/</id>
+    <published>2021-01-03T12:00:00.000Z</published>
+    <updated>2021-01-03T12:53:43.905Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;语法分析&lt;/strong&gt;(syntactic parsing )是自然语言处理中一个重要的任务，其目标是分析句子的语法结构并将其表示为容易理解的结构(通常是树形结构)。同时，语法分析也是所有工具性NLP任务中较为高级、较为复杂的一种任务。</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【陈蕴侬-ADL】6-Recurrent Neural Network</title>
+    <link href="http://yc1999.github.io/2020/12/30/chen-yun-nong-adl-6-recurrent-neural-network/"/>
+    <id>http://yc1999.github.io/2020/12/30/chen-yun-nong-adl-6-recurrent-neural-network/</id>
+    <published>2020-12-30T08:57:06.000Z</published>
+    <updated>2020-12-30T08:57:06.406Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>裤子尺码</title>
+    <link href="http://yc1999.github.io/2020/12/25/ku-zi-chi-ma/"/>
+    <id>http://yc1999.github.io/2020/12/25/ku-zi-chi-ma/</id>
+    <published>2020-12-25T00:42:01.000Z</published>
+    <updated>2020-12-25T12:04:46.487Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;尺码&lt;/th&gt;
+&lt;th&gt;大小&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;身高（CM）&lt;/td&gt;
+&lt;td&gt;164&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;胸围（C</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>歌曲推荐</title>
+    <link href="http://yc1999.github.io/2020/12/23/ge-qu-tui-jian/"/>
+    <id>http://yc1999.github.io/2020/12/23/ge-qu-tui-jian/</id>
+    <published>2020-12-23T06:45:50.000Z</published>
+    <updated>2020-12-23T10:38:40.078Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Jack-Antonoff&quot;&gt;&lt;a href=&quot;#Jack-Antonoff&quot; class=&quot;headerlink&quot; title=&quot;Jack Antonoff&quot;&gt;&lt;/a&gt;Jack Antonoff&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Jack</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>毕设方向探索</title>
+    <link href="http://yc1999.github.io/2020/12/22/bi-she-fang-xiang-tan-suo/"/>
+    <id>http://yc1999.github.io/2020/12/22/bi-she-fang-xiang-tan-suo/</id>
+    <published>2020-12-22T06:43:27.000Z</published>
+    <updated>2020-12-24T13:17:14.494Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;方向一：GNN的Representation-Learning改进&quot;&gt;&lt;a href=&quot;#方向一：GNN的Representation-Learning改进&quot; class=&quot;headerlink&quot; title=&quot;方向一：GNN的Representation</summary>
+        
+      
+    
+    
+    
+    
+    <category term="毕设" scheme="http://yc1999.github.io/tags/%E6%AF%95%E8%AE%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode 1109. Corporate Flight Bookings【差分数组】</title>
@@ -49,17 +448,17 @@
     <link href="http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/"/>
     <id>http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/</id>
     <published>2020-12-18T06:42:44.000Z</published>
-    <updated>2020-12-18T14:34:10.931Z</updated>
+    <updated>2020-12-23T13:38:15.271Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;今天跟老师聊了一下毕设的方向，老师提出了两方面的改进目标：&lt;/p&gt;
+    <summary type="html">&lt;p&gt;今天跟老师聊了一下毕设的方向，&lt;strong&gt;老师提出了两方面的改进目标&lt;/strong&gt;：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;从GNN的构图，表征学习，方法论上进行创新，这样一来，数据集不再是局限于金融数据集，可以是其他开源的数据集；&lt;/li&gt;
-&lt;li&gt;既然是金融反欺诈，以任务为目标，金融领域涉及到一些篇章级事件</summary>
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;图神经网络的方法论上进行创新&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;从GNN的构图，表征学习等方面进行创新，这样一来，数据集不再是局限于金</summary>
         
       
     
@@ -148,376 +547,6 @@
     <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
     
     <category term="论文复现" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Alleviating the Inconsistency Problem of Applying Graph Neural Netwrok to Fraud Detection</title>
-    <link href="http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/"/>
-    <id>http://yc1999.github.io/2020/12/15/alleviating-the-inconsistency-problem-of-applying-graph-neural-netwrok-to-fraud-detection/</id>
-    <published>2020-12-15T10:56:47.000Z</published>
-    <updated>2020-12-18T02:40:26.884Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;GraphConsis模型建立在异质信息网络之上，考虑反欺诈工作中的inconsistency问题，对GNN的Aggregation函数进行改进，综合了GraphSAGE的采样思想和GAT的注意力权重思想，将它们运用到异质信息网络中。&lt;/p&gt;
-&lt;p</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>硬核 | 谈一谈逆势而上的图神经网络技术（附干货资料）</title>
-    <link href="http://yc1999.github.io/2020/12/14/ying-he-tan-yi-tan-ni-shi-er-shang-de-tu-shen-jing-wang-luo-ji-zhu-fu-gan-huo-zi-liao/"/>
-    <id>http://yc1999.github.io/2020/12/14/ying-he-tan-yi-tan-ni-shi-er-shang-de-tu-shen-jing-wang-luo-ji-zhu-fu-gan-huo-zi-liao/</id>
-    <published>2020-12-14T05:47:03.000Z</published>
-    <updated>2020-12-14T11:17:50.960Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【斯坦福cs224w-图机器学习】10. Deep Generative Models for Graphs</title>
-    <link href="http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/"/>
-    <id>http://yc1999.github.io/2020/12/13/si-tan-fu-cs224w-tu-ji-qi-xue-xi-10-deep-generative-models-for-graphs/</id>
-    <published>2020-12-13T08:20:25.000Z</published>
-    <updated>2020-12-13T14:07:05.733Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;font color=&quot;red&quot;&gt;核心思想是将&lt;strong&gt;图生成问题&lt;/strong&gt;转变成&lt;strong&gt;序列生成问题&lt;/strong&gt;。&lt;/font&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;转载自&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="cs224w" scheme="http://yc1999.github.io/tags/cs224w/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【AI研习社】KDD 2020丨欺诈检测研究现状以及欺诈者对抗行为建模</title>
-    <link href="http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/"/>
-    <id>http://yc1999.github.io/2020/12/12/ai-yan-xi-she-kdd-2020-gun-qi-zha-jian-ce-yan-jiu-xian-zhuang-yi-ji-qi-zha-zhe-dui-kang-xing-wei-jian-mo/</id>
-    <published>2020-12-12T13:11:29.000Z</published>
-    <updated>2020-12-17T06:48:57.741Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;直播介绍&quot;&gt;&lt;a href=&quot;#直播介绍&quot; class=&quot;headerlink&quot; title=&quot;直播介绍&quot;&gt;&lt;/a&gt;直播介绍&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://live.yanxishe.com/room/865&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A Semi-supervised Graph Attentive Network for Financial Fraud Detection</title>
-    <link href="http://yc1999.github.io/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/"/>
-    <id>http://yc1999.github.io/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/</id>
-    <published>2020-12-12T06:16:45.000Z</published>
-    <updated>2020-12-12T13:05:20.327Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;参考文章：&lt;a href=&quot;https://blog.csdn.net/weixin_40505645/article/details/105124245&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="金融反欺诈" scheme="http://yc1999.github.io/tags/%E9%87%91%E8%9E%8D%E5%8F%8D%E6%AC%BA%E8%AF%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多分类，多标签模型的Accuracy, Precision, Recall和F1-score</title>
-    <link href="http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/"/>
-    <id>http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/</id>
-    <published>2020-12-11T02:35:18.000Z</published>
-    <updated>2020-12-17T07:40:34.231Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;众所周知，机器学习分类模型常用评价指标有Accuracy, Precision,</summary>
-        
-      
-    
-    
-    
-    <category term="机器学习" scheme="http://yc1999.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="机器学习" scheme="http://yc1999.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>详解深度学习中的Normalization，BN/LN/WN</title>
-    <link href="http://yc1999.github.io/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/"/>
-    <id>http://yc1999.github.io/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/</id>
-    <published>2020-12-10T12:45:51.000Z</published>
-    <updated>2020-12-10T13:27:07.428Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/33173246&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyTorch: weight decay 和 dropout</title>
-    <link href="http://yc1999.github.io/2020/12/10/pytorch-weight-decay-he-dropout/"/>
-    <id>http://yc1999.github.io/2020/12/10/pytorch-weight-decay-he-dropout/</id>
-    <published>2020-12-10T10:41:59.000Z</published>
-    <updated>2020-12-10T10:41:59.180Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>图信号处理</title>
-    <link href="http://yc1999.github.io/2020/12/10/tu-xin-hao-chu-li/"/>
-    <id>http://yc1999.github.io/2020/12/10/tu-xin-hao-chu-li/</id>
-    <published>2020-12-10T03:19:23.000Z</published>
-    <updated>2020-12-11T15:43:23.913Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;频谱（spectrum）：图信号所有的傅里叶系数合在一起称为该信号的频谱。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;对于一张给定的图（即图的拓扑结构不变），图信号的频谱等价于一种身份ID，给定了频谱，我们就可以推导出空域中的图信号。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>DGFraud工具分析</title>
-    <link href="http://yc1999.github.io/2020/12/07/dgfraud-gong-ju-fen-xi/"/>
-    <id>http://yc1999.github.io/2020/12/07/dgfraud-gong-ju-fen-xi/</id>
-    <published>2020-12-07T10:38:44.000Z</published>
-    <updated>2020-12-07T13:55:22.589Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Datasets&quot;&gt;&lt;a href=&quot;#Datasets&quot; class=&quot;headerlink&quot; title=&quot;Datasets&quot;&gt;&lt;/a&gt;Datasets&lt;/h2&gt;&lt;h3 id=&quot;DBLP&quot;&gt;&lt;a href=&quot;#DBLP&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>How to Read a Paper</title>
-    <link href="http://yc1999.github.io/2020/12/06/how-to-read-a-paper/"/>
-    <id>http://yc1999.github.io/2020/12/06/how-to-read-a-paper/</id>
-    <published>2020-12-06T08:17:11.000Z</published>
-    <updated>2020-12-06T09:17:13.591Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;2-“三步走”方法&quot;&gt;&lt;a href=&quot;#2-“三步走”方法&quot; class=&quot;headerlink&quot; title=&quot;2. “三步走”方法&quot;&gt;&lt;/a&gt;2.</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【李宏毅-深度学习】26. RNN Part2</title>
-    <link href="http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/"/>
-    <id>http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part2/</id>
-    <published>2020-12-05T12:51:38.000Z</published>
-    <updated>2020-12-05T15:28:50.414Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Recurrent-Neural-Network-Ⅱ&quot;&gt;&lt;a href=&quot;#Recurrent-Neural-Network-Ⅱ&quot; class=&quot;headerlink&quot; title=&quot;Recurrent Neural</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【李宏毅-深度学习】26. RNN Part1</title>
-    <link href="http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/"/>
-    <id>http://yc1999.github.io/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/</id>
-    <published>2020-12-05T11:48:50.000Z</published>
-    <updated>2020-12-05T12:50:37.277Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Recurrent-Neural-Network-Ⅰ&quot;&gt;&lt;a href=&quot;#Recurrent-Neural-Network-Ⅰ&quot; class=&quot;headerlink&quot; title=&quot;Recurrent Neural</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测</title>
-    <link href="http://yc1999.github.io/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/"/>
-    <id>http://yc1999.github.io/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/</id>
-    <published>2020-12-05T07:13:10.000Z</published>
-    <updated>2020-12-17T06:37:56.905Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;文章转载自&lt;a href=&quot;https://mp.weixin.qq.com/s/JFU0A1kBIqF-5qPeXieUZw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;深度长文:</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="综述" scheme="http://yc1999.github.io/tags/%E7%BB%BC%E8%BF%B0/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【ESE680 GNN】Lecture 4: Graph Neural Networks</title>
-    <link href="http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/"/>
-    <id>http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/</id>
-    <published>2020-12-04T11:13:50.000Z</published>
-    <updated>2020-12-04T15:26:59.703Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;这节课主要是从&lt;strong&gt;频域&lt;/strong&gt;的角度出发介绍GNN，带大家入门GNN。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;首先讲解graph filters；&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;然后通过【graph</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
