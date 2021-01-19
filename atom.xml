@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-01-15T13:27:58.212Z</updated>
+  <updated>2021-01-19T13:28:21.020Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,83 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python学习之*arg、**kwargs</title>
+    <link href="http://yc1999.github.io/2021/01/19/python-xue-xi-zhi-arg-kwargs/"/>
+    <id>http://yc1999.github.io/2021/01/19/python-xue-xi-zhi-arg-kwargs/</id>
+    <published>2021-01-19T13:23:45.000Z</published>
+    <updated>2021-01-19T13:28:21.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;*args和**kwargs是在Python函数中常见的参数，但是每次见到都是一知半解，所以打算这次用实例来记录一下：&lt;/p&gt;
+&lt;h2 id=&quot;Introduction-to-args-and-kwargs-in-Python&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Python学习笔记" scheme="http://yc1999.github.io/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Python学习笔记" scheme="http://yc1999.github.io/tags/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows下查看GPU(NVIDI)使用情况</title>
+    <link href="http://yc1999.github.io/2021/01/18/windows-xia-cha-kan-gpu-nvidia-shi-yong-qing-kuang/"/>
+    <id>http://yc1999.github.io/2021/01/18/windows-xia-cha-kan-gpu-nvidia-shi-yong-qing-kuang/</id>
+    <published>2021-01-18T03:27:09.750Z</published>
+    <updated>2021-01-18T06:55:21.766Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我们使用GPU做计算的时候，想了解GPU的使用情况，但是任务管理器没有GPU的信息。还好NVIDIA提供了相关的命令。&lt;/p&gt;
+&lt;h2 id=&quot;nvidia-smi-exe&quot;&gt;&lt;a href=&quot;#nvidia-smi-exe&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GPU" scheme="http://yc1999.github.io/categories/GPU/"/>
+    
+    
+    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python学习之argparse模块</title>
+    <link href="http://yc1999.github.io/2021/01/18/python-xue-xi-zhi-argparse-mo-kuai/"/>
+    <id>http://yc1999.github.io/2021/01/18/python-xue-xi-zhi-argparse-mo-kuai/</id>
+    <published>2021-01-18T02:55:06.000Z</published>
+    <updated>2021-01-18T07:13:49.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、介绍&quot;&gt;&lt;a href=&quot;#一、介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Python学习笔记" scheme="http://yc1999.github.io/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Python学习笔记" scheme="http://yc1999.github.io/tags/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Distant supervision for relation extraction without labeled data</title>
@@ -52,7 +129,7 @@
     <link href="http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/"/>
     <id>http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/</id>
     <published>2021-01-14T12:46:40.000Z</published>
-    <updated>2021-01-15T02:09:55.935Z</updated>
+    <updated>2021-01-16T13:42:45.075Z</updated>
     
     
       
@@ -82,14 +159,15 @@
     <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/"/>
     <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/</id>
     <published>2021-01-14T11:23:24.000Z</published>
-    <updated>2021-01-15T13:33:02.637Z</updated>
+    <updated>2021-01-19T12:58:33.893Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/WXWD7fmitaFHfUAv1mNLPA&quot; target=&quot;_blank&quot;</summary>
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/WXWD7fmitaFHfUAv1mNLPA&quot; target=&quot;_blank&quot;</summary>
         
       
     
@@ -98,11 +176,13 @@
     <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
     
     
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
     <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
     
     <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
     
-    <category term="比赛" scheme="http://yc1999.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    <category term="科大讯飞大赛-事件抽取挑战赛" scheme="http://yc1999.github.io/tags/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E5%A4%A7%E8%B5%9B-%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E6%8C%91%E6%88%98%E8%B5%9B/"/>
     
   </entry>
   
@@ -111,7 +191,7 @@
     <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/"/>
     <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/</id>
     <published>2021-01-14T07:08:09.000Z</published>
-    <updated>2021-01-14T09:37:08.671Z</updated>
+    <updated>2021-01-16T13:28:47.515Z</updated>
     
     
       
@@ -132,7 +212,11 @@
     <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
     
     
-    <category term="比赛" scheme="http://yc1999.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
+    
+    <category term="科大讯飞大赛-事件抽取挑战赛" scheme="http://yc1999.github.io/tags/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E5%A4%A7%E8%B5%9B-%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E6%8C%91%E6%88%98%E8%B5%9B/"/>
     
   </entry>
   
@@ -464,89 +548,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>【论文复现】Graph Attention Networks</title>
-    <link href="http://yc1999.github.io/2020/12/17/lun-wen-fu-xian-graph-attention-networks/"/>
-    <id>http://yc1999.github.io/2020/12/17/lun-wen-fu-xian-graph-attention-networks/</id>
-    <published>2020-12-17T12:13:36.000Z</published>
-    <updated>2020-12-17T15:08:56.530Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;对照PyG官方文档，源码和examples对GAT进行了代码学习。&lt;/p&gt;
-&lt;h2 id=&quot;API文档&quot;&gt;&lt;a href=&quot;#API文档&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="论文复现" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Graph Attention Networks</title>
-    <link href="http://yc1999.github.io/2020/12/17/graph-attention-networks/"/>
-    <id>http://yc1999.github.io/2020/12/17/graph-attention-networks/</id>
-    <published>2020-12-17T08:13:06.000Z</published>
-    <updated>2020-12-17T12:14:27.354Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Background&quot;&gt;&lt;a href=&quot;#Background&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文复现】A Semi-supervised Graph Attentive Network for Financial Fraud Detection</title>
-    <link href="http://yc1999.github.io/2020/12/16/lun-wen-fu-xian-a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/"/>
-    <id>http://yc1999.github.io/2020/12/16/lun-wen-fu-xian-a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/</id>
-    <published>2020-12-16T12:31:56.000Z</published>
-    <updated>2020-12-16T12:50:26.988Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;对DGFraud仓库中SemiGNN的tensorflow复现版本进行了注释理解，整理了下面的代码框架。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1glpzcbzcspj22t33wh4qp.jpg&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/categories/GNN/"/>
-    
-    
-    <category term="GNN" scheme="http://yc1999.github.io/tags/GNN/"/>
-    
-    <category term="论文复现" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
     
   </entry>
   
