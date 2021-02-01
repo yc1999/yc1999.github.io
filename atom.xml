@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-01-19T13:28:21.020Z</updated>
+  <updated>2021-02-01T13:01:59.329Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,260 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Glossary of 🤗 Transformers</title>
+    <link href="http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/"/>
+    <id>http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/</id>
+    <published>2021-02-01T12:55:02.000Z</published>
+    <updated>2021-02-01T13:01:59.329Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;General-terms&quot;&gt;&lt;a href=&quot;#General-terms&quot; class=&quot;headerlink&quot; title=&quot;General terms&quot;&gt;&lt;/a&gt;General terms&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;autoencoding</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>🤗 Transformers</title>
+    <link href="http://yc1999.github.io/2021/01/30/hugging-face-transformers/"/>
+    <id>http://yc1999.github.io/2021/01/30/hugging-face-transformers/</id>
+    <published>2021-01-30T12:16:05.000Z</published>
+    <updated>2021-01-30T13:53:46.430Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Huggingface🤗&quot;&gt;&lt;a href=&quot;#Huggingface🤗&quot; class=&quot;headerlink&quot; title=&quot;Huggingface🤗&quot;&gt;&lt;/a&gt;Huggingface🤗&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Unified MRC Framework for Named Entity Recognition</title>
+    <link href="http://yc1999.github.io/2021/01/27/a-unified-mrc-framework-for-named-entity-recognition/"/>
+    <id>http://yc1999.github.io/2021/01/27/a-unified-mrc-framework-for-named-entity-recognition/</id>
+    <published>2021-01-27T13:19:06.000Z</published>
+    <updated>2021-01-28T09:43:10.989Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;论文：&lt;a href=&quot;https://arxiv.org/pdf/1910.11476.pdf&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="论文阅读" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="MRC" scheme="http://yc1999.github.io/tags/MRC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What is .bashrc file in Linux?</title>
+    <link href="http://yc1999.github.io/2021/01/26/what-is-bashrc-file-in-linux/"/>
+    <id>http://yc1999.github.io/2021/01/26/what-is-bashrc-file-in-linux/</id>
+    <published>2021-01-26T13:00:35.000Z</published>
+    <updated>2021-01-26T14:03:36.207Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="http://yc1999.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="http://yc1999.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实验室服务器深度学习环境搭建</title>
+    <link href="http://yc1999.github.io/2021/01/25/shi-yan-shi-fu-wu-qi-shen-du-xue-xi-huan-jing-da-jian/"/>
+    <id>http://yc1999.github.io/2021/01/25/shi-yan-shi-fu-wu-qi-shen-du-xue-xi-huan-jing-da-jian/</id>
+    <published>2021-01-25T04:06:28.000Z</published>
+    <updated>2021-01-25T04:09:06.404Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;下载Anaconda&quot;&gt;&lt;a href=&quot;#下载Anaconda&quot; class=&quot;headerlink&quot; title=&quot;下载Anaconda&quot;&gt;&lt;/a&gt;下载Anaconda&lt;/h2&gt;&lt;p&gt;下载Anaconda，推荐到&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="实验室" scheme="http://yc1999.github.io/categories/%E5%AE%9E%E9%AA%8C%E5%AE%A4/"/>
+    
+    
+    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CRF Layer on the Top of BiLSTM(BiLSTM-CRF)</title>
+    <link href="http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/"/>
+    <id>http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/</id>
+    <published>2021-01-24T09:16:51.000Z</published>
+    <updated>2021-01-24T09:56:04.946Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原论文：&lt;/p&gt;
+&lt;pre class=&quot; language-BibTex&quot;&gt;&lt;code class=&quot;language-BibTex&quot;&gt;@article{DBLP:journals/corr/LampleBSKD16,
+  author   </summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="BiLSTM-CRF" scheme="http://yc1999.github.io/tags/BiLSTM-CRF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【李宏毅-深度学习】Structured Learning: Sequence Labeling</title>
+    <link href="http://yc1999.github.io/2021/01/23/li-hong-yi-shen-du-xue-xi-structured-learning-sequence-labeling/"/>
+    <id>http://yc1999.github.io/2021/01/23/li-hong-yi-shen-du-xue-xi-structured-learning-sequence-labeling/</id>
+    <published>2021-01-23T13:33:55.000Z</published>
+    <updated>2021-01-24T04:11:20.673Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;Sequence-Labeling&quot;&gt;&lt;a href=&quot;#Sequence-Labeling&quot; class=&quot;headerlink&quot; title=&quot;Sequence Labeling&quot;&gt;&lt;/a&gt;Sequence</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="CRF" scheme="http://yc1999.github.io/tags/CRF/"/>
+    
+    <category term="HMM" scheme="http://yc1999.github.io/tags/HMM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nn.Sequential与nn.ModuleList的区别</title>
+    <link href="http://yc1999.github.io/2021/01/21/nn-sequential-yu-nn-modulelist-de-qu-bie/"/>
+    <id>http://yc1999.github.io/2021/01/21/nn-sequential-yu-nn-modulelist-de-qu-bie/</id>
+    <published>2021-01-21T03:07:22.000Z</published>
+    <updated>2021-01-21T06:43:16.451Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;简单的罗列一些重要的信息：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nn.ModuleList&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相当于Python中的&lt;code&gt;list&lt;/code&gt;，当你想在PyTorch中使用&lt;code&gt;list&lt;/code&gt;装载Module时，不能用&lt;co</summary>
+        
+      
+    
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/categories/PyTorch/"/>
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyCharm Tips</title>
+    <link href="http://yc1999.github.io/2021/01/21/pycharm-tips/"/>
+    <id>http://yc1999.github.io/2021/01/21/pycharm-tips/</id>
+    <published>2021-01-21T02:36:56.000Z</published>
+    <updated>2021-01-21T06:43:28.408Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;Python代码调试跳出for循环&quot;&gt;&lt;a href=&quot;#Python代码调试跳出for循环&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="PyCharm" scheme="http://yc1999.github.io/categories/PyCharm/"/>
+    
+    
+    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+    
+    <category term="PyCharm" scheme="http://yc1999.github.io/tags/PyCharm/"/>
+    
+  </entry>
   
   <entry>
     <title>Python学习之*arg、**kwargs</title>
@@ -159,7 +413,7 @@
     <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/"/>
     <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/</id>
     <published>2021-01-14T11:23:24.000Z</published>
-    <updated>2021-01-19T12:58:33.893Z</updated>
+    <updated>2021-01-21T14:26:17.847Z</updated>
     
     
       
@@ -191,7 +445,7 @@
     <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/"/>
     <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/</id>
     <published>2021-01-14T07:08:09.000Z</published>
-    <updated>2021-01-16T13:28:47.515Z</updated>
+    <updated>2021-01-21T14:26:12.877Z</updated>
     
     
       
@@ -321,233 +575,6 @@
     <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
     
     <category term="毕设" scheme="http://yc1999.github.io/tags/%E6%AF%95%E8%AE%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【李宏毅-人类语言处理】17-一文看尽各种NLP任务</title>
-    <link href="http://yc1999.github.io/2021/01/04/li-hong-yi-ren-lei-yu-yan-chu-li-17-yi-wen-kan-jin-ge-chong-nlp-ren-wu/"/>
-    <id>http://yc1999.github.io/2021/01/04/li-hong-yi-ren-lei-yu-yan-chu-li-17-yi-wen-kan-jin-ge-chong-nlp-ren-wu/</id>
-    <published>2021-01-04T06:29:27.000Z</published>
-    <updated>2021-01-04T13:25:42.887Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;NLP的两大任务&quot;&gt;&lt;a href=&quot;#NLP的两大任务&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="学习笔记" scheme="http://yc1999.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sequence to sequence model: Introduction and concepts</title>
-    <link href="http://yc1999.github.io/2021/01/03/sequence-to-sequence-model-introduction-and-concepts/"/>
-    <id>http://yc1999.github.io/2021/01/03/sequence-to-sequence-model-introduction-and-concepts/</id>
-    <published>2021-01-03T13:02:10.000Z</published>
-    <updated>2021-01-04T13:33:56.788Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;If we take a high-level view, a seq2seq model has encoder, decoder and intermediate step as its main components:&lt;/p&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="Seq2Seq" scheme="http://yc1999.github.io/tags/Seq2Seq/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>依存句法分析</title>
-    <link href="http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/"/>
-    <id>http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/</id>
-    <published>2021-01-03T12:00:00.000Z</published>
-    <updated>2021-01-03T12:53:43.905Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;语法分析&lt;/strong&gt;(syntactic parsing )是自然语言处理中一个重要的任务，其目标是分析句子的语法结构并将其表示为容易理解的结构(通常是树形结构)。同时，语法分析也是所有工具性NLP任务中较为高级、较为复杂的一种任务。</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【陈蕴侬-ADL】6-Recurrent Neural Network</title>
-    <link href="http://yc1999.github.io/2020/12/30/chen-yun-nong-adl-6-recurrent-neural-network/"/>
-    <id>http://yc1999.github.io/2020/12/30/chen-yun-nong-adl-6-recurrent-neural-network/</id>
-    <published>2020-12-30T08:57:06.000Z</published>
-    <updated>2020-12-30T08:57:06.406Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>裤子尺码</title>
-    <link href="http://yc1999.github.io/2020/12/25/ku-zi-chi-ma/"/>
-    <id>http://yc1999.github.io/2020/12/25/ku-zi-chi-ma/</id>
-    <published>2020-12-25T00:42:01.000Z</published>
-    <updated>2020-12-25T12:04:46.487Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;尺码&lt;/th&gt;
-&lt;th&gt;大小&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;身高（CM）&lt;/td&gt;
-&lt;td&gt;164&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;胸围（C</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>歌曲推荐</title>
-    <link href="http://yc1999.github.io/2020/12/23/ge-qu-tui-jian/"/>
-    <id>http://yc1999.github.io/2020/12/23/ge-qu-tui-jian/</id>
-    <published>2020-12-23T06:45:50.000Z</published>
-    <updated>2020-12-23T10:38:40.078Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Jack-Antonoff&quot;&gt;&lt;a href=&quot;#Jack-Antonoff&quot; class=&quot;headerlink&quot; title=&quot;Jack Antonoff&quot;&gt;&lt;/a&gt;Jack Antonoff&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Jack</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>毕设方向探索</title>
-    <link href="http://yc1999.github.io/2020/12/22/bi-she-fang-xiang-tan-suo/"/>
-    <id>http://yc1999.github.io/2020/12/22/bi-she-fang-xiang-tan-suo/</id>
-    <published>2020-12-22T06:43:27.000Z</published>
-    <updated>2020-12-24T13:17:14.494Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;方向一：GNN的Representation-Learning改进&quot;&gt;&lt;a href=&quot;#方向一：GNN的Representation-Learning改进&quot; class=&quot;headerlink&quot; title=&quot;方向一：GNN的Representation</summary>
-        
-      
-    
-    
-    
-    
-    <category term="毕设" scheme="http://yc1999.github.io/tags/%E6%AF%95%E8%AE%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode 1109. Corporate Flight Bookings【差分数组】</title>
-    <link href="http://yc1999.github.io/2020/12/21/leetcode-1109-corporate-flight-bookings-chai-fen-shu-zu/"/>
-    <id>http://yc1999.github.io/2020/12/21/leetcode-1109-corporate-flight-bookings-chai-fen-shu-zu/</id>
-    <published>2020-12-21T12:05:37.000Z</published>
-    <updated>2020-12-21T12:26:39.892Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;读完本文，你不仅学会了算法套路，还可以顺便去 LeetCode 上拿下如下题目：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://ww1.sinaimg.cn/large/9b63ed6fgy1glvqyy7v1qj20xc0m8wgt.jpg&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="LeetCode" scheme="http://yc1999.github.io/categories/LeetCode/"/>
-    
-    
-    <category term="数组" scheme="http://yc1999.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="LeetCode" scheme="http://yc1999.github.io/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CCKS（全国知识图谱与语义计算大会）</title>
-    <link href="http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/"/>
-    <id>http://yc1999.github.io/2020/12/18/ccks-quan-guo-zhi-shi-tu-pu-yu-yu-yi-ji-suan-da-hui/</id>
-    <published>2020-12-18T06:42:44.000Z</published>
-    <updated>2020-12-23T13:38:15.271Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天跟老师聊了一下毕设的方向，&lt;strong&gt;老师提出了两方面的改进目标&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;图神经网络的方法论上进行创新&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;从GNN的构图，表征学习等方面进行创新，这样一来，数据集不再是局限于金</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

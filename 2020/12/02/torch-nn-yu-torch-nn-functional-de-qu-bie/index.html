@@ -552,7 +552,7 @@ m2<span class="token punctuation">.</span>eval<span class="token punctuation">(<
 <span class="token keyword">print</span><span class="token punctuation">(</span>m1<span class="token punctuation">(</span>inputs<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>m2<span class="token punctuation">(</span>inputs<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <p>输出：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-b2b202a21c13bdacba02a9d69d602b77_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><img src="http://pic4.zhimg.com/80/v2-b2b202a21c13bdacba02a9d69d602b77_720w.jpg?source=1940ef5c" alt="img"></p>
 <p>从上面输出可以看出<code>m2</code>调用了<code>eval</code>之后，dropout照样还在正常工作。当然如果你有强烈愿望坚持使用<code>nn.functional.dropout</code>，也可以采用下面方式来补救。</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Model3</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
 

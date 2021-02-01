@@ -497,7 +497,7 @@
 <ul>
 <li><code>任务一</code>：事件触发词及论元抽取</li>
 </ul>
-<p>该任务旨在从文本中抽取标识事件发生的触发词和论元，触发词往往为动词和名词。触发词 对应的事件论元，主要为主体、客体、时间、地点，其中主体为必备论元。</p>
+<p>该任务旨在从文本中抽取标识事件发生的触发词和论元，触发词往往为动词和名词。触发词对应的事件论元，主要为主体、客体、时间、地点，其中主体为必备论元。</p>
 <ul>
 <li><code>任务二</code>：事件属性抽取</li>
 </ul>
@@ -509,15 +509,18 @@
 </ol>
 <h2 id="冠军思路👑"><a href="#冠军思路👑" class="headerlink" title="冠军思路👑"></a>冠军思路👑</h2><p>将任务分割为<strong>触发词抽取</strong>，<strong>论元抽取</strong>，<strong>属性抽取</strong>。具体而言是论元和属性的抽取结果依赖于<strong>触发词</strong>，因此只有一步误差传播。</p>
 <p><strong>因 <code>time</code>&amp;<code>loc</code> 并非每个句子中都存在，并且分布较为稀疏，因此将 <code>time</code> &amp; <code>loc</code> 与 <code>sub</code> &amp; <code>obj</code> 的抽取分开（role1 提取 sub &amp; obj；role2 提取 time &amp; loc）</strong></p>
+<blockquote>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmpl803tefj20jr0ffjru.jpg"></p>
-<p>模型先进行<strong>触发词提取</strong>，由于复赛数据集的特殊性，模型限制抽取的事件仅有一个，<strong>如果抽取出多个触发词，选择 logits 最大的 trigger 作为该句子的触发词</strong>，如果没有抽取触发词，筛选整个句子的 logits，取 argmax 来获取触发词；</p>
+<p>具体的数值如下：<br><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmv2umo1hdj20kc04iwes.jpg"></p>
+</blockquote>
+<p>模型先进行<strong>触发词提取</strong>，由于复赛数据集的特殊性，模型限制抽取的事件仅有一个，<font color="red"><strong>如果抽取出多个触发词，选择 logits 最大的 trigger 作为该句子的触发词</strong></font>，如果没有抽取触发词，筛选整个句子的 logits，取 argmax 来获取触发词；</p>
 <p>然后根据触发词抽取模型抽取的触发词，分别输入到 <code>role1</code> &amp; <code>role2</code> &amp; <code>attribution</code> 模型中，进行后序的论元提取和属性分类；</p>
 <p>四种模型都是基于 Roberta-wwm 进行实验，加入了不同的特征。最后将识别的结果进行整合，得到提交文件。</p>
 <h3 id="pipeline-思路"><a href="#pipeline-思路" class="headerlink" title="pipeline 思路"></a>pipeline 思路</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmngejrzsvj20kg0cj74j.jpg"></p>
 <blockquote>
 <p>注意：</p>
 <ul>
-<li>输入的数据是<strong>复赛数据</strong>而不是<strong>初赛数据</strong>，这份开源代码中只考虑复赛任务，而不考虑初赛任务。但是由于复赛任务是在初赛任务上增加了属性抽取模块，所以复赛任务包含了初赛任务。唯一不同的是复赛和初赛的数据集不一样，而且在这份开源代码中，复赛任务使用了初赛的数据进行数据增强！</li>
+<li>输入的数据是<strong>复赛数据</strong>而不是<strong>初赛数据</strong>，这份开源代码中只考虑复赛任务，而不考虑初赛任务。但是由于复赛任务是在初赛任务上增加了属性抽取模块，所以复赛任务包含了初赛任务。唯一不同的是复赛和初赛的数据集不一样，而且在这份开源代码中，复赛任务也使用了初赛的数据进行数据增强！</li>
 </ul>
 </blockquote>
 <h3 id="触发词提取模块"><a href="#触发词提取模块" class="headerlink" title="触发词提取模块"></a>触发词提取模块</h3><p>trigger 提取采用的特征是<font color="red"><strong>远程监督 trigger</strong></font>，把所有标注数据当做一个知识库，对当前文本进行匹配。</p>
@@ -535,10 +538,55 @@
 <p>由于数据中 subject/object 分布相似，同时与 time/loc 分布相差很大，我们进一步进行了优化，将前两者和后两者的抽取分开，防止 time/loc 的数据对 subject/object 的 logits 稀疏化。</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh1yku2cj20u00o8adh.jpg"></p>
 <h3 id="attribution分类器"><a href="#attribution分类器" class="headerlink" title="attribution分类器"></a>attribution分类器</h3><p>attribution 分类器并没有进行特殊优化，采用了一个<strong>动态窗口</strong>的方法，我们认为某一 trigger 的 tense &amp; polarity 只与其附近的语境有关。</p>
-<p>因此我们设定了一个窗口，对该窗口内进行 pooling 操作，然后利用 pooling 后的 logits 进行多任务学习，同时分类出 tense 和 polarity。因属性数据类别不均及其严重，最后我们用 ERNIE 模型做了一个10折交叉验证，有较大的提升。</p>
+<p>因此我们设定了一个窗口，对该窗口内进行 pooling 操作，然后利用 pooling 后的 logits 进行多任务学习，同时分类出 tense 和 polarity。因属性数据类别不均及其严重，最后我们用 ERNIE 模型做了一个<strong>10折交叉验证</strong>，有较大的提升。</p>
+<blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmui05ex7zj20jo0f43yx.jpg"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmui5dwwz1j20jf0fbmxl.jpg"></p>
+</blockquote>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh409kh9j20u00k8tai.jpg"></p>
+<h3 id="方案优化✅"><a href="#方案优化✅" class="headerlink" title="方案优化✅"></a>方案优化✅</h3><h4 id="触发词提取优化"><a href="#触发词提取优化" class="headerlink" title="触发词提取优化"></a>触发词提取优化</h4><ul>
+<li><p>初始方案：采用<strong>BERT-CRF</strong>的方式对触发词进行提取；</p>
+</li>
+<li><p>缺点：存在5%的句子会出现<strong>解码为空</strong>的现象，导致误差传播极大；</p>
+</li>
+<li><p>解决方案：</p>
+<ol>
+<li>舍弃CRF结构，采用<strong>指针式解码</strong>的方案，并利用前面提到的标注数据中的 trigger字典。如果未解码出trigger，则比较句子中匹配知识库的所有distant trigger 的 start + end logits，选取最大的一个作为解码出的 trigger；</li>
+<li>观察复赛数据，发现绝大部分训练语料中仅有一个事件，故<strong>限制解码输出一个trigger</strong>，如果解码出多个trigger，选取 logits（应该是sum of start logits &amp; end logits） 最大的那个trigger作为候选trigger。</li>
+</ol>
+</li>
+</ul>
+<h4 id="论元提取优化"><a href="#论元提取优化" class="headerlink" title="论元提取优化"></a>论元提取优化</h4><ul>
+<li><p>初始方案：采用BERT-指针式解码的方式<strong>同时对</strong> sub &amp; obj &amp; time &amp; loc 进行抽取。</p>
+</li>
+<li><p>缺点：sub &amp; obj 与 time &amp; loc 的分布差别很大，time &amp; loc 样本数量很少，造成 logits 很稀疏，降低了所有 role 的 recall。</p>
+</li>
+<li><p>改进方案：</p>
+</li>
+</ul>
+<ol>
+<li><p>将 time &amp; loc 和 subject &amp; object 的<strong>提取分开</strong>，采用两个独立的模型进行提取。</p>
+</li>
+<li><p>time &amp; loc 的抽取采用CRF，同时<strong>随机丢弃70%的负样本</strong>，使正负样本均衡。</p>
+</li>
+</ol>
+<h4 id="属性分类优化"><a href="#属性分类优化" class="headerlink" title="属性分类优化"></a>属性分类优化</h4><blockquote>
+<p>这个问题已经不像前面一样是Sequence Labeling的，这里显然是一个分类问题！整个句子输出一个标签。</p>
+</blockquote>
+<ul>
+<li><p>初始方案：BERT + 两个分类器</p>
+</li>
+<li><p>难点：属性分类中的两个属性出现了严重的类别不均。</p>
+</li>
+<li><p>改进方案：</p>
+<ol>
+<li>观察数据样本发现，能决定事件属性的词大多<strong>存在触发词左右</strong>，故舍弃CLS中的全局特征，采用<strong>trigger左右两端动态池化特征</strong>作为全局特征；</li>
+<li>由于样本类别不均极其严重，尝试很多增强方式都无效，故采用<strong>10折交叉</strong>验证的方法来提升模型的<strong>泛化性能</strong>。</li>
+</ol>
+</li>
+</ul>
 <h3 id="数据增强💎"><a href="#数据增强💎" class="headerlink" title="数据增强💎"></a>数据增强💎</h3><blockquote>
-<p>数据增强（Data Augmentation）是NLP任务中常见的一种手段。</p>
+<p>数据增强（Data Augmentation）是NLP任务中常见的一种手段，用于缓解标注数据集少的问题。</p>
 </blockquote>
 <p>本次比赛主要的上分点在于数据增强的工作，初赛和复赛数据的分布差别极大，一起训练反而会导致结果下降。</p>
 <p>因此我们做了一个初赛数据筛选的工作，筛选出与复赛数据分布相近的数据进行增量训练。主要流程详见PPT中<font color="red"><strong>基于标签验证的数据增强部分</strong>。</font></p>
@@ -551,11 +599,11 @@
 <li>使用【复赛train set + 筛选后的初赛train set】作为input，训练Trigger/Role Extract Model得到Base Model得到Final Model。</li>
 </ol>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh57l5c8j20u00gwwf6.jpg"></p>
+<h4 id="触发词增强"><a href="#触发词增强" class="headerlink" title="触发词增强"></a>触发词增强</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh57l5c8j20u00gwwf6.jpg"></p>
 <blockquote>
 <p>上图表示的是<code>src_final/preprocess/convert_raw_data.py</code>中的<code>split_preliminary_trigger_data()</code>函数的执行流程。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh5eatbbj20u00gw0z8.jpg"></p>
+<h4 id="论元增强"><a href="#论元增强" class="headerlink" title="论元增强"></a>论元增强</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmnh5eatbbj20u00gw0z8.jpg"></p>
 <blockquote>
 <p>上图表示的是<code>src_final/preprocess/convert_raw_data.py</code>中的<code>split_preliminary_role_data()</code>函数的执行流程。</p>
 </blockquote>
@@ -613,7 +661,7 @@ torchcrf<span class="token operator">==</span><span class="token number">1.1</sp
 ├── readme.md                               # ...
 ├── test.py                                 # pipeline 预测复赛数据 （包含 ensemble）
 └── train.py                                # 模型训练</code></pre>
-<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><p>数据转换部分只提供<strong>代码</strong>和<strong>已经转换好的数据</strong>，具体操作在 <strong>src_final/preprocess</strong>中的 <code>convert_raw_data</code>中，包含对初赛/复赛数据的清洗和转换。</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><p>数据转换部分只提供<strong>代码</strong>和<strong>已经转换好的数据</strong>，具体操作在 <code>src_final/preprocess</code> 中的 <code>convert_raw_data()</code>中，包含对初赛/复赛数据的清洗和转换。</p>
 <h3 id="训练阶段"><a href="#训练阶段" class="headerlink" title="训练阶段"></a>训练阶段</h3><pre class=" language-shell"><code class="language-shell">bash ./script/final/train.sh</code></pre>
 <blockquote>
 <p>注：脚本中指定的 BERT_DIR 指BERT所在文件夹，BERT采用的是哈工大的全词覆盖wwm模型，下载地址 <a href="https://github.com/ymcui/Chinese-BERT-wwm" target="_blank" rel="noopener">https://github.com/ymcui/Chinese-BERT-wwm</a> ，自行下载并制定对应文件夹，并将 vocab.txt 中的两个 unused 改成 [INV] 和 [BLANK]（详见 processor 代码中的<code>fine_grade_tokenize</code>）</p>
@@ -720,10 +768,10 @@ args<span class="token punctuation">.</span>use_distant_trigger <span class="tok
 <li><p>使用<code>predict_prelimiary.py</code>调用train好的trigger model 和role1 model 预测初赛数据的trigger和sub/ob</p>
 <pre class=" language-powershell"><code class="language-powershell">python predict_preliminary<span class="token punctuation">.</span>py <span class="token operator">--</span>dev_dir_trigger trigger_simple_ckpt_dir  <span class="token operator">--</span>dev_dir_role role1_simple_ckpt_dir</code></pre>
 </li>
-<li><p>运行src_final/preprocess下的convert_raw_data_preliminary.py</p>
+<li><p>运行<code>src_final/preprocess</code>下的<code>convert_raw_data_preliminary.py</code></p>
 <pre class=" language-shell"><code class="language-shell">python convert_raw_data_preliminary.py</code></pre>
 </li>
-<li><p>运行src_final/preprocess下的convert_raw_data.py 即完成了初赛数据的清洗</p>
+<li><p>运行<code>src_final/preprocess</code>下的<code>convert_raw_data.py</code>即完成了初赛数据的清洗</p>
 <pre class=" language-shell"><code class="language-shell">python convert_raw_data.py</code></pre>
 </li>
 </ul>
@@ -769,9 +817,9 @@ args<span class="token punctuation">.</span>use_distant_trigger <span class="tok
 <li><p>什么是WordPiece？</p>
 </li>
 </ol>
-<h3 id="trigger提取阶段"><a href="#trigger提取阶段" class="headerlink" title="trigger提取阶段"></a>trigger提取阶段</h3><p><code>train_features</code>：</p>
+<h3 id="trigger提取阶段"><a href="#trigger提取阶段" class="headerlink" title="trigger提取阶段"></a>trigger提取阶段</h3><p><code>TriggerFeature</code>里面封装的数据：</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmrzfsziqpj20s30a2ta3.jpg"></p>
-<p>具体的数据如下：</p>
+<p>控制台输出如下：</p>
 <pre class=" language-output"><code class="language-output">01/18/2021 14:01:28 - INFO - src_final.preprocess.processor -   *** train_example-0 ***
 01/18/2021 14:01:28 - INFO - src_final.preprocess.processor -   text: 原 标 题 ： 2 0 1 9 年 反 腐 败 “ 成 绩 单 ” 亮 眼 ● 从 数 据 上 看 ， 2 0 1 9 年 的 反 腐 败 成 绩 单 引 人 注 目 ， 反 映 了 当 前 反 腐 败 力 度 仍 然 没 有 放 松 、 反 腐 败 工 作 仍 然 按 照 既 定 目 标 推 进 、 高 压 反 腐 态 势 仍 然 保 持 ， 由 此 查 处 的 中 管 干 部 、 省 管 干 部 这 些 “ 关 键 少 数 ” 干 部 数 量 仍 然 保 持 高 位 并 呈 现 增 长 态 势 ● 2 0 1 9 年 反 腐 败 主 要 呈 现 三 个 方 面 的 特 点 ： 一 是 精 准 反 腐 ； 二 是 强 化 标 本 兼 治 ； 三 是 深 化 基 层 反 腐 败 ● 中 央 针 对 全 面 从 严 治 党 和 党 风 廉 政 建 设 领 域 ， 出 台 了 一 系 列 具 有 代 表 性 的 党 内 法 规 制 度 ， 为 整 个 监 察 体 制 改 革 提 供 了 制 度 保 障 ， 同 时 着 力 建 立 健 全 一 个 具 有 中 国 特 色 的 监 察 法 律 体 系 ， 推 动 制 度 反 腐 、 法 治 防 腐 制 图 / 李 晓 军 2 0 1 9 年 1 2 月 2 6 日 1 4 时 3 0 分 ， 中 央 纪 委 国 家 监 委 网 站 发 布 了 年 度 最 新 一 条 执 纪 审 查 消 息 ， “ 呼 和 浩 特 职 业 学 院 原 党 委 副 书 记 、 院 长 李 怀 柱 接 受 纪 律 审 查 和 监 察 调 查 ”
 01/18/2021 14:01:28 - INFO - src_final.preprocess.processor -   token_ids: [101, 1333, 3403, 7579, 8038, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 100, 2768, 5327, 1296, 100, 778, 4706, 474, 794, 3144, 2945, 677, 4692, 8024, 123, 121, 122, 130, 2399, 4638, 1353, 5576, 6571, 2768, 5327, 1296, 2471, 782, 3800, 4680, 8024, 1353, 3216, 749, 2496, 1184, 1353, 5576, 6571, 1213, 2428, 793, 4197, 3766, 3300, 3123, 3351, 510, 1353, 5576, 6571, 2339, 868, 793, 4197, 2902, 4212, 3188, 2137, 4680, 3403, 2972, 6822, 510, 7770, 1327, 1353, 5576, 2578, 1232, 793, 4197, 924, 2898, 8024, 4507, 3634, 3389, 1905, 4638, 704, 5052, 2397, 6956, 510, 4689, 5052, 2397, 6956, 6821, 763, 100, 1068, 7241, 2208, 3144, 100, 2397, 6956, 3144, 7030, 793, 4197, 924, 2898, 7770, 855, 2400, 1439, 4385, 1872, 7270, 2578, 1232, 474, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 712, 6206, 1439, 4385, 676, 702, 3175, 7481, 4638, 4294, 4157, 8038, 671, 3221, 5125, 1114, 1353, 5576, 8039, 753, 3221, 2487, 1265, 3403, 3315, 1076, 3780, 8039, 676, 3221, 3918, 1265, 1825, 2231, 1353, 5576, 6571, 474, 704, 1925, 7151, 2190, 1059, 7481, 794, 698, 3780, 1054, 1469, 1054, 7599, 2442, 3124, 2456, 6392, 7566, 1818, 8024, 1139, 1378, 749, 671, 5143, 1154, 1072, 3300, 807, 6134, 2595, 4638, 1054, 1079, 3791, 6226, 1169, 2428, 8024, 711, 3146, 702, 4664, 2175, 860, 1169, 3121, 7484, 2990, 897, 749, 1169, 2428, 924, 7397, 8024, 1398, 3198, 4708, 1213, 2456, 4989, 978, 1059, 671, 702, 1072, 3300, 704, 1744, 4294, 5682, 4638, 4664, 2175, 3791, 2526, 860, 5143, 8024, 2972, 1220, 1169, 2428, 1353, 5576, 510, 3791, 3780, 7344, 5576, 1169, 1745, 120, 3330, 3236, 1092, 123, 121, 122, 130, 2399, 122, 123, 3299, 123, 127, 3189, 122, 125, 3198, 124, 121, 1146, 8024, 704, 1925, 5279, 1999, 1744, 2157, 4664, 1999, 5381, 4991, 1355, 2357, 749, 2399, 2428, 3297, 3173, 671, 3340, 2809, 5279, 2144, 3389, 3867, 2622, 8024, 100, 1461, 1469, 3856, 102]
@@ -791,6 +839,55 @@ convert examples:   0%|          | 1/7045 [00:00<13:28,  8.71it/s]01/18/2021 14:
 01/18/2021 14:01:28 - INFO - src_final.preprocess.processor -   token_type_ids: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 01/18/2021 14:01:28 - INFO - src_final.preprocess.processor -   distant trigger: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 convert examples: 100%|██████████| 7045/7045 [00:39<00:00, 180.27it/s]</code></pre>
+<h3 id="role提取阶段"><a href="#role提取阶段" class="headerlink" title="role提取阶段"></a>role提取阶段</h3><p>role1阶段，<code>RoleFeature</code>里面封装的数据：</p>
+<pre class=" language-tex"><code class="language-tex">01/21/2021 10:07:09 - INFO - src_final.preprocess.processor -   *** train_example-0 ***
+01/21/2021 10:07:10 - INFO - src_final.preprocess.processor -   text: 原 标 题 ： 2 0 1 9 年 反 腐 败 “ 成 绩 单 ” 亮 眼 ● 从 数 据 上 看 ， 2 0 1 9 年 的 反 腐 败 成 绩 单 引 人 注 目 ， 反 映 了 当 前 反 腐 败 力 度 仍 然 没 有 放 松 、 反 腐 败 工 作 仍 然 按 照 既 定 目 标 推 进 、 高 压 反 腐 态 势 仍 然 保 持 ， 由 此 查 处 的 中 管 干 部 、 省 管 干 部 这 些 “ 关 键 少 数 ” 干 部 数 量 仍 然 保 持 高 位 并 呈 现 增 长 态 势 ● 2 0 1 9 年 反 腐 败 主 要 呈 现 三 个 方 面 的 特 点 ： 一 是 精 准 反 腐 ； 二 是 强 化 标 本 兼 治 ； 三 是 深 化 基 层 反 腐 败 ● 中 央 针 对 全 面 从 严 治 党 和 党 风 廉 政 建 设 领 域 ， 出 台 了 一 系 列 具 有 代 表 性 的 党 内 法 规 制 度 ， 为 整 个 监 察 体 制 改 革 提 供 了 制 度 保 障 ， 同 时 着 力 建 立 健 全 一 个 具 有 中 国 特 色 的 监 察 法 律 体 系 ， 推 动 制 度 反 腐 、 法 治 防 腐 制 图 / 李 晓 军 2 0 1 9 年 1 2 月 2 6 日 1 4 时 3 0 分 ， 中 央 纪 委 国 家 监 委 网 站 发 布 了 年 度 最 新 一 条 执 纪 审 查 消 息 ， “ 呼 和 浩 特 职 业 学 院 原 党 委 副 书 记 、 院 长 李 怀 柱 接 受 纪 律 审 查 和 监 察 调 查 ”
+01/21/2021 10:07:10 - INFO - src_final.preprocess.processor -   token_ids: [101, 1333, 3403, 7579, 8038, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 100, 2768, 5327, 1296, 100, 778, 4706, 474, 794, 3144, 2945, 677, 4692, 8024, 123, 121, 122, 130, 2399, 4638, 1353, 5576, 6571, 2768, 5327, 1296, 2471, 782, 3800, 4680, 8024, 1353, 3216, 749, 2496, 1184, 1353, 5576, 6571, 1213, 2428, 793, 4197, 3766, 3300, 3123, 3351, 510, 1353, 5576, 6571, 2339, 868, 793, 4197, 2902, 4212, 3188, 2137, 4680, 3403, 2972, 6822, 510, 7770, 1327, 1353, 5576, 2578, 1232, 793, 4197, 924, 2898, 8024, 4507, 3634, 3389, 1905, 4638, 704, 5052, 2397, 6956, 510, 4689, 5052, 2397, 6956, 6821, 763, 100, 1068, 7241, 2208, 3144, 100, 2397, 6956, 3144, 7030, 793, 4197, 924, 2898, 7770, 855, 2400, 1439, 4385, 1872, 7270, 2578, 1232, 474, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 712, 6206, 1439, 4385, 676, 702, 3175, 7481, 4638, 4294, 4157, 8038, 671, 3221, 5125, 1114, 1353, 5576, 8039, 753, 3221, 2487, 1265, 3403, 3315, 1076, 3780, 8039, 676, 3221, 3918, 1265, 1825, 2231, 1353, 5576, 6571, 474, 704, 1925, 7151, 2190, 1059, 7481, 794, 698, 3780, 1054, 1469, 1054, 7599, 2442, 3124, 2456, 6392, 7566, 1818, 8024, 1139, 1378, 749, 671, 5143, 1154, 1072, 3300, 807, 6134, 2595, 4638, 1054, 1079, 3791, 6226, 1169, 2428, 8024, 711, 3146, 702, 4664, 2175, 860, 1169, 3121, 7484, 2990, 897, 749, 1169, 2428, 924, 7397, 8024, 1398, 3198, 4708, 1213, 2456, 4989, 978, 1059, 671, 702, 1072, 3300, 704, 1744, 4294, 5682, 4638, 4664, 2175, 3791, 2526, 860, 5143, 8024, 2972, 1220, 1169, 2428, 1353, 5576, 510, 3791, 3780, 7344, 5576, 1169, 1745, 120, 3330, 3236, 1092, 123, 121, 122, 130, 2399, 122, 123, 3299, 123, 127, 3189, 122, 125, 3198, 124, 121, 1146, 8024, 704, 1925, 5279, 1999, 1744, 2157, 4664, 1999, 5381, 4991, 1355, 2357, 749, 2399, 2428, 3297, 3173, 671, 3340, 2809, 5279, 2144, 3389, 3867, 2622, 8024, 100, 1461, 1469, 3856, 102]
+01/21/2021 10:07:11 - INFO - src_final.preprocess.processor -   attention_masks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+01/21/2021 10:07:11 - INFO - src_final.preprocess.processor -   token_type_ids: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+01/21/2021 10:07:12 - INFO - src_final.preprocess.processor -   trigger location: [299, 300]</code></pre>
+<p>以下是训练过程中的描述：</p>
+<pre class=" language-tex"><code class="language-tex">01/21/2021 10:28:35 - INFO - src_final.utils.functions_utils -   Use single gpu in: ['0']
+01/21/2021 10:29:06 - INFO - src_final.utils.trainer -   ***** Running training *****
+01/21/2021 10:29:06 - INFO - src_final.utils.trainer -     Num Examples = 7416
+01/21/2021 10:29:07 - INFO - src_final.utils.trainer -     Num Epochs = 1
+01/21/2021 10:29:07 - INFO - src_final.utils.trainer -     Total training batch size = 2
+01/21/2021 10:29:08 - INFO - src_final.utils.trainer -     Total optimization steps = 3708</code></pre>
+<p>role的验证如何进行？</p>
+<p>跟trigger的验证差不多。</p>
+<hr>
+<p>role2阶段，<code>RoleFeature</code>里面封装的数据：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmvdz7b9clj20no095gn0.jpg"></p>
+<pre class=" language-text"><code class="language-text">01/21/2021 15:53:09 - INFO - src_final.preprocess.processor -   *** train_example-0 ***
+01/21/2021 15:53:09 - INFO - src_final.preprocess.processor -   text: 原 标 题 ： 2 0 1 9 年 反 腐 败 “ 成 绩 单 ” 亮 眼 ● 从 数 据 上 看 ， 2 0 1 9 年 的 反 腐 败 成 绩 单 引 人 注 目 ， 反 映 了 当 前 反 腐 败 力 度 仍 然 没 有 放 松 、 反 腐 败 工 作 仍 然 按 照 既 定 目 标 推 进 、 高 压 反 腐 态 势 仍 然 保 持 ， 由 此 查 处 的 中 管 干 部 、 省 管 干 部 这 些 “ 关 键 少 数 ” 干 部 数 量 仍 然 保 持 高 位 并 呈 现 增 长 态 势 ● 2 0 1 9 年 反 腐 败 主 要 呈 现 三 个 方 面 的 特 点 ： 一 是 精 准 反 腐 ； 二 是 强 化 标 本 兼 治 ； 三 是 深 化 基 层 反 腐 败 ● 中 央 针 对 全 面 从 严 治 党 和 党 风 廉 政 建 设 领 域 ， 出 台 了 一 系 列 具 有 代 表 性 的 党 内 法 规 制 度 ， 为 整 个 监 察 体 制 改 革 提 供 了 制 度 保 障 ， 同 时 着 力 建 立 健 全 一 个 具 有 中 国 特 色 的 监 察 法 律 体 系 ， 推 动 制 度 反 腐 、 法 治 防 腐 制 图 / 李 晓 军 2 0 1 9 年 1 2 月 2 6 日 1 4 时 3 0 分 ， 中 央 纪 委 国 家 监 委 网 站 发 布 了 年 度 最 新 一 条 执 纪 审 查 消 息 ， “ 呼 和 浩 特 职 业 学 院 原 党 委 副 书 记 、 院 长 李 怀 柱 接 受 纪 律 审 查 和 监 察 调 查 ”
+01/21/2021 15:53:10 - INFO - src_final.preprocess.processor -   trigger location: [299, 300]
+01/21/2021 15:53:10 - INFO - src_final.preprocess.processor -   labels: [9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9]</code></pre>
+<p>训练信息如下：</p>
+<pre class=" language-text"><code class="language-text">01/21/2021 19:44:49 - INFO - src_final.utils.functions_utils -   Use single gpu in: ['0']
+01/21/2021 19:45:06 - INFO - src_final.utils.trainer -   ***** Running training *****
+01/21/2021 19:45:06 - INFO - src_final.utils.trainer -     Num Examples = 5808
+01/21/2021 19:45:06 - INFO - src_final.utils.trainer -     Num Epochs = 1
+01/21/2021 19:45:07 - INFO - src_final.utils.trainer -     Total training batch size = 2
+01/21/2021 19:45:08 - INFO - src_final.utils.trainer -     Total optimization steps = 2904</code></pre>
+<hr>
+<p><strong>为什么role1和role2使用的标签是不一样的？</strong></p>
+<p>role1采用的是start-end类型的标签，分开训练sub和obj。</p>
+<p>而role2采用的是s、i、e、s、x、o类型的标签，而且还是联合训练time和loc，没有分开进行训练。<img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmvkmvsfwkj21bf06hwfw.jpg" alt="bert_outputs的内容"></p>
+<h3 id="attribution提取阶段"><a href="#attribution提取阶段" class="headerlink" title="attribution提取阶段"></a>attribution提取阶段</h3><p><code>AttributionFeature</code>里面封装的数据：</p>
+<pre class=" language-text"><code class="language-text">01/21/2021 21:01:17 - INFO - src_final.preprocess.processor -   *** train_example-0 ***
+01/21/2021 21:01:17 - INFO - src_final.preprocess.processor -   text: 原 标 题 ： 2 0 1 9 年 反 腐 败 “ 成 绩 单 ” 亮 眼 ● 从 数 据 上 看 ， 2 0 1 9 年 的 反 腐 败 成 绩 单 引 人 注 目 ， 反 映 了 当 前 反 腐 败 力 度 仍 然 没 有 放 松 、 反 腐 败 工 作 仍 然 按 照 既 定 目 标 推 进 、 高 压 反 腐 态 势 仍 然 保 持 ， 由 此 查 处 的 中 管 干 部 、 省 管 干 部 这 些 “ 关 键 少 数 ” 干 部 数 量 仍 然 保 持 高 位 并 呈 现 增 长 态 势 ● 2 0 1 9 年 反 腐 败 主 要 呈 现 三 个 方 面 的 特 点 ： 一 是 精 准 反 腐 ； 二 是 强 化 标 本 兼 治 ； 三 是 深 化 基 层 反 腐 败 ● 中 央 针 对 全 面 从 严 治 党 和 党 风 廉 政 建 设 领 域 ， 出 台 了 一 系 列 具 有 代 表 性 的 党 内 法 规 制 度 ， 为 整 个 监 察 体 制 改 革 提 供 了 制 度 保 障 ， 同 时 着 力 建 立 健 全 一 个 具 有 中 国 特 色 的 监 察 法 律 体 系 ， 推 动 制 度 反 腐 、 法 治 防 腐 制 图 / 李 晓 军 2 0 1 9 年 1 2 月 2 6 日 1 4 时 3 0 分 ， 中 央 纪 委 国 家 监 委 网 站 发 布 了 年 度 最 新 一 条 执 纪 审 查 消 息 ， “ 呼 和 浩 特 职 业 学 院 原 党 委 副 书 记 、 院 长 李 怀 柱 接 受 纪 律 审 查 和 监 察 调 查 ”
+01/21/2021 21:01:18 - INFO - src_final.preprocess.processor -   token_ids: [101, 1333, 3403, 7579, 8038, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 100, 2768, 5327, 1296, 100, 778, 4706, 474, 794, 3144, 2945, 677, 4692, 8024, 123, 121, 122, 130, 2399, 4638, 1353, 5576, 6571, 2768, 5327, 1296, 2471, 782, 3800, 4680, 8024, 1353, 3216, 749, 2496, 1184, 1353, 5576, 6571, 1213, 2428, 793, 4197, 3766, 3300, 3123, 3351, 510, 1353, 5576, 6571, 2339, 868, 793, 4197, 2902, 4212, 3188, 2137, 4680, 3403, 2972, 6822, 510, 7770, 1327, 1353, 5576, 2578, 1232, 793, 4197, 924, 2898, 8024, 4507, 3634, 3389, 1905, 4638, 704, 5052, 2397, 6956, 510, 4689, 5052, 2397, 6956, 6821, 763, 100, 1068, 7241, 2208, 3144, 100, 2397, 6956, 3144, 7030, 793, 4197, 924, 2898, 7770, 855, 2400, 1439, 4385, 1872, 7270, 2578, 1232, 474, 123, 121, 122, 130, 2399, 1353, 5576, 6571, 712, 6206, 1439, 4385, 676, 702, 3175, 7481, 4638, 4294, 4157, 8038, 671, 3221, 5125, 1114, 1353, 5576, 8039, 753, 3221, 2487, 1265, 3403, 3315, 1076, 3780, 8039, 676, 3221, 3918, 1265, 1825, 2231, 1353, 5576, 6571, 474, 704, 1925, 7151, 2190, 1059, 7481, 794, 698, 3780, 1054, 1469, 1054, 7599, 2442, 3124, 2456, 6392, 7566, 1818, 8024, 1139, 1378, 749, 671, 5143, 1154, 1072, 3300, 807, 6134, 2595, 4638, 1054, 1079, 3791, 6226, 1169, 2428, 8024, 711, 3146, 702, 4664, 2175, 860, 1169, 3121, 7484, 2990, 897, 749, 1169, 2428, 924, 7397, 8024, 1398, 3198, 4708, 1213, 2456, 4989, 978, 1059, 671, 702, 1072, 3300, 704, 1744, 4294, 5682, 4638, 4664, 2175, 3791, 2526, 860, 5143, 8024, 2972, 1220, 1169, 2428, 1353, 5576, 510, 3791, 3780, 7344, 5576, 1169, 1745, 120, 3330, 3236, 1092, 123, 121, 122, 130, 2399, 122, 123, 3299, 123, 127, 3189, 122, 125, 3198, 124, 121, 1146, 8024, 704, 1925, 5279, 1999, 1744, 2157, 4664, 1999, 5381, 4991, 1355, 2357, 749, 2399, 2428, 3297, 3173, 671, 3340, 2809, 5279, 2144, 3389, 3867, 2622, 8024, 100, 1461, 1469, 3856, 102]
+01/21/2021 21:01:18 - INFO - src_final.preprocess.processor -   attention_masks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+01/21/2021 21:01:21 - INFO - src_final.preprocess.processor -   token_type_ids: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+01/21/2021 21:01:21 - INFO - src_final.preprocess.processor -   trigger loc: (299, 300)
+01/21/2021 21:01:22 - INFO - src_final.preprocess.processor -   labels: [0, 0]</code></pre>
+<p>process data之后，打印的训练信息：</p>
+<pre class=" language-text"><code class="language-text">01/21/2021 21:11:27 - INFO - src_final.utils.functions_utils -   Use single gpu in: ['0']
+01/21/2021 21:13:04 - INFO - src_final.utils.trainer -   ***** Running training *****
+01/21/2021 21:13:05 - INFO - src_final.utils.trainer -     Num Examples = 2494
+01/21/2021 21:13:06 - INFO - src_final.utils.trainer -     Num Epochs = 1
+01/21/2021 21:13:06 - INFO - src_final.utils.trainer -     Total training batch size = 2
+01/21/2021 21:13:07 - INFO - src_final.utils.trainer -     Total optimization steps = 1247</code></pre>
 <h3 id="数据问题"><a href="#数据问题" class="headerlink" title="数据问题"></a>数据问题</h3><p>在看了<code>covert_raw_data.py</code>之后，我终于知道项目<code>data/final</code>下面的数据集都是什么意思了。</p>
 <p>比如在<code>data/final/raw_data/</code>目录下：</p>
 <ul>
@@ -842,8 +939,24 @@ convert examples: 100%|██████████| 7045/7045 [00:39<00:00, 1
 <li></li>
 <li>转换数据为BERT需要的Token ID</li>
 <li>构造Dataset：将数据集转换成PyTorch中的Dataset类型</li>
-<li></li>
 </ol>
+<p>main()  <span class="github-emoji"><span>➡</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/27a1.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> training() <span class="github-emoji"><span>➡</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/27a1.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> train_base() <span class="github-emoji"><span>➡</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/27a1.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> train() </p>
+<h3 id="程序Bug"><a href="#程序Bug" class="headerlink" title="程序Bug"></a>程序Bug</h3><h4 id="list-index-out-of-range"><a href="#list-index-out-of-range" class="headerlink" title="list index out of range"></a>list index out of range</h4><script src="https://gist.github.com/yc1999/7e1867cf14e881186e78c2544c631926.js"></script>
+
+<p>./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-3523</p>
+<p>./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-7045</p>
+<pre class=" language-python"><code class="language-python">model_lists <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"./out\\final\\trigger\\roberta_wwm_distant_trigger_pgd_enhanced\\checkpoint-0001\\model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out\\final\\trigger\\roberta_wwm_distant_trigger_pgd_enhanced\\checkpoint-0003\\model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out\\final\\trigger\\roberta_wwm_distant_trigger_pgd_enhanced\\checkpoint-0002\\model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out\\final\\trigger\\roberta_wwm_distant_trigger_pgd_enhanced\\checkpoint-0004\\model.pt"</span><span class="token punctuation">]</span>
+
+model_lists <span class="token operator">=</span> sorted<span class="token punctuation">(</span>model_lists<span class="token punctuation">,</span>key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\\'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> int<span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'\\'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-python"><code class="language-python">model_lists <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-0001/model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-0002/model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-0003/model.pt"</span><span class="token punctuation">,</span><span class="token string">"./out/final/trigger/roberta_wwm_distant_trigger_pgd_enhanced/checkpoint-0004/model.pt"</span><span class="token punctuation">]</span>
+
+model_lists <span class="token operator">=</span> sorted<span class="token punctuation">(</span>model_lists<span class="token punctuation">,</span>key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> int<span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-python"><code class="language-python">list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a/3"</span><span class="token punctuation">,</span><span class="token string">"a/2"</span><span class="token punctuation">,</span><span class="token string">"a/1"</span><span class="token punctuation">]</span>
+list <span class="token operator">=</span> sorted<span class="token punctuation">(</span>list<span class="token punctuation">,</span>key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>int<span class="token punctuation">(</span>x<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></code></pre>
+<h3 id="理解pipeline和joint-learning"><a href="#理解pipeline和joint-learning" class="headerlink" title="理解pipeline和joint learning"></a>理解pipeline和joint learning</h3><ul>
+<li>pipeline：每个模块单独训练，各模块之间完全独立，不存在输入和输出的依赖；</li>
+<li>joint learning：一个模块的输出作为下一个模块的输入，最后一起计算误差，一起进行训练；</li>
+</ul>
 
             </div>
             <hr/>
