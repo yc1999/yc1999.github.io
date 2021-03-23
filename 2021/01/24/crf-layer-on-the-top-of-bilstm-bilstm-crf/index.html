@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
@@ -500,14 +500,63 @@
 <ol>
 <li>Named Entity Recognition</li>
 </ol>
-<h2 id="Model-Architecture"><a href="#Model-Architecture" class="headerlink" title="Model Architecture"></a>Model Architecture</h2><p>如果只是当一个掉包侠，那么一定要把握好模型的Architecture，知道输入和输出，以及需要调整的参数。</p>
+<h2 id="Model-Architecture⭐⭐⭐⭐⭐"><a href="#Model-Architecture⭐⭐⭐⭐⭐" class="headerlink" title="Model Architecture⭐⭐⭐⭐⭐"></a>Model Architecture⭐⭐⭐⭐⭐</h2><p>如果只是当一个掉包侠，那么一定要把握好模型的Architecture，知道输入和输出，以及需要调整的参数。</p>
 <p>模型由BiLSTM和CRF两个部分构成，BiLSTM的输出作为CRF的输入。</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gmywrsgjtxj20bx0an74j.jpg"></p>
-<p>BiLSTM做的是多分类任务，其输出是某个word被标记为某个tag的概率（即Emission Score）。</p>
-<p>CRF吃进去这些Emission Score，然后在内部训练Transition Score，最后直接输出预测的tag序列。</p>
+<p><code>BiLSTM</code>做的是多分类任务，其输出是某个word被标记为某个tag的概率（即<code>Emission Score</code>）。</p>
+<p><code>CRF</code>吃进去这些<code>Emission Score</code>，然后在内部训练<code>Transition Score Matrix</code>，最后直接输出预测的tag序列。</p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="为什么需要CRF层？"><a href="#为什么需要CRF层？" class="headerlink" title="为什么需要CRF层？"></a>为什么需要CRF层？</h3><p>首先，如果不使用CRF层，只使用BiLSTM怎么做？</p>
+<p>如下图所示，直接选择每个word的最大概率标签，然后将它们拼接在一起即可：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gotta5cdj7j20bx069mxo.jpg" alt="The BiLSTM model with out CRF layer output correct labels"></p>
+<p>但是，我们并不能每次都能得到<strong>合理的结果</strong>，例如下图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gottc0ztvaj20bx069aal.jpg" alt="The BiLSTM model with out CRF layer output some invalid label sequences"></p>
+<p>而此时正是CRF的用武之地，**<code>CRF can automatically learn some constraints from the training dataset to make output predictions valid</code>**。</p>
+<p>The constrains could be:</p>
+<ul>
+<li>The label of the first word in a sentence should start with “B-“ or “O”, not “I-“</li>
+<li>“B-label1 I-label2 I-label3 I-…”, in this pattern, label1, label2, label3 … should be the same named entity label. For example, “B-Person I-Person” is valid, but “B-Person I-Organization” is invalid.</li>
+<li>“O I-label” is invalid. The first label of one named entity should start with “B-“ not “I-“, in other words, the valid pattern should be “O B-label”</li>
+<li>…</li>
+</ul>
+<h3 id="CRF的损失函数中使用了哪两种score？哪种score可以帮助CRF学习到constraints？"><a href="#CRF的损失函数中使用了哪两种score？哪种score可以帮助CRF学习到constraints？" class="headerlink" title="CRF的损失函数中使用了哪两种score？哪种score可以帮助CRF学习到constraints？"></a>CRF的损失函数中使用了哪两种score？哪种score可以帮助CRF学习到constraints？</h3><p>CRF的损失函数由两种类型的score构成——<code>Emission Score</code>和<code>Transition Score</code>，这两个score是CRF的核心概念。</p>
+<h4 id="Emission-Score"><a href="#Emission-Score" class="headerlink" title="Emission Score"></a>Emission Score</h4><p>如下图红框部分，Emission Score就是BiLSTM的输出：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gottmzdsncj20fo0dnabt.jpg" alt="the emission scores come from the BiLSTM layer"></p>
+<h4 id="Transition-Score"><a href="#Transition-Score" class="headerlink" title="Transition Score"></a>Transition Score</h4><p>我们使用$t_{y_iy_j}$来表示transition score，比如$t_{B-Person,I-Person} \ = \ 0.9$意味着标签转移$B-Person -&gt; I-Person$的score为0.9。以此类推，我们应该能够得到一个transition score matrix，如下图是一个示例：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gotttff5o7j20of0c1js0.jpg" alt="transition score matrix"></p>
+<p>可以通过transition score matrix看出，CRF能够学习到许多有用的constraints：</p>
+<ul>
+<li>The label of the first word in a sentence should start with “B-“ or “O”, not “I-“ <strong>(The transtion scores from “START” to “I-Person or I-Organization” are very low.)</strong></li>
+<li>“B-label1 I-label2 I-label3 I-…”, in this pattern, label1, label2, label3 … should be the same named entity label. For example, “B-Person I-Person” is valid, but “B-Person I-Organization” is invalid. <strong>(For example, the score from “B-Organization” to “I-Person” is only 0.0003 which is much lower than the others.)</strong></li>
+<li>“O I-label” is invalid. The first label of one named entity should start with “B-“ not “I-“, in other words, the valid pattern should be “O B-label” <strong>(Again, for instance, the score tO,I−PersontO,I−Person is very small.)</strong></li>
+<li>…</li>
+</ul>
+<h3 id="CRF的loss-function是什么？"><a href="#CRF的loss-function是什么？" class="headerlink" title="CRF的loss function是什么？"></a>CRF的loss function是什么？</h3><p>The CRF loss function is consist of the <strong>real path score</strong> and <strong>the total score of all the possible paths</strong>.The real path should have the highest score among those of all the possible paths.<br>$$<br>LossFunction =\frac {P_{RealPath}} {P_{total}} = \frac {P_{RealPath}} {P_1+P_2+…+P_N}<br>$$<br>Now, the questions are:</p>
+<ol>
+<li>How to define the score of a path?</li>
+<li>How to calculate the total score of all possible paths?</li>
+<li>When we calculate the total score, do we have to list all the possible paths? (The answer to this question is NO. )</li>
+</ol>
+<h3 id="如何计算Real-Path-Score？"><a href="#如何计算Real-Path-Score？" class="headerlink" title="如何计算Real Path Score？"></a>如何计算Real Path Score？</h3><p>首先是定义计算公式：$P_i = e^{S_i}$</p>
+<p>Take the real path, <strong>“START B-Person I-Person O B-Organization O END”</strong>, we used before, for example:</p>
+<ul>
+<li>We have a sentence which has 5 words, $w_1,w_2,w_3,w_4,w_5$</li>
+<li>We add two more extra words which denote the start and the end of a sentence, $w_0,w_6$</li>
+<li>SiSi consists of 2 parts: $S_i=EmissionScore+TransitionScore$</li>
+</ul>
+<h4 id="Emission-Score-1"><a href="#Emission-Score-1" class="headerlink" title="Emission Score"></a>Emission Score</h4><p>$$<br>EmissionScore=x_{0,START}+x_{1,B−Person}+x_{2,I−Person}+x_{3,O}+x_{4,B−Organization}+x_{5,O}+x_{6,END}<br>$$</p>
+<h4 id="Transition-Score-1"><a href="#Transition-Score-1" class="headerlink" title="Transition Score"></a>Transition Score</h4><p>$$<br>TransitionScore=t_{START,B-Person} + t_{B-Person,I-Person} + t_{I-Person,O} + t_{O,B-Organization} + t_{B_Organazation,O} + t_{O,END}<br>$$</p>
+<p>其实上述的公式用可以表示为：<br>$$<br>P_i = e^{EmissionScore} \cdot e^{TransitionScore}<br>$$</p>
+<h3 id="如何计算The-total-score-of-all-the-possible-paths？"><a href="#如何计算The-total-score-of-all-the-possible-paths？" class="headerlink" title="如何计算The total score of all the possible paths？"></a>如何计算The total score of all the possible paths？</h3><p>采用动态规划算法求解：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gotvyksolhj21on2dqqrp.jpg" alt="推导-2.jpg"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gotvyw75qqj21on2dq7jg.jpg" alt="推导-3.jpg"></p>
+<h3 id="如何得到Transition-Score-Matrix"><a href="#如何得到Transition-Score-Matrix" class="headerlink" title="如何得到Transition Score Matrix?"></a>如何得到Transition Score Matrix?</h3><p><strong>它们都是超参数，需要通过机器学习，自己得到！</strong></p>
+<h3 id="如何使用CRF进行inference？"><a href="#如何使用CRF进行inference？" class="headerlink" title="如何使用CRF进行inference？"></a>如何使用CRF进行inference？</h3><p>过程和计算The total score of all the possible paths类似，同样是动态规划，只不过是将previous更新时的<code>sum()</code>变成了<code>max()</code>操作。</p>
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>使用<a href="https://pytorch-crf.readthedocs.io/en/stable/#" target="_blank" rel="noopener"><code>torchcrf</code></a>包可以直接使用CRF Layer。</p>
-<p><code>CRF</code> Module包含<code>forward()</code>和<code>decode()</code>两个重要的函数，分别对应train和test。</p>
+<p><code>CRF</code> Module包含<code>forward()</code>和<code>decode()</code>两个重要的函数，分别对应<code>train</code>和<code>test</code>。</p>
 <p><code>forward()</code>函数的输出是conditional log likelihood，至于为什么是log，这个是在我们推导loss function的时候定义的。而且需要注意的是，这里得到的是条件概率，而不是概率，这也是我们推导loss function的时候定义的。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://createmomo.github.io/2017/09/12/CRF_Layer_on_the_Top_of_BiLSTM_1/" target="_blank" rel="noopener">CRF Layer on the Top of BiLSTM - 1</a></li>
+</ol>
 
             </div>
             <hr/>
@@ -981,6 +1030,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 

@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-02-01T13:01:59.329Z</updated>
+  <updated>2021-03-23T06:02:30.417Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,11 +17,381 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CRF Layer on the Top of BiLSTM</title>
+    <link href="http://yc1999.github.io/2021/03/23/crf-layer-on-the-top-of-bilstm/"/>
+    <id>http://yc1999.github.io/2021/03/23/crf-layer-on-the-top-of-bilstm/</id>
+    <published>2021-03-23T06:02:30.000Z</published>
+    <updated>2021-03-23T06:02:30.417Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>l1和l2正则化的区别</title>
+    <link href="http://yc1999.github.io/2021/03/22/l1-he-l2-zheng-ze-hua-de-qu-bie/"/>
+    <id>http://yc1999.github.io/2021/03/22/l1-he-l2-zheng-ze-hua-de-qu-bie/</id>
+    <published>2021-03-22T14:41:41.000Z</published>
+    <updated>2021-03-22T14:54:36.971Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;L1正则化&lt;/strong&gt;和&lt;strong&gt;L2正则化&lt;/strong&gt;是&lt;strong&gt;控制模型复杂度&lt;/strong&gt;和&lt;strong&gt;限制过拟合&lt;/strong&gt;的常用方法。L1正则化和L2正则化之间有一些有趣的比较。我发现这些视觉上的对比和它们的解</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="面试" scheme="http://yc1999.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="正则化" scheme="http://yc1999.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Animated RNN, LSTM and GRU</title>
+    <link href="http://yc1999.github.io/2021/03/22/animated-rnn-lstm-and-gru/"/>
+    <id>http://yc1999.github.io/2021/03/22/animated-rnn-lstm-and-gru/</id>
+    <published>2021-03-22T13:30:43.000Z</published>
+    <updated>2021-03-22T14:39:34.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;RNN是&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fly1got0gy97hxj20ob0hajuo.jpg&quot; alt=&quot;Fig. 0: Legend for animations&quot;&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="面试" scheme="http://yc1999.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="LSTM" scheme="http://yc1999.github.io/tags/LSTM/"/>
+    
+    <category term="RNN" scheme="http://yc1999.github.io/tags/RNN/"/>
+    
+    <category term="GRU" scheme="http://yc1999.github.io/tags/GRU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实习准备</title>
+    <link href="http://yc1999.github.io/2021/02/24/shi-xi-zhun-bei/"/>
+    <id>http://yc1999.github.io/2021/02/24/shi-xi-zhun-bei/</id>
+    <published>2021-02-24T13:53:26.000Z</published>
+    <updated>2021-03-05T14:09:53.575Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Transformer&quot;&gt;&lt;a href=&quot;#Transformer&quot; class=&quot;headerlink&quot; title=&quot;Transformer&quot;&gt;&lt;/a&gt;Transformer&lt;/h2&gt;&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;代码实战：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>What is the difference between FP16 and FP32 when doing deep learning?</title>
+    <link href="http://yc1999.github.io/2021/02/22/what-is-the-difference-between-fp16-and-fp32-when-doing-deep-learning/"/>
+    <id>http://yc1999.github.io/2021/02/22/what-is-the-difference-between-fp16-and-fp32-when-doing-deep-learning/</id>
+    <published>2021-02-22T02:02:12.000Z</published>
+    <updated>2021-02-22T02:18:11.152Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>warmup_proportion预热学习率的作用</title>
+    <link href="http://yc1999.github.io/2021/02/22/warmup-proportion-yu-re-xue-xi-lu-de-zuo-yong/"/>
+    <id>http://yc1999.github.io/2021/02/22/warmup-proportion-yu-re-xue-xi-lu-de-zuo-yong/</id>
+    <published>2021-02-22T01:10:45.000Z</published>
+    <updated>2021-02-22T01:24:32.546Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;作者：EO_eaf6&lt;br&gt;链接：&lt;a href=&quot;https://www.jianshu.com/p/19a4abfcd835&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="warmup_proportion" scheme="http://yc1999.github.io/tags/warmup-proportion/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyTorch中在反向传播前为什么要手动将梯度清零？</title>
+    <link href="http://yc1999.github.io/2021/02/21/pytorch-zhong-zai-fan-xiang-chuan-bo-qian-wei-shi-me-yao-shou-dong-jiang-ti-du-qing-ling/"/>
+    <id>http://yc1999.github.io/2021/02/21/pytorch-zhong-zai-fan-xiang-chuan-bo-qian-wei-shi-me-yao-shou-dong-jiang-ti-du-qing-ling/</id>
+    <published>2021-02-21T14:55:24.000Z</published>
+    <updated>2021-02-22T01:05:24.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;作者：Pascal&lt;br&gt;链接：&lt;a href=&quot;https://www.zhihu.com/question/303070254/answer/573037166&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="梯度累加" scheme="http://yc1999.github.io/tags/%E6%A2%AF%E5%BA%A6%E7%B4%AF%E5%8A%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跑实验中遇到的Bug</title>
+    <link href="http://yc1999.github.io/2021/02/21/pao-shi-yan-zhong-yu-dao-de-bug/"/>
+    <id>http://yc1999.github.io/2021/02/21/pao-shi-yan-zhong-yu-dao-de-bug/</id>
+    <published>2021-02-21T06:28:49.000Z</published>
+    <updated>2021-02-22T15:23:53.389Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;model-to-device-十分缓慢&quot;&gt;&lt;a href=&quot;#model-to-device-十分缓慢&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令</title>
+    <link href="http://yc1999.github.io/2021/02/20/linux-chang-yong-ming-ling/"/>
+    <id>http://yc1999.github.io/2021/02/20/linux-chang-yong-ming-ling/</id>
+    <published>2021-02-20T09:23:10.000Z</published>
+    <updated>2021-02-25T02:23:23.923Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;sed&quot;&gt;&lt;a href=&quot;#sed&quot; class=&quot;headerlink&quot; title=&quot;sed&quot;&gt;&lt;/a&gt;sed&lt;/h2&gt;&lt;p&gt;经常需要将windows下的脚本里面的换行符转变成linux下的换行符，使用下面指令：&lt;/p&gt;
+&lt;pre class=&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ACE2005数据集介绍</title>
+    <link href="http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/"/>
+    <id>http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/</id>
+    <published>2021-02-20T04:02:05.000Z</published>
+    <updated>2021-02-20T08:57:47.775Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ACE2005数据理解&quot;&gt;&lt;a href=&quot;#ACE2005数据理解&quot; class=&quot;headerlink&quot; title=&quot;ACE2005数据理解&quot;&gt;&lt;/a&gt;ACE2005数据理解&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Event Extraction by Answering (Almost) Natural Questions</title>
+    <link href="http://yc1999.github.io/2021/02/18/event-extraction-by-answering-almost-natural-questions/"/>
+    <id>http://yc1999.github.io/2021/02/18/event-extraction-by-answering-almost-natural-questions/</id>
+    <published>2021-02-18T06:52:36.000Z</published>
+    <updated>2021-02-20T01:20:56.890Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Backgrounds&quot;&gt;&lt;a href=&quot;#Backgrounds&quot; class=&quot;headerlink&quot; title=&quot;Backgrounds&quot;&gt;&lt;/a&gt;Backgrounds&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;目前常见的argument</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>预训练模型超全知识点梳理与面试必备高频FAQ</title>
+    <link href="http://yc1999.github.io/2021/02/14/yu-xun-lian-mo-xing-chao-quan-zhi-shi-dian-shu-li-yu-mian-shi-bi-bei-gao-pin-faq/"/>
+    <id>http://yc1999.github.io/2021/02/14/yu-xun-lian-mo-xing-chao-quan-zhi-shi-dian-shu-li-yu-mian-shi-bi-bei-gao-pin-faq/</id>
+    <published>2021-02-14T14:07:05.000Z</published>
+    <updated>2021-02-14T14:34:04.570Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原文章地址——&lt;a href=&quot;https://zhuanlan.zhihu.com/p/115014536&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新手入门 Kaggle NLP类比赛总结</title>
+    <link href="http://yc1999.github.io/2021/02/12/xin-shou-ru-men-kaggle-nlp-lei-bi-sai-zong-jie/"/>
+    <id>http://yc1999.github.io/2021/02/12/xin-shou-ru-men-kaggle-nlp-lei-bi-sai-zong-jie/</id>
+    <published>2021-02-12T01:05:00.000Z</published>
+    <updated>2021-02-14T14:34:11.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/109992475&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;新手入门 Kaggle</summary>
+        
+      
+    
+    
+    
+    <category term="比赛" scheme="http://yc1999.github.io/categories/%E6%AF%94%E8%B5%9B/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Summary of The Models</title>
+    <link href="http://yc1999.github.io/2021/02/04/summary-of-the-models/"/>
+    <id>http://yc1999.github.io/2021/02/04/summary-of-the-models/</id>
+    <published>2021-02-04T09:48:47.000Z</published>
+    <updated>2021-02-04T10:01:56.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;This is a summary of the models available in 🤗 Transformers. It assumes you’re familiar with the original &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Summary of The Tasks</title>
+    <link href="http://yc1999.github.io/2021/02/02/summary-of-the-tasks/"/>
+    <id>http://yc1999.github.io/2021/02/02/summary-of-the-tasks/</id>
+    <published>2021-02-02T14:22:40.000Z</published>
+    <updated>2021-02-02T14:48:12.968Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;This page shows the most frequent use-cases when using the library. The models available allow for many different configurations and a</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Glossary of 🤗 Transformers</title>
     <link href="http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/"/>
     <id>http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/</id>
     <published>2021-02-01T12:55:02.000Z</published>
-    <updated>2021-02-01T13:01:59.329Z</updated>
+    <updated>2021-02-23T14:11:35.297Z</updated>
     
     
       
@@ -151,430 +521,6 @@
     
     
     <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CRF Layer on the Top of BiLSTM(BiLSTM-CRF)</title>
-    <link href="http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/"/>
-    <id>http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/</id>
-    <published>2021-01-24T09:16:51.000Z</published>
-    <updated>2021-01-24T09:56:04.946Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原论文：&lt;/p&gt;
-&lt;pre class=&quot; language-BibTex&quot;&gt;&lt;code class=&quot;language-BibTex&quot;&gt;@article{DBLP:journals/corr/LampleBSKD16,
-  author   </summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="BiLSTM-CRF" scheme="http://yc1999.github.io/tags/BiLSTM-CRF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【李宏毅-深度学习】Structured Learning: Sequence Labeling</title>
-    <link href="http://yc1999.github.io/2021/01/23/li-hong-yi-shen-du-xue-xi-structured-learning-sequence-labeling/"/>
-    <id>http://yc1999.github.io/2021/01/23/li-hong-yi-shen-du-xue-xi-structured-learning-sequence-labeling/</id>
-    <published>2021-01-23T13:33:55.000Z</published>
-    <updated>2021-01-24T04:11:20.673Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;Sequence-Labeling&quot;&gt;&lt;a href=&quot;#Sequence-Labeling&quot; class=&quot;headerlink&quot; title=&quot;Sequence Labeling&quot;&gt;&lt;/a&gt;Sequence</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    <category term="CRF" scheme="http://yc1999.github.io/tags/CRF/"/>
-    
-    <category term="HMM" scheme="http://yc1999.github.io/tags/HMM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nn.Sequential与nn.ModuleList的区别</title>
-    <link href="http://yc1999.github.io/2021/01/21/nn-sequential-yu-nn-modulelist-de-qu-bie/"/>
-    <id>http://yc1999.github.io/2021/01/21/nn-sequential-yu-nn-modulelist-de-qu-bie/</id>
-    <published>2021-01-21T03:07:22.000Z</published>
-    <updated>2021-01-21T06:43:16.451Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;简单的罗列一些重要的信息：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;nn.ModuleList&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;相当于Python中的&lt;code&gt;list&lt;/code&gt;，当你想在PyTorch中使用&lt;code&gt;list&lt;/code&gt;装载Module时，不能用&lt;co</summary>
-        
-      
-    
-    
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/categories/PyTorch/"/>
-    
-    
-    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyCharm Tips</title>
-    <link href="http://yc1999.github.io/2021/01/21/pycharm-tips/"/>
-    <id>http://yc1999.github.io/2021/01/21/pycharm-tips/</id>
-    <published>2021-01-21T02:36:56.000Z</published>
-    <updated>2021-01-21T06:43:28.408Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;Python代码调试跳出for循环&quot;&gt;&lt;a href=&quot;#Python代码调试跳出for循环&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="PyCharm" scheme="http://yc1999.github.io/categories/PyCharm/"/>
-    
-    
-    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
-    
-    <category term="PyCharm" scheme="http://yc1999.github.io/tags/PyCharm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python学习之*arg、**kwargs</title>
-    <link href="http://yc1999.github.io/2021/01/19/python-xue-xi-zhi-arg-kwargs/"/>
-    <id>http://yc1999.github.io/2021/01/19/python-xue-xi-zhi-arg-kwargs/</id>
-    <published>2021-01-19T13:23:45.000Z</published>
-    <updated>2021-01-19T13:28:21.020Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;*args和**kwargs是在Python函数中常见的参数，但是每次见到都是一知半解，所以打算这次用实例来记录一下：&lt;/p&gt;
-&lt;h2 id=&quot;Introduction-to-args-and-kwargs-in-Python&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Python学习笔记" scheme="http://yc1999.github.io/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Python学习笔记" scheme="http://yc1999.github.io/tags/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows下查看GPU(NVIDI)使用情况</title>
-    <link href="http://yc1999.github.io/2021/01/18/windows-xia-cha-kan-gpu-nvidia-shi-yong-qing-kuang/"/>
-    <id>http://yc1999.github.io/2021/01/18/windows-xia-cha-kan-gpu-nvidia-shi-yong-qing-kuang/</id>
-    <published>2021-01-18T03:27:09.750Z</published>
-    <updated>2021-01-18T06:55:21.766Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;我们使用GPU做计算的时候，想了解GPU的使用情况，但是任务管理器没有GPU的信息。还好NVIDIA提供了相关的命令。&lt;/p&gt;
-&lt;h2 id=&quot;nvidia-smi-exe&quot;&gt;&lt;a href=&quot;#nvidia-smi-exe&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="GPU" scheme="http://yc1999.github.io/categories/GPU/"/>
-    
-    
-    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python学习之argparse模块</title>
-    <link href="http://yc1999.github.io/2021/01/18/python-xue-xi-zhi-argparse-mo-kuai/"/>
-    <id>http://yc1999.github.io/2021/01/18/python-xue-xi-zhi-argparse-mo-kuai/</id>
-    <published>2021-01-18T02:55:06.000Z</published>
-    <updated>2021-01-18T07:13:49.183Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、介绍&quot;&gt;&lt;a href=&quot;#一、介绍&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Python学习笔记" scheme="http://yc1999.github.io/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Python学习笔记" scheme="http://yc1999.github.io/tags/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Distant supervision for relation extraction without labeled data</title>
-    <link href="http://yc1999.github.io/2021/01/15/distant-supervision-for-relation-extraction-without-labeled-data/"/>
-    <id>http://yc1999.github.io/2021/01/15/distant-supervision-for-relation-extraction-without-labeled-data/</id>
-    <published>2021-01-15T11:45:51.000Z</published>
-    <updated>2021-01-15T13:27:58.212Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这篇论文已经很老了，看它的原因主要是想了解Distant Supervision的概念，所以论文有些不会并不会读得很清楚。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;Background&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A Survey of Event Extraction from Text</title>
-    <link href="http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/"/>
-    <id>http://yc1999.github.io/2021/01/14/a-survey-of-event-extraction-from-text/</id>
-    <published>2021-01-14T12:46:40.000Z</published>
-    <updated>2021-01-16T13:42:45.075Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://ivenwang.com/2020/06/16/eesurvey/&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>科大讯飞大赛 事件抽取挑战赛冠军分享</title>
-    <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/"/>
-    <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-da-sai-shi-jian-chou-qu-tiao-zhan-sai-guan-jun-fen-xiang/</id>
-    <published>2021-01-14T11:23:24.000Z</published>
-    <updated>2021-01-21T14:26:17.847Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;p&gt;🔗原文链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/WXWD7fmitaFHfUAv1mNLPA&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
-    
-    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
-    
-    <category term="科大讯飞大赛-事件抽取挑战赛" scheme="http://yc1999.github.io/tags/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E5%A4%A7%E8%B5%9B-%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E6%8C%91%E6%88%98%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>科大讯飞-事件抽取挑战赛 赛事概要</title>
-    <link href="http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/"/>
-    <id>http://yc1999.github.io/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/</id>
-    <published>2021-01-14T07:08:09.000Z</published>
-    <updated>2021-01-21T14:26:12.877Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;前言：&lt;/p&gt;
-&lt;p&gt;毕设选题是事件抽取，但是这一周了解下来，我遇到了两个问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;网络上关于事件抽取的论文都好杂好乱，连一篇优质综述都没找到，一点都不系统化。&lt;/li&gt;
-&lt;li&gt;自己做的评测任务——《面向金融领域的小样本跨</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
-    
-    <category term="科大讯飞大赛-事件抽取挑战赛" scheme="http://yc1999.github.io/tags/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E5%A4%A7%E8%B5%9B-%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E6%8C%91%E6%88%98%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>聊聊“事件抽取”</title>
-    <link href="http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/"/>
-    <id>http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/</id>
-    <published>2021-01-14T03:23:26.000Z</published>
-    <updated>2021-01-14T07:18:33.812Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;作者：PaperWeekly&lt;br&gt;链接：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/27840591&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="事件抽取" scheme="http://yc1999.github.io/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Transfer Learning for Small-scale Financial Event Extraction</title>
-    <link href="http://yc1999.github.io/2021/01/13/transfer-learning-for-small-scale-financial-event-extraction/"/>
-    <id>http://yc1999.github.io/2021/01/13/transfer-learning-for-small-scale-financial-event-extraction/</id>
-    <published>2021-01-13T12:28:31.000Z</published>
-    <updated>2021-01-14T02:21:29.366Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Why？Background&quot;&gt;&lt;a href=&quot;#Why？Background&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【李宏毅-深度学习】24-Transfer Learning</title>
-    <link href="http://yc1999.github.io/2021/01/13/li-hong-yi-shen-du-xue-xi-24-transfer-learning/"/>
-    <id>http://yc1999.github.io/2021/01/13/li-hong-yi-shen-du-xue-xi-24-transfer-learning/</id>
-    <published>2021-01-13T02:24:58.000Z</published>
-    <updated>2021-01-13T11:54:59.444Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Transfer-Learning&quot;&gt;&lt;a href=&quot;#Transfer-Learning&quot; class=&quot;headerlink&quot; title=&quot;Transfer Learning&quot;&gt;&lt;/a&gt;Transfer</summary>
-        
-      
-    
-    
-    
-    <category term="李宏毅-深度学习" scheme="http://yc1999.github.io/categories/%E6%9D%8E%E5%AE%8F%E6%AF%85-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    <category term="迁移学习" scheme="http://yc1999.github.io/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CCKS 2020：面向金融领域的小样本跨类迁移事件抽取</title>
-    <link href="http://yc1999.github.io/2021/01/12/ccks-2020-mian-xiang-jin-rong-ling-yu-de-xiao-yang-ben-kua-lei-qian-yi-shi-jian-chou-qu/"/>
-    <id>http://yc1999.github.io/2021/01/12/ccks-2020-mian-xiang-jin-rong-ling-yu-de-xiao-yang-ben-kua-lei-qian-yi-shi-jian-chou-qu/</id>
-    <published>2021-01-12T01:43:07.000Z</published>
-    <updated>2021-01-13T02:18:53.911Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;数据集&quot;&gt;&lt;a href=&quot;#数据集&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="毕设" scheme="http://yc1999.github.io/tags/%E6%AF%95%E8%AE%BE/"/>
     
   </entry>
   
