@@ -30,8 +30,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
@@ -484,7 +484,7 @@
                 <h1 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h1><blockquote>
 <p>迁移学习，主要介绍<font color="red"><strong>共享layer</strong></font>的方法以及<font color="red"><strong>属性降维对比</strong></font>的方法</p>
 </blockquote>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>迁移学习，transfer learning，旨在利用一些不直接相关的数据对目标任务的完成做出贡献。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>迁移学习（Transfer Learning）旨在利用<strong>一些不直接相关的数据</strong>对<strong>目标任务</strong>的完成做出贡献。</p>
 <h3 id="not-directly-related"><a href="#not-directly-related" class="headerlink" title="not directly related"></a>not directly related</h3><p>以猫狗识别为例，解释“不直接相关”的含义：</p>
 <ul>
 <li><p>input domain是类似的，但task是无关的</p>
@@ -496,15 +496,17 @@
 </ul>
 <p><img src="https://camo.githubusercontent.com/7a7f75a03aa9597467ff1c3ca653a95ce33a270e599e1fb7f5f660357a30a15e/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6e6f2d72656c617465642e706e67" alt="img"></p>
 <h3 id="compare-with-real-life"><a href="#compare-with-real-life" class="headerlink" title="compare with real life"></a>compare with real life</h3><p>事实上，我们在日常生活中经常会使用迁移学习，比如我们会把漫画家的生活自动迁移类比到研究生的生活。</p>
-<p><a href="https://camo.githubusercontent.com/4ec94257800195ec2b26bfdf2e315906f02900be6f105a42bffe58bd52bd38d9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d7265616c2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/4ec94257800195ec2b26bfdf2e315906f02900be6f105a42bffe58bd52bd38d9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d7265616c2e706e67" alt="img"></a></p>
-<h3 id="overview"><a href="#overview" class="headerlink" title="overview"></a>overview</h3><p>迁移学习是很多方法的集合，这里介绍一些概念：</p>
+<p><img src="https://camo.githubusercontent.com/4ec94257800195ec2b26bfdf2e315906f02900be6f105a42bffe58bd52bd38d9/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d7265616c2e706e67" alt="img"></p>
+<h3 id="overview——four-types-of-transfer-learning"><a href="#overview——four-types-of-transfer-learning" class="headerlink" title="overview——four types of transfer learning"></a>overview——four types of transfer learning</h3><p>迁移学习是很多方法的集合，这里介绍一些概念（注意：different terminology in different literature，术语很混乱）：</p>
 <ul>
-<li><strong>Target Data</strong>：和task直接相关的data</li>
-<li><strong>Source Data</strong>：和task没有直接关系的data</li>
+<li><strong>Target Data</strong>：和task直接相关的data；</li>
+<li><strong>Source Data</strong>：和task没有直接关系的data；</li>
 </ul>
 <p>按照labelled data和unlabeled data又可以划分为四种：</p>
-<p><img src="https://camo.githubusercontent.com/0a035ddc1420fcd95851a4068454520830b525237332f758679ba12dbc1f2810/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6f766572766965772e706e67" alt="img"></p>
-<p><img src="https://camo.githubusercontent.com/0a035ddc1420fcd95851a4068454520830b525237332f758679ba12dbc1f2810/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6f766572766965772e706e67"></p>
+<p><img src="https://camo.githubusercontent.com/0a035ddc1420fcd95851a4068454520830b525237332f758679ba12dbc1f2810/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6f766572766965772e706e67" alt="overview"></p>
+<blockquote>
+<p><em>not directly related to the task</em>的概念是模糊的。</p>
+</blockquote>
 <h2 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1"></a>Case 1</h2><p>这里target data和source data都是带有标签的：</p>
 <ul>
 <li><p>target data：$(x^t,y^t)$，作为有效数据，通常量是很少的</p>
@@ -519,23 +521,27 @@
 <li>The key motivation for the one-shot learning technique is that systems, like humans, can use prior knowledge about object categories to classify new objects.</li>
 </ul>
 </blockquote>
-<h3 id="Model-Fine-tuning"><a href="#Model-Fine-tuning" class="headerlink" title="Model Fine-tuning"></a>Model Fine-tuning</h3><h4 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h4><p>模型微调的基本思想：<strong>用source data去训练一个model，再用target data对model进行微调(fine tune)</strong></p>
-<p>所谓“微调”，类似于pre-training，就是把用source data训练出的model参数当做是参数的初始值，再用target data继续训练下去即可，但当直接相关的数据量非常少时，这种方法很容易出现overfitting。所以训练的时候要小心，有许多技巧值得注意：</p>
-<h4 id="Conservative-Training"><a href="#Conservative-Training" class="headerlink" title="Conservative Training"></a>Conservative Training</h4><blockquote>
+<h3 id="Model-Fine-tuning"><a href="#Model-Fine-tuning" class="headerlink" title="Model Fine-tuning"></a>Model Fine-tuning</h3><h4 id="Introduction-1"><a href="#Introduction-1" class="headerlink" title="Introduction"></a>Introduction</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1goya1a6c1ej20oj0fggvx.jpg"></p>
+<blockquote>
+<p>感觉one-shot learning和few-shot learning没啥大区别吧。</p>
+</blockquote>
+<p>模型微调的基本思想：<strong>用source data去训练一个model，再用target data对model进行微调（fine-tune）</strong></p>
+<p>所谓“微调”，就是把用source data训练出的model参数当做是target data的model的参数初始值，再用target data继续训练下去即可，但当直接相关的数据量非常少时，<strong>这种方法很容易出现overfitting。</strong>所以训练的时候要小心，有许多技巧值得注意：</p>
+<h4 id="Method-1-Conservative-Training"><a href="#Method-1-Conservative-Training" class="headerlink" title="Method 1: Conservative Training"></a>Method 1: Conservative Training</h4><blockquote>
 <p>保守训练</p>
 </blockquote>
-<p>如果现在有大量的source data，比如在语音识别中有大量不同人的声音数据，可以拿它去训练一个语音识别的神经网络，而现在你拥有的target data，即特定某个人的语音数据，可能只有十几条左右，如果直接拿这些数据去再训练，肯定得不到好的结果。</p>
-<p><a href="https://camo.githubusercontent.com/91f04393789459a23776a14421ca872e0cb43473f1ab94c885bdd1f6e75d8441/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d63742e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/91f04393789459a23776a14421ca872e0cb43473f1ab94c885bdd1f6e75d8441/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d63742e706e67" alt="img"></a></p>
+<p>如果现在有大量的source data，比如在语音识别中有大量不同人的声音数据，可以拿它去训练一个语音识别的神经网络，而现在你拥有的target data，即特定某个人的语音数据，可能只有十几条左右，如果直接拿这些数据去再训练，肯定会出现overfitting。</p>
+<p><img src="https://camo.githubusercontent.com/91f04393789459a23776a14421ca872e0cb43473f1ab94c885bdd1f6e75d8441/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f74662d63742e706e67" alt="img"></p>
 <p>此时我们就需要在训练的时候加一些限制，让用target data训练前后的model不要相差太多：</p>
 <ul>
-<li>output close: 我们可以让新旧两个model在看到同一笔data的时候，output越接近越好</li>
-<li>parameter close: 或者让新旧两个model的L2 norm越小越好，参数尽可能接近</li>
+<li><code>output close</code>: 我们可以让新旧两个model在看到同一笔data的时候，output越接近越好;</li>
+<li><code>parameter close</code>: 让新旧两个model的L2 norm越小越好，参数尽可能接近;</li>
 <li>总之让两个model不要相差太多，<strong>防止由于target data的训练导致过拟合</strong></li>
 </ul>
 <p>注：这里的限制就类似于regularization</p>
-<h4 id="Layer-Transfer"><a href="#Layer-Transfer" class="headerlink" title="Layer Transfer"></a>Layer Transfer</h4><p>现在我们已经有一个用source data训练好的model，此时把该model的某几个layer拿出来复制到同样大小的新model里，接下来<font color="red"><strong>只</strong></font>用target data去训练得到余下的没有被复制到的layer。</p>
+<h4 id="Method-2-Layer-Transfer"><a href="#Method-2-Layer-Transfer" class="headerlink" title="Method 2: Layer Transfer"></a>Method 2: Layer Transfer</h4><p>现在我们已经有一个用source data训练好的model，此时把该model的某几个layer拿出来复制到同样大小的新model里，接下来<font color="red"><strong>只</strong></font>用target data去训练得到余下的没有被复制到的layer。</p>
 <p>这样做的好处是target data只需要考虑model中非常少的参数，这样就可以避免过拟合。</p>
-<p><a href="https://camo.githubusercontent.com/9f8fddc418797f6ac686c82b9a2c0ede378e106468f3bddc504974ded585ce99/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c742e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/9f8fddc418797f6ac686c82b9a2c0ede378e106468f3bddc504974ded585ce99/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c742e706e67" alt="img"></a></p>
+<p><img src="https://camo.githubusercontent.com/9f8fddc418797f6ac686c82b9a2c0ede378e106468f3bddc504974ded585ce99/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c742e706e67"></p>
 <p>这个对部分layer进行迁移的过程，就体现了迁移学习的思想，接下来要面对的问题是，哪些layer需要被复制迁移，哪些不需要呢？</p>
 <p>值得注意的是，在不同的task上，需要被复制迁移的layer往往是不一样的：</p>
 <ul>
@@ -548,28 +554,28 @@
 <li><p>主要还是具体问题具体分析</p>
 </li>
 </ul>
-<p><a href="https://camo.githubusercontent.com/0931ebdb6a4049a12969e4146adf87c9dd97b0e13309fd14d528d20eaf309ca4/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c74322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/0931ebdb6a4049a12969e4146adf87c9dd97b0e13309fd14d528d20eaf309ca4/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c74322e706e67" alt="img"></a></p>
-<h3 id="Multitask-Learning"><a href="#Multitask-Learning" class="headerlink" title="Multitask Learning"></a>Multitask Learning</h3><h4 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction"></a>Introduction</h4><p>fine-tune仅考虑在target data上的表现，而多任务学习，则是同时考虑model在source data和target data上的表现</p>
+<p><img src="https://camo.githubusercontent.com/0931ebdb6a4049a12969e4146adf87c9dd97b0e13309fd14d528d20eaf309ca4/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f746c2d6c74322e706e67" alt="img"></p>
+<p>下面的图，只看5和4。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1goyang3nz9j20on0hgqh9.jpg"></p>
+<h3 id="Multitask-Learning"><a href="#Multitask-Learning" class="headerlink" title="Multitask Learning"></a>Multitask Learning</h3><h4 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction"></a>Introduction</h4><p><strong>fine-tune仅考虑在target data上的表现，而多任务学习，则是同时考虑model在source data和target data上的表现</strong></p>
 <p>如果两个task的输入特征类似，则可以用同一个神经网络的前几层layer做相同的工作，到后几层再分方向到不同的task上（即Multitask的概念），这样做的好处是前几层吃的data比较多，可以被训练得更充分。</p>
-<p>有时候task A和task B的输入输出都不相同，但中间可能会做一些类似的处理，则可以让两个神经网络共享中间的几层layer，也可以达到类似的效果</p>
-<p><a href="https://camo.githubusercontent.com/61f55b6a40d9d702f9c4eec3768d6bbc4dde2ea203f1978a636230b9ccb6dc3f/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/61f55b6a40d9d702f9c4eec3768d6bbc4dde2ea203f1978a636230b9ccb6dc3f/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2e706e67" alt="img"></a></p>
+<p>有时候task A和task B的输入输出都不相同，但中间可能会做一些类似的处理，则可以让两个神经网络共享中间的几层layer，也可以达到类似的效果。</p>
+<p><img src="https://camo.githubusercontent.com/61f55b6a40d9d702f9c4eec3768d6bbc4dde2ea203f1978a636230b9ccb6dc3f/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2e706e67" alt="img"></p>
 <p><font color="red"><strong>注意，以上方法要求不同的task之间要有一定的共性，这样才有共用一部分layer的可能性</strong></font></p>
 <h4 id="Multilingual-Speech-Recognition"><a href="#Multilingual-Speech-Recognition" class="headerlink" title="Multilingual Speech Recognition"></a>Multilingual Speech Recognition</h4><p>多任务学习在语音识别上比较有用，可以同时对法语、德语、西班牙语、意大利语训练一个model，它们在前几层layer上共享参数，而在后几层layer上拥有自己的参数</p>
 <p>在机器翻译上也可以使用同样的思想，比如训练一个同时可以中翻英和中翻日的model</p>
-<p><a href="https://camo.githubusercontent.com/fbd77f5001ae2e65db629d684d681b42b25e6365c2ea7939b54f689cbc8a916e/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d7370656563682e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/fbd77f5001ae2e65db629d684d681b42b25e6365c2ea7939b54f689cbc8a916e/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d7370656563682e706e67" alt="img"></a></p>
+<p><img src="https://camo.githubusercontent.com/fbd77f5001ae2e65db629d684d681b42b25e6365c2ea7939b54f689cbc8a916e/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d7370656563682e706e67" alt="img"></p>
 <p>注意到，属于同一个语系的语言翻译，比如欧洲国家的语言，几乎都是可以做迁移学习的；而语音方面则可迁移的范围更广。</p>
-<p>下图展示了只用普通话的语音数据和加了欧洲话的语音数据之后得到的错误率对比，其中横轴为使用的普通话数据量，纵轴为错误率，可以看出使用了迁移学习后，只需要原先一半的普通话语音数据就可以得到几乎一样的准确率</p>
-<p><a href="https://camo.githubusercontent.com/faf1cce75b97fea24102ef3e5d63cca31d571083b666fb4b0df205bc62155475/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d737065656368322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/faf1cce75b97fea24102ef3e5d63cca31d571083b666fb4b0df205bc62155475/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d737065656368322e706e67" alt="img"></a></p>
-<h4 id="Progressive-Neural-Network"><a href="#Progressive-Neural-Network" class="headerlink" title="Progressive Neural Network"></a>Progressive Neural Network</h4><blockquote>
-</blockquote>
-<p>如果两个task完全不相关，硬是把它们拿来一起训练反而会起到负面效果</p>
+<p>下图展示了只用普通话的语音数据和加了欧洲话的语音数据之后得到的错误率对比，其中横轴为使用的普通话数据量，纵轴为错误率，可以看出使用了迁移学习后，只需要原先一半的普通话语音数据就可以得到几乎一样的准确率。</p>
+<p><img src="https://camo.githubusercontent.com/faf1cce75b97fea24102ef3e5d63cca31d571083b666fb4b0df205bc62155475/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d737065656368322e706e67"></p>
+<h4 id="Progressive-Neural-Network"><a href="#Progressive-Neural-Network" class="headerlink" title="Progressive Neural Network"></a>Progressive Neural Network</h4><p>如果两个task完全不相关，硬是把它们拿来一起训练反而会起到负面效果</p>
 <p>而在Progressive Neural Network中，每个task对应model的hidden layer的输出都会被接到后续model的hidden layer的输入上，这样做的好处是：</p>
 <ul>
 <li>task 2的data并不会影响到task 1的model，因此task 1一定不会比原来更差</li>
 <li>task 2虽然可以借用task 1的参数，但可以将之直接设为0，最糟的情况下就等于没有这些参数，也不会对本身的表现产生影响</li>
 <li>task 3也做一样的事情，同时从task 1和task 2的hidden layer中得到信息</li>
 </ul>
-<p><a href="https://camo.githubusercontent.com/2bbca3bf9de41e1c28a271712bcb7ce0010d7d9da82a77241bbfa53592fa3e9a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d70726f2e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/2bbca3bf9de41e1c28a271712bcb7ce0010d7d9da82a77241bbfa53592fa3e9a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d70726f2e706e67" alt="img"></a></p>
+<p><img src="https://camo.githubusercontent.com/2bbca3bf9de41e1c28a271712bcb7ce0010d7d9da82a77241bbfa53592fa3e9a/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f6d756c74692d7461736b2d70726f2e706e67"></p>
 <h2 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2"></a>Case 2</h2><p>这里target data不带标签，而source data带标签：</p>
 <ul>
 <li>target data：$(x^t)$</li>
@@ -604,6 +610,9 @@
 <p><a href="https://camo.githubusercontent.com/8adb76cfe651477b87138c54c4a0d1e5a334ccbf352fa53b3ea826609d5bdc0f/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f7a65726f2d73686f74322e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/8adb76cfe651477b87138c54c4a0d1e5a334ccbf352fa53b3ea826609d5bdc0f/68747470733a2f2f67697465652e636f6d2f53616b7572612d67682f4d4c2d6e6f7465732f7261772f6d61737465722f696d672f7a65726f2d73686f74322e706e67" alt="img"></a></p>
 <p>但如果我们根本就无法找出每个动物的属性$y^i$是什么，那该怎么办？可以使用word vector，比如直接从维基百科上爬取图像对应的文字描述，再用word vector降维提取特征，映射到同样的空间即可</p>
 <p>以下这个loss function存在些问题，它会让model把所有不同的x和y都投影到同一个点上： $$ f^*,g^*=\arg \min\limits_{f,g} \sum\limits_n ||f(x^n)-g(y^n)||<em>2 $$ 类似用t-SNE的思想，我们既要考虑同一对$x^n$和$y^n$距离要接近，又要考虑不属于同一对的$x^n$与$y^m$距离要拉大(这是前面的式子没有考虑到的)，于是有： $$ f^\</em>,g^*=\arg \min\limits*{f,g} \sum\limits_n \max(0, k-f(x^n)\cdot g(y^n)+\max\limits_{m\ne n} f(x^n)\cdot g(y^m)) $$</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://sakura-gh.github.io/ML-notes/ML-notes-html/24_Transfer-Learning.html" target="_blank" rel="noopener">https://sakura-gh.github.io/ML-notes/ML-notes-html/24_Transfer-Learning.html</a></li>
+</ol>
 
             </div>
             <hr/>

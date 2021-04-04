@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-03-22T14:54:36.971Z</updated>
+  <updated>2021-04-03T13:38:52.753Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,216 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Joint Extraction of Entities and Relations Based on a Novel Decomposition Strategy</title>
+    <link href="http://yc1999.github.io/2021/04/03/joint-extraction-of-entities-and-relations-based-on-a-novel-decomposition-strategy/"/>
+    <id>http://yc1999.github.io/2021/04/03/joint-extraction-of-entities-and-relations-based-on-a-novel-decomposition-strategy/</id>
+    <published>2021-04-03T07:13:49.000Z</published>
+    <updated>2021-04-03T13:38:52.753Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Joint-Extraction-of-Entities-and-Relations-Based-on-a-Novel-Decomposition-Strategy&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="联合抽取" scheme="http://yc1999.github.io/tags/%E8%81%94%E5%90%88%E6%8A%BD%E5%8F%96/"/>
+    
+    <category term="关系抽取" scheme="http://yc1999.github.io/tags/%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Shallow vs Deep Copying of Python Objects</title>
+    <link href="http://yc1999.github.io/2021/04/02/shallow-vs-deep-copying-of-python-objects/"/>
+    <id>http://yc1999.github.io/2021/04/02/shallow-vs-deep-copying-of-python-objects/</id>
+    <published>2021-04-02T13:27:47.000Z</published>
+    <updated>2021-04-03T01:36:41.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在做NLP实验，进行数据预处理的时候，用到了字典对象之间的assignment，调试的时候发现数据不太对，通过查阅资料发现，原来Python中的assignment也是另有玄机，除此之外，还有shallow copy和deep copy两种高级玩法。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="http://yc1999.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="http://yc1999.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python Collections Module</title>
+    <link href="http://yc1999.github.io/2021/04/02/python-collections-module/"/>
+    <id>http://yc1999.github.io/2021/04/02/python-collections-module/</id>
+    <published>2021-04-02T09:05:02.000Z</published>
+    <updated>2021-04-02T11:30:11.360Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Python语言在设计之初，使用了一个非常有用的特性叫做——&lt;code&gt;modular</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="http://yc1999.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="http://yc1999.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习中的logits是什么？</title>
+    <link href="http://yc1999.github.io/2021/04/02/shen-du-xue-xi-zhong-de-logits-shi-shi-me/"/>
+    <id>http://yc1999.github.io/2021/04/02/shen-du-xue-xi-zhong-de-logits-shi-shi-me/</id>
+    <published>2021-04-02T08:12:56.000Z</published>
+    <updated>2021-04-02T08:47:53.455Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在深度学习编码的过程中，常常会遇见一些变量名叫做&lt;code&gt;logits&lt;/code&gt;，这个&lt;code&gt;logits&lt;/code&gt;到底指代了一个什么东西呢？查阅资料之后，我在Google的&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pytorch里的CrossEntropyLoss详解</title>
+    <link href="http://yc1999.github.io/2021/04/02/pytorch-li-de-crossentropyloss-xiang-jie/"/>
+    <id>http://yc1999.github.io/2021/04/02/pytorch-li-de-crossentropyloss-xiang-jie/</id>
+    <published>2021-04-02T02:41:25.000Z</published>
+    <updated>2021-04-02T03:00:13.739Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在使用Pytorch时经常碰见这些函数&lt;code&gt;cross_entropy&lt;/code&gt;，&lt;code&gt;CrossEntropyLoss&lt;/code&gt;, &lt;code&gt;log_softmax&lt;/code&gt;,</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Focal Loss——从直觉到实现</title>
+    <link href="http://yc1999.github.io/2021/03/29/focal-loss-cong-zhi-jue-dao-shi-xian/"/>
+    <id>http://yc1999.github.io/2021/03/29/focal-loss-cong-zhi-jue-dao-shi-xian/</id>
+    <published>2021-03-29T08:52:53.000Z</published>
+    <updated>2021-03-29T13:00:26.726Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Focal-Loss——从直觉到实现&quot;&gt;&lt;a href=&quot;#Focal-Loss——从直觉到实现&quot; class=&quot;headerlink&quot; title=&quot;Focal Loss——从直觉到实现&quot;&gt;&lt;/a&gt;Focal Loss——从直觉到实现&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="损失函数" scheme="http://yc1999.github.io/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Extensively Matching for Few-shot Learning Event Detection</title>
+    <link href="http://yc1999.github.io/2021/03/27/extensively-matching-for-few-shot-learning-event-detection/"/>
+    <id>http://yc1999.github.io/2021/03/27/extensively-matching-for-few-shot-learning-event-detection/</id>
+    <published>2021-03-27T07:26:29.000Z</published>
+    <updated>2021-03-28T08:15:52.463Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Extensively-Matching-for-Few-shot-Learning-Event-Detection&quot;&gt;&lt;a href=&quot;#Extensively-Matching-for-Few-shot-Learning-Event-Detection&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读笔记" scheme="http://yc1999.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="few shot" scheme="http://yc1999.github.io/tags/few-shot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>刷爆3路榜单，信息抽取冠军方案分享：嵌套NER+关系抽取+实体标准化</title>
+    <link href="http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/"/>
+    <id>http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/</id>
+    <published>2021-03-25T13:36:30.000Z</published>
+    <updated>2021-03-25T14:39:16.202Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本篇文章，JayJay并不想只是围绕竞赛本身谈策略，而是想和大家一起交流：无论在竞赛还是落地中，&lt;strong&gt;信息抽取任务的稳定提升策略有哪些&lt;/strong&gt;？总的来看就是两点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;构建一个强大的baseline，这取决于标注框架</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
+    
+  </entry>
   
   <entry>
     <title>l1和l2正则化的区别</title>
@@ -81,7 +291,7 @@
     <link href="http://yc1999.github.io/2021/02/24/q-a-transformer-bert/"/>
     <id>http://yc1999.github.io/2021/02/24/q-a-transformer-bert/</id>
     <published>2021-02-24T13:53:26.000Z</published>
-    <updated>2021-03-23T09:06:48.109Z</updated>
+    <updated>2021-03-26T08:29:59.818Z</updated>
     
     
       
@@ -324,226 +534,6 @@
     
     
     <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Summary of The Models</title>
-    <link href="http://yc1999.github.io/2021/02/04/summary-of-the-models/"/>
-    <id>http://yc1999.github.io/2021/02/04/summary-of-the-models/</id>
-    <published>2021-02-04T09:48:47.000Z</published>
-    <updated>2021-02-04T10:01:56.671Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;This is a summary of the models available in 🤗 Transformers. It assumes you’re familiar with the original &lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Summary of The Tasks</title>
-    <link href="http://yc1999.github.io/2021/02/02/summary-of-the-tasks/"/>
-    <id>http://yc1999.github.io/2021/02/02/summary-of-the-tasks/</id>
-    <published>2021-02-02T14:22:40.000Z</published>
-    <updated>2021-02-02T14:48:12.968Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;This page shows the most frequent use-cases when using the library. The models available allow for many different configurations and a</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Glossary of 🤗 Transformers</title>
-    <link href="http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/"/>
-    <id>http://yc1999.github.io/2021/02/01/glossary-of-hugging-face-transformers/</id>
-    <published>2021-02-01T12:55:02.000Z</published>
-    <updated>2021-02-23T14:11:35.297Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;General-terms&quot;&gt;&lt;a href=&quot;#General-terms&quot; class=&quot;headerlink&quot; title=&quot;General terms&quot;&gt;&lt;/a&gt;General terms&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;autoencoding</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>🤗 Transformers</title>
-    <link href="http://yc1999.github.io/2021/01/30/hugging-face-transformers/"/>
-    <id>http://yc1999.github.io/2021/01/30/hugging-face-transformers/</id>
-    <published>2021-01-30T12:16:05.000Z</published>
-    <updated>2021-01-30T13:53:46.430Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Huggingface🤗&quot;&gt;&lt;a href=&quot;#Huggingface🤗&quot; class=&quot;headerlink&quot; title=&quot;Huggingface🤗&quot;&gt;&lt;/a&gt;Huggingface🤗&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>A Unified MRC Framework for Named Entity Recognition</title>
-    <link href="http://yc1999.github.io/2021/01/27/a-unified-mrc-framework-for-named-entity-recognition/"/>
-    <id>http://yc1999.github.io/2021/01/27/a-unified-mrc-framework-for-named-entity-recognition/</id>
-    <published>2021-01-27T13:19:06.000Z</published>
-    <updated>2021-01-28T09:43:10.989Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;论文：&lt;a href=&quot;https://arxiv.org/pdf/1910.11476.pdf&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="论文阅读" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
-    
-    <category term="MRC" scheme="http://yc1999.github.io/tags/MRC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>What is .bashrc file in Linux?</title>
-    <link href="http://yc1999.github.io/2021/01/26/what-is-bashrc-file-in-linux/"/>
-    <id>http://yc1999.github.io/2021/01/26/what-is-bashrc-file-in-linux/</id>
-    <published>2021-01-26T13:00:35.000Z</published>
-    <updated>2021-01-26T14:03:36.207Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“graphical user interfaces make easy tasks easy, while command line interfaces make difficult tasks</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="http://yc1999.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="http://yc1999.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验室服务器深度学习环境搭建</title>
-    <link href="http://yc1999.github.io/2021/01/25/shi-yan-shi-fu-wu-qi-shen-du-xue-xi-huan-jing-da-jian/"/>
-    <id>http://yc1999.github.io/2021/01/25/shi-yan-shi-fu-wu-qi-shen-du-xue-xi-huan-jing-da-jian/</id>
-    <published>2021-01-25T04:06:28.000Z</published>
-    <updated>2021-01-25T04:09:06.404Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;下载Anaconda&quot;&gt;&lt;a href=&quot;#下载Anaconda&quot; class=&quot;headerlink&quot; title=&quot;下载Anaconda&quot;&gt;&lt;/a&gt;下载Anaconda&lt;/h2&gt;&lt;p&gt;下载Anaconda，推荐到&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="实验室" scheme="http://yc1999.github.io/categories/%E5%AE%9E%E9%AA%8C%E5%AE%A4/"/>
-    
-    
-    <category term="工具使用" scheme="http://yc1999.github.io/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CRF Layer on the Top of BiLSTM(BiLSTM-CRF)</title>
-    <link href="http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/"/>
-    <id>http://yc1999.github.io/2021/01/24/crf-layer-on-the-top-of-bilstm-bilstm-crf/</id>
-    <published>2021-01-24T09:16:51.000Z</published>
-    <updated>2021-03-23T08:06:24.841Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原论文：&lt;/p&gt;
-&lt;pre class=&quot; language-BibTex&quot;&gt;&lt;code class=&quot;language-BibTex&quot;&gt;@article{DBLP:journals/corr/LampleBSKD16,
-  author   </summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="BiLSTM-CRF" scheme="http://yc1999.github.io/tags/BiLSTM-CRF/"/>
     
   </entry>
   
