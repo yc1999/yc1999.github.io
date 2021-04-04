@@ -30,10 +30,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 4.2.1">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-
+<link rel="alternate" href="/atom.xml" title="杨程的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -493,7 +493,7 @@
 <h2 id="3-验证自己的CUDA是否安装成功"><a href="#3-验证自己的CUDA是否安装成功" class="headerlink" title="3. 验证自己的CUDA是否安装成功"></a>3. 验证自己的CUDA是否安装成功</h2><p>每一个版本的CUDA配置完成后，我们可以验证是否配置成功，主要使用CUDA内置的deviceQuery.exe 和 bandwithTest.exe这两个程序来验证。<br>首先win+R启动cmd，cd到安装目录下的 ，比如*<strong>*我的安装目录是（以CUDA 10.1为例）：**</strong></p>
 <p>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\extras\demo_suite</p>
 <p>执行**<code>bandwidthTest.exe</code>**和<code>***\*deviceQuery.exe\****这两个应用程序，得到下面的结果：</code></p>
-<pre class=" language-shell"><code class="language-shell">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\extras\demo_suite&gt;deviceQuery
+<pre class=" language-shell"><code class="language-shell">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\extras\demo_suite>deviceQuery
 deviceQuery Starting...
 
  CUDA Device Query (Runtime API) version (CUDART static linking)
@@ -535,12 +535,12 @@ Device 0: "GeForce GTX 1070"
   Supports MultiDevice Co-op Kernel Launch:      No
   Device PCI Domain ID / Bus ID / location ID:   0 / 1 / 0
   Compute Mode:
-     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;
+     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
 
 deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.1, CUDA Runtime Version = 10.1, NumDevs = 1, Device0 = GeForce GTX 1070
 Result = PASS</code></pre>
 <p>和</p>
-<pre class=" language-shell"><code class="language-shell">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\extras\demo_suite&gt;bandwidthTest
+<pre class=" language-shell"><code class="language-shell">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\extras\demo_suite>bandwidthTest
 [CUDA Bandwidth Test] - Starting...
 Running on...
 
