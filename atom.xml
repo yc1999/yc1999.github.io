@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-04-04T12:14:19.530Z</updated>
+  <updated>2021-04-06T02:56:29.979Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test1</title>
+    <link href="http://yc1999.github.io/2021/04/06/test1/"/>
+    <id>http://yc1999.github.io/2021/04/06/test1/</id>
+    <published>2021-04-06T02:44:42.000Z</published>
+    <updated>2021-04-06T02:56:29.979Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;object data=&quot;./test1.pdf&quot; type=&quot;application/pdf&quot; width=&quot;100%&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://yc1999.github.io/2021/04/06/test-1/"/>
+    <id>http://yc1999.github.io/2021/04/06/test-1/</id>
+    <published>2021-04-06T02:44:08.000Z</published>
+    <updated>2021-04-06T02:44:08.230Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Joint Extraction of Entities and Relations Based on a Novel Decomposition Strategy</title>
@@ -482,58 +516,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>预训练模型超全知识点梳理与面试必备高频FAQ</title>
-    <link href="http://yc1999.github.io/2021/02/14/yu-xun-lian-mo-xing-chao-quan-zhi-shi-dian-shu-li-yu-mian-shi-bi-bei-gao-pin-faq/"/>
-    <id>http://yc1999.github.io/2021/02/14/yu-xun-lian-mo-xing-chao-quan-zhi-shi-dian-shu-li-yu-mian-shi-bi-bei-gao-pin-faq/</id>
-    <published>2021-02-14T14:07:05.000Z</published>
-    <updated>2021-02-14T14:34:04.570Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原文章地址——&lt;a href=&quot;https://zhuanlan.zhihu.com/p/115014536&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>新手入门 Kaggle NLP类比赛总结</title>
-    <link href="http://yc1999.github.io/2021/02/12/xin-shou-ru-men-kaggle-nlp-lei-bi-sai-zong-jie/"/>
-    <id>http://yc1999.github.io/2021/02/12/xin-shou-ru-men-kaggle-nlp-lei-bi-sai-zong-jie/</id>
-    <published>2021-02-12T01:05:00.000Z</published>
-    <updated>2021-02-14T14:34:11.643Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/109992475&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;新手入门 Kaggle</summary>
-        
-      
-    
-    
-    
-    <category term="比赛" scheme="http://yc1999.github.io/categories/%E6%AF%94%E8%B5%9B/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
