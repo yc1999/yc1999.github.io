@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-04-06T02:56:29.979Z</updated>
+  <updated>2021-04-11T03:06:13.149Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>What is Gradient Clipping</title>
+    <link href="http://yc1999.github.io/2021/04/11/what-is-gradient-clipping/"/>
+    <id>http://yc1999.github.io/2021/04/11/what-is-gradient-clipping/</id>
+    <published>2021-04-11T02:44:26.000Z</published>
+    <updated>2021-04-11T03:06:13.149Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;为什么需要gradient-clipping？&quot;&gt;&lt;a href=&quot;#为什么需要gradient-clipping？&quot; class=&quot;headerlink&quot; title=&quot;为什么需要gradient clipping？&quot;&gt;&lt;/a&gt;为什么需要gradient</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
+    
+    <category term="梯度裁剪" scheme="http://yc1999.github.io/tags/%E6%A2%AF%E5%BA%A6%E8%A3%81%E5%89%AA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Few-Shot Learning</title>
+    <link href="http://yc1999.github.io/2021/04/06/few-shot-learning/"/>
+    <id>http://yc1999.github.io/2021/04/06/few-shot-learning/</id>
+    <published>2021-04-06T03:15:08.000Z</published>
+    <updated>2021-04-07T12:24:43.838Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;h3 id=&quot;Few-Shot-Learning与传统监督学习的不同&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="课程笔记" scheme="http://yc1999.github.io/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Few-Shot Learning" scheme="http://yc1999.github.io/tags/Few-Shot-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>test1</title>
@@ -468,49 +522,6 @@
         
     <summary type="html">&lt;h2 id=&quot;sed&quot;&gt;&lt;a href=&quot;#sed&quot; class=&quot;headerlink&quot; title=&quot;sed&quot;&gt;&lt;/a&gt;sed&lt;/h2&gt;&lt;p&gt;经常需要将windows下的脚本里面的换行符转变成linux下的换行符，使用下面指令：&lt;/p&gt;
 &lt;pre class=&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ACE2005数据集介绍</title>
-    <link href="http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/"/>
-    <id>http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/</id>
-    <published>2021-02-20T04:02:05.000Z</published>
-    <updated>2021-02-20T08:57:47.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;ACE2005数据理解&quot;&gt;&lt;a href=&quot;#ACE2005数据理解&quot; class=&quot;headerlink&quot; title=&quot;ACE2005数据理解&quot;&gt;&lt;/a&gt;ACE2005数据理解&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Event Extraction by Answering (Almost) Natural Questions</title>
-    <link href="http://yc1999.github.io/2021/02/18/event-extraction-by-answering-almost-natural-questions/"/>
-    <id>http://yc1999.github.io/2021/02/18/event-extraction-by-answering-almost-natural-questions/</id>
-    <published>2021-02-18T06:52:36.000Z</published>
-    <updated>2021-02-20T01:20:56.890Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Backgrounds&quot;&gt;&lt;a href=&quot;#Backgrounds&quot; class=&quot;headerlink&quot; title=&quot;Backgrounds&quot;&gt;&lt;/a&gt;Backgrounds&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;目前常见的argument</summary>
         
       
     

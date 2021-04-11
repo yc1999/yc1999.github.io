@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>What is Gradient Clipping</title>
+      <link href="2021/04/11/what-is-gradient-clipping/"/>
+      <url>2021/04/11/what-is-gradient-clipping/</url>
+      
+        <content type="html"><![CDATA[<h2 id="为什么需要gradient-clipping？"><a href="#为什么需要gradient-clipping？" class="headerlink" title="为什么需要gradient clipping？"></a>为什么需要gradient clipping？</h2><p>在DL的项目中常常会看到<code>gradient clipping</code>的身影，命令行传入参数<code>grad_clip</code>，然后再调用<code>clip_grad_norm_()</code>函数，如下：</p><pre class=" language-python"><code class="language-python">parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"--grad_clip"</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> type<span class="token operator">=</span>float<span class="token punctuation">)</span></code></pre><pre class=" language-python"><code class="language-python">clip_grad_norm_<span class="token punctuation">(</span>self<span class="token punctuation">.</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>args<span class="token punctuation">.</span>grad_clip<span class="token punctuation">)</span></code></pre><p>查阅资料后，得出结论：<strong>gradient clipping是用来解决exploding gradients问题的</strong>。关于exploding gradients的细节理解，我并未做深入学习，只对它有浅显的intuition：</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gpfm7dk0avj20ob0c6ad6.jpg"></p><p>如上图，左边图片中的右斜线就是明显的exploding gradients，这样带来的问题就是过大的梯度，一下子就让模型的参数带离了“good region”。因此如果gradients过大，就要适当缩小gradients，这就是gradient clipping要完成的任务。</p><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>PyTorch中使用<code>clip_grad_norm_</code>来实现gradient clipping，它的函数签名是：</p><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">clip_grad_norm_</span><span class="token punctuation">(</span>parameters<span class="token punctuation">:</span> _tensor_or_tensors<span class="token punctuation">,</span> max_norm<span class="token punctuation">:</span> float<span class="token punctuation">,</span> norm_type<span class="token punctuation">:</span> float <span class="token operator">=</span> <span class="token number">2.0</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> torch<span class="token punctuation">.</span>Tensor<span class="token punctuation">:</span>    r<span class="token triple-quoted-string string">"""Clips gradient norm of an iterable of parameters.    The norm is computed over all gradients together, as if they were    concatenated into a single vector. Gradients are modified in-place.    Args:        parameters (Iterable[Tensor] or Tensor): an iterable of Tensors or a            single Tensor that will have gradients normalized        max_norm (float or int): max norm of the gradients        norm_type (float or int): type of the used p-norm. Can be ``'inf'`` for            infinity norm.    Returns:        Total norm of the parameters (viewed as a single vector).    """</span></code></pre><p>如上所述，<strong>所有的parameters tensor是一起计算norm的</strong>。<code>max_norm</code>则是一个类似于阈值的东西，当原始norm大于max_norm，才使用max_norm进行gradient clipping。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol><li><a href="https://towardsdatascience.com/what-is-gradient-clipping-b8e815cdfb48" target="_blank" rel="noopener">What is Gradient Clipping?</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PyTorch </tag>
+            
+            <tag> 梯度裁剪 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Few-Shot Learning</title>
+      <link href="2021/04/06/few-shot-learning/"/>
+      <url>2021/04/06/few-shot-learning/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="Few-Shot-Learning与传统监督学习的不同"><a href="#Few-Shot-Learning与传统监督学习的不同" class="headerlink" title="Few-Shot Learning与传统监督学习的不同"></a>Few-Shot Learning与传统监督学习的不同</h3><p>Few-Shot Learning的数据集一般包括：<code>training set</code>，<code>support set</code>和<code>query</code>。</p><p>Few-Shot Learning的目标是让模型能够在一个很大的training set上<strong>学会区分事物的能力</strong>，而不是学会对training set上的样本进行分类的能力（这是传统监督学习做的事情）。</p><p>Traditional supervised learning：</p><ul><li>Test samples are never seen before.</li><li>Test samples are from <strong>known classes</strong>.</li></ul><p>Few-Shot learning:</p><ul><li>Query samples are never seen before.</li><li>Query samples are from <strong>unknown classes</strong>.</li></ul><p>support set与training set的区别：</p><ul><li>区别体现在数据量上，training set（成百上千）很大，大到能够训练一个DNN。而support set很小很小（个位数），不足以训练一个DNN，<strong>support set只能在predict的时候提供一些额外的信息。</strong></li></ul><h3 id="k-way-n-shot-Support-Set"><a href="#k-way-n-shot-Support-Set" class="headerlink" title="k-way n-shot Support Set"></a>k-way n-shot Support Set</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gp9vo513swj20mn0bado6.jpg" alt="4-way 2-shot"></p><ul><li><strong>k-way</strong>: the support set has k classes.</li><li><strong>n-shot</strong>: every class has n samples.</li></ul><p>k值大小与模型accuracy的关系：</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gp9vpmodjbj20ma0cu3yu.jpg"></p><p>n值大小与模型accuracy的关系：</p><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gp9vva16qrj20mt0cr3yu.jpg"></p><h3 id="Few-Shot-Learning-and-Meta-Learning"><a href="#Few-Shot-Learning-and-Meta-Learning" class="headerlink" title="Few-Shot Learning and Meta Learning"></a>Few-Shot Learning and Meta Learning</h3><ul><li><strong>Few-shot learning is a kind of meta learning</strong></li><li><strong>Meta Learning: learn to learn</strong>(太故弄玄虚了，直接当做Few-Shot Learning理解吧，即培养模型进行自主学习（例如学会区分动物），从而能够在low resource数据上表现好)</li></ul><h3 id="Basic-Idea-Learn-a-similarity-function"><a href="#Basic-Idea-Learn-a-similarity-function" class="headerlink" title="Basic Idea: Learn a similarity function"></a>Basic Idea: Learn a <strong>similarity function</strong></h3><p>Basic Idea: Learn a <strong>similarity function</strong> from large-scale <strong>training dataset</strong>.(比如孪生网络)</p><h2 id="Pretrained-and-Fine-tuning"><a href="#Pretrained-and-Fine-tuning" class="headerlink" title="Pretrained and Fine-tuning"></a>Pretrained and Fine-tuning</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol><li><a href="https://www.bilibili.com/video/BV1qK411T7a2" target="_blank" rel="noopener">Shushen Wang’s Lecture</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 课程笔记 </tag>
+            
+            <tag> Few-Shot Learning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>test1</title>
       <link href="2021/04/06/test1/"/>
       <url>2021/04/06/test1/</url>
