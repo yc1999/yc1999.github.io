@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-04-11T03:06:13.149Z</updated>
+  <updated>2021-04-25T13:30:38.757Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,11 +17,198 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何有效地研读论文？</title>
+    <link href="http://yc1999.github.io/2021/04/25/ru-he-you-xiao-di-yan-du-lun-wen/"/>
+    <id>http://yc1999.github.io/2021/04/25/ru-he-you-xiao-di-yan-du-lun-wen/</id>
+    <published>2021-04-25T12:53:58.000Z</published>
+    <updated>2021-04-25T13:30:38.757Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;私聊王博的小伙伴在阅读文献的时候遇到了很多的困惑，王博对其总结如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;拿到一篇文章无从下手，有时甚至怀疑是否自己应该选择读书这条路？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;看到英文文章就头大，咬牙读了摘要后，几天后拿到同一篇文章还是迷迷糊糊&lt;/p</summary>
+        
+      
+    
+    
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="科研" scheme="http://yc1999.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>碎碎念20210425</title>
+    <link href="http://yc1999.github.io/2021/04/25/sui-sui-nian-20210425/"/>
+    <id>http://yc1999.github.io/2021/04/25/sui-sui-nian-20210425/</id>
+    <published>2021-04-25T12:18:41.000Z</published>
+    <updated>2021-04-25T12:53:11.862Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;碎碎念20210425&quot;&gt;&lt;a href=&quot;#碎碎念20210425&quot; class=&quot;headerlink&quot; title=&quot;碎碎念20210425&quot;&gt;&lt;/a&gt;碎碎念20210425&lt;/h1&gt;&lt;h2 id=&quot;关于Top-2博士就业（好像与我无关-）&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="就业" scheme="http://yc1999.github.io/categories/%E5%B0%B1%E4%B8%9A/"/>
+    
+    
+    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Closer Look At Few-Shot Classification</title>
+    <link href="http://yc1999.github.io/2021/04/24/a-closer-look-at-few-shot-classification/"/>
+    <id>http://yc1999.github.io/2021/04/24/a-closer-look-at-few-shot-classification/</id>
+    <published>2021-04-24T04:16:31.000Z</published>
+    <updated>2021-04-24T14:54:45.687Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;A-Closer-Look-At-Few-Shot-Classification&quot;&gt;&lt;a href=&quot;#A-Closer-Look-At-Few-Shot-Classification&quot; class=&quot;headerlink&quot; title=&quot;A Closer</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/categories/NLP/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="few-shot" scheme="http://yc1999.github.io/tags/few-shot/"/>
+    
+    <category term="meta-learning" scheme="http://yc1999.github.io/tags/meta-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>A Concise Review of Recent Few-shot Meta-learning Methods</title>
+    <link href="http://yc1999.github.io/2021/04/19/a-concise-review-of-recent-few-shot-meta-learning-methods/"/>
+    <id>http://yc1999.github.io/2021/04/19/a-concise-review-of-recent-few-shot-meta-learning-methods/</id>
+    <published>2021-04-19T13:40:59.000Z</published>
+    <updated>2021-04-19T14:59:23.601Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;A-Concise-Review-of-Recent-Few-shot-Meta-learning-Methods&quot;&gt;&lt;a href=&quot;#A-Concise-Review-of-Recent-Few-shot-Meta-learning-Methods&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/categories/NLP/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Meta Learning" scheme="http://yc1999.github.io/tags/Meta-Learning/"/>
+    
+    <category term="Few-shot Learning" scheme="http://yc1999.github.io/tags/Few-shot-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Simple and Effective Few-Shot Named Entity Recognition with Structured Nearest Neighbor Learning</title>
+    <link href="http://yc1999.github.io/2021/04/17/simple-and-effective-few-shot-named-entity-recognition-with-structured-nearest-neighbor-learning/"/>
+    <id>http://yc1999.github.io/2021/04/17/simple-and-effective-few-shot-named-entity-recognition-with-structured-nearest-neighbor-learning/</id>
+    <published>2021-04-17T12:14:54.000Z</published>
+    <updated>2021-04-18T02:10:08.878Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Simple-and-Effective-Few-Shot-Named-Entity-Recognition-with-Structured-Nearest-Neighbor-Learning&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/NLP/"/>
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What is verbose?</title>
+    <link href="http://yc1999.github.io/2021/04/16/what-is-verbose/"/>
+    <id>http://yc1999.github.io/2021/04/16/what-is-verbose/</id>
+    <published>2021-04-16T01:56:52.000Z</published>
+    <updated>2021-04-16T02:01:49.035Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;z在Deep</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Everything You Need To Know About Saving Weights In PyTorch</title>
+    <link href="http://yc1999.github.io/2021/04/11/everything-you-need-to-know-about-saving-weights-in-pytorch/"/>
+    <id>http://yc1999.github.io/2021/04/11/everything-you-need-to-know-about-saving-weights-in-pytorch/</id>
+    <published>2021-04-11T13:12:22.000Z</published>
+    <updated>2021-04-11T13:42:47.914Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在使用&lt;code&gt;huggingface</summary>
+        
+      
+    
+    
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>What is Gradient Clipping</title>
     <link href="http://yc1999.github.io/2021/04/11/what-is-gradient-clipping/"/>
     <id>http://yc1999.github.io/2021/04/11/what-is-gradient-clipping/</id>
     <published>2021-04-11T02:44:26.000Z</published>
-    <updated>2021-04-11T03:06:13.149Z</updated>
+    <updated>2021-04-23T08:09:03.465Z</updated>
     
     
       
@@ -48,7 +235,7 @@
     <link href="http://yc1999.github.io/2021/04/06/few-shot-learning/"/>
     <id>http://yc1999.github.io/2021/04/06/few-shot-learning/</id>
     <published>2021-04-06T03:15:08.000Z</published>
-    <updated>2021-04-07T12:24:43.838Z</updated>
+    <updated>2021-04-14T02:06:19.825Z</updated>
     
     
       
@@ -212,7 +399,7 @@
     <link href="http://yc1999.github.io/2021/04/02/pytorch-li-de-crossentropyloss-xiang-jie/"/>
     <id>http://yc1999.github.io/2021/04/02/pytorch-li-de-crossentropyloss-xiang-jie/</id>
     <published>2021-04-02T02:41:25.000Z</published>
-    <updated>2021-04-02T08:24:24.206Z</updated>
+    <updated>2021-04-16T02:53:40.983Z</updated>
     
     
       
@@ -338,195 +525,6 @@
     <category term="面试" scheme="http://yc1999.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
     <category term="正则化" scheme="http://yc1999.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Animated RNN, LSTM and GRU</title>
-    <link href="http://yc1999.github.io/2021/03/22/animated-rnn-lstm-and-gru/"/>
-    <id>http://yc1999.github.io/2021/03/22/animated-rnn-lstm-and-gru/</id>
-    <published>2021-03-22T13:30:43.000Z</published>
-    <updated>2021-03-22T14:39:34.498Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;RNN是&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/9b63ed6fly1got0gy97hxj20ob0hajuo.jpg&quot; alt=&quot;Fig. 0: Legend for animations&quot;&gt;&lt;/p&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="面试" scheme="http://yc1999.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="LSTM" scheme="http://yc1999.github.io/tags/LSTM/"/>
-    
-    <category term="RNN" scheme="http://yc1999.github.io/tags/RNN/"/>
-    
-    <category term="GRU" scheme="http://yc1999.github.io/tags/GRU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Q&amp;A——Transformer，BERT</title>
-    <link href="http://yc1999.github.io/2021/02/24/q-a-transformer-bert/"/>
-    <id>http://yc1999.github.io/2021/02/24/q-a-transformer-bert/</id>
-    <published>2021-02-24T13:53:26.000Z</published>
-    <updated>2021-03-26T08:29:59.818Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Transformer&quot;&gt;&lt;a href=&quot;#Transformer&quot; class=&quot;headerlink&quot; title=&quot;Transformer&quot;&gt;&lt;/a&gt;Transformer&lt;/h2&gt;&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;代码实战：&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/NLP/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Transformer" scheme="http://yc1999.github.io/tags/Transformer/"/>
-    
-    <category term="BERT" scheme="http://yc1999.github.io/tags/BERT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>What is the difference between FP16 and FP32 when doing deep learning?</title>
-    <link href="http://yc1999.github.io/2021/02/22/what-is-the-difference-between-fp16-and-fp32-when-doing-deep-learning/"/>
-    <id>http://yc1999.github.io/2021/02/22/what-is-the-difference-between-fp16-and-fp32-when-doing-deep-learning/</id>
-    <published>2021-02-22T02:02:12.000Z</published>
-    <updated>2021-02-22T02:18:11.152Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>warmup_proportion预热学习率的作用</title>
-    <link href="http://yc1999.github.io/2021/02/22/warmup-proportion-yu-re-xue-xi-lu-de-zuo-yong/"/>
-    <id>http://yc1999.github.io/2021/02/22/warmup-proportion-yu-re-xue-xi-lu-de-zuo-yong/</id>
-    <published>2021-02-22T01:10:45.000Z</published>
-    <updated>2021-02-22T01:24:32.546Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;作者：EO_eaf6&lt;br&gt;链接：&lt;a href=&quot;https://www.jianshu.com/p/19a4abfcd835&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="warmup_proportion" scheme="http://yc1999.github.io/tags/warmup-proportion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyTorch中在反向传播前为什么要手动将梯度清零？</title>
-    <link href="http://yc1999.github.io/2021/02/21/pytorch-zhong-zai-fan-xiang-chuan-bo-qian-wei-shi-me-yao-shou-dong-jiang-ti-du-qing-ling/"/>
-    <id>http://yc1999.github.io/2021/02/21/pytorch-zhong-zai-fan-xiang-chuan-bo-qian-wei-shi-me-yao-shou-dong-jiang-ti-du-qing-ling/</id>
-    <published>2021-02-21T14:55:24.000Z</published>
-    <updated>2021-02-22T01:05:24.822Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;作者：Pascal&lt;br&gt;链接：&lt;a href=&quot;https://www.zhihu.com/question/303070254/answer/573037166&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习tricks" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="梯度累加" scheme="http://yc1999.github.io/tags/%E6%A2%AF%E5%BA%A6%E7%B4%AF%E5%8A%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>跑实验中遇到的Bug</title>
-    <link href="http://yc1999.github.io/2021/02/21/pao-shi-yan-zhong-yu-dao-de-bug/"/>
-    <id>http://yc1999.github.io/2021/02/21/pao-shi-yan-zhong-yu-dao-de-bug/</id>
-    <published>2021-02-21T06:28:49.000Z</published>
-    <updated>2021-02-22T15:23:53.389Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;model-to-device-十分缓慢&quot;&gt;&lt;a href=&quot;#model-to-device-十分缓慢&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux常用命令</title>
-    <link href="http://yc1999.github.io/2021/02/20/linux-chang-yong-ming-ling/"/>
-    <id>http://yc1999.github.io/2021/02/20/linux-chang-yong-ming-ling/</id>
-    <published>2021-02-20T09:23:10.000Z</published>
-    <updated>2021-02-25T02:23:23.923Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;sed&quot;&gt;&lt;a href=&quot;#sed&quot; class=&quot;headerlink&quot; title=&quot;sed&quot;&gt;&lt;/a&gt;sed&lt;/h2&gt;&lt;p&gt;经常需要将windows下的脚本里面的换行符转变成linux下的换行符，使用下面指令：&lt;/p&gt;
-&lt;pre class=&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
