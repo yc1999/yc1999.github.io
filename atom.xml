@@ -6,7 +6,7 @@
   <link href="http://yc1999.github.io/atom.xml" rel="self"/>
   
   <link href="http://yc1999.github.io/"/>
-  <updated>2021-04-25T13:30:38.757Z</updated>
+  <updated>2021-05-03T13:37:33.411Z</updated>
   <id>http://yc1999.github.io/</id>
   
   <author>
@@ -17,11 +17,115 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Conditional Layer Normalization</title>
+    <link href="http://yc1999.github.io/2021/05/03/conditional-layer-normalization/"/>
+    <id>http://yc1999.github.io/2021/05/03/conditional-layer-normalization/</id>
+    <published>2021-05-03T13:34:01.000Z</published>
+    <updated>2021-05-03T13:37:33.411Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本文思路来源于苏建林大佬的&lt;a href=&quot;https://kexue.fm/archives/7124&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Conditional Layer</summary>
+        
+      
+    
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
+    
+    
+    <category term="Layer Normalization" scheme="http://yc1999.github.io/tags/Layer-Normalization/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>What the role is vs. What plays the role: Semi-supervised Event Argument Extraction via Dual Question Answering</title>
+    <link href="http://yc1999.github.io/2021/05/02/what-the-role-is-vs-what-plays-the-role-semi-supervised-event-argument-extraction-via-dual-question-answering/"/>
+    <id>http://yc1999.github.io/2021/05/02/what-the-role-is-vs-what-plays-the-role-semi-supervised-event-argument-extraction-via-dual-question-answering/</id>
+    <published>2021-05-02T01:40:44.000Z</published>
+    <updated>2021-05-02T02:09:55.188Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;论文名字&quot;&gt;&lt;a href=&quot;#论文名字&quot; class=&quot;headerlink&quot; title=&quot;论文名字&quot;&gt;&lt;/a&gt;论文名字&lt;/h1&gt;&lt;pre class=&quot; language-BibTeX&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Reading the Manual: Event Extraction as Definition Comprehension</title>
+    <link href="http://yc1999.github.io/2021/04/29/reading-the-manual-event-extraction-as-definition-comprehension/"/>
+    <id>http://yc1999.github.io/2021/04/29/reading-the-manual-event-extraction-as-definition-comprehension/</id>
+    <published>2021-04-29T07:19:53.000Z</published>
+    <updated>2021-04-29T14:07:08.389Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Reading-the-Manual-Event-Extraction-as-Definition-Comprehension&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="MRC" scheme="http://yc1999.github.io/tags/MRC/"/>
+    
+    <category term="Event Extraction" scheme="http://yc1999.github.io/tags/Event-Extraction/"/>
+    
+    <category term="EMNLP" scheme="http://yc1999.github.io/tags/EMNLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unsupervised Label-aware Event Trigger And Argument Classification</title>
+    <link href="http://yc1999.github.io/2021/04/27/unsupervised-label-aware-event-trigger-and-argument-classification/"/>
+    <id>http://yc1999.github.io/2021/04/27/unsupervised-label-aware-event-trigger-and-argument-classification/</id>
+    <published>2021-04-27T13:53:17.000Z</published>
+    <updated>2021-04-28T07:00:42.779Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Unsupervised-Label-aware-Event-Trigger-And-Argument-Classification&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="论文笔记" scheme="http://yc1999.github.io/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="NLP" scheme="http://yc1999.github.io/tags/NLP/"/>
+    
+    <category term="深度学习" scheme="http://yc1999.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="Event Extraction" scheme="http://yc1999.github.io/tags/Event-Extraction/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何有效地研读论文？</title>
     <link href="http://yc1999.github.io/2021/04/25/ru-he-you-xiao-di-yan-du-lun-wen/"/>
     <id>http://yc1999.github.io/2021/04/25/ru-he-you-xiao-di-yan-du-lun-wen/</id>
     <published>2021-04-25T12:53:58.000Z</published>
-    <updated>2021-04-25T13:30:38.757Z</updated>
+    <updated>2021-04-29T07:15:36.551Z</updated>
     
     
       
@@ -417,114 +521,6 @@
     
     
     <category term="PyTorch" scheme="http://yc1999.github.io/tags/PyTorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Focal Loss——从直觉到实现</title>
-    <link href="http://yc1999.github.io/2021/03/29/focal-loss-cong-zhi-jue-dao-shi-xian/"/>
-    <id>http://yc1999.github.io/2021/03/29/focal-loss-cong-zhi-jue-dao-shi-xian/</id>
-    <published>2021-03-29T08:52:53.000Z</published>
-    <updated>2021-03-29T13:00:26.726Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Focal-Loss——从直觉到实现&quot;&gt;&lt;a href=&quot;#Focal-Loss——从直觉到实现&quot; class=&quot;headerlink&quot; title=&quot;Focal Loss——从直觉到实现&quot;&gt;&lt;/a&gt;Focal Loss——从直觉到实现&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="损失函数" scheme="http://yc1999.github.io/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Extensively Matching for Few-shot Learning Event Detection</title>
-    <link href="http://yc1999.github.io/2021/03/27/extensively-matching-for-few-shot-learning-event-detection/"/>
-    <id>http://yc1999.github.io/2021/03/27/extensively-matching-for-few-shot-learning-event-detection/</id>
-    <published>2021-03-27T07:26:29.000Z</published>
-    <updated>2021-03-28T08:15:52.463Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Extensively-Matching-for-Few-shot-Learning-Event-Detection&quot;&gt;&lt;a href=&quot;#Extensively-Matching-for-Few-shot-Learning-Event-Detection&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="论文阅读笔记" scheme="http://yc1999.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="few shot" scheme="http://yc1999.github.io/tags/few-shot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>刷爆3路榜单，信息抽取冠军方案分享：嵌套NER+关系抽取+实体标准化</title>
-    <link href="http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/"/>
-    <id>http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/</id>
-    <published>2021-03-25T13:36:30.000Z</published>
-    <updated>2021-03-25T14:39:16.202Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;本篇文章，JayJay并不想只是围绕竞赛本身谈策略，而是想和大家一起交流：无论在竞赛还是落地中，&lt;strong&gt;信息抽取任务的稳定提升策略有哪些&lt;/strong&gt;？总的来看就是两点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;构建一个强大的baseline，这取决于标注框架</summary>
-        
-      
-    
-    
-    
-    <category term="NLP" scheme="http://yc1999.github.io/categories/NLP/"/>
-    
-    
-    <category term="转载" scheme="http://yc1999.github.io/tags/%E8%BD%AC%E8%BD%BD/"/>
-    
-    <category term="信息抽取" scheme="http://yc1999.github.io/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>l1和l2正则化的区别</title>
-    <link href="http://yc1999.github.io/2021/03/22/l1-he-l2-zheng-ze-hua-de-qu-bie/"/>
-    <id>http://yc1999.github.io/2021/03/22/l1-he-l2-zheng-ze-hua-de-qu-bie/</id>
-    <published>2021-03-22T14:41:41.000Z</published>
-    <updated>2021-03-22T14:54:36.971Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;L1正则化&lt;/strong&gt;和&lt;strong&gt;L2正则化&lt;/strong&gt;是&lt;strong&gt;控制模型复杂度&lt;/strong&gt;和&lt;strong&gt;限制过拟合&lt;/strong&gt;的常用方法。L1正则化和L2正则化之间有一些有趣的比较。我发现这些视觉上的对比和它们的解</summary>
-        
-      
-    
-    
-    
-    <category term="深度学习" scheme="http://yc1999.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="面试" scheme="http://yc1999.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="正则化" scheme="http://yc1999.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     
   </entry>
   
