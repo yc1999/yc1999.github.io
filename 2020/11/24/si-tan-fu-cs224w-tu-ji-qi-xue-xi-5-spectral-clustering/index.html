@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【斯坦福cs224w-图机器学习】5. Spectral Clustering, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【斯坦福cs224w-图机器学习】5. Spectral Clustering | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【斯坦福cs224w-图机器学习】5. Spectral Clustering</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">课程笔记</span>
+                            </a>
+                        
+                            <a href="/tags/cs224w/">
+                                <span class="chip bg-color">cs224w</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
+                                <span class="chip bg-color">特征值与特征向量的应用</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本节课继续讨论Community Detection算法，讲解的是谱聚类（Spectral Clustering）算法，最后还会与前面第3节课学习的<code>motif</code>知识关联起来，讲解一种基于Motif的谱聚类算法。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hl1lxsj22bc1qiqm5.jpg">
+
+<h2 id="谱聚类算法"><a href="#谱聚类算法" class="headerlink" title="谱聚类算法"></a>谱聚类算法</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlnoatj22bc1qi1kv.jpg">
+
+<blockquote>
+<p>上面给出了谱聚类的”三步曲”，在正式讲解“三步曲”之前，我们先来定义一下谱聚类要解决什么问题？</p>
+</blockquote>
+<h3 id="Part-1-问题定义"><a href="#Part-1-问题定义" class="headerlink" title="Part 1 问题定义"></a>Part 1 问题定义</h3><p>给定一个图$G=(V,E)$，如下图所示，我们要在这个图上做<strong>bi-partition</strong>任务（后面的讲解是基于二簇划分问题的，当然谱聚类可以用于多簇划分），希望把下图划分成两个不相交的群体A，B，让组内尽可能相似，组间差异尽可能大。</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hlfx0oj22bc1qi1io.jpg">
+
+<blockquote>
+<ul>
+<li>那么怎么定义一个“好”的划分？怎样快速找到这样的划分呢？</li>
+</ul>
+</blockquote>
+<h3 id="Part-2-评价指标"><a href="#Part-2-评价指标" class="headerlink" title="Part 2 评价指标"></a>Part 2 评价指标</h3><ul>
+<li>在第四节课中，我们有介绍度量聚类效果的指标<code>modularity</code>，这里我们使用一种新的聚类度量指标<code>conductance</code>；</li>
+<li>同样，我们之前的目标是最大化<code>modularity</code>，因此在本节课我们的目标是最大化<code>conductance</code>。</li>
+</ul>
+<p>对于一个好的划分，一个很自然的想法，直觉上就是<font color="red"><strong>最大化组内连接数，最小化组间连接数</strong>：</font></p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hliytij22bc1qiasg.jpg">
+
+<p>我们其实可以很形象地将图上的聚类划分问题，看做一个<strong>切割</strong>的过程：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hnt96sj22bc1qitwi.jpg">
+
+<blockquote>
+<ul>
+<li><code>cut</code>：这里的<code>cut</code>是一个名词，它有全新的意义。它是定义在两个簇共享的边集的<code>sum</code>值。</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hm3a3sj22bc1qiazv.jpg">
+
+<blockquote>
+<p>但是如果我们想最小化cut有一个问题，如上图所示，当有一个节点度数为1时，切割这一条边可最小化cut，即cut=1，但是很显然这并不是最优化的划分结果，直觉上看，最优化的划分应该为蓝色线所示。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hqb1ndj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><p>正是由于前面讲的那种degenerate case，我们需要进一步对度量指标<code>cut</code>进行归一化来考虑group内的connectivity信息——<code>conductance</code>:</p>
+</li>
+<li><p>我们想<code>conductance</code>变小，所以我们就会想让<code>vol(A)</code>和<code>vol(B)</code>都能变得尽可能大，从而避免前一张PPT上的极端情况。</p>
+</li>
+<li><p>由<code>conductance</code>计算公式的含义我们知道<strong>它能够产生相对均匀划分</strong>；</p>
+</li>
+<li><p>但是求解一个这样的最优的conductance是一个NP-hard问题。根据我们的机器学习经验，<strong>我们需要寻找一个近似解</strong><del>这个近似解就是谱聚类</del></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Part-3-谱图划分"><a href="#Part-3-谱图划分" class="headerlink" title="Part 3 谱图划分"></a>Part 3 谱图划分</h3><h4 id="重新理解-Ax-的意义——聚合邻居的信息"><a href="#重新理解-Ax-的意义——聚合邻居的信息" class="headerlink" title="重新理解$Ax$的意义——聚合邻居的信息"></a>重新理解$Ax$的意义——聚合邻居的信息</h4><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hs4gx6j22bc1qihc1.jpg">
+
+<hr>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrcge9j22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>之前我们重新审视了$Ax$，现在让我们结合重新审视的$Ax$来回想一个啥是eigenvector，eigenvalue？</li>
+</ul>
+<blockquote>
+<p><strong>these are special vectors assigned to nodes such that when you sum up the value from your neighbors you get the same value as you had you just scaled miraculous！！！</strong></p>
+</blockquote>
+<ul>
+<li><p><code>spectrum</code>：频谱，需要注意的是<code>spectrum</code>里面的<strong>特征值</strong>是严格按照从小到大的顺序排列的！</p>
+<blockquote>
+<p>这其实与电路与信号里面的傅里叶变换联系起来了，这里的频率就是特征值。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h5 id="Example-d-Regular-Graph"><a href="#Example-d-Regular-Graph" class="headerlink" title="Example: d-Regular Graph"></a>Example: d-Regular Graph</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hr5e91j22bc1qi7wh.jpg">
+
+<blockquote>
+<p>d-regular graph</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hppnukj22bc1qib29.jpg">
+
+<h5 id="Example-Graph-on-2-Components"><a href="#Example-Graph-on-2-Components" class="headerlink" title="Example: Graph on 2 Components"></a>Example: Graph on 2 Components</h5><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hrca5ij22bc1qi7wh.jpg">
+
+<blockquote>
+<ul>
+<li><p>这里<code>eigenvalue</code>：$d$的<code>multiplicity</code>是2，也就是是说它由两个eigenvector。在这种类型的图中，the max eigenvalue的<strong>multiplicity</strong>可以告诉我们有多少的components。</p>
+</li>
+<li><p>$\lambda_n = \lambda_{n-1}$是因为multiplicity的大小</p>
+</li>
+<li><p>关于almost disconnected的时候，$\lambda_{n-1}$会非常接近$\lambda_n$的原因将会在后面学到。</p>
+</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hu3m2aj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><p><strong>Eigenvectors are orthogonal的原因在于Adjacency Matrix为对称矩阵！</strong></p>
+</li>
+<li><p>it means some coordinates should be higher than 0，一些会小于0；</p>
+</li>
+<li><p>再次提醒，老师这里举例子是2个partition的问题；</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Adjacency-Matrix"><a href="#Adjacency-Matrix" class="headerlink" title="Adjacency Matrix"></a>Adjacency Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hv2g92j22bc1qity7.jpg">
+
+<blockquote>
+<ul>
+<li>这里的n个real eigenvalues可能有重复的。</li>
+</ul>
+</blockquote>
+<h3 id="Degree-Matrix"><a href="#Degree-Matrix" class="headerlink" title="Degree Matrix"></a>Degree Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ht6rnxj22bc1qinft.jpg">
+
+<h3 id="Laplacian-Matrix"><a href="#Laplacian-Matrix" class="headerlink" title="Laplacian Matrix"></a>Laplacian Matrix</h3><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hy23xnj22bc1qi1kx.jpg">
+
+<blockquote>
+<ul>
+<li>0是我们这个问题中最小的eigenvalue（？）</li>
+<li>Laplacian Matrix$L$是一个半正定矩阵，详细证明如下：</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvuhghj22bc1qi4qp.jpg">
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hvaa0pj22bc1qi4qp.jpg">
+
+<blockquote>
+<p>注意是对于每一个symmetric matrix都有这样一个fact！</p>
+<p>optimization problem</p>
+<p>$x^TLx$就是二次型的定义，所以要回顾一下二次型才是~</p>
+<p>只遍历边（i,j），所以需要乘以2。</p>
+<p>再观察一下，我们的$x_i^2$一共计算了$D_{ii}$次，也就是度的次数，于是我们根据它的边来拆分$D_{ij}$次，可以得到一个完全平方式。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hw4qusj22bc1qi7wh.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i319kaj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>eigenvector的长度为1，这个是可以Normalize的</li>
+<li>restate之前的equation</li>
+<li>我们可以想象$x$向量代表的是label，那么0两端的话，值会很大。</li>
+<li>因为sum要为1，我们尽量让两端的点的数量相等。</li>
+<li>如上所示，$\lambda_2$有着非常神奇的eigenvector；</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hz82u6j22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li><code>Fiedler</code>的这个想法和我们之前得到的那个restate其实是差不多的，但是他的这个严格性太强了！这个最终结果会统计横跨0左右两端的数量。</li>
+<li>在前一页PPT里面我们不会去enforce两个集合相等</li>
+<li>我们称这里的vector为Fiedler vector</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i10cujj22bc1qi4qp.jpg">
+
+<blockquote>
+<ul>
+<li>a spectral term spectral graph theory</li>
+<li>同样是之前的那个式子，这里是enforce其中的向量的总和为0，然后y的长度为1.</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i15d0yj22bc1qib29.jpg">
+
+<blockquote>
+<p>这里的证明展示了这种基于图的Laplacian矩阵的spectral clustering会给你一个近似最优解</p>
+<p>它会小于最优解的两倍，说明还是很有用的</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09hzct2pj22bc1qihcb.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i0kbplj22bc1qihce.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i36bk1j22bc1qinjx.jpg">
+
+<p>前面是mathematical intuition，接下来是实打实的算法~</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i30m1tj22bc1qikhf.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i40lpoj22bc1qi1kx.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i50baxj22bc1qi4qp.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i47lurj22bc1qits5.jpg">
+
+<blockquote>
+<p>老师说 how beautifully it captures the graph structure~左图和右图完美匹配。</p>
+<p>如果有四个类别怎么办？</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i5awj4j22bc1qih66.jpg">
+
+<blockquote>
+<p>如上所示，我们依然使用之前的方法得到$x_2$，虽然它是用于二分类问题的，但是你可以发现，在0以上和0以下，依然还可以在划分为两个类别。</p>
+<p>如何$\lambda_2$和$\lambda_1$是相等的，老师说自己的理论就会不成立。那么为什么不连通的图，他的两个就是相等的呢？好像我可以分析出来。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i887mjj22bc1qie2f.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iaepxwj22bc1qi4qp.jpg">
+
+<blockquote>
+<p>这里k的数量不等于最后聚类的数量。</p>
+</blockquote>
+<h2 id="Why-Use-Multiple-Eigenvectors？"><a href="#Why-Use-Multiple-Eigenvectors？" class="headerlink" title="Why Use Multiple Eigenvectors？"></a>Why Use Multiple Eigenvectors？</h2><img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i7a3l4j22bc1qib29.jpg">
+
+<blockquote>
+<ul>
+<li></li>
+<li>emphasize cohesive clusters</li>
+<li>well-separated space</li>
+<li>amplified 放大</li>
+<li>attenuate 减弱</li>
+</ul>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i83r45j22bc1qi4nb.jpg">
+
+<p>注意是降序的。。。</p>
+<p>如果我们的图是disconnected，那么$\lambda_1$和$\lambda_2$就是相等的了，如果是近似disconnected，那么$\lambda_1$和$\lambda_2$就应该是差不多大小。</p>
+<p>for a general graph，the maximum eigenvalue will correspond to the density of the graph，now we create the graph laplacian that kind of flipped the spectrum around，so the largest eigenvalue D mapped to the trivial eigenvalue of 0。</p>
+<h2 id="基于motif的谱聚类算法"><a href="#基于motif的谱聚类算法" class="headerlink" title="基于motif的谱聚类算法"></a>基于motif的谱聚类算法</h2><p>接下来，介绍一种super exciting extension of the spectral clustering method：</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i64o35j22bc1qi153.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iars1wj22bc1qi7td.jpg">
+
+<p>能否基于motif进行聚类？</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09i8zt3tj22bc1qiwz1.jpg">
+
+<p>划分出上图红圈中的cluster。</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibojulj22bc1qi7v1.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibrzffj22bc1qib0u.jpg">
+
+<blockquote>
+<p>将前面提到的cut和volume的概念迁移到motif上：</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibpb0hj22bc1qie0g.jpg">
+
+<blockquote>
+<ul>
+<li>motif cut=1</li>
+<li>motif volume=10</li>
+</ul>
+</blockquote>
+<p>next,how do i automatedly find good cuts,how do I find clusters of motifs?</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ibhozvj22bc1qie30.jpg">
+
+
+
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ief5rwj22bc1qi1f4.jpg">
+
+<blockquote>
+<p>$W^{M}$的值随着$M$的不同而变化。</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iglfjzj22bc1qikja.jpg">
+
+<blockquote>
+<p>要将其变成无向图</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09if38ywj22bc1qikfd.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iewp9dj22bc1qitxx.jpg">
+
+<blockquote>
+<p>尽管我们最后变成了无向图，看起来有点像edge cut，但是实际上还是原来的motif cut</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ie9a17j22bc1qiqlp.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iebrh7j22bc1qi7q3.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij5rsxj22bc1qi7q6.jpg">
+
+<blockquote>
+<p>分情况寻找划分的点。</p>
+<p>sweep procedure：扫描过程</p>
+</blockquote>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ihdbc5j22bc1qinke.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09igz3gnj22bc1qitvk.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ij3ubsj22bc1qitqt.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ijil96j22bc1qihdt.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ikmbuuj22bc1qittm.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iiys1ij22bc1qikbb.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iklftqj22bc1qi4n6.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09iow8l0j22bc1qiu0x.jpg">
+
+<p>aquatic layer</p>
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imqpv5j22bc1qi1kx.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imjdnnj22bc1qix0x.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09ip4jpnj22bc1qinpd.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09imyozdj22bc1qikcv.jpg">
+<img src="http://ww1.sinaimg.cn/mw690/9b63ed6fgy1gl09io5cqvj22bc1qi4qp.jpg">
+
+<h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><h3 id="聚类度量指标Modularity和Conductance的对比理解"><a href="#聚类度量指标Modularity和Conductance的对比理解" class="headerlink" title="聚类度量指标Modularity和Conductance的对比理解"></a>聚类度量指标<code>Modularity</code>和<code>Conductance</code>的对比理解</h3>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/">http://yc1999.github.io/2020/11/24/si-tan-fu-cs224w-tu-ji-qi-xue-xi-5-spectral-clustering/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">课程笔记</span>
+                                </a>
+                            
+                                <a href="/tags/cs224w/">
+                                    <span class="chip bg-color">cs224w</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F%E7%9A%84%E5%BA%94%E7%94%A8/">
+                                    <span class="chip bg-color">特征值与特征向量的应用</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/25/si-tan-fu-cs224w-tu-ji-qi-xue-xi-7-8-9-graph-representation-learning/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkra5zwiqdj20w60eljsn.jpg" class="responsive-img" alt="【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning">
+                        
+                        <span class="card-title">【斯坦福cs224w-图机器学习】7,8,9-Graph Representation Learning</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在前面几周的学习中，我们学习了motifs，graphlets等等来表示一个图，本质上，它们就是图的一种特征表示（representation），接下来我们介绍自动的方法：
+第七八两节介绍的都是关于图表示学习的，所谓万物皆可embeddin
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">课程笔记</span>
+                    </a>
+                    
+                    <a href="/tags/cs224w/">
+                        <span class="chip bg-color">cs224w</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/24/shen-du-xue-xi-kuang-jia-dong-tai-tu-he-jing-tai-tu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="深度学习框架-动态图和静态图">
+                        
+                        <span class="card-title">深度学习框架-动态图和静态图</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Tensorflow,Pytorch,PaddlePaddle等等深度学习框架，在介绍框架的时候都会提及到动态图和静态图。其实动态图和静态图都属于计算图，本文就来讲讲什么是动态图和静态图。
+计算图不论是动态图还是静态图，它们都属于计算图。计
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

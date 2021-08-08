@@ -1,0 +1,1284 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="A Survey of Open Domain Event Extraction, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>A Survey of Open Domain Event Extraction | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">A Survey of Open Domain Event Extraction</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+                                <span class="chip bg-color">论文阅读</span>
+                            </a>
+                        
+                            <a href="/tags/NLP/">
+                                <span class="chip bg-color">NLP</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                                <span class="chip bg-color">综述</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-09
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h2 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0. 摘要"></a>0. 摘要</h2><p>为了从无结构的文本语料库中挖掘有用的结构化知识，人们创造了许多的信息抽取系统。其中一种十分重要的就是开放域事件抽取，它是在没有预先给定域假设（domain assumption）的情况下抽取有用的事件信息。</p>
+<p>在这篇综述中，<strong>首先介绍事件抽取的pipeline是怎样一个流程，然后介绍一些目前比较好的开放域事件抽取。</strong></p>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>事件抽取的主要任务有：</p>
+<ol>
+<li><strong>判别事件的类型</strong>；</li>
+<li>**提取出事件的每一个<code>role</code>所对应的<code>argument</code>**。</li>
+</ol>
+<p>一个简单的例子如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkj9wmhf3tj20jh09yjsd.jpg" alt="an example for event extraction"></p>
+<p>在整篇综述中：</p>
+<ul>
+<li>Section 2介绍有哪些不同种类的事件抽取；</li>
+<li>Section 3介绍两个东西，一是常用于事件抽取中的知识库，二是可自动生成用于事件抽取训练数据的技术；</li>
+<li>Section 4，5，6介绍最近比较火的事件抽取方法和开放域事件抽取方法；</li>
+<li>最后就是总结</li>
+</ul>
+<h2 id="2-Types-of-Event-Extraction"><a href="#2-Types-of-Event-Extraction" class="headerlink" title="2. Types of Event Extraction"></a>2. Types of Event Extraction</h2><p>有两种划分事件抽取的方法：</p>
+<ol>
+<li>根据事件抽取的目标划分成开放域和特定域；</li>
+<li>根据事件抽取使用的方法划分成<strong>数据驱动方法</strong>，<strong>语义驱动方法</strong>和<strong>混合驱动方法</strong>。</li>
+</ol>
+<h3 id="2-1-Event-Extraction-Types-by-Approaches"><a href="#2-1-Event-Extraction-Types-by-Approaches" class="headerlink" title="2.1 Event Extraction Types by Approaches"></a>2.1 Event Extraction Types by Approaches</h3><ul>
+<li>data-driven approach</li>
+<li>semantic-driven approach</li>
+<li>hybrid-driven approach</li>
+</ul>
+<h3 id="2-2-Event-Extraction-Types-by-Objectives"><a href="#2-2-Event-Extraction-Types-by-Objectives" class="headerlink" title="2.2 Event Extraction Types by Objectives"></a>2.2 Event Extraction Types by Objectives</h3><p><strong>open domain</strong>的特点：</p>
+<ul>
+<li>社交媒体和大量文本语料库上的事件抽取常被看作是开放域的；</li>
+<li>缺乏相关的ontologies，以及存在着大量待发掘的事件类型和模式使得开放域事件抽取非常地困难；</li>
+</ul>
+<p><strong>specific domain</strong>的特点：</p>
+<ul>
+<li>有相关的ontologies和knowledge bases</li>
+</ul>
+<h2 id="3-Data-and-Ontologies"><a href="#3-Data-and-Ontologies" class="headerlink" title="3. Data and Ontologies"></a>3. Data and Ontologies</h2><p>目前有许多的开放域事件抽取模型的训练数据是hand-labeled data，hand-labeled data存在三点弊端：</p>
+<ol>
+<li>价格昂贵</li>
+<li>事件类型的覆盖率少</li>
+<li>数量有限</li>
+</ol>
+<p>综上，自动产生标签数据是非常重要的，接下来首先安利一些有利于事件抽取的数据和ontologies资源，再讲解两种自动产生标签数据的方法：</p>
+<ol>
+<li>通过识别出<code>key arguments</code>和<code>trigger words</code>来产生标签数据；</li>
+<li>通过识别<code>key arguments</code>来产生标签数据。</li>
+</ol>
+<h3 id="3-1-Resources-of-Data-for-Event-Extraction"><a href="#3-1-Resources-of-Data-for-Event-Extraction" class="headerlink" title="3.1 Resources of Data for Event Extraction"></a>3.1 Resources of Data for Event Extraction</h3><p>为了产生labeled data，不仅需要word knowledge，也需要linguistic or semantic knowledge。下面是一些可以用于生成labeled data或者直接作为labeled data的knowledge base和ontologies：</p>
+<h4 id="3-1-1-FreeBase"><a href="#3-1-1-FreeBase" class="headerlink" title="3.1.1 FreeBase"></a>3.1.1 FreeBase</h4><p>FreeBase是一个semantic knowledge base。FreeBase使用<code>Compound Value Types</code>来将多个值组合成一个值。（有点类似于面向对象中，一个类有多个属性）</p>
+<p>为了利用FreeBase来产生labeled data：</p>
+<ul>
+<li>CVT常被看作是events</li>
+<li>type of CVTs看作是event types</li>
+<li>CVT instances看作是event instance</li>
+<li>values in CVTs看作是arguments in events</li>
+<li>roles of CVTs看作是roles of arguments in the event</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkjvat3j4rj20lc03ogm4.jpg" alt="An example sentence from Wikipedia"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkjvboz2ilj20kh06tabc.jpg" alt="the corresponding CVT entry of the sentence in Figure 2 in FreeBase"></p>
+<h4 id="3-1-2-FrameNet"><a href="#3-1-2-FrameNet" class="headerlink" title="3.1.2 FrameNet"></a>3.1.2 FrameNet</h4><p>FrameNet是一个语言库，FrameNet里面的每一个frame都可以看做一种event的语义框架。每一个frame都有许多的Lexical Units。例如在下面的句子中bake.v就是frame Cooking_creation的LU之一，这样的frame可以映射到FreeBase中，从而用作为文本数据打标签。</p>
+<pre><code class="tex">Michelle baked her mother a cake for her birthday.
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://framenet.icsi.berkeley.edu/fndrupal/WhatIsFrameNet">FrameNet的介绍</a></p>
+<h4 id="3-1-3-Wikipedia"><a href="#3-1-3-Wikipedia" class="headerlink" title="3.1.3 Wikipedia"></a>3.1.3 Wikipedia</h4><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkjwc4vcwsj20gc09pabg.jpg" alt="Table 1:Wikipedia Multilingual statics"></p>
+<p>维基百科是一个半结构化以及多语言的知识库，它每年的增长速度很快，关于它的作用，在Section 5中会详细提到。</p>
+<h3 id="3-2-Generate-Labeled-Data-for-Event-Extraction-Automatically"><a href="#3-2-Generate-Labeled-Data-for-Event-Extraction-Automatically" class="headerlink" title="3.2 Generate Labeled Data for Event Extraction Automatically"></a>3.2 Generate Labeled Data for Event Extraction Automatically</h3><h4 id="3-2-1-Generate-labeled-data-for-event-extraction-by-identifying-trigger-words-and-key-arguments"><a href="#3-2-1-Generate-labeled-data-for-event-extraction-by-identifying-trigger-words-and-key-arguments" class="headerlink" title="3.2.1 Generate labeled data for event extraction by identifying trigger words and key arguments"></a>3.2.1 Generate labeled data for event extraction by identifying trigger words and key arguments</h4><p>这种方法来产生的标注数据标注了trigger words，event types，arguments和arguments role。如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkk15zv0jcj20k506owfg.jpg" alt="figure4"></p>
+<p>在<strong>关系抽取</strong>中，有一种称为distant supervision的方法，它假设：如果两个实体在知识库中存在关系，那么所有包含这两个实体的句子都会在一定程度上体现这种关系。</p>
+<p>然后这种DS的思想，并不适用于<strong>事件抽取</strong>，主要有两个原因：</p>
+<ol>
+<li>在现有的知识库中，事件的trigger words并没有被体现出来；</li>
+<li>一个事件实例的arguments可能出现在文章的不同地方，而不是集中出现在一个句子之中，所以很难产生高质量的打标训练数据；</li>
+</ol>
+<p>为了解决DS算法用于事件抽取上的不足，有一种同时使用了world knowledge（FreeBase）和linguistic knowledge（FrameNet）的算法。它的pipeline如下：</p>
+<ol>
+<li>选择key arguments；</li>
+<li>只是用key arguments来标记events以及提取trigger words；</li>
+<li>使用linguistic knowledge resource（FrameNet）来过滤噪声trigger words和扩大triggers；</li>
+<li>使用Soft Distant Supervision来自动回标数据。</li>
+</ol>
+<p>第一步选择key arguments的方法是计算key rate，计算key rate包含两个部分：</p>
+<ol>
+<li><p>Role Saliency（作用特点）</p>
+<p>given an event type, an argument A is more salient than another argument B if one tends to use an argument A to distinguish one event instance.</p>
+</li>
+<li><p>Event Relevance（事件相关性）</p>
+<p>if an argument A only occurs in a specic event type, the argument A has high event relevance.</p>
+</li>
+</ol>
+<p>基于key rate然后选取topK。</p>
+<p>第二步使用key arguments来标记trigger word。首先找到所有包含了key arguments的句子，然后筛选出这些句子中的动词（verb），出现频率较高的动词就是我们要找的trigger words。</p>
+<p>第三步是trigger words的过滤和扩展。使用的方法是将FreeBase中的event映射到FrameNet中的frame。</p>
+<p>第四步是自动回标，产生训练数据。这一步基于两个假设：</p>
+<ol>
+<li>对于句子中的一个事件，FreeBase中所有的key arguments和对应的trigger words代表了这个事件；</li>
+<li>句子中出现的arguments承担了在事件中相应的role</li>
+</ol>
+<p>基于上面的两个鸡舍，我们使用soft distant supervision来生成数据。</p>
+<h4 id="3-2-2-Generate-labeled-data-for-event-extraction-only-by-identifying-key-arguments"><a href="#3-2-2-Generate-labeled-data-for-event-extraction-only-by-identifying-key-arguments" class="headerlink" title="3.2.2 Generate labeled data for event extraction only by identifying key arguments"></a>3.2.2 Generate labeled data for event extraction only by identifying key arguments</h4><p>传统的事件抽取方法需要抽取trigger words和赋予事件类型。然而有些论文认为identification of trigger并不是必须的，仅仅只有key arguments就能够表示一个事件的类型！</p>
+<p>由于这个方法只使用了key arguments，所以它的pipeline会短一些：</p>
+<ol>
+<li>从一个CVT表中识别出key arguments；</li>
+<li>通过已有的结构化表/列表，产生打标数据。</li>
+</ol>
+<p>在第一步中，论文使用了一个叫做importance score的东西来度量arguments的重要性。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkk2u5t6qqj20lh0853zv.jpg" alt="Figure 5"></p>
+<p>key arguments的筛选策略如下：</p>
+<ul>
+<li>计算importance score，然后排名最高的前二分之一的arguments；</li>
+<li>总是选择time-related的arguments作为key arguments；</li>
+<li>从得到的数据集中，删除dependency distance between two key arguments大于2的句子。</li>
+</ul>
+<h2 id="4-Contemporary-Approaches-Evaluation"><a href="#4-Contemporary-Approaches-Evaluation" class="headerlink" title="4. Contemporary Approaches Evaluation"></a>4. Contemporary Approaches Evaluation</h2><h3 id="4-1-Event-Schema-Extraction-By-Trigger-Clustering"><a href="#4-1-Event-Schema-Extraction-By-Trigger-Clustering" class="headerlink" title="4.1 Event Schema Extraction By Trigger Clustering"></a>4.1 Event Schema Extraction By Trigger Clustering</h3><p>有一种事件抽取的方法叫做<strong>ACE</strong>，它的思想是人工地定义事件的schema。图6的左半部分表示了ACE中的一个event schema。这种方法非常的昂贵，因为消费者和专家在标注事件类型和arguments role之前需要浏览大量的数据。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gkk3e2kxw1j21540ghwnf.jpg" alt="Figure 6"></p>
+<p>paper[8]介绍了一种新的方法来进行事件抽取。为了从句子中抽取事件，论文首先从句子中抽取了trigger words和对应的arguments。对于每个trigger word，对它进行聚类然后使用聚类的名字作为事件类型。然后它基于事件类型来指定arguments。</p>
+<p>在这种方法中最重要的一个子任务就是<strong>trigger words的表示</strong>。通常trigger words是通过distributional vectors进行表示的。更进一步，有两种word embedding的方法。</p>
+<p>第一种是出现在相似上下文，同时有着相同的含义的trigger word可能有相似的类型，因此一个trigger word的distributional vectors应该包含语义信息。</p>
+<p>第二种是trigger type是依赖于它的arguments，arguments role以及其他上下文中与这个trigger相关的单词，所以distributional vectors应该包含它的argument语义信息。为了获得arguments语义信息，paper[8]使用语义关系来说明distributional semantics of relevant word是怎样来促进全局的时间结构表示的。？？？</p>
+<p>接下来讲解如何产生聚类，找到每个聚类的arguments和命名每个聚类。</p>
+<p>第一步是识别candidate triggers和arguments。为了识别triggers，首先考虑被WSD赋予了一个OntoNotes意义的所有名字和动词作为candidate triggers，然后剩下的单词如果是FrameNet中的LU，那么也考虑为candidate triggers。为了为每一个trigger识别arguments，paper[8]使用了一种AMR的方法。</p>
+<p>第二步是表示trigger和argument成distributional vectors。首先使用WSD在WordNet上找到每个word的释义，然后将WordNet的释义变成OntoNotes的释义。这样，对于每一个trigger candidate，都能得到得到它的OntoNotes释义，利用这个释义，学习得到embedding即可。在通常意义上，word embedding都是在大数据集上使用skip-gram model得到的。对于arguments，paper[8]使用一个一般的词法embedding来表示。</p>
+<p>第三步是事件结构的组成和表示。对于每个事件trigger，使用一系列的compositional functions来产生trigger event结构表示。</p>
+<p>每一个compositional function是语义关系特异的，而且函数是操作在embedding空间上的。对于每个argument，它的表示是以一种附属产物的形式生成的。</p>
+<p>第四步是使用一个联合的约束聚类框架来聚类arguments和triggers。有一个关于trigger的假说是如果两个triggers，arguments有相同的类型和role，那么他们很肯定属于同一个type。因此，论文[8]使用一个限制函数来执行互依赖triggers和arguments来有相同的type。至于聚类函数，paper[8]设计了一个联合约束聚类方法，这种方法迭代地生产新的聚类结果。</p>
+<p>最后一步是命名triggers和每个trigger arguments。paper[8]使用meaning representation与semantic role description之间的映射来解决这个问题。</p>
+<h3 id="4-2-Deep-Learning-Approaches"><a href="#4-2-Deep-Learning-Approaches" class="headerlink" title="4.2 Deep Learning Approaches"></a>4.2 Deep Learning Approaches</h3><h4 id="4-2-1-基于RNN的方法"><a href="#4-2-1-基于RNN的方法" class="headerlink" title="4.2.1 基于RNN的方法"></a>4.2.1 基于RNN的方法</h4><blockquote>
+<p>RNN是啥呢~</p>
+</blockquote>
+<h4 id="4-2-2-基于CNN的方法"><a href="#4-2-2-基于CNN的方法" class="headerlink" title="4.2.2 基于CNN的方法"></a>4.2.2 基于CNN的方法</h4><p>这一部分，我们介绍一篇论文，这篇论文是使用了Zero-Shot Learning的CNN。许多传统的监督学习方法无法处理新的event type，因为新的event type意味着无法使用到老的events。特别地，这些方法通常将事件抽取任务当做是分类问题，将事件的特征用事件和老事件的相似性大小来表示。模型中的事件类型和参数角色扮演强制限制的原子符号角色。然而在这篇论文中，作者提出了一个新的方法，能够帮助解决这种问题。</p>
+<p>他们发现的有意思的事情是无论是event types还是event mentions都能够通过一些<strong>结构形式</strong>表示出来。例如，如果我们用AMR表示每个event mention，用Entity Relation Entity structure表示event types，我们能够发现两种结构之间是有一定的关联关系的。事件类型中的事件提及共享类似的结构信息。根据理论“事件结构的语义可以以系统和可预测的方式概括和映射到事件提到结构。”他们采取的方法主要是将每一事件映射到本体中语义上最接近的事件类型。（迷迷糊糊）</p>
+<blockquote>
+<ul>
+<li><code>Event mention</code>：描述事件信息的短语或者句子，即同时包含了触发词（trigger）和论元（argument）。</li>
+<li><code>Event trigger</code>: 短语或者句子中，最能表示一个事件出现的单词，在ACE数据中，这个词通常是动词或名词。</li>
+<li><code>Event argument</code>：短语或者句子中，包含的实体、时间表达式、或者数值。</li>
+<li><code>Argument role</code>: 一个论元在事件中扮演的角色。</li>
+</ul>
+</blockquote>
+<h2 id="一些概念定义"><a href="#一些概念定义" class="headerlink" title="一些概念定义"></a>一些概念定义</h2><h3 id="Close-domain"><a href="#Close-domain" class="headerlink" title="Close-domain"></a>Close-domain</h3><p>Closed-domain事件抽取使用<strong>预定义的事件模式</strong>从文本中发现和提取所需的特定类型的事件。事件模式包含多个事件类型及其相应的事件结构。我们使用ACE术语来介绍如下事件结构：</p>
+<p>事件提及</p>
+<blockquote>
+<p>描述事件的短语或句子，包括触发词和几个参数。</p>
+</blockquote>
+<p>事件触发词</p>
+<blockquote>
+<p>最清楚地表达事件发生的主要词，尤指动词或名词</p>
+</blockquote>
+<p>事件论元</p>
+<blockquote>
+<p>在事件(即参与者)中涉及的实体提及、时间表达或值(例如工作头衔)。</p>
+</blockquote>
+<p>论元角色</p>
+<blockquote>
+<p>论元与它所参与的事件之间的关系。</p>
+</blockquote>
+<p>D.Ahn首先提出将ACE事件提取任务分成四个子任务:<strong>触发词检测</strong>、<strong>事件/触发词类型识别</strong>、<strong>事件参数检测</strong>和<strong>参数角色识别</strong>。</p>
+<h3 id="Open-domain"><a href="#Open-domain" class="headerlink" title="Open-domain"></a>Open-domain</h3><p>在<strong>没有预定义的事件模式</strong>的情况下，开放域事件提取的目的是从文本中检测事件，在大多数情况下，还可以通过提取的事件关键字聚类相似的事件。事件关键字指的是那些主要描述事件的词/短语，有时关键字还进一步分为触发器和参数。</p>
+<p>故事分割</p>
+<blockquote>
+<p> 从新闻中检测故事的边界。</p>
+</blockquote>
+<p>第一个故事检测</p>
+<blockquote>
+<p>检测新闻流中讨论新话题的故事。</p>
+</blockquote>
+<p>话题检测</p>
+<blockquote>
+<p>根据讨论的主题将故事分组。</p>
+</blockquote>
+<p>话题追踪</p>
+<blockquote>
+<p>检测讨论先前已知话题的故事。</p>
+</blockquote>
+<p>故事链检测</p>
+<blockquote>
+<p>决定两个故事是否讨论同一个主题。</p>
+</blockquote>
+<p>前两个任务主要关注事件检测;其余三个任务用于事件集群。虽然这五项任务之间的关系很明显，但每一项任务都需要一个不同的评价过程，并鼓励采用不同的方法来解决特定问题。</p>
+<h3 id="What-is-ontology？"><a href="#What-is-ontology？" class="headerlink" title="What is ontology？"></a>What is ontology？</h3><p>outside philosophy，ontology is used in a different，more narrow meaning。</p>
+<p>Here,an ontology is the description of what exist specifically within a determined field. For example,every part that exists in a specific information system. This includes the relationship and hierarchy between these parts.</p>
+<p>Unlike the philosophers,these researchers are not primarily interested in discussing if these things are the true essence,core of the system.</p>
+<p>Nor are they discussing if the parts within the system are more real compared to the processes that take place within the system.</p>
+<p>Rather,they focus on naming parts and processed and grouping similar ones together into categories.</p>
+<p>The word ontology is also use,for example,in social ontology. Here,the idea is to describe society and its different parts and processes. The purpose of this is to understand and describe the underlying structures that affect individuals and group.</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/">http://yc1999.github.io/2020/11/09/a-survey-of-open-domain-event-extraction/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+                                    <span class="chip bg-color">论文阅读</span>
+                                </a>
+                            
+                                <a href="/tags/NLP/">
+                                    <span class="chip bg-color">NLP</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                                    <span class="chip bg-color">综述</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/10/xin-xi-chou-qu-cong-ling-ru-men/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="信息抽取 从零入门">
+                        
+                        <span class="card-title">信息抽取 从零入门</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘自网络上的一篇关于信息抽取的入门介绍
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/NLP/" class="post-category">
+                                    NLP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/">
+                        <span class="chip bg-color">信息抽取</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/08/kai-fang-yu-shi-jian-chou-qu-ru-men-liao-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="「开放域事件抽取」入门了解">
+                        
+                        <span class="card-title">「开放域事件抽取」入门了解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            中科院赵军：开放域事件抽取 | CCF-GAIR 2018
+文章摘自知乎——中科院赵军：开放域事件抽取 | CCF-GAIR 2018
+
+以下是赵军教授发表的题为「开放域事件抽取」的演讲全文，雷锋网 AI 科技评论在赵军教授的帮助下，做了不
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/NLP/" class="post-category">
+                                    NLP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

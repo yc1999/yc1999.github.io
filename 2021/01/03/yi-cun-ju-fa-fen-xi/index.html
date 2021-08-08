@@ -1,0 +1,1282 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="依存句法分析, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>依存句法分析 | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">依存句法分析</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                            <a href="/tags/NLP/">
+                                <span class="chip bg-color">NLP</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-01-03
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>语法分析</strong>(syntactic parsing )是自然语言处理中一个重要的任务，其目标是分析句子的语法结构并将其表示为容易理解的结构(通常是树形结构)。同时，语法分析也是所有工具性NLP任务中较为高级、较为复杂的一种任务。 通过掌握语法分析的原理、实现和应用，我们将在NLP工程师之路上跨越一道分水岭。本章将会介绍<strong>短语结构树</strong>和<strong>依存句法树</strong>两种语法形式，并且着重介绍依存句法分析的原理和实现。</p>
+<h2 id="短语结构树"><a href="#短语结构树" class="headerlink" title="短语结构树"></a>短语结构树</h2><p>语言其实具备自顶而下的层级关系，固定数量的语法结构能够生成无数句子。比如，仅仅利用下列两个语法规律，我们就能够生成所有名词短语。</p>
+<ul>
+<li>名词短语可以由名词和名词短语组成。</li>
+<li>名词短语还可以由名词和名词组成。</li>
+</ul>
+<p>例如，“上海+浦东+机场+航站楼”，所以，汉语中大部分句子都可以通过这样的语法来生成。</p>
+<p>在语言学中，这样的语法被称为<strong>上下文无关文法</strong>，它由如下组件构成:</p>
+<ul>
+<li>终结符结合 Σ，比如汉语的一个词表。</li>
+<li>非终结符集合 V，比如“名词短语”“动词短语”等短语结构组成的集合。V 中至少包含一个特殊的非终结符，即句子符或初始符，计作 S。</li>
+<li>推到规则 R，即推到非终结符的一系列规则: V -&gt; V U Σ。</li>
+</ul>
+<p>基于上下文无关文法理论，我们可以从 S 出发，逐步推导非终结符。一个非终结符至少产生一个下级符号，如此一层一层地递推下去，我们就得到了一棵语法树。但在NLP中，我们称其为短语结构树。也就是说，<font color="red"><strong>计算机科学中的术语“上下文无关文法”在语言学中被称作“短语结构语法”。</strong></font></p>
+<h3 id="短语结构树-1"><a href="#短语结构树-1" class="headerlink" title="短语结构树"></a>短语结构树</h3><p>短语结构语法描述了如何自顶而下的生成一个句子，反过来，句子也可以用短语结构语法来递归的分解。层级结构其实是一种树形结构，例如这句话“上海 浦东 开发 与 法制 建设 同步”，分解成如下图的短语结构树:</p>
+<p><img src="https://pic2.zhimg.com/v2-2f680ffae7a7c007fcd7f82c8a462961_b.jpg"></p>
+<p>这样的树形结构称为<strong>短语结构树</strong>，相应的语法称为<strong>短语结构语法</strong>或<strong>上下文无关文法</strong>。至于树中的字母下面开始介绍。</p>
+<h3 id="宾州树库和中文树库"><a href="#宾州树库和中文树库" class="headerlink" title="宾州树库和中文树库"></a>宾州树库和中文树库</h3><p>语言学家制定短语结构语法规范，将大量句子人工分解为树形结构，形成了一种语料库，称为<strong>树库</strong>( treebank )。常见的英文树库有宾州树库，相应地，中文领域有CTB。上图中叶子节点(词语)的上级节点为词性，词性是非终结符的一种，满足“词性生成词语”的推导规则。</p>
+<p>常见的标记如下:</p>
+<p><img src="https://pic2.zhimg.com/v2-18c176d1b65474295449334381e8da49_b.jpg"></p>
+<p>但是由于短语结构语法比较复杂，相应句法分析器的准确率并不高，现在研究者绝大部分转向了另一种语法形式。</p>
+<h2 id="依存句法树🌲🌲🌲🌲🌲"><a href="#依存句法树🌲🌲🌲🌲🌲" class="headerlink" title="依存句法树🌲🌲🌲🌲🌲"></a>依存句法树🌲🌲🌲🌲🌲</h2><p>不同于短语结构树，依存句法树并不关注如何生成句子这种宏大的命题。<font color="red"><strong>依存句法树关注的是句子中词语之间的语法联系，并且将其约束为树形结构。</strong></font></p>
+<h3 id="依存句法理论"><a href="#依存句法理论" class="headerlink" title="依存句法理论"></a>依存句法理论</h3><p>依存句法理论认为词与词之间存在主从关系，这是一种二元不等价的关系。在句子中，如果一个词修饰另一个词，则称修饰词为<strong>从属词</strong>( dependent )，被修饰的词语称为<strong>支配词</strong>(head)，两者之间的语法关系称为**依存关系( dependency relation)**。比如句子“大梦想”中形容词“大”与名词“梦想”之间的依存关系如图所示:7</p>
+<p><img src="https://pic3.zhimg.com/v2-86367b430600de3e682df1d4d3a6e12e_b.jpg"></p>
+<p>图中的箭头方向由支配词指向从属词，这是可视化时的习惯。将一个句子中所有词语的依存关系以有向边的形式表示出来，就会得到一棵树，称为<strong>依存句法树</strong>( dependency parse tree)。比如句子“弱小的我也有大梦想”的依存句法树如图所示。</p>
+<p><img src="https://pic4.zhimg.com/v2-13d51fddf84c8725da23436b9f9b5c73_b.jpg"></p>
+<p>现代依存语法中，语言学家 Robinson 对依存句法树提了 4 个约束性的公理。</p>
+<ul>
+<li>有且只有一个词语(ROOT，虚拟根节点，简称虚根)不依存于其他词语。</li>
+<li>除此之外所有单词必须依存于其他单词。</li>
+<li>每个单词不能依存于多个单词。</li>
+<li>如果单词 A 依存于 B，那么位置处于 A 和 B 之间的单词 C 只能依存于 A、B 或 AB 之间的单词。</li>
+</ul>
+<p>这 4 条公理分别约束了依存句法树(图的特例)的根节点唯一性、 连通、无环和投射性( projective )。这些约束对语料库的标注以及依存句法分析器的设计奠定了基础。</p>
+<h3 id="中文依存句法树库"><a href="#中文依存句法树库" class="headerlink" title="中文依存句法树库"></a>中文依存句法树库</h3><p>目前最有名的开源自由的依存树库当属UD ( Universal Dependencies)，它以“署名-非商业性使用-相同方式共享4.0”等类似协议免费向公众授权。UD是个跨语种的语法标注项目，一共有 200 多名贡献者为 70 多种语言标注了 100 多个树库。具体到中文，存在4个不同领域的树库。本章选取其中规模最大的 UD_ Chinese GSD 作为示例。该树库的语种为繁体中文，将其转换为简体中文后，供大家下载使用。</p>
+<p><strong><a href="https://link.zhihu.com/?target=http://file.hankcs.com/corpus/chs-gsd-ud.zip">http://file.hankcs.com/corpus/chs-gsd-ud.zip</a></strong></p>
+<p>该树库的格式为 CoNLL-U，这是一种以制表符分隔的表格格式。CoNLL-U 文件有10列，每行都是一个单词， 空白行表示句子结束。单元中的下划线 _ 表示空白， 结合其中一句样例，解释如表所示。</p>
+<p><img src="https://pic2.zhimg.com/v2-db015456831baabe39057fb170664b85_b.jpg"></p>
+<p>词性标注集合依存关系标注集请参考 UD 的官方网站:</p>
+<p><strong><a href="https://link.zhihu.com/?target=http://niversaldependencies.org/guidelines.html">http://niversaldependencies.org/guidelines.html</a></strong></p>
+<p>另一份著名的语料库依然是 CTB，只不过需要额外利用一些工具将短语结构树转换为依存句法树。读者可以直接下载转换后的 CTB 依存句法树库，其格式是类似于 CoNLl-U 的 CoNLL。</p>
+<p><img src="http://img-blog.csdnimg.cn/20200521165058505.png"></p>
+<p>下面是对分析的结果中一些符号的解释：</p>
+<p>ROOT：要处理文本的语句</p>
+<p>IP：简单从句</p>
+<p>NP：名词短语</p>
+<p>VP：动词短语</p>
+<p>PU：断句符，通常是句号、问号、感叹号等标点符号</p>
+<p>LCP：方位词短语</p>
+<p>PP：介词短语</p>
+<p>CP：由‘的’构成的表示修饰性关系的短语</p>
+<p>DNP：由‘的’构成的表示所属关系的短语</p>
+<p>ADVP：副词短语</p>
+<p>ADJP：形容词短语</p>
+<p>DP：限定词短语</p>
+<p>QP：量词短语</p>
+<p>NN：常用名词</p>
+<p>NR：固有名词</p>
+<p>NT：时间名词</p>
+<p>PN：代词</p>
+<p>VV：动词</p>
+<p>VC：是</p>
+<p>CC：表示连词</p>
+<p>VE：有</p>
+<p>VA：表语形容词</p>
+<p>AS：内容标记（如：了）</p>
+<p>VRD：动补复合词</p>
+<p>CD: 表示基数词</p>
+<p>DT: determiner 表示限定词</p>
+<p>EX: existential there 存在句</p>
+<p>FW: foreign word 外来词</p>
+<p>IN: preposition or conjunction, subordinating 介词或从属连词</p>
+<p>JJ: adjective or numeral, ordinal 形容词或序数词</p>
+<p>JJR: adjective, comparative 形容词比较级</p>
+<p>JJS: adjective, superlative 形容词最高级</p>
+<p>LS: list item marker 列表标识</p>
+<p>MD: modal auxiliary 情态助动词</p>
+<p>PDT: pre-determiner 前位限定词</p>
+<p>POS: genitive marker 所有格标记</p>
+<p>PRP: pronoun, personal 人称代词</p>
+<p>RB: adverb 副词</p>
+<p>RBR: adverb, comparative 副词比较级</p>
+<p>RBS: adverb, superlative 副词最高级</p>
+<p>RP: particle 小品词</p>
+<p>SYM: symbol 符号</p>
+<p>TO:”to” as preposition or infinitive marker 作为介词或不定式标记</p>
+<p>WDT: WH-determiner WH限定词</p>
+<p>WP: WH-pronoun WH代词</p>
+<p>WP$: WH-pronoun, possessive WH所有格代词</p>
+<p>WRB:Wh-adverb WH副词</p>
+<p><strong>关系表示</strong></p>
+<p>abbrev: abbreviation modifier，缩写</p>
+<p>acomp: adjectival complement，形容词的补充；</p>
+<p>advcl : adverbial clause modifier，状语从句修饰词</p>
+<p>advmod: adverbial modifier状语</p>
+<p>agent: agent，代理，一般有by的时候会出现这个</p>
+<p>amod: adjectival modifier形容词</p>
+<p>appos: appositional modifier,同位词</p>
+<p>attr: attributive，属性</p>
+<p>aux: auxiliary，非主要动词和助词，如BE,HAVE SHOULD/COULD等到</p>
+<p>auxpass: passive auxiliary 被动词</p>
+<p>cc: coordination，并列关系，一般取第一个词</p>
+<p>ccomp: clausal complement从句补充</p>
+<p>complm: complementizer，引导从句的词好重聚中的主要动词</p>
+<p>conj : conjunct，连接两个并列的词。</p>
+<p>cop: copula。系动词（如be,seem,appear等），（命题主词与谓词间的）连系</p>
+<p>csubj : clausal subject，从主关系</p>
+<p>csubjpass: clausal passive subject 主从被动关系</p>
+<p>dep: dependent依赖关系</p>
+<p>det: determiner决定词，如冠词等</p>
+<p>dobj : direct object直接宾语</p>
+<p>expl: expletive，主要是抓取there</p>
+<p>infmod: infinitival modifier，动词不定式</p>
+<p>iobj : indirect object，非直接宾语，也就是所以的间接宾语；</p>
+<p>mark: marker，主要出现在有“that” or “whether”“because”, “when”,</p>
+<p>mwe: multi-word expression，多个词的表示</p>
+<p>neg: negation modifier否定词</p>
+<p>nn: noun compound modifier名词组合形式</p>
+<p>npadvmod: noun phrase as adverbial modifier名词作状语</p>
+<p>nsubj : nominal subject，名词主语</p>
+<p>nsubjpass: passive nominal subject，被动的名词主语</p>
+<p>num: numeric modifier，数值修饰</p>
+<p>number: element of compound number，组合数字</p>
+<p>parataxis: parataxis: parataxis，并列关系</p>
+<p>partmod: participial modifier动词形式的修饰</p>
+<p>pcomp: prepositional complement，介词补充</p>
+<p>pobj : object of a preposition，介词的宾语</p>
+<p>poss: possession modifier，所有形式，所有格，所属</p>
+<p>possessive: possessive modifier，这个表示所有者和那个’S的关系</p>
+<p>preconj : preconjunct，常常是出现在 “either”, “both”, “neither”的情况下</p>
+<p>predet: predeterminer，前缀决定，常常是表示所有</p>
+<p>prep: prepositional modifier</p>
+<p>prepc: prepositional clausal modifier</p>
+<p>prt: phrasal verb particle，动词短语</p>
+<p>punct: punctuation，这个很少见，但是保留下来了，结果当中不会出现这个</p>
+<p>purpcl : purpose clause modifier，目的从句</p>
+<p>quantmod: quantifier phrase modifier，数量短语</p>
+<p>rcmod: relative clause modifier相关关系</p>
+<p>ref : referent，指示物，指代</p>
+<p>rel : relative</p>
+<p>root: root，最重要的词，从它开始，根节点</p>
+<p>tmod: temporal modifier</p>
+<p>xcomp: open clausal complement</p>
+<p>xsubj : controlling subject 掌控者</p>
+<p><strong>中心语为谓词</strong></p>
+<p>subj — 主语</p>
+<p>nsubj — 名词性主语（nominal subject） （同步，建设）</p>
+<p>top — 主题（topic） （是，建筑）</p>
+<p>npsubj — 被动型主语（nominal passive subject），专指由“被”引导的被动句中的主语，一般是谓词语义上的受事 （称作，镍）</p>
+<p>csubj — 从句主语（clausal subject），中文不存在</p>
+<p>xsubj — x主语，一般是一个主语下面含多个从句 （完善，有些）</p>
+<p><strong>中心语为谓词或介词</strong></p>
+<p>obj — 宾语</p>
+<p>dobj — 直接宾语 （颁布，文件）</p>
+<p>iobj — 间接宾语（indirect object），基本不存在</p>
+<p>range — 间接宾语为数量词，又称为与格 （成交，元）</p>
+<p>pobj — 介词宾语 （根据，要求）</p>
+<p>lobj — 时间介词 （来，近年）</p>
+<p><strong>中心语为谓词</strong></p>
+<p>comp — 补语</p>
+<p>ccomp — 从句补语，一般由两个动词构成，中心语引导后一个动词所在的从句(IP) （出现，纳入）</p>
+<p>xcomp — x从句补语（xclausal complement），不存在</p>
+<p>acomp — 形容词补语（adjectival complement）</p>
+<p>tcomp — 时间补语（temporal complement） （遇到，以前）</p>
+<p>lccomp — 位置补语（localizer complement） （占，以上）</p>
+<p>— 结果补语（resultative complement）</p>
+<p><strong>中心语为名词</strong></p>
+<p>mod — 修饰语（modifier）</p>
+<p>pass — 被动修饰（passive）</p>
+<p>tmod — 时间修饰（temporal modifier）</p>
+<p>rcmod — 关系从句修饰（relative clause modifier） （问题，遇到）</p>
+<p>numod — 数量修饰（numeric modifier） （规定，若干）</p>
+<p>ornmod — 序数修饰（numeric modifier）</p>
+<p>clf — 类别修饰（classifier modifier） （文件，件）</p>
+<p>nmod — 复合名词修饰（noun compound modifier） （浦东，上海） amod — 形容词修饰（adjetive modifier） （情况，新）</p>
+<p>advmod — 副词修饰（adverbial modifier） （做到，基本）</p>
+<p>vmod — 动词修饰（verb modifier，participle modifier）</p>
+<p>prnmod — 插入词修饰（parenthetical modifier）</p>
+<p>neg — 不定修饰（negative modifier） (遇到，不)</p>
+<p>det — 限定词修饰（determiner modifier） （活动，这些） possm — 所属标记（possessive marker），NP</p>
+<p>poss — 所属修饰（possessive modifier），NP</p>
+<p>dvpm — DVP标记（dvp marker），DVP （简单，的）</p>
+<p>dvpmod — DVP修饰（dvp modifier），DVP （采取，简单）</p>
+<p>assm — 关联标记（associative marker），DNP （开发，的）</p>
+<p>assmod — 关联修饰（associative modifier），NP|QP （教训，特区） prep — 介词修饰（prepositional modifier） NP|VP|IP（采取，对） clmod — 从句修饰（clause modifier） （因为，开始）</p>
+<p>plmod — 介词性地点修饰（prepositional localizer modifier） （在，上） asp — 时态标词（aspect marker） （做到，了）</p>
+<p>partmod– 分词修饰（participial modifier） 不存在</p>
+<p>etc — 等关系（etc） （办法，等）</p>
+<p><strong>中心语为实词</strong></p>
+<p>conj — 联合(conjunct)</p>
+<p>cop — 系动(copula) 双指助动词？？？？</p>
+<p>cc — 连接(coordination)，指中心词与连词 （开发，与）</p>
+<p><strong>其它</strong></p>
+<p>attr — 属性关系 （是，工程）</p>
+<p>cordmod– 并列联合动词（coordinated verb compound） （颁布，实行） mmod — 情态动词（modal verb） （得到，能）</p>
+<p>ba — 把字关系</p>
+<p>tclaus — 时间从句 （以后，积累）</p>
+<p>— semantic dependent</p>
+<p>cpm — 补语化成分（complementizer），一般指“的”引导的CP （振兴，的）</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107676106">《自然语言处理入门》12.依存句法分析–提取用户评论</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lihaitao000/article/details/51812618">Stanford-parser依存句法关系解释</a></li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/">http://yc1999.github.io/2021/01/03/yi-cun-ju-fa-fen-xi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
+                                <a href="/tags/NLP/">
+                                    <span class="chip bg-color">NLP</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/01/03/sequence-to-sequence-model-introduction-and-concepts/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmbz1ne20sj20m7084jri.jpg" class="responsive-img" alt="Sequence to sequence model: Introduction and concepts">
+                        
+                        <span class="card-title">Sequence to sequence model: Introduction and concepts</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            If we take a high-level view, a seq2seq model has encoder, decoder and intermediate step as its main components:
+
+
+We us
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/NLP/" class="post-category">
+                                    NLP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
+                    </a>
+                    
+                    <a href="/tags/Seq2Seq/">
+                        <span class="chip bg-color">Seq2Seq</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/30/chen-yun-nong-adl-6-recurrent-neural-network/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【陈蕴侬-ADL】6-Recurrent Neural Network">
+                        
+                        <span class="card-title">【陈蕴侬-ADL】6-Recurrent Neural Network</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="聊聊“事件抽取”, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>聊聊“事件抽取” | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">聊聊“事件抽取”</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/">
+                                <span class="chip bg-color">事件抽取</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-01-14
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>作者：PaperWeekly<br>链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27840591">https://zhuanlan.zhihu.com/p/27840591</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<blockquote>
+<p><strong>「每周话题精选」</strong>是根据 PaperWeekly 最近一周的专题交流群讨论沉淀下来的精华内容。目前已成立的专题交流群有：知识图谱，量化，GAN，医疗 AI，CV，Chatbot 和 NVIDIA。</p>
+</blockquote>
+<p><strong>1. 本期问题清单</strong></p>
+<ul>
+<li>事件抽取的定义/概念是什么？哪些比赛/会议给出了定义？</li>
+<li>有哪些常用的评测数据集和评测标准？</li>
+<li>国内外有哪些研究团队和学者，它们主要研究的目标是什么？</li>
+<li>事件抽取有哪些应用场景和实际的产品？</li>
+<li>事件抽取的一般过程，有标注数据开展研究，如何扩展，没有数据怎么做？事件抽取有哪些经典的方法，效果如何？ </li>
+<li>事件抽取与其他信息抽取任务（关系抽取、NER 等）有什么联系，难点在哪？ </li>
+<li>事件之间的关系如何表示，如何做事件之间的关系抽取，目前有哪些研究？ </li>
+<li>有哪些值得阅读的论文？有哪些开源了代码的工作？</li>
+<li>最新的前沿进展有哪些？</li>
+</ul>
+<p><strong>2. 话题讨论精选</strong></p>
+<p><strong>(1) 事件抽取的定义/概念是什么？哪些比赛/会议给出了定义？</strong></p>
+<p><strong>A:</strong> 时间，地点，人物，故事情节。</p>
+<p><strong>A:</strong> ACE 05 中对事件进行了明确的定义。</p>
+<p><strong>A:</strong> 属性信息（Attribute），包括：类型（Type）、子类（Subtype）、模态（Modality）、倾向性（Polairty）、普遍性（Genericity）和时态（Tense）。</p>
+<p><em><strong>Q: 不同任务对事件的定义不同吧，能具体解释下这些字段吗？</strong></em></p>
+<p><strong>A:</strong> 属性是实体、数值和时间的集合。</p>
+<p><strong>A:</strong> 我认为关系抽取一般来说是针对两个实体的，而事件抽取的话，不同事件类型会对应不同的元素元素（事件要素）。</p>
+<p><strong>A:</strong> 一般来说是的，需要提前定义好事件的类型以及每种类型包含的属性。</p>
+<p><strong>A:</strong> ACE05 中给出了类似的 schema，此处给出 ace05 对事件抽取的定义：</p>
+<p><img src="https://pic3.zhimg.com/v2-a1494a14a3c47143dd10a5d435eb2bea_b.png"></p>
+<p><em><strong>Q: 能简单介绍一些事件抽取的应用背景吗？</strong></em></p>
+<p><strong>A:</strong> 比如一个事件里的被杀人数就是个数值，我记得最开始是用于反恐情报收集的。</p>
+<p><strong>A:</strong> 之前看过有人写事件是一种特殊的关系，不知道是否正确。</p>
+<p><strong>A:</strong> 新闻撰写机器人，比如百度知识图谱团队研发的写稿机器人，基于事件图谱自动生成一些大事件文章。</p>
+<p><img src="https://pic1.zhimg.com/v2-82f1580619d4e185926027d1bdf0d8b8_b.png"></p>
+<p><strong>Q:事件是要分类型的吧？</strong></p>
+<p><strong>A:</strong> 看描述好像也有实体那种感觉。</p>
+<p><strong>A:</strong> 事件类型要先定义出来。</p>
+<p><strong>A:</strong> 有些研究是针对微博，将事件分为 4 元组：命名实体， 事件短句，日期，事件类型。</p>
+<p><strong>A:</strong> 觉得定义事件跟抽取语义是一样的，此处放上一张分类ace05事件抽取分类图：</p>
+<p><img src="https://pic4.zhimg.com/v2-6588ee8207b413ae0776cfef49897933_b.png"></p>
+<p><strong>Q:事件抽取针对的是一段话还是一篇文章呢？</strong></p>
+<p><strong>A:</strong> 针对一句话是 sentence-level 的，还有 document-level，cross-sentence level，cross-document level 的等等。</p>
+<p><strong>(2) 有哪些常用的评测数据集和评测标准？</strong></p>
+<p><strong>A:</strong> ACE2005</p>
+<p><strong>(3) 国内外有哪些研究团队和学者，它们主要研究的目标是什么？</strong></p>
+<p><strong>A:</strong> 国内好像苏州大学周国栋团队，哈工大刘挺，秦兵团队。</p>
+<p><strong>A:</strong> 国外有韩家炜，纪恒团队。</p>
+<p><strong>A:</strong> Heng 的相关文章推荐读。</p>
+<p><strong>A:</strong> 国内企业有百度知识图谱团队。</p>
+<p><strong>A:</strong> 国内外相关研究团队发表的论文：</p>
+<p>A：自动化所的陈玉博，刘康~</p>
+<p><img src="https://pic1.zhimg.com/v2-2a95b0010fe93e844be9774155798300_b.png"></p>
+<p><img src="https://pic1.zhimg.com/v2-8fe466ebef8f6cc1af4e69c87b15bf1c_b.png"></p>
+<p><img src="https://pic4.zhimg.com/v2-43fd2bce3c55851f568cf7519db2f783_b.png"></p>
+<p><img src="https://pic3.zhimg.com/v2-80aed4daf070b089c4ef07055a68d2ce_b.png"></p>
+<p><strong>(4) 事件抽取有哪些应用场景和实际的产品？</strong></p>
+<p><strong>A:</strong> 股票，金融，QA，新闻趋势跟踪，舆情，事件型投资，并购。</p>
+<p><strong>A:</strong> 反恐，反诈骗，政策性投资。</p>
+<p><strong>A:</strong> 生物医学有类似药物不良反应的事件抽取。</p>
+<p><strong>A:</strong> 通过对新闻热点事件的抽取，也许可以用来预测 IT 基础设施的故障，这个案例 NTT 做过，通过大量新闻事件的分析抽取预测了大规模网络故障。</p>
+<p><em><strong>Q: 为什么通过新闻可以预测网络故障呢？</strong></em></p>
+<p><strong>A:</strong> 如果突然有个突发事件，网络上也许会引发大规模的群体关注，相关网络的服务器也许突然大规模负载上升。</p>
+<p><strong>A:</strong> 百度的知识图谱团队在事件图谱这块开展了不少前沿性的工作，并已经落地在了一些产品上；他们的目标是打造一个覆盖面最全时效性最快分析最全面精准的中文事件图谱。目前的产品形态比如事件脉络，明星事件追踪，明星历史热点等产品：</p>
+<p><img src="https://pic4.zhimg.com/v2-e988e661dda53d29d3b9b8d309c55bd3_b.png"></p>
+<p><img src="https://pic4.zhimg.com/v2-87b8c2bd9ae50671825c51212c8e3ae7_b.png"></p>
+<p><img src="https://pic1.zhimg.com/v2-45d00adba1220d5662aba623e9c6b1a4_b.png"></p>
+<p><strong>(5) 事件抽取的一般过程，有标注数据开展研究，如何扩展，没有数据怎么做？</strong></p>
+<p><strong>A:</strong> 种子迭代，规则，模板。机器学习也可以用，比如论元的检测，就是构建一些特征，然后分类。</p>
+<p><strong>A:</strong> 这个还是要做垂直领域，从规则和模板开始。</p>
+<p><strong>A:</strong> 一些门户网站倒是可以通过访问量（检测波峰）的方法来看是不是发生了事件。</p>
+<p><em><strong>Q: 事件抽取一般有什么方法呢？</strong></em></p>
+<p><strong>A:</strong> 带监督的深度卷积网络肯定是一个。</p>
+<p><strong>A:</strong> CNN 用的比较多。</p>
+<p><strong>A:</strong> 估计从规则到机器学习都有，看具体的场景和数据。</p>
+<p><strong>A:</strong> 经典方法就是：规则+模板，前沿方法：强化+模版（深度卷积）。</p>
+<p><strong>A:</strong> 基于模板的抽取方法、半监督学习的模板抽取方法、经典机器学习方法、latent model 等等。</p>
+<p><strong>(6) 深度学习在事件抽取上有哪些应用，与传统方法比有什么优势/劣势？</strong></p>
+<p><strong>A:</strong> 性能好，不用人工构造特征。</p>
+<p><strong>A:</strong> 触发词的识别和分类，CNN 模型要好。</p>
+<p><strong>(7) 事件抽取与其他信息抽取任务（关系抽取、NER 等）有什么联系，难点在哪？</strong> </p>
+<p><strong>A:</strong> 得先 NER。</p>
+<p><strong>A:</strong> 时间是不是直接抽取就好了，其它属性该怎么办呢？</p>
+<p><strong>A:</strong> 配模板的嘛，时间也是模板的一部分。</p>
+<p><strong>Q:触发词一般是预定义好的，还是需要做检测任务？</strong></p>
+<p><strong>A:</strong> 一般是定义好的，也有检测触发词的任务。</p>
+<p><strong>(8) 事件之间的关系如何表示，如何做事件之间的关系抽取，目前有哪些研究？</strong> </p>
+<p><strong>A:</strong> 我个人看法：事件也许应该是在时间轴上，有明确开始和结束的一段实体与实体产生关系的“运动”。</p>
+<p><strong>A:</strong> 外国一般都是只做二元关系或者时序上的关系。</p>
+<p><strong>A:</strong> 研究“事件”必须给他来个操作性定义。</p>
+<p><strong>A:</strong> Semeval 2015 task4 是有定义的，但是产出产出太少。</p>
+<p><strong>(9) 有哪些值得阅读的论文？有哪些开源了代码的工作？</strong></p>
+<p><img src="https://pic2.zhimg.com/v2-ee395328ff92e5b75e06ccb68ca3b6a1_b.png"></p>
+<p><strong>A:</strong> 基于符号特征的方法：</p>
+<p><img src="https://pic1.zhimg.com/v2-f0a3f68319eeb9839335ea1aea2568c4_b.png"></p>
+<p><strong>A:</strong> 基于表示学习的方法：</p>
+<p><img src="https://pic1.zhimg.com/v2-f50f98f19ae90f6c7fedc4acfaf31580_b.png"></p>
+<p><strong>(10) 最新的前沿进展有哪些？</strong> </p>
+<p><strong>A:</strong> 我觉得事件之间的关系或网络会是将来的热点。</p>
+<p><strong>A:</strong> 事件抽取必然会和监控视频结合。</p>
+<p><strong>A:</strong> 和关系抽取在一起应用。检测事件的关系，舆情监测。其实对话系统也能用。</p>
+<p><strong>A:</strong> 适合社交媒体，通过分析过往当事人发布的微信及 Facebook，可以做性格分析工作介绍、相亲配对。</p>
+<p><strong>A:</strong> 延伸过去也可以做推荐系统，顾客销售行为预测。</p>
+<p><strong>3. 相关资源</strong></p>
+<p><strong>关于短句子事件短语抽取的论文：</strong></p>
+<p><img src="https://pic3.zhimg.com/v2-e4d70351f6cade2819290b6cce93453a_b.png"></p>
+<p><strong>ACE 数据：</strong><em><a href="https://link.zhihu.com/?target=https://github.com/oferbr/BIU-RPI-Event-Extraction-Project/tree/master/ACE_EVENT/corpus/orig">https://github.com/oferbr/BIU-RPI-Event-Extraction-Project/tree/master/ACE_EVENT/corpus/orig</a></em></p>
+<p><strong>用 event embedding 做股票预测：</strong></p>
+<p><img src="https://pic1.zhimg.com/v2-614a1abfeb5f36dfa8b9c1ec05902fbc_b.png"></p>
+<p><strong>爬虫：</strong>该爬虫爬取了 36 kr（科技资讯网站） 的新闻快讯，以 json 的格式储存，适合用来做信息提取的测试样本或自动摘要的语料。</p>
+<p><em><a href="https://link.zhihu.com/?target=https://github.com/HughWen/wen_spiders">https://github.com/HughWen/wen_spiders</a></em></p>
+<p><strong>中文 NER 识别：</strong>作者希望大家可以贡献自己的力量一起维护一个开源的中文 NER 项目。</p>
+<p><em><a href="https://link.zhihu.com/?target=https://github.com/zjy-ucas/ChineseNER">https://github.com/zjy-ucas/ChineseNER</a></em></p>
+<p><strong>4. 参与讨论</strong></p>
+<p>请添加群主微信：<strong>min279</strong>，备注<strong>「知识图谱」</strong>申请入群。</p>
+<p><strong>关于PaperWeekly</strong></p>
+<p>PaperWeekly 是一个推荐、解读、讨论、报道人工智能前沿论文成果的学术平台。如果你研究或从事 AI 领域，欢迎在公众号后台点击<strong>「交流群」</strong>，小助手将把你带入 PaperWeekly 的交流群里。</p>
+<p><strong>微信公众号：PaperWeekly</strong></p>
+<p><strong>新浪微博：@PaperWeekly</strong></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/">http://yc1999.github.io/2021/01/14/liao-liao-shi-jian-chou-qu/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/">
+                                    <span class="chip bg-color">事件抽取</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/01/14/ke-da-xun-fei-shi-jian-chou-qu-tiao-zhan-sai-sai-shi-gai-yao/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gmn90g79k7j20ar062t8y.jpg" class="responsive-img" alt="科大讯飞-事件抽取挑战赛 赛事概要">
+                        
+                        <span class="card-title">科大讯飞-事件抽取挑战赛 赛事概要</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘自“科大讯飞-事件抽取挑战赛”官网的《赛事概要》
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/NLP/" class="post-category">
+                                    NLP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96/">
+                        <span class="chip bg-color">事件抽取</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%A7%91%E5%A4%A7%E8%AE%AF%E9%A3%9E%E5%A4%A7%E8%B5%9B-%E4%BA%8B%E4%BB%B6%E6%8A%BD%E5%8F%96%E6%8C%91%E6%88%98%E8%B5%9B/">
+                        <span class="chip bg-color">科大讯飞大赛-事件抽取挑战赛</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/01/13/transfer-learning-for-small-scale-financial-event-extraction/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Transfer Learning for Small-scale Financial Event Extraction">
+                        
+                        <span class="card-title">Transfer Learning for Small-scale Financial Event Extraction</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Why？Background事件抽取很重要，它的输出可以作为许多下游任务的输入
+What？a document-level event extraction paradigm which is composed of Event-class
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

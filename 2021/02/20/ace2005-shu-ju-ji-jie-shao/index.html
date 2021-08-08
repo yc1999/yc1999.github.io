@@ -1,0 +1,1216 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ACE2005数据集介绍, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ACE2005数据集介绍 | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ACE2005数据集介绍</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="ACE2005数据理解"><a href="#ACE2005数据理解" class="headerlink" title="ACE2005数据理解"></a>ACE2005数据理解</h1><p><a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/LDC2006T06">ACE2005数据集</a>,共包涵来自weblogs, broadcast news, newsgroups, broadcast conversation等六类资源的含三种语言(Mandarin Chinese, Standard Arabic, English)的语料,最初被用于2005 Automatic Content Extraction(ACE)的评测。该语料包含了由Linguistic Data Consortium(LDC)提供支持进行标注的多种类型实体、关系和事件；目前，ACE2005数据较多被用于事件抽取任务中。</p>
+<h2 id="标注说明"><a href="#标注说明" class="headerlink" title="标注说明"></a>标注说明</h2><p>根据<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/docs/LDC2006T06/">README</a>,ACE2005的数据标注过程如下所示：</p>
+<ul>
+<li>首先分别进行1P和DUAL两轮标注，标注结果分别存储于对应语料的fp1和fp2目录下；</li>
+<li>对以上两轮标注的结果进行裁决，将裁决后的标注结果存储于对应语料的adj目录下；</li>
+<li>对于English语料，对adj/目录下标注结果再进行一步处理，将结果存储于timex2norm/目录下。</li>
+</ul>
+<h2 id="目录架构"><a href="#目录架构" class="headerlink" title="目录架构"></a>目录架构</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/docs/LDC2006T06/">官方README</a></li>
+</ul>
+<pre><code class="text">
+─Arabic              # 阿拉伯语语料库
+│  ├─bn
+│  │  ├─adj
+│  │  ├─altAdj
+│  │  ├─fp1
+│  │  └─fp2
+│  ├─nw
+│  │  ├─adj
+│  │  ├─altAdj
+│  │  ├─fp1
+│  │  └─fp2
+│  └─wl
+│      ├─adj
+│      ├─fp1
+│      └─fp2
+├─Chinese             # 中文语料
+│  ├─bn
+│  │  ├─adj
+│  │  ├─fp1
+│  │  └─fp2
+│  ├─nw
+│  │  ├─adj
+│  │  ├─fp1
+│  │  └─fp2
+│  └─wl
+│      ├─adj
+│      ├─fp1
+│      └─fp2
+├─dtd               # 数据说明文件  
+└─English           # 英文语料
+    ├─bc
+    │  ├─adj
+    │  ├─fp1
+    │  ├─fp2
+    │  └─timex2norm
+    ├─bn
+    │  ├─adj
+    │  ├─fp1
+    │  ├─fp2
+    │  └─timex2norm
+    ├─cts
+    │  ├─adj
+    │  ├─fp1
+    │  ├─fp2
+    │  └─timex2norm
+    ├─nw
+    │  ├─adj
+    │  ├─fp1
+    │  ├─fp2
+    │  └─timex2norm
+    ├─un
+    │  ├─adj
+    │  ├─fp1
+    │  ├─fp2
+    │  └─timex2norm
+    └─wl
+        ├─adj
+        ├─fp1
+        ├─fp2
+        └─timex2norm
+</code></pre>
+<h2 id="文件解读"><a href="#文件解读" class="headerlink" title="文件解读"></a>文件解读</h2><p><strong>以English/bn/CNN_ENG_20030630_085848.18为例。</strong></p>
+<p>根据<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/docs/LDC2006T06/">官方README</a>中第六部分，每份语料由如下所示的5个文件组成。</p>
+<pre><code class="text">Source Text (.sgm) Files
+
+      - These files contain the source text files in an SGM format.
+  These files use the UNIX-style end of lines.  All .sgm files are
+  in UTF-8.
+
+ ACE Program Format (APF) (.apf.xml) Files
+
+    - These files are in the official ACE annotation file format.  See
+      section 8 for more details.
+
+ AG (.ag.xml) Files
+
+    - These are annotation files created with the LDC's annotation
+      toolkit.  These files have been convetered to the corresponding
+      .apf.xml files.
+
+ ID table (.tab) Files
+
+    - These files store mapping tables between the IDs used in the
+      ag.xml files and their corresponding apf.xml files.
+
+ AIF (.aif.xml) Files
+
+    - These are annotation files created with MITRE's Callisto
+      annotation tool.  Applies only to Arabic data produced by Valorem.
+</code></pre>
+<p>以/English/bn/CNN_ENG_20030630_085848.18为例(<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06.txt">官网给出的样例数据也是CNN_ENG_20030630_085848.18</a>)，进行具体的解读:</p>
+<h3 id="CNN-ENG-20030630-085848-18-sgm"><a href="#CNN-ENG-20030630-085848-18-sgm" class="headerlink" title="CNN_ENG_20030630_085848.18.sgm"></a>CNN_ENG_20030630_085848.18.sgm</h3><p>sgm文件即是数据源文件，给出了数据原文。其中，关于各个、等标签的含义，可见<strong>dtd/ace_source_sgml.v1.0.2.dtd</strong>。</p>
+<pre><code class="text">&lt;DOC&gt;
+&lt;DOCID&gt; CNN_ENG_20030630_085848.18 &lt;/DOCID&gt;
+&lt;DOCTYPE SOURCE="broadcast news"&gt; NEWS STORY &lt;/DOCTYPE&gt;
+&lt;DATETIME&gt; 2003-06-30 09:23:30 &lt;/DATETIME&gt;
+&lt;BODY&gt;
+&lt;TEXT&gt;
+&lt;TURN&gt;
+a wildfire in california forced hundreds of people from their homes.
+the fire, near the historic state park started yesterday when a
+trailer, hauled by a pickup, ignited on the golden state freeway. the
+fire consumed more than 500 acres is only about 35% contained. no
+injuries have been reported thankfully hat this time.
+&lt;/TURN&gt;
+&lt;/TEXT&gt;
+&lt;/BODY&gt;
+&lt;ENDTIME&gt; 2003-06-30 09:23:54 &lt;/ENDTIME&gt;
+&lt;/DOC&gt;
+</code></pre>
+<h3 id="CNN-ENG-20030630-085848-18-apf-xml"><a href="#CNN-ENG-20030630-085848-18-apf-xml" class="headerlink" title="CNN_ENG_20030630_085848.18.apf.xml"></a>CNN_ENG_20030630_085848.18.apf.xml</h3><p>.apf.xml文件是<strong>ACE标注过实体、关系、事件等要素后以XML格式呈现的文本</strong>，具体可见<a target="_blank" rel="noopener" href="https://catalog.ldc.upenn.edu/desc/addenda/LDC2006T06.txt">官网给出的样例</a>, .apf.xml文件的说明文档是<strong>dtd/ace_source_sgml.apf.v5.1.1.dtd</strong>。</p>
+<p>根据<strong>dtd/ace_source_sgml.apf.v5.1.1.dtd</strong>, apf.xml文件中标注的要素包括</p>
+<h4 id="ENTITY"><a href="#ENTITY" class="headerlink" title="ENTITY"></a>ENTITY</h4><ul>
+<li><p>entity包含4个必须具备的属性:<strong>ID,TYPE,SUBTYPE和CLASS</strong></p>
+</li>
+<li><p>entity属性中的TYPE共有<strong>7类</strong>，分别是PER、ORG、LOC、GPE、FAC、VEH和WEA；每一类下都有若干对应的子类，具体可见<strong>dtd/ace_source_sgml.apf.v5.1.1.dtd</strong>文档；</p>
+</li>
+<li><p>entity可能包含的元素有<strong>entity mention</strong>、<strong>entity_attributes</strong>,<strong>external_link</strong>，具体可见文档</p>
+<ul>
+<li>entity_mention包含<strong>head和extent</strong>两个元素，ID和TYPNAM|NOM|PRO)两个必备的属性，以及LDCTYPE(NAM|NOM|BAR|PRO|WHQ|HLS|PTV|APP|ARC|EAP|NAMPRE|NOMPRE)、ROLE(PER|ORG|LOC|GPE)、METONYMY_MENTION (TRUE|FALSE)和LDCATR(TRUE|FALSE)四个非必需的属性。</li>
+</ul>
+</li>
+</ul>
+<p>LDCTYPE及其子类什么意思???METONYMY_MENTION (TRUE|FALSE)和LDCATR(TRUE|FALSE)什么意思???</p>
+<ul>
+<li>其他两个元素具体见文档说明</li>
+</ul>
+<h4 id="VALUE"><a href="#VALUE" class="headerlink" title="VALUE"></a><strong>VALUE</strong></h4><ul>
+<li>value包含3个必须具备的属性:<strong>ID,TYPE和SUBTYPE</strong></li>
+<li>value的TYPE共有5类，分别是Numeric、Contact-Info、Crime、Job-Title和Sentence；每一类下都有若干对应的子类，具体可见<strong>dtd/ace_source_sgml.apf.v5.1.1.dtd</strong>文档；</li>
+<li>value包含的元素是<strong>value mention</strong>, 其必备属性是ID</li>
+</ul>
+<h4 id="timex2"><a href="#timex2" class="headerlink" title="timex2"></a><strong>timex2</strong></h4><ul>
+<li><p>timex2的必备属性是ID,其他可选属性包括VAL、MOD(BEFORE|AFTER|ON_OR_BEFORE|…|APPROX)、ANCHOR_VAL、ANCHOR_DIR(WITHIN|…|BEFORE|AFTER)、SET(YES)、NON_SPECIFIC(YES)和COMMENT</p>
+</li>
+<li><p>timex2还包括<strong>timex2 mention</strong>, 其必备属性是ID</p>
+<ul>
+<li>timex2 mention的元素是<strong>extent</strong></li>
+</ul>
+<p>ldc_scope, char_span.seq_char是什么???</p>
+</li>
+</ul>
+<h4 id="RELATION"><a href="#RELATION" class="headerlink" title="RELATION"></a>RELATION</h4><ul>
+<li><p>relation包含2个必须具备的属性:<strong>ID和TYPE</strong>，其他可选属性包括SUBTYPE、MODALITY和TENSE</p>
+</li>
+<li><p>relation可能包含包含3个元素，分别是relation_argument,relation_argument+,和relation_mention*</p>
+</li>
+<li><p>Some Explaination</p>
+<pre><code>METONYMY relations mark cross-type metonymies, and will not have relation mentions or values for MODALITY and TENSE.  For these reasons, we use "relation_mention*" instead of "relation_mention+", and "#IMPLIED" for MODALITY and TENSE. 
+</code></pre>
+</li>
+</ul>
+<h3 id="EVENT"><a href="#EVENT" class="headerlink" title="EVENT"></a>EVENT</h3><ul>
+<li>relation包含6个必须具备的属性,分别是TYPE (Life|…|Justice)、SUBTYPE(Be-Born|…|Appeal)、MODALITY (Asserted|Other)、POLARITY (Positive|Negative)、GENERICITY(Generic|Specific)、TENSE(Past|…|Unspecified)</li>
+<li>event可能包含包含2个元素，分别是event_argument*,event_mention+</li>
+<li>注意，apf.xml文件中Event标注部分的<strong>anchor</strong>是event trigger.</li>
+</ul>
+<h3 id="CNN-ENG-20030630-085848-18-ag-xml"><a href="#CNN-ENG-20030630-085848-18-ag-xml" class="headerlink" title="CNN_ENG_20030630_085848.18.ag.xml"></a>CNN_ENG_20030630_085848.18.ag.xml</h3><p>.ag.xml文件是<strong>ACE ToolKit标注后的问题，根据ag.xml转化得到pdf.xml</strong>，, .ag.xml文件的说明文档是<strong>dtd/ace_source_sgml.ag-1.1.dtd</strong>。</p>
+<h3 id="CNN-ENG-20030630-085848-18-tab"><a href="#CNN-ENG-20030630-085848-18-tab" class="headerlink" title="CNN_ENG_20030630_085848.18.tab"></a>CNN_ENG_20030630_085848.18.tab</h3><p>.tab文件存储了ag.xml文件中ID于apf.xml中标注结果的映射</p>
+<p>以上是基本的数据理解，具体再根据读论文的情况进行补充。</p>
+<p>如有不当与缺失之处，欢迎阅读此文的朋友一起交流。</p>
+<p>/home/yc21/software/anaconda3/envs/eeqa/bin/python</p>
+<pre><code>bash ./scripts/data/ace-event/collect_ace_event.sh ~/dataset/ACE2005/raw/ace_2005_td_v7
+</code></pre>
+<p>sed -e ‘s/.$//‘</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/">http://yc1999.github.io/2021/02/20/ace2005-shu-ju-ji-jie-shao/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/02/20/linux-chang-yong-ming-ling/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux常用命令">
+                        
+                        <span class="card-title">Linux常用命令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            sed经常需要将windows下的脚本里面的换行符转变成linux下的换行符，使用下面指令：
+sed -e 's/.$//' %s &gt; tmp;cat tmp &gt; %s
+
+--train_file ../proc/data/ac
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/18/event-extraction-by-answering-almost-natural-questions/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Event Extraction by Answering (Almost) Natural Questions">
+                        
+                        <span class="card-title">Event Extraction by Answering (Almost) Natural Questions</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Backgrounds
+目前常见的argument extraction依赖于NER，一般都是先进行NER，NER之后的结果再进行argument extraction，这样会导致出现error propagation。因为一旦NER出错，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

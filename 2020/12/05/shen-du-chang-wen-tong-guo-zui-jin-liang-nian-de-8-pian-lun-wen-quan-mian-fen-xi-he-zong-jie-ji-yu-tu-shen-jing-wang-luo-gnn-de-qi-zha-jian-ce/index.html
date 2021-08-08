@@ -1,0 +1,1219 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测 | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                                <span class="chip bg-color">综述</span>
+                            </a>
+                        
+                            <a href="/tags/GNN/">
+                                <span class="chip bg-color">GNN</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/GNN/" class="post-category">
+                                GNN
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-05
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>文章转载自<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/JFU0A1kBIqF-5qPeXieUZw">深度长文: 通过最两年的8篇论文全面分析和总结基于图神经网络GNN 欺诈检测</a></p>
+</blockquote>
+<p>[TOC]</p>
+<p>欺诈检测（风控）是一个近两年业界和学界颇受关注的话题，其应用方向包括<strong>金融欺诈检测</strong>，<strong>风险控制</strong>，<strong>网络水军识别</strong>，<strong>黑产灰产识别</strong>等。</p>
+<p>本公众号之前曾经介绍了一篇基于图模型的欺诈检测<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU1Mjc5NTg5OQ==&amp;mid=2247483854&amp;idx=1&amp;sn=ca1dbcf4fac78752db8824da1247a2f4&amp;chksm=fbfdea5acc8a634ca58309a95915ebaad275cdc6467aa11ac9c28d687893608121e1407b7322&amp;scene=21#wechat_redirect">文章</a>。随着近两年图神经网络（GNN）广受欢迎，基于图神经网络的欺诈检测研究也随之出现。</p>
+<p>本文针对近两年内发表的<strong>近 8 篇论文</strong>进行分析，希望给读者一个 GNN 欺诈检测研究的宏观图景。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/EvHCAT1VCBMEZSUr17LLdbHXUgRWncbsoAhY8N1aW8KGaF0J48ibtkOMEjHuvSyiapmhibYian6TgAAUDYcWdmGeVA/640"></p>
+<p>关于基于图数据的欺诈检测研究最新的进展，可以参考下面的 GitHub 链接：<a target="_blank" rel="noopener" href="https://github.com/safe-graph/graph-fraud-detection-papers">https://github.com/safe-graph/graph-fraud-detection-papers</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZS1QpaBd0n2SQPyAom8BsDr5oQenibdvWtoZf5frnV2y05Bq4STibvticw/640" alt="img"></p>
+<p>本文介绍的大部分模型的代码都已复现，具体可以参考下面的 GitHub 链接：<a target="_blank" rel="noopener" href="https://github.com/safe-graph/DGFraud">https://github.com/safe-graph/DGFraud</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZ6qWiaCZbyicGL0n2icUAIffFZpqSxgmcAQOV696aRDQHa2IoQABjlHDeg/640" alt="img"></p>
+<p>本文将从两个角度对相关工作进行介绍：</p>
+<ul>
+<li>我们先从不同论文的应用方向入手，对相关工作进行分类介绍，主要介绍<font color="red"><strong>每个应用方向的特点</strong>。</font></li>
+<li>因为在 GNN 的应用中，构图和邻居信息聚合是最重要的两个步骤。本文第二个角度是从不同论文的方法入手，总结<font color="red"><strong>其构图，邻居信息聚合等方法的异同</strong>。</font></li>
+</ul>
+<p>随后，本文还介绍了应用 GNN 到欺诈检测问题中的<strong>关键步骤</strong>。文末对现存的挑战和未来方向进行了总结。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>目前已经发表的工作，根据其应用场景，我们可以将8篇论文分为三大类：</p>
+<p><strong>金融欺诈识别</strong></p>
+<blockquote>
+<p>① A Semi-supervised Graph Attentive Network for Financial Fraud Detection. ICDM 2019.</p>
+</blockquote>
+<blockquote>
+<p>② Geniepath: Graph Neural Networks with Adaptive Receptive Paths. AAAI 2019.</p>
+</blockquote>
+<blockquote>
+<p>③ Heterogeneous Graph Neural Networks for Malicious Account Detection. CIKM 2018.</p>
+</blockquote>
+<p><strong>评论水军识别</strong></p>
+<blockquote>
+<p>④ Fdgars: Fraudster Detection via Graph Convolutional Networks in Online App Review System. WWW 2019.</p>
+</blockquote>
+<blockquote>
+<p>⑤ ASA: Adversary Situation Awareness via Heterogeneous Graph Convolutional Networks. WWW 2020.</p>
+</blockquote>
+<blockquote>
+<p>⑥ Spam Review Detection with Graph Convolutional Networks. CIKM 2019.</p>
+</blockquote>
+<blockquote>
+<p>⑦ Alleviating the Inconsistency Problem of Applying Graph Neural Network to Fraud Detection. SIGIR 2020.</p>
+</blockquote>
+<p><strong>网络犯罪识别</strong></p>
+<blockquote>
+<p>⑧ Key Player Identification in Underground Forums over Attributed Heterogeneous Information Network Embedding Framework. CIKM 2019.</p>
+</blockquote>
+<p>下面我们分别介绍这三个方向的论文及其应用特点。</p>
+<p>金融欺诈研究的论文全部来自于<strong>蚂蚁金服</strong>，其中：</p>
+<ul>
+<li>论文①是对<strong>蚂蚁花呗用户还款能力和信用分进行预测</strong>。相对于欺诈检测，这篇文章更倾向于风险的评估。（因为是一个预测的问题，所以偏风险评估）</li>
+<li>论文②和论文③都是针对<strong>支付宝欺诈账户的检测</strong>，其利用了支付宝账号在不同设备的登录和活动信息。</li>
+</ul>
+<p>评论水军识别的研究已经有十年时间，之前有关于 Amazon，大众点评，Yelp 和 Google Play 评论水军的研究。</p>
+<p>近两年 GNN 水军识别文章主要来自阿里和腾讯，其中论文④和论文⑤是研究腾讯应用宝的水军，论文⑥是研究阿里闲鱼 APP 评论区的水军。论文⑦基于 Yelp 水军数据对现有GNN 模型进行了改进。</p>
+<p>网络犯罪识别是计算机安全的重要研究方向，论文⑧用图模型和 GNN 来检测暗网论坛中的关键用户。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>从方法角度，我们可以将上述论文提出的模型按照<font color="red"><strong>构图方式，邻居聚合方式，特有模块</strong></font>这三个类别进行总结。下面我们将对每篇论文从这三个角度进行介绍。</p>
+<h3 id="①-A-Semi-supervised-Graph-Attentive-Network-for-Financial-Fraud-Detection-ICDM-2019"><a href="#①-A-Semi-supervised-Graph-Attentive-Network-for-Financial-Fraud-Detection-ICDM-2019" class="headerlink" title="① A Semi-supervised Graph Attentive Network for Financial Fraud Detection. ICDM 2019."></a>① A Semi-supervised Graph Attentive Network for Financial Fraud Detection. ICDM 2019.</h3><p>该文章构建了多视角图（Multi-view Graph），即从现有实体和特征的类型出发，将属于同一类型的实体连接起来，构成一个图。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZWrnic9B0iabxRwMQBfCXhGxbKQQG3GIat5sUicrpKpqp4uicUEVLWXPUVw/640" alt="论文①构建的多视角图"></p>
+<p>举例来说，属于同一账户的设备可以构成一个<strong>设备图</strong>，节点是设备，有无边代表两个设备是否属于相同账户。同理，拥有共同好友关系的账户可以构成<strong>好友图</strong>，节点是账户，有无边代表是否存在共同好友。 </p>
+<p>该文章提出了分层级注意力网络，<strong>先在单个视角下对邻居进行信息聚合，然后在多视角层面对同一节点来自不同视角的信息进行聚合。</strong>两次聚合都采用了<strong>注意力机制</strong>。</p>
+<p>该文章还有个特点，其引入了<strong>无监督图嵌入（Network Embedding）模型</strong>（例如 <code>DeepWalk</code> 和 <code>LINE</code>） 的思想，除了<strong>对有标签和特征的部分节点使用 GNN 编码</strong>外，它<strong>对整体图结构采用了 DeepWalk 的无监督编码方式</strong>，从而在结构上进一步捕捉可疑用户和正常用户的区别。</p>
+<h3 id="②-Geniepath-Graph-Neural-Networks-with-Adaptive-Receptive-Paths-AAAI-2019"><a href="#②-Geniepath-Graph-Neural-Networks-with-Adaptive-Receptive-Paths-AAAI-2019" class="headerlink" title="② Geniepath: Graph Neural Networks with Adaptive Receptive Paths. AAAI 2019."></a>② Geniepath: Graph Neural Networks with Adaptive Receptive Paths. AAAI 2019.</h3><p>该论文提出了适应性的图卷积网络，其构图形式为<strong>基于支付宝账户的异质图</strong>。</p>
+<p>在邻居维度，其采用了<strong>注意力机制</strong>对邻居重要程度进行编码。</p>
+<p>在网络深度维度，其采用了 <strong>LSTM 网络对最优的的网络深度进行学习</strong>。</p>
+<h3 id="③-Heterogeneous-Graph-Neural-Networks-for-Malicious-Account-Detection-CIKM-2018"><a href="#③-Heterogeneous-Graph-Neural-Networks-for-Malicious-Account-Detection-CIKM-2018" class="headerlink" title="③ Heterogeneous Graph Neural Networks for Malicious Account Detection. CIKM 2018."></a>③ Heterogeneous Graph Neural Networks for Malicious Account Detection. CIKM 2018.</h3><p>这篇文章针对支付宝欺诈账户进行检测。其节点为账户和设备，其中账户的特征为账户活动情况和设备信息，如果账户和设备有过交互行为，账户节点和设备节点之间会有一条边。</p>
+<p>例如，某账户在一个 IP 地址上登录过，那么这个账户节点和 IP 地址节点之间会有一条边。</p>
+<p>在聚合信息时，对于一个账户节点，该文章<strong>先聚合其同一设备子图下的邻居</strong>，然后<strong>再聚合不同子图的信息</strong>。不同于论文①，该文章采用<font color="red"><strong>权重参数来编码不同设备子图的重要性，而不是使用注意力机制。</strong></font></p>
+<p><font color="red"><strong>该文章是最早发表的基于 GNN 的欺诈检测论文，目前也有比较高的影响力。其文中有许多工业部署的实际经验的技巧值得借鉴。</strong></font></p>
+<h3 id="④-Fdgars-Fraudster-Detection-via-Graph-Convolutional-Networks-in-Online-App-Review-System-WWW-2019"><a href="#④-Fdgars-Fraudster-Detection-via-Graph-Convolutional-Networks-in-Online-App-Review-System-WWW-2019" class="headerlink" title="④ Fdgars: Fraudster Detection via Graph Convolutional Networks in Online App Review System. WWW 2019."></a>④ Fdgars: Fraudster Detection via Graph Convolutional Networks in Online App Review System. WWW 2019.</h3><p>该文章是最早用 GCN 研究评论水军的文章，它针对腾讯应用宝水军<strong>行为和语义特点</strong>，<strong>设计了若干特征。</strong></p>
+<p>在构图时使用了经典的 co-review 关系，即如果两个账户评论过同一个 APP，它们之间会有一条边。该文章使用经典的 GCN 模型 （Kipf &amp; Welling）对节点特征进一步编码。</p>
+<h3 id="⑤-ASA-Adversary-Situation-Awareness-via-Heterogeneous-Graph-Convolutional-Networks-WWW-2020"><a href="#⑤-ASA-Adversary-Situation-Awareness-via-Heterogeneous-Graph-Convolutional-Networks-WWW-2020" class="headerlink" title="⑤ ASA: Adversary Situation Awareness via Heterogeneous Graph Convolutional Networks. WWW 2020."></a>⑤ ASA: Adversary Situation Awareness via Heterogeneous Graph Convolutional Networks. WWW 2020.</h3><p>该论文同上一篇文章来自同一团队，还是腾讯应用宝的评论水军检测问题。这篇较新的文章注意到了水军的<strong>对抗行为</strong>，即通过一些<strong>文本和行为的伪装</strong>，来降低自身的可疑程度。</p>
+<p>例如，水军通过在评论中加入特殊符号来躲避基于文本特征的检测器（微博卖片是另一个例子）。水军也会通过虚拟机和 VPN 迅速切换设备信息和网络信息，从而躲避相关检测。</p>
+<p>该论文通过各种关键实体信息（IP 地址，设备IMEI 号等）设计异质信息网络，然后通过分层聚合的方式用 GNN 来编码信息。</p>
+<h3 id="⑥-Spam-Review-Detection-with-Graph-Convolutional-Networks-CIKM-2019"><a href="#⑥-Spam-Review-Detection-with-Graph-Convolutional-Networks-CIKM-2019" class="headerlink" title="⑥ Spam Review Detection with Graph Convolutional Networks. CIKM 2019."></a>⑥ Spam Review Detection with Graph Convolutional Networks. CIKM 2019.</h3><p>这篇论文被选为 CIKM 2019 工业最佳论文。其目标任务为闲鱼 APP 评论区的水军检测。</p>
+<p>该文章是在异质信息网络上应用 GNN，与上述类似论文的区别是，该文章区分了三种类型的节点：<strong>用户，评论，商品</strong>；并<strong>直接对三种类型节点的特征同时聚合</strong>。之前的方法只是在同一种类型节点之间进行聚合。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZ0VkoLDFaOILybx0nic2Em0e8FGic1yFYLsv86nD6FicbwkQEF6uLrIaOg/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&amp;tp=webp" alt="论文⑥设计的三部图"></p>
+<p>和上述应用宝评论相似的是，闲鱼评论中也有很多水军的对抗行为。例如，水军通过特殊字符伪装 QQ 号来为自己的产品导流，或者从事欺诈活动。</p>
+<p>该文章除了建模异质网络，还构建了一个基于评论文本相似度的同质图，然后通过应用经典的 GCN 模型来对评论单独编码。这种方式能够发现一些特征相似的评论，从而捕捉虚假评论的对抗行为。</p>
+<p>该文章还提到了工业场景中的模型部署问题，提出了基于时间的邻居采样方法，即只选择相隔时间最近的几条评论之间加边，从而有效降低了计算的成本。</p>
+<h3 id="⑦-Alleviating-the-Inconsistency-Problem-of-Applying-Graph-Neural-Network-to-Fraud-Detection-SIGIR-2020"><a href="#⑦-Alleviating-the-Inconsistency-Problem-of-Applying-Graph-Neural-Network-to-Fraud-Detection-SIGIR-2020" class="headerlink" title="⑦ Alleviating the Inconsistency Problem of Applying Graph Neural Network to Fraud Detection. SIGIR 2020."></a>⑦ Alleviating the Inconsistency Problem of Applying Graph Neural Network to Fraud Detection. SIGIR 2020.</h3><p>该文章借助Yelp 评论水军数据集，说明了现有 GNN 欺诈检测模型存在的问题，即<font color="red"><strong>忽略了图数据中的不一致性。</strong></font></p>
+<p>例如可疑节点的邻居可能大部分是正常节点。该文章设计了一种基于邻居的过滤方式，从而在 GNN 邻居聚合时避免了噪音邻居的加入。</p>
+<p>该论文通过<strong>预先定义的关系建立同质图</strong>，在聚合邻居信息时<strong>考虑到不同关系的重要程度</strong>。如下图所示：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZwzZlJ6H2woChzat1ibfS4UPEk69kR8n1rcl7PTNAYZT21e41ptCe3ibg/640" alt="论文⑦设计的邻居采样和聚合方法"></p>
+<h3 id="⑧-Key-Player-Identification-in-Underground-Forums-over-Attributed-Heterogeneous-Information-Network-Embedding-Framework-CIKM-2019"><a href="#⑧-Key-Player-Identification-in-Underground-Forums-over-Attributed-Heterogeneous-Information-Network-Embedding-Framework-CIKM-2019" class="headerlink" title="⑧ Key Player Identification in Underground Forums over Attributed Heterogeneous Information Network Embedding Framework. CIKM 2019."></a>⑧ Key Player Identification in Underground Forums over Attributed Heterogeneous Information Network Embedding Framework. CIKM 2019.</h3><p>该文章利用异质信息网络对暗网论坛进行建模。该文章<strong>利用经典的异质信息网络建模方式</strong>，即<strong>采用元路径的方法建模同质节点的异质关系</strong>。不同的元路径类似于不同的关系。</p>
+<p>同一个元路径下的节点构成一个同质图，<strong>该文章利用 GCN 对同质图进行编码</strong>。对于不同元路径下的编码信息，该文章利用注意力机制来学习不同元路径的重要程度。</p>
+<h2 id="关键步骤"><a href="#关键步骤" class="headerlink" title="关键步骤"></a>关键步骤</h2><p>通过上面的介绍我们可以发现，将 GNN 应用到欺诈检测问题中，<font color="red"><strong>构建合适的图模型是最重要的步骤。</strong></font>不同邻居聚合方式之间的区别不大。</p>
+<p>本文将设计 GNN 欺诈检测模型总结为下面四个步骤：</p>
+<ol>
+<li><p><strong>理解问题，数据，和现有条件。</strong></p>
+<p>并不是所有的欺诈检测问题需要用图模型和GNN来解决。通过上面的介绍我们发现，<strong>如果数据有很多实体和关联关系，同时不存在明显的特征时</strong>，图模型和图神经网络比较适合。</p>
+<p>对于大部分欺诈检测问题 ，从效果和成本角度来看，<strong>特征工程依然是最有效的方法。</strong>所以我们首先应该思考特征工程能不能解决现有问题，然后再考虑是否应用深度学习模型。</p>
+<p>另外，图神经网络有<strong>端到端学习和半监督学习</strong>的特性，我们也需要考虑该问题是否适合用端到端学习建模，标签信息是否充足可靠，无监督的信息是否适合 GNN 使用等等。</p>
+<p>由于图神经网络在大规模数据上部署需要很强的 infra 和算力的支持，如果现有生产环境不支持大规模深度学习部署，那么直接应用图神经网络显然不现实。 <strong>这就是为什么只有阿里腾讯等巨头公司才可以开展相关研究。</strong></p>
+<p>当然，并不是一定要在生产环境中部署GNN，GNN 对于问题建模的方法也可以在特征工程中进行借鉴。</p>
+</li>
+<li><p><strong>设计有效的图结构和初始特征。</strong></p>
+<p>这一步类似于特征工程中的特征选择，如果忽略了<font color="red"><strong>关键的关系和特征</strong></font>，在这样的图模型上进行下游任务是低效甚至无效的。</p>
+<p>在设计图结构和节点特征时，我们需要思考其和问题及数据的关联。以评论水军检测为例，同一个 IP 地址下的账户有很强的关联关系，但是评论过同一个商品的用户不一定有很强的相似性。</p>
+<p>同理，选取用户过去三十天的评论频率作为特征，和选择选取用户评论文本的词向量作为特征，这两种特征在不同应用场景下的有效性也不尽相同。</p>
+<p><font color="red"><strong>所以我们在设计图结构和特征时一定要通过一些预处理和分析，来探究这种关系和特征是否适合GNN。</strong></font></p>
+</li>
+<li><p><strong>设计合适的采样方式。</strong></p>
+<p>由于工业数据规模庞大且有很多冗余信息和噪音。在应用 GNN 之前进行数据采样和清洗是必须进行的步骤。</p>
+<p>针对数据和问题的特性，我们可以从<strong>时间维度</strong>，<strong>特征维度</strong>，<strong>图结构维度</strong>对图数据进行采样。要保证最终保留的图数据是不稀疏且保留了重要的关系和特征信息。</p>
+</li>
+<li><p><strong>确定合适的GNN结构。</strong></p>
+<p>由于大部分工业数据都是异质的，所以在设计 GNN 时要考虑如何处理异质信息。对于异质网络，在聚合邻居信息时，<font color="red"><strong>可以通过分层聚合，也可以通过全部转化为同质信息聚合。</strong></font></p>
+<p>需要注意的是，<strong>在邻居密集的图数据上直接应用注意力机制，会导致运算量非常大。</strong>所以邻居以及视角重要程度的编码需要<strong>考虑到其实现的可行性</strong>。</p>
+</li>
+</ol>
+<h2 id="现有挑战和未来展望"><a href="#现有挑战和未来展望" class="headerlink" title="现有挑战和未来展望"></a>现有挑战和未来展望</h2><p>通过上面的分析，目前 GNN 欺诈检测问题主要有两个挑战，即<strong>如何设计有效的图结构来建模数据和问题</strong>，以及<strong>如何部署 GNN 到大规模数据集上</strong>。</p>
+<p>上述两个挑战，学术界更多关注第一个挑战，即<strong>思考欺诈检测问题和其他问题的区别，以及在应用 GNN 时需要做哪些适应性的调整。</strong></p>
+<p>工业界关注第二个挑战多一点。随着 GNN 自动机器学习以及开源计算包的逐渐发展，相信未来规模化部署 GNN 也会变得简单。关于这方面最新的开源动态，可以关注下面两个 repo：</p>
+<p>DGFraud: A Deep Graph-based Toolbox for Fraud Detection</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/safe-graph/DGFraud">https://github.com/safe-graph/DGFraud</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZ6qWiaCZbyicGL0n2icUAIffFZpqSxgmcAQOV696aRDQHa2IoQABjlHDeg/640" alt="img"></p>
+<p>DGL: Deep Graph Library</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dmlc/dgl">https://github.com/dmlc/dgl</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/EvHCAT1VCBMHufvGspQTkiboMYDGQrpjZK4J7eMvZMZ9yzrm3ibyxs6cEqHxXjH3jpKTMPL0cH1vEWojibroMRkqQ/640" alt="img"></p>
+<h2 id="相关的GitHub仓库"><a href="#相关的GitHub仓库" class="headerlink" title="相关的GitHub仓库"></a>相关的GitHub仓库</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/safe-graph/graph-fraud-detection-papers">https://github.com/safe-graph/graph-fraud-detection-papers</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/safe-graph/DGFraud">https://github.com/safe-graph/DGFraud</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/thunlp/GNNPapers">https://github.com/thunlp/GNNPapers</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/benedekrozemberczki/awesome-fraud-detection-papers">https://github.com/benedekrozemberczki/awesome-fraud-detection-papers</a></li>
+</ol>
+<h2 id="相关的领域"><a href="#相关的领域" class="headerlink" title="相关的领域"></a>相关的领域</h2><ol>
+<li>推荐系统</li>
+</ol>
+<h2 id="相关开源榜单"><a href="#相关开源榜单" class="headerlink" title="相关开源榜单"></a>相关开源榜单</h2><ol>
+<li>Open Graph Benchmark（OGB）</li>
+</ol>
+<h2 id="相关的会议"><a href="#相关的会议" class="headerlink" title="相关的会议"></a>相关的会议</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.kdd.org/">KDD</a></li>
+<li><a target="_blank" rel="noopener" href="http://icdm2019.bigke.org/">ICDM</a></li>
+<li><a target="_blank" rel="noopener" href="https://sigir.org/">SIGIR</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.siam.org/conferences/cm/conference/sdm20">SDM</a></li>
+<li><a target="_blank" rel="noopener" href="https://www2019.thewebconf.org/">WWW</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cikmconference.org/">CIKM</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aaai.org/">AAAI</a></li>
+<li>NeurlPS</li>
+<li>ICLR</li>
+</ol>
+<h2 id="专有名词"><a href="#专有名词" class="headerlink" title="专有名词"></a>专有名词</h2><ol>
+<li><code>Financial Fraud Detection</code> 金融欺诈检测</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/">http://yc1999.github.io/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                                    <span class="chip bg-color">综述</span>
+                                </a>
+                            
+                                <a href="/tags/GNN/">
+                                    <span class="chip bg-color">GNN</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/05/li-hong-yi-shen-du-xue-xi-26-rnn-part1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="【李宏毅-深度学习】26. RNN Part1">
+                        
+                        <span class="card-title">【李宏毅-深度学习】26. RNN Part1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Recurrent Neural Network(Ⅰ)
+RNN，或者说最常用的LSTM，一般用于记住之前的状态，以供后续神经网络的判断，它由input gate、forget gate、output gate和cell memory组成，每
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glc4i4neayj215m0bwdhy.jpg" class="responsive-img" alt="【ESE680 GNN】Lecture 4: Graph Neural Networks">
+                        
+                        <span class="card-title">【ESE680 GNN】Lecture 4: Graph Neural Networks</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+这节课主要是从频域的角度出发介绍GNN，带大家入门GNN。
+
+首先讲解graph filters；
+
+然后通过【graph filter+pointwise nonlinearity】的构造graph perceptron，多个graph
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

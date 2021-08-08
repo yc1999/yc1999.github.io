@@ -1,0 +1,1294 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Q&amp;A——Transformer，BERT, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Q&amp;A——Transformer，BERT | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gmmbbsd7x3j21hc0xchdt.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Q&amp;A——Transformer，BERT</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Transformer/">
+                                <span class="chip bg-color">Transformer</span>
+                            </a>
+                        
+                            <a href="/tags/BERT/">
+                                <span class="chip bg-color">BERT</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
+                            </a>
+                        
+                            <a href="/categories/NLP/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                深度学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><blockquote>
+<ul>
+<li>代码实战：<a target="_blank" rel="noopener" href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">The Annotated Transformer</a></li>
+<li>超级好的动画演示：<a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60821628">碎碎念：Transformer的细枝末节</a></li>
+</ul>
+</blockquote>
+<h3 id="画Transformer的结构图"><a href="#画Transformer的结构图" class="headerlink" title="画Transformer的结构图"></a>画Transformer的结构图</h3><p><img src="https://pic3.zhimg.com/80/v2-47a5a577603efb220d80167c4c291806_720w.jpg" alt="Transformer结构图"></p>
+<h3 id="简述Transformer原理"><a href="#简述Transformer原理" class="headerlink" title="简述Transformer原理"></a>简述Transformer原理</h3><ul>
+<li>Positional Encoding</li>
+<li>Multi-Head Attention</li>
+<li>Residual &amp; Layer Normalization</li>
+</ul>
+<h3 id="Scaled-Dot-Product-Attention为什么要scaled？（两点）"><a href="#Scaled-Dot-Product-Attention为什么要scaled？（两点）" class="headerlink" title="Scaled Dot-Product Attention为什么要scaled？（两点）"></a>Scaled Dot-Product Attention为什么要scaled？（两点）</h3><blockquote>
+<p>论文中解释是：<strong>向量的点积结果会很大</strong>，将softmax函数push到梯度很小的区域，scaled会缓解这种现象。怎么理解将sotfmax函数push到梯度很小区域？还有为什么scaled是维度的根号，不是其他的数？</p>
+</blockquote>
+<p>谢邀。非常有意义的问题，我思考了好久，按照描述中的两个问题分点回答一下。</p>
+<p><strong>Question 1: 为什么比较大的输入会使得softmax的梯度变得很小？</strong></p>
+<p>对于一个输入向量 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D%5Cin%5Cmathbb%7BR%7D%5Ed" alt="[公式]"> ，softmax函数将其映射/归一化到一个分布 <img src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Cmathbf%7By%7D%7D%5Cin%5Cmathbb%7BR%7D%5Ed" alt="[公式]"> 。在这个过程中，softmax先用一个自然底数 <img src="https://www.zhihu.com/equation?tex=e" alt="[公式]"> 将输入中的<strong>元素间差距先“拉大”</strong>，然后归一化为一个分布。假设某个输入 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D" alt="[公式]"> 中最大的的元素下标是 <img src="https://www.zhihu.com/equation?tex=k" alt="[公式]"> ，<strong>如果输入的数量级变大（每个元素都很大），那么</strong><img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_k" alt="[公式]"><strong>会非常接近1。</strong></p>
+<p>我们可以用一个小例子来看看 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D" alt="[公式]"> 的数量级对输入最大元素对应的预测概率<img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_k" alt="[公式]">的影响。假定输入 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D=%5Ba,+a,+2a%5D%5E%5Ctop" alt="[公式]"> ），我们来看不同量级的 <img src="https://www.zhihu.com/equation?tex=a" alt="[公式]"> 产生的<img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_3" alt="[公式]">有什么区别。</p>
+<ul>
+<li><img src="https://www.zhihu.com/equation?tex=a=1+" alt="[公式]"> 时， <img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_3=0.5761168847658291" alt="[公式]"> ;</li>
+<li><img src="https://www.zhihu.com/equation?tex=a=10++" alt="[公式]"> 时， <img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_3=0.999909208384341" alt="[公式]">;</li>
+<li><img src="https://www.zhihu.com/equation?tex=a=100++" alt="[公式]"> 时， <img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_3%5Capprox+1.0" alt="[公式]"> (计算机精度限制)。</li>
+</ul>
+<p>我们不妨把 <img src="https://www.zhihu.com/equation?tex=a" alt="[公式]"> 在不同取值下，对应的的<img src="https://www.zhihu.com/equation?tex=%5Chat%7By%7D_3" alt="[公式]">全部绘制出来。代码如下：</p>
+<pre><code class="python">from math import exp
+from matplotlib import pyplot as plt
+import numpy as np 
+f = lambda x: exp(x * 2) / (exp(x) + exp(x) + exp(x * 2))
+x = np.linspace(0, 100, 100)
+y_3 = [f(x_i) for x_i in x]
+plt.plot(x, y_3)
+plt.show()
+</code></pre>
+<p>得到的图如下所示：</p>
+<p><img src="https://pic1.zhimg.com/50/v2-1d7ef7b8fb59a925470dc52218b43117_hd.jpg?source=1940ef5c"></p>
+<p>可以看到，数量级对softmax得到的分布影响非常大。<strong>在数量级较大时，softmax将几乎全部的概率分布都分配给了最大值对应的标签</strong>。</p>
+<p>然后我们来看softmax的梯度。不妨简记softmax函数为 <img src="https://www.zhihu.com/equation?tex=g(%5Ccdot)" alt="[公式]"> ，softmax得到的分布向量 <img src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Cmathbf%7By%7D%7D=g(%5Cmathbf%7Bx%7D)" alt="[公式]"> 对输入 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D" alt="[公式]"> 的梯度为：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+g(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%5Cmathbf%7Bx%7D%7D=%5Cmathrm%7Bdiag%7D(%5Chat%7B%5Cmathbf%7By%7D%7D)-%5Chat%7B%5Cmathbf%7By%7D%7D%5Chat%7B%5Cmathbf%7By%7D%7D%5E%5Ctop%5Cquad%5Cin%5Cmathbb%7BR%7D%5E%7Bd%5Ctimes+d%7D" alt="[公式]"></p>
+<p>把这个矩阵展开：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+g(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%5Cmathbf%7Bx%7D%7D=%5Cleft%5B%5Cbegin%7Bmatrix%7D+%5Chat%7By%7D_1+&amp;+0&amp;%5Ccdots+&amp;0%5C%5C+0+&amp;+%5Chat%7By%7D_2+&amp;+%5Ccdots+&amp;+0%5C%5C+%5Cvdots+&amp;+%5Cvdots+&amp;+%5Cddots+&amp;+%5Cvdots%5C%5C+0+&amp;+0+&amp;+%5Ccdots+&amp;+%5Chat%7By%7D_d+%5Cend%7Bmatrix%7D%5Cright%5D+-+%5Cleft%5B%5Cbegin%7Bmatrix%7D+%5Chat%7By%7D_1%5E2+&amp;+%5Chat%7By%7D_1%5Chat%7By%7D_2&amp;%5Ccdots+&amp;%5Chat%7By%7D_1%5Chat%7By%7D_d%5C%5C+%5Chat%7By%7D_2%5Chat%7By%7D_1+&amp;+%5Chat%7By%7D_2%5E2+&amp;+%5Ccdots+&amp;+%5Chat%7By%7D_2%5Chat%7By%7D_d%5C%5C+%5Cvdots+&amp;+%5Cvdots+&amp;+%5Cddots+&amp;+%5Cvdots%5C%5C+%5Chat%7By%7D_d%5Chat%7By%7D_1+&amp;+%5Chat%7By%7D_d%5Chat%7By%7D_2+&amp;+%5Ccdots+&amp;+%5Chat%7By%7D_d%5E2+%5Cend%7Bmatrix%7D%5Cright%5D" alt="[公式]"></p>
+<p>根据前面的讨论，当输入 <img src="https://www.zhihu.com/equation?tex=%5Cmathbf%7Bx%7D" alt="[公式]"> 的元素均较大时，softmax会把大部分概率分布分配给最大的元素，假设我们的输入数量级很大，最大的元素是 <img src="https://www.zhihu.com/equation?tex=x_1" alt="[公式]"> ，那么就将产生一个接近one-hot的向量 <img src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Cmathbf%7By%7D%7D%5Capprox%5B1,+0,+%5Ccdots,+0%5D%5E%5Ctop" alt="[公式]">  ,此时上面的矩阵变为如下形式：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+g(%5Cmathbf%7Bx%7D)%7D%7B%5Cpartial%5Cmathbf%7Bx%7D%7D%5Capprox%5Cleft%5B%5Cbegin%7Bmatrix%7D+1+&amp;+0&amp;%5Ccdots+&amp;0%5C%5C+0+&amp;+0+&amp;+%5Ccdots+&amp;+0%5C%5C+%5Cvdots+&amp;+%5Cvdots+&amp;+%5Cddots+&amp;+%5Cvdots%5C%5C+0+&amp;+0+&amp;+%5Ccdots+&amp;+0+%5Cend%7Bmatrix%7D%5Cright%5D+-+%5Cleft%5B%5Cbegin%7Bmatrix%7D+1+&amp;+0&amp;%5Ccdots+&amp;0%5C%5C+0+&amp;+0+&amp;+%5Ccdots+&amp;+0%5C%5C+%5Cvdots+&amp;+%5Cvdots+&amp;+%5Cddots+&amp;+%5Cvdots%5C%5C+0+&amp;+0+&amp;+%5Ccdots+&amp;+0+%5Cend%7Bmatrix%7D%5Cright%5D=%5Cmathbf%7B0%7D" alt="[公式]"></p>
+<p>也就是说，<strong>在输入的数量级很大时，梯度消失为0，造成参数更新困难。</strong></p>
+<blockquote>
+<p>注： softmax的梯度可以自行推导，网络上也有很多推导可以参考。</p>
+</blockquote>
+<hr>
+<p><strong>Question 2. 维度与点积大小的关系是怎么样的，为什么使用维度的根号来放缩？</strong></p>
+<p>针对为什么维度会影响点积的大小，在论文的脚注中其实给出了一点解释：</p>
+<p><img src="https://pic4.zhimg.com/50/v2-493286fbea075e160bf3bac214d2ac60_hd.jpg?source=1940ef5c" alt="img"></p>
+<p>假设向量 <img src="https://www.zhihu.com/equation?tex=q" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=k" alt="[公式]"> 的各个分量是互相独立的随机变量，均值是0，方差是1，那么点积 <img src="https://www.zhihu.com/equation?tex=q%5Ccdot+k" alt="[公式]"> 的均值是0，方差是 <img src="https://www.zhihu.com/equation?tex=d_k" alt="[公式]"> 。这里我给出一点更详细的推导：</p>
+<p>对 <img src="https://www.zhihu.com/equation?tex=%5Cforall+i+=+1,+%5Ccdots,+d_k" alt="[公式]"> ， <img src="https://www.zhihu.com/equation?tex=q_i" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=k_i" alt="[公式]"> 都是随机变量，为了方便书写，不妨记 <img src="https://www.zhihu.com/equation?tex=X=q_i" alt="[公式]"> ， <img src="https://www.zhihu.com/equation?tex=Y=k_i" alt="[公式]"> 。这样有： <img src="https://www.zhihu.com/equation?tex=D(X)=D(Y)=1" alt="[公式]"> ， <img src="https://www.zhihu.com/equation?tex=E(X)=E(Y)=0+" alt="[公式]"> 。</p>
+<p>则:</p>
+<ol>
+<li><img src="https://www.zhihu.com/equation?tex=E(XY)=E(X)E(Y)=0%5Ctimes+0=0" alt="[公式]"></li>
+<li></li>
+</ol>
+<p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Balign%7DD(XY)&amp;=E(X%5E2%5Ccdot+Y%5E2)-%5BE(XY)%5D%5E2%5C%5C+&amp;=E(X%5E2)E(Y%5E2)-%5BE(X)E(Y)%5D%5E2%5C%5C+&amp;=E(X%5E2-0%5E2)E(Y%5E2-0%5E2)-%5BE(X)E(Y)%5D%5E2%5C%5C+&amp;=E(X%5E2-%5BE(X)%5D%5E2)E(Y%5E2-%5BE(Y)%5D%5E2)-%5BE(X)E(Y)%5D%5E2%5C%5C+&amp;=D(X)D(Y)-%5BE(X)E(Y)%5D%5E2%5C%5C+&amp;=1%5Ctimes+1+-+(0%5Ctimes+0)%5E2%5C%5C+&amp;=1+%5Cend%7Balign%7D" alt="[公式]"></p>
+<p>这样<img src="https://www.zhihu.com/equation?tex=%5Cforall+i+=+1,+%5Ccdots,+d_k" alt="[公式]"> ，  <img src="https://www.zhihu.com/equation?tex=q_i%5Ccdot+k_i" alt="[公式]">的均值是0，方差是1，又由期望和方差的性质， 对相互独立的分量 <img src="https://www.zhihu.com/equation?tex=Z_i" alt="[公式]">，有</p>
+<p><img src="https://www.zhihu.com/equation?tex=E(%5Csum_i+Z_i)=%5Csum_i+E(Z_i)" alt="[公式]">，</p>
+<p>以及</p>
+<p><img src="https://www.zhihu.com/equation?tex=D(%5Csum_i+Z_i)=%5Csum_i+D(Z_i)" alt="[公式]"> ，</p>
+<p>所以有 <img src="https://www.zhihu.com/equation?tex=q%5Ccdot+k" alt="[公式]"> 的均值 <img src="https://www.zhihu.com/equation?tex=E(q%5Ccdot+k)=0" alt="[公式]"> ，方差 <img src="https://www.zhihu.com/equation?tex=D(q%5Ccdot+k)=d_k" alt="[公式]"> 。<strong>方差越大也就说明，点积的数量级越大（以越大的概率取大值）</strong>。那么一个自然的做法就是把方差稳定到1，做法是将点积除以 <img src="https://www.zhihu.com/equation?tex=%5Csqrt+d_k" alt="[公式]"> ，这样有：</p>
+<p><img src="https://www.zhihu.com/equation?tex=D(%5Cfrac%7Bq%5Ccdot+k%7D%7B%5Csqrt+d_k%7D)=%5Cfrac%7Bd_k%7D%7B(%5Csqrt+d_k)%5E2%7D=1" alt="[公式]"></p>
+<p><strong>将方差控制为1，也就有效地控制了前面提到的梯度消失的问题</strong>。</p>
+<p>可以参考一下。水平有限，如果有误请指出。</p>
+<p>作者：LinT<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/339723385/answer/782509914">https://www.zhihu.com/question/339723385/answer/782509914</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="attention和self-attention的区别"><a href="#attention和self-attention的区别" class="headerlink" title="attention和self-attention的区别"></a>attention和self-attention的区别</h3><h3 id="为什么self-attention可以替代seq2seq"><a href="#为什么self-attention可以替代seq2seq" class="headerlink" title="为什么self-attention可以替代seq2seq"></a>为什么self-attention可以替代seq2seq</h3><p>关于为何self-attention可以代替seq2seq，论文中提到了三点：</p>
+<ol>
+<li><strong>Complexity per layer</strong>（$O(n^2 d)$）</li>
+<li><strong>Sequential Operations</strong>（i.e. can be parallelized, speed-up in the training time）（$O(1)$）</li>
+<li><strong>Maximum Path Length</strong>（it can capture longer dependencies in a sentence.）（$O(1)$）</li>
+</ol>
+<h3 id="transformer中句子的encoder表示的是什么"><a href="#transformer中句子的encoder表示的是什么" class="headerlink" title="transformer中句子的encoder表示的是什么"></a>transformer中句子的encoder表示的是什么</h3><p>表示的是句子中每个token的Embedding。</p>
+<h3 id="怎么加入词序信息"><a href="#怎么加入词序信息" class="headerlink" title="怎么加入词序信息"></a>怎么加入词序信息</h3><p>在Word Embedding层后面加上了<code>Positional Encoding</code>。</p>
+<p>Ideally, the following criteria should be satisfied:</p>
+<ul>
+<li><strong>唯一性</strong>。It should output a unique encoding for each time-step (word’s position in a sentence)</li>
+<li><strong>距离不变性</strong>。Distance between any two time-steps should be consistent across sentences with different lengths.</li>
+<li><strong>扩展性</strong>。Our model should generalize to longer sentences without any efforts. Its values should be bounded.</li>
+<li><strong>确定性</strong>。It must be deterministic.</li>
+</ul>
+<p>在Transformer中，选择的<code>Positional Encoding</code>是不同频率的<code>sine</code>和<code>consine</code>函数：</p>
+<blockquote>
+<p>参考文献：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/#proposed-method">Transformer Architecture: The Positional Encoding</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350116316/answer/864616018">https://www.zhihu.com/question/350116316/answer/864616018</a></li>
+</ul>
+</blockquote>
+<h3 id="为什么选择sinusoidal"><a href="#为什么选择sinusoidal" class="headerlink" title="为什么选择sinusoidal"></a>为什么选择sinusoidal</h3><blockquote>
+<p>it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.</p>
+</blockquote>
+<blockquote>
+<p>参考文献：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/#proposed-method">Transformer Architecture: The Positional Encoding</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350116316/answer/864616018">https://www.zhihu.com/question/350116316/answer/864616018</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/347678607/answer/864217252">https://www.zhihu.com/question/347678607/answer/864217252</a></li>
+</ul>
+</blockquote>
+<h2 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h2><h3 id="BERT的具体网络结构，以及训练过程，bert为什么火，它在什么的基础上改进了些什么？"><a href="#BERT的具体网络结构，以及训练过程，bert为什么火，它在什么的基础上改进了些什么？" class="headerlink" title="BERT的具体网络结构，以及训练过程，bert为什么火，它在什么的基础上改进了些什么？"></a>BERT的具体网络结构，以及训练过程，bert为什么火，它在什么的基础上改进了些什么？</h3><p>BERT是用Transformer的Encoder侧的网络，作为一个文本编码器，使用大规模数据进行预训练，预训练使用两个loss：</p>
+<ul>
+<li>一个是<strong>Masked LM</strong>，遮蔽掉源端的一些字（可能会被问到mask的具体做法，<strong>15%概率mask词</strong>，这其中<strong>80%用[mask]替换，10%随机替换一个其他字，10%不替换</strong>，<strong>至于为什么这么做，那就得问问BERT的作者了</strong>），然后根据上下文去预测这些字；</li>
+<li>一个是<strong>Next Sentence Prediction</strong>，判断两个句子是否在文章中互为上下句，然后使用了大规模的语料去预训练。</li>
+</ul>
+<p>在它之前是GPT，GPT是一个<strong>单向语言模型</strong>的预训练过程（<strong>它和GPT的区别就是bert为啥叫双向 bi-directional</strong>），更适用于文本生成，通过前文去预测当前的字。下图为transformer的结构，bert的网络结构则用了左边的encoder。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-47a5a577603efb220d80167c4c291806_720w.jpg" alt="Transformer结构图"></p>
+<h3 id="为什么BERT有3个嵌入层，它们都是如何实现的"><a href="#为什么BERT有3个嵌入层，它们都是如何实现的" class="headerlink" title="为什么BERT有3个嵌入层，它们都是如何实现的"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/d0main/p/10447853.html">为什么BERT有3个嵌入层，它们都是如何实现的</a></h3><p>本文将阐述BERT中嵌入层的实现细节，包括token embeddings、segment embeddings, 和position embeddings.</p>
+<p>下面这幅来自原论文的图清晰地展示了BERT中每一个嵌入层的作用：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1135245/201902/1135245-20190227235341575-1614948318.png"></p>
+<p> 和大多数NLP深度学习模型一样，BERT将输入文本中的每一个词（token)送入token embedding层从而将每一个词转换成向量形式。但不同于其他模型的是，BERT又多了两个嵌入层，即segment embeddings和 position embeddings。在阅读完本文之后，你就会明白为何要多加这两个嵌入层了。</p>
+<h4 id="Token-Embeddings"><a href="#Token-Embeddings" class="headerlink" title="Token Embeddings"></a>Token Embeddings</h4><p><strong>作用</strong></p>
+<p>正如前面提到的，token embedding 层是要将各个词转换成固定维度的向量。在BERT中，每个词会被转换成768维的向量表示。</p>
+<p><strong>实现</strong></p>
+<p> 假设输入文本是 “I like strawberries”。下面这个图展示了 Token Embeddings 层的实现过程:</p>
+<p><img src="https://img2018.cnblogs.com/blog/1135245/201902/1135245-20190227235724883-2118042882.png" alt="img"></p>
+<p> 输入文本在送入token embeddings 层之前要先进行tokenization处理。此外，两个特殊的token会被插入到tokenization的结果的开头 ([CLS])和结尾 ([SEP]) 。它们视为后面的分类任务和划分句子对服务的。</p>
+<p> tokenization使用的方法是WordPiece tokenization. 这是一个数据驱动式的tokenization方法，旨在权衡词典大小和oov词的个数。这种方法把例子中的“strawberries”切分成了“straw” 和“berries”。这种方法的详细内容不在本文的范围内。有兴趣的读者可以参阅 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.08144.pdf">Wu et al. (2016)</a> 和 <a target="_blank" rel="noopener" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf">Schuster &amp; Nakajima (2012)</a>。使用WordPiece tokenization让BERT在处理英文文本的时候仅需要存储30,522 个词，而且很少遇到oov的词。</p>
+<p> Token Embeddings 层会将每一个wordpiece token转换成768维的向量。这样，例子中的6个token就被转换成了一个(6, 768) 的矩阵或者是(1, 6, 768)的张量（如果考虑batch_size的话）。</p>
+<h4 id="Segment-Embeddings"><a href="#Segment-Embeddings" class="headerlink" title="Segment Embeddings"></a>Segment Embeddings</h4><p><strong>作用</strong></p>
+<p> BERT 能够处理对输入句子对的分类任务。这类任务就像判断两个文本是否是语义相似的。句子对中的两个句子被简单的拼接在一起后送入到模型中。那BERT如何去区分一个句子对中的两个句子呢？答案就是segment embeddings.</p>
+<p><strong>实现</strong></p>
+<p>假设有这样一对句子 (“I like cats”, “I like dogs”)。下面的图成仙了segment embeddings如何帮助BERT区分两个句子:</p>
+<p><img src="https://img2018.cnblogs.com/blog/1135245/201902/1135245-20190227235737504-479706108.png"></p>
+<p> Segment Embeddings 层只有两种向量表示。前一个向量是把0赋给第一个句子中的各个token, 后一个向量是把1赋给第二个句子中的各个token。如果输入仅仅只有一个句子，那么它的segment embedding就是全0。</p>
+<h4 id="Position-Embeddings"><a href="#Position-Embeddings" class="headerlink" title="Position Embeddings"></a>Position Embeddings</h4><p><strong>作用</strong></p>
+<p>BERT包含这一串Transformers (<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Vaswani et al</a>. 2017)，而且一般认为，Transformers无法编码输入的序列的顺序性。 <a target="_blank" rel="noopener" href="https://medium.com/@_init_/how-self-attention-with-relative-position-representations-works-28173b8c245a">博客</a>更加详细的解释了这一问题。总的来说，加入position embeddings会让BERT理解下面这种情况：</p>
+<blockquote>
+<p>I think, therefore I am</p>
+</blockquote>
+<p>第一个 “I” 和第二个 “I”应该有着不同的向量表示。</p>
+<p><strong>实现</strong></p>
+<p> <strong>BERT能够处理最长512个token的输入序列。</strong>论文作者通过让BERT在各个位置上学习一个向量表示来讲序列顺序的信息编码进来。这意味着Position Embeddings layer 实际上就是一个大小为 (512, 768) 的lookup表，表的第一行是代表第一个序列的第一个位置，第二行代表序列的第二个位置，以此类推。因此，如果有这样两个句子“Hello world” 和“Hi there”, “Hello” 和“Hi”会由完全相同的position embeddings，因为他们都是句子的第一个词。同理，“world” 和“there”也会有相同的position embedding。</p>
+<h4 id="合成表示"><a href="#合成表示" class="headerlink" title="合成表示"></a>合成表示</h4><p>我们已经介绍了长度为n的输入序列将获得的三种不同的向量表示，分别是：</p>
+<ul>
+<li>Token Embeddings， (1, n, 768) ，词的向量表示</li>
+<li>Segment Embeddings， (1, n, 768)，辅助BERT区别句子对中的两个句子的向量表示</li>
+<li>Position Embeddings ，(1, n, 768) ，让BERT学习到输入的顺序属性</li>
+</ul>
+<p> 这些表示会被按元素相加，得到一个大小为(1, n, 768)的合成表示。这一表示就是BERT编码层的输入了。</p>
+<h3 id="BERT为什么使用position-embedding而不是position-encoding"><a href="#BERT为什么使用position-embedding而不是position-encoding" class="headerlink" title="BERT为什么使用position embedding而不是position encoding?"></a>BERT为什么使用position embedding而不是position encoding?</h3><p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1go5wvs4iyyj20mz0kbdj3.jpg"></p>
+<h3 id="讲讲multi-head-attention的具体结构"><a href="#讲讲multi-head-attention的具体结构" class="headerlink" title="讲讲multi-head attention的具体结构"></a>讲讲multi-head attention的具体结构</h3><p><code>BERT-BASE</code>由12层transformer layer（encoder端）构成，首先token embedding , postion embedding（可能会被问到有哪几种position embedding的方式，bert是使用的哪种）, segment embedding做加和作为网络输入，每层由一个multi-head attention, 一个feed forward 以及两层layerNorm构成，一般会被问到multi-head attention的结构，具体可以描述为：</p>
+<p>step 1：</p>
+<p>一个768的hidden向量，被映射成query， key， value。 然后三个向量分别切分成12个小的64维的向量，每一组小向量之间做attention。不妨假设batch_size为32，seqlen为512，隐层维度为768，12个head。</p>
+<p>hidden(32 x 512 x 768) -&gt; query(32 x 512 x 768) -&gt; 32 x 12 x 512 x 64</p>
+<p>hidden(32 x 512 x 768) -&gt; key(32 x 512 x 768) -&gt; 32 x 12 x 512 x 64</p>
+<p>hidden(32 x 512 x 768) -&gt; val(32 x 512 x 768) -&gt; 32 x 12 x 512 x 64</p>
+<p>step 2：</p>
+<p>然后query和key之间做attention，得到一个32 x 12 x 512 x 512的权重矩阵，然后根据这个权重矩阵加权value中切分好的向量，得到一个32 x 12 x 512 x 64 的向量，拉平输出为768向量。</p>
+<p>32 x 12 x 512 x 64(query_hidden) * 32 x 12 x 64 x 512(key_hidden) -&gt; 32 x 12 x 512 x 512</p>
+<p>32 x 12 x 64 x 512(value_hidden) * 32 x 12 x 512 x 512 (权重矩阵) -&gt; 32 x 12 x 512 x 64</p>
+<p>然后再还原成 -&gt; 32 x 512 x 768</p>
+<p>简言之是12个头，每个头都是一个64维度分别去与其他的所有位置的hidden embedding做attention然后再合并还原。</p>
+<h3 id="BERT-采用哪种Normalization结构，LayerNorm和BatchNorm区别，LayerNorm结构有参数吗，参数的作用？"><a href="#BERT-采用哪种Normalization结构，LayerNorm和BatchNorm区别，LayerNorm结构有参数吗，参数的作用？" class="headerlink" title="BERT 采用哪种Normalization结构，LayerNorm和BatchNorm区别，LayerNorm结构有参数吗，参数的作用？"></a>BERT 采用哪种Normalization结构，LayerNorm和BatchNorm区别，LayerNorm结构有参数吗，参数的作用？</h3><p>采用LayerNorm结构，和BatchNorm的区别主要是<strong>做Normalization的维度不同</strong>；</p>
+<p><code>BatchNorm</code>针对一个batch里面的所有样本进行规范化，针对单个神经元进行，比如batch里面有64个样本，那么规范化输入的这64个样本各自经过这个神经元后的值（64维）。</p>
+<p><code>LayerNorm</code>则是针对单个样本，不依赖于其他数据，常被用于小mini-batch场景、动态网络场景和 RNN，特别是自然语言处理领域，就BERT来说就是对每层输出的隐层向量（768维）做规范化。</p>
+<p>图像领域用BN比较多的原因是因为每一个卷积核的参数在不同位置的神经元当中是共享的，因此也应该被一起规范化。</p>
+<pre><code class="python">class BertLayerNorm(nn.Module):
+    def __init__(self, hidden_size, eps=1e-5):
+        super(BertLayerNorm, self).__init__()
+        self.weight = nn.Parameter(torch.ones(hidden_size))
+        self.bias = nn.Parameter(torch.zeros(hidden_size))
+        self.variance_epsilon = eps
+
+    def forward(self, x):
+        u = x.mean(-1, keepdim=True)
+        s = (x - u).pow(2).mean(-1, keepdim=True)
+        x = (x - u) / torch.sqrt(s + self.variance_epsilon)
+        return self.weight * x + self.bias
+</code></pre>
+<p>贴一个LayerNorm的实现，可以看到module中有<code>weight</code>和<code>bias</code>参数，以Sigmoid激活函数为例，批量归一化之后数据整体处于函数的非饱和区域， 只包含线性变换，破坏了之前学习到的特征分布。为了恢复原始数据分布，具体实现中引入了变换重构以及可学习参数w和b ，也就是上面的weight和bias，简而言之，规范化后的隐层表示将输入数据限制到了一个全局统一的确定范围，为了保证模型的表达能力不因为规范化而下降，引入了<img src="https://www.zhihu.com/equation?tex=%5Cbold%7Bb%7D" alt="[公式]">是<strong>再平移参数</strong>，<img src="https://www.zhihu.com/equation?tex=%5Cbold%7Bw%7D" alt="[公式]">是<strong>再缩放参数</strong>。（过激活函数前规范化，之后还原）</p>
+<p>我认为BN效果不好的原因，<strong>主要还是NLP数据与CV数据特性的差别对训练过程产生了影响，使得训练中batch的统计量不稳定。</strong></p>
+<h3 id="WordPiece"><a href="#WordPiece" class="headerlink" title="WordPiece"></a>WordPiece</h3>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2021/02/24/q-a-transformer-bert/">http://yc1999.github.io/2021/02/24/q-a-transformer-bert/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Transformer/">
+                                    <span class="chip bg-color">Transformer</span>
+                                </a>
+                            
+                                <a href="/tags/BERT/">
+                                    <span class="chip bg-color">BERT</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/03/22/animated-rnn-lstm-and-gru/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Animated RNN, LSTM and GRU">
+                        
+                        <span class="card-title">Animated RNN, LSTM and GRU</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            RNN是
+
+Vanilla RNN
+
+$t$——time step
+$X$——input
+$h$——hidden state
+length of $X$ —size/dimension of input
+length of $h$ — no
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    深度学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="chip bg-color">面试</span>
+                    </a>
+                    
+                    <a href="/tags/LSTM/">
+                        <span class="chip bg-color">LSTM</span>
+                    </a>
+                    
+                    <a href="/tags/RNN/">
+                        <span class="chip bg-color">RNN</span>
+                    </a>
+                    
+                    <a href="/tags/GRU/">
+                        <span class="chip bg-color">GRU</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/22/what-is-the-difference-between-fp16-and-fp32-when-doing-deep-learning/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="What is the difference between FP16 and FP32 when doing deep learning?">
+                        
+                        <span class="card-title">What is the difference between FP16 and FP32 when doing deep learning?</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+https://www.quora.com/What-is-the-difference-between-FP16-and-FP32-when-doing-deep-learning
+
+This is a well-timed quest
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0tricks/" class="post-category">
+                                    深度学习tricks
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

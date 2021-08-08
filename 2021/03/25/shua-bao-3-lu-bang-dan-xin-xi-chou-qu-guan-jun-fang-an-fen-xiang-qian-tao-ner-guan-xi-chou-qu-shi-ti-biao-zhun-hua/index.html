@@ -1,0 +1,1210 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="刷爆3路榜单，信息抽取冠军方案分享：嵌套NER+关系抽取+实体标准化, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>刷爆3路榜单，信息抽取冠军方案分享：嵌套NER+关系抽取+实体标准化 | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fly1gowhbkjbg3j21900icgnr.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">刷爆3路榜单，信息抽取冠军方案分享：嵌套NER+关系抽取+实体标准化</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/">
+                                <span class="chip bg-color">信息抽取</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-03-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>本篇文章，JayJay并不想只是围绕竞赛本身谈策略，而是想和大家一起交流：无论在竞赛还是落地中，<strong>信息抽取任务的稳定提升策略有哪些</strong>？总的来看就是两点：</p>
+<ol>
+<li><strong>构建一个强大的baseline，这取决于标注框架的选择</strong>；</li>
+<li><strong>套路化的辅助策略，稳定迭代并提升</strong>；</li>
+</ol>
+<p>为更好地展示关键内容，本文以QA形式探讨了以下问题：</p>
+<blockquote>
+<p><strong>Q1:如何构建强大的baseline？万能的4种标注框架供你选择！</strong><br><strong>Q2:如何解决复杂NER问题：嵌套/非连续/类型易混淆？</strong><br><strong>Q3:升级的NER竞赛：如何解决嵌套实体抽取？</strong><br><strong>Q4:贴合真实场景的NER竞赛：如何解决不完全标注NER？</strong><br><strong>Q5:关系抽取一片红海，如何魔改标注框架？如何突破SOTA：暴漏偏差/独立编码/pipeline？</strong><br><strong>Q6:如何登顶关系抽取冠军宝座：强大的标注策略+词汇增强/对抗训练/远程监督/假阴性降噪/交替训练？</strong><br><strong>Q7:NER的最后一步：负样本为王，实体标准化！</strong></p>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/80/v2-e04970f10dabf8f24e59d4e4ef673fe8_720w.jpg" alt="思维导图"></p>
+<blockquote>
+<p>相关代码后续会在 <strong>DeepIE: <a href="https://link.zhihu.com/?target=https://github.com/loujie0822/DeepIE">https://github.com/loujie0822/DeepIE</a></strong> 开源，尽情关注～</p>
+</blockquote>
+<h2 id="Q1-如何构建强大的baseline？万能的4种标注框架供你选择！"><a href="#Q1-如何构建强大的baseline？万能的4种标注框架供你选择！" class="headerlink" title="Q1:如何构建强大的baseline？万能的4种标注框架供你选择！"></a>Q1:如何构建强大的baseline？万能的4种标注框架供你选择！</h2><p>谈到标注框架，NLPer首先想到的就是序列标注，而如今我们面临早已不是一个简单抽取问题，序列标注已经无法“胜任”了：例如，在医疗抽取任务中，我们常常会遇到<strong>嵌套、非连续、类型混淆、信息块重叠、关系重叠</strong>等复杂抽取问题。</p>
+<p>因此，掌握标注框架（解码方式）是解决信息抽取问题的第一步，也是构建强大baseline的关键一步：试想一下，如果你的标注框架都不能<strong>完备解码</strong>（gold输入，输出指标也应该达到或接近100%），不能cover绝大部分case情况，又何谈下一步优化提升呢？</p>
+<p>JayJay这里归纳了4种“<strong>易于上手</strong>”的标注框架：</p>
+<h3 id="序列标注"><a href="#序列标注" class="headerlink" title="序列标注"></a>序列标注</h3><p>每个序列位置都被标注为一个标签，比如按照BILOU标注，我们常用<strong>MLP或CRF解码</strong>。</p>
+<h3 id="指针标注"><a href="#指针标注" class="headerlink" title="指针标注"></a>指针标注</h3><p>对每个span的start和end进行标记，对于多片段抽取问题转化为N个2分类（N为序列长度），如果涉及多类别可以转化为层叠式指针标注（C个指针网络，C为类别总数）。事实上，<strong>指针标注已经成为统一实体、关系、事件抽取的一个“大杀器”</strong>。</p>
+<h3 id="多头标注"><a href="#多头标注" class="headerlink" title="多头标注"></a>多头标注</h3><p>对每个token pair进行标记，其实就是构建一个 <img src="https://www.zhihu.com/equation?tex=+%5Ctimes+%5Ctimes+" alt="[公式]"> 的分类矩阵，可以用于实体或关系抽取。其重点就是如何强有力的表征构建分类矩阵。事实上，<strong>多头标注成为了众多实体和关系抽取SOTA的首选利器</strong>！（PS：多头标注是JayJay自己叫的，单纯是为了纪念多头选择机制的关系抽取论文[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_1">1]</a>）</p>
+<h3 id="片段排列"><a href="#片段排列" class="headerlink" title="片段排列"></a>片段排列</h3><p>源于Span-level NER[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_2">2]</a>的思想，枚举所有可能的span进行分类，同序列长度进行解耦，可以更加灵活地处理复杂抽取和低资源问题。事实上，<strong>片段排列的思想已经被Google</strong>[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_3">3]</a><strong>推崇并统一了信息抽取各个子任务</strong>。</p>
+<p>掌握上述4种标注框架后，我们就可以根据具体抽取任务、灵活地应用于实体、关系、事件抽取等场景中了（PS：对于一些生成式的标注框架，JayJay感觉不够稳定，就不再单独介绍了）。</p>
+<h2 id="Q2-如何解决复杂NER问题：嵌套-非连续-类型易混淆？"><a href="#Q2-如何解决复杂NER问题：嵌套-非连续-类型易混淆？" class="headerlink" title="Q2:如何解决复杂NER问题：嵌套/非连续/类型易混淆？"></a>Q2:如何解决复杂NER问题：嵌套/非连续/类型易混淆？</h2><p>在实际业务场景中的NER问题可能与你想的不太一样，比如下图中的复杂NER问题你遇到过吗？</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowhqgkm41j20mk05vaat.jpg" alt="undefined"></p>
+<p>本文这里给出了上述复杂NER问题的简单解决方案：</p>
+<ul>
+<li><strong>嵌套NER</strong>：例如在span「呼吸中枢受累」中，存在两个实体嵌套：「症状：呼吸中枢受累」和「部位：呼吸中枢」。我们在Q3中具体介绍解决方案。</li>
+<li><strong>非连续NER</strong>：例如在span「尿道、膀胱、肾绞痛」中存在三个非连续实体「尿道痛」、「膀胱痛」、「肾绞痛」。这里给出3种解决方案：<ul>
+<li>继续当作序列标注任务：拓展BIO标签；</li>
+<li>转化为一个属性/关系抽取问题：由于病历文本趋向模板化，所以用规则提取更加便捷。</li>
+<li>模仿句法解析器的做法，设置shift-reduce parser，具体可参见ACL20的这篇paper。</li>
+</ul>
+</li>
+<li><strong>类型易混淆NER</strong>：例如对于部位实体「左肺上叶」，其归属于「病理」还是「影像」模块呢？对于「纵隔」部位，是属于「肿瘤」还是「淋巴结」部位呢？这里给出2种解决方案：<ul>
+<li><strong>事件论元抽取</strong>：对于医疗领域，不同于通常的论元抽取，因为电子病历一般不存在<strong>信息块重叠</strong>（事件类型交叉重叠）问题，因此可以先进行<strong>事件段落抽取</strong>，再将「左肺上叶」部位实体归属到当前的事件段落中。</li>
+<li><strong>两阶段NER</strong>：在同一事件类型中，第一阶段可以确定<strong>实体span边界</strong>（例如找到部位实体「纵隔」的边界），第二阶段再结合上下文信息进行<strong>实体typing</strong>（例如对「纵隔」进行性质判断），这样做指标通常会提高哦～</li>
+</ul>
+</li>
+</ul>
+<h2 id="Q3-升级的NER竞赛：如何解决嵌套实体抽取？"><a href="#Q3-升级的NER竞赛：如何解决嵌套实体抽取？" class="headerlink" title="Q3:升级的NER竞赛：如何解决嵌套实体抽取？"></a>Q3:升级的NER竞赛：如何解决嵌套实体抽取？</h2><p>既然实际业务中的NER问题是复杂的，NER竞赛也不应该循规蹈矩了～这不，CHIP2020的中文医学实体抽取评测就是一个嵌套实体抽取问题，数据集包含504种常见的儿科疾病、7,085种身体部位、12,907种临床表现等九大类医学实体。</p>
+<p>对于嵌套实体抽取这个任务，我们直接套用<strong>Q1</strong>中的4种万能标注框架就可以解决了：</p>
+<ul>
+<li><strong>序列标注</strong>：<ul>
+<li><strong>多标签分类</strong>。如下图（a）所示，将多分类转化为多标签分类，即使用sigmoid设定阈值进行解码；这种方式的学习难度较大，也会容易导致label之间依赖关系的缺失；</li>
+<li><strong>合并标签层</strong>。如下图（b）所示，依然采用CRF，但设置多个标签层，对于每一个token给出其所有的label，然后将所有标签层合并。这种方式指数级增加了标签，对于多层嵌套，稀疏问题较为棘手；</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowhzx6eajj20lq07rwfg.jpg"></p>
+<ul>
+<li><strong>指针标注</strong>：<ul>
+<li><strong>层叠式指针标注</strong>：即设置C个指针网络，如下图（c）所示。</li>
+<li><strong>MRC-QA + 层叠式指针标注</strong>：构建query问题指代所要抽取的实体类型，同时也引入了先验语义知识，如下图（d）所示。在文献中就对不同实体类型构建query，并采取指针标注，此外也构建了$N \times N$矩阵来判断span是否构成一个实体mention。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic4.zhimg.com/80/v2-bb7070a4f8131576ea5eb1374d8210eb_720w.jpg"></p>
+<ul>
+<li><strong>多头标注</strong><ul>
+<li>构建一个$N \times N \times C$的Span矩阵，如下图（e）所示，Span{呼}{枢}=1，代表「呼吸中枢」是一个部位实体；Span{呼}{累}=2，代表「呼吸中枢受累」是一个症状实体；对于多头标注的一个重点就是如何<strong>构造Span矩阵</strong>、以及<strong>解决0-1标签稀疏问题</strong>。</li>
+<li><strong>嵌套实体的2篇SOTA之作</strong>： ACL20的《Named Entity Recognition as Dependency Parsing》采取Biaffine机制构造Span矩阵；EMNLP20的<strong>HIT</strong>[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_4">4]</a>则通过Biaffine机制专门捕获边界信息，并采取传统的序列标注任务强化嵌套结构的内部信息交互，同时采取focal loss来解决0-1标签不平衡问题。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-a1677bec536477c83e93a14f2c452ee9_720w.jpg"></p>
+<ul>
+<li><p><strong>片段排列</strong></p>
+<ul>
+<li><p>十分直接，如下图（f）所示。对于含T个token的文本，理论上共有$N = T(T+1)/2$种片段排列。如果文本过长，会产生大量的负样本，在实际中需要限制span长度并合理削减负样本。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowih1f01sj20am0dgmxn.jpg" alt="undefined"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>在CHIP20嵌套实体评测中，我们对比了不同标注策略下的效果（如下图），可以发现：多头标注效果最佳！</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowin28938j20k006xjrv.jpg" alt="undefined"></p>
+<h2 id="Q4-贴合真实场景的NER竞赛：如何解决不完全标注NER？"><a href="#Q4-贴合真实场景的NER竞赛：如何解决不完全标注NER？" class="headerlink" title="Q4:贴合真实场景的NER竞赛：如何解决不完全标注NER？"></a>Q4:贴合真实场景的NER竞赛：如何解决不完全标注NER？</h2><p>标注资源少、如何降低标注量一直是真实工业场景中必须面对的问题，不同于分类任务，大规模的实体标注数据集的构建成本更高。BERT的出现本身就是一种降低标注量的方式，此外，文本增强等方式也可降低标注（PS：NER等序列标注任务的数据增强方式可能要独立适配会更好，采用常见的增强方式效果提升不明显～）。</p>
+<p>那么，有没有一种仅仅通过积累的实体词典、来匹配标注数据的方式，这样可以不用大规模的进行人工标注了。这种方式，可以统称为「<strong>不完全标注NER问题</strong>」：这种方式最为突出一点就是漏标情况严重，而<strong>NER序列标注的方式对噪声（漏标）十分敏感</strong>。（事实上，人工标注中也会存在漏标等情况）</p>
+<p>CHIP20的评测六-中药说明书实体识别挑战(<a href="https://link.zhihu.com/?target=http://cips-chip.org.cn/2020/eval6">http://cips-chip.org.cn/2020/eval6</a>)就是对这一问题的评测。由于这个评测正在答辩环节中，JayJay也进入最后答辩了，具体方案等成绩揭晓后再与大家分享吧～下面，我们来看看学术界都有哪些解决方案：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowipbx4xuj21cm0qw77q.jpg" alt="undefined"></p>
+<p>需要特别介绍的是一篇来自ICLR2021投稿的《Empirical Analysis of Unlabeled Entity Problem in Named Entity Recognition》，就是采用我们上述提到的「片段排列」标注方式，摒弃传统的CRF序列标注、与序列长度解耦，转化为一个对span的分类问题，这样更适合对负样本实体的采样；这样模型建模不会像对序列标注中的漏标过于敏感，也更好控制。</p>
+<h2 id="Q5-关系抽取一片红海，如何魔改标注框架？如何突破SOTA：暴漏偏差-独立编码-pipeline？"><a href="#Q5-关系抽取一片红海，如何魔改标注框架？如何突破SOTA：暴漏偏差-独立编码-pipeline？" class="headerlink" title="Q5:关系抽取一片红海，如何魔改标注框架？如何突破SOTA：暴漏偏差/独立编码/pipeline？"></a>Q5:关系抽取一片红海，如何魔改标注框架？如何突破SOTA：暴漏偏差/独立编码/pipeline？</h2><p>2020年以来，关系抽取SOTA就换了好几个，JayJay常常感叹：关系抽取也太卷了吧～不过仔细阅读后，发现这些SOTA其实绝大多数还是围绕“标注框架”进行魔改，只要我们掌握<strong>Q1</strong>中提到的4种万能标注，登顶SOTA也不是不可能！</p>
+<blockquote>
+<p>本文所提到的「关系抽取」就是实体关系抽取，不同于「关系分类」。</p>
+</blockquote>
+<p>关系抽取范式主要有两大类：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowiqdqc0qj21860f2mz8.jpg" alt="关系抽取解决范式"></p>
+<p>JayJay也有一段时间痴迷于各种联合抽取的joint魔改模型，如果大家有兴趣可以在知乎上直接搜索阅读JayJay的这篇文章《<strong>nlp中的实体关系抽取方法总结</strong>》。由于篇幅限制，这里简单给出一个总结图：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowitwd4ofj20k00a7wf7.jpg" alt="关系抽取——Joint范式"></p>
+<p>结合上图，我们可以发现未来突破SOTA的方向可能是：</p>
+<ol>
+<li><strong>打破Joint好于Pipeline的刻板印象</strong>：Pipeline是否一定不如Joint，我们不能一概而论，特别是看过“女神的新SOTA”上一篇推文<a href="https://link.zhihu.com/?target=https://mp.weixin.qq.com/s/xwljKL3FjY-Nw-Zll4x3pQ">《</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/274938894">JayLou娄杰：反直觉！陈丹琦用pipeline方式刷新关系抽取SOTA</a><a href="https://link.zhihu.com/?target=https://mp.weixin.qq.com/s/xwljKL3FjY-Nw-Zll4x3pQ">》</a>之后。</li>
+<li><strong>共享编码可能过于直接了</strong>：使用单独的编码器确实可以学习独立的特定任务特征，对于实体和关系确实需要特定的特征编码，在构建joint模型时如果只是简单的强行共享编码，真的可能会适得其反。这表明：针对一项任务提取的特征可能与针对另一项任务提取的特征一致或冲突，从而使学习模型混乱。所以，接下来怎么更好地去设计既可以共享、又可以任务独立的特征吧。</li>
+<li><strong>解决暴漏偏差，迫在眉睫</strong>：最近COLING2020的一篇paper为了缓解这个问题，提出了一种单阶段的联合提取模型<strong>TPLinker</strong>[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_5">5]</a>，其不包含任何相互依赖的抽取步骤，因此避免了在训练时依赖于gold的情况，从而实现了训练和测试的一致性。</li>
+</ol>
+<h2 id="Q6-如何登顶关系抽取冠军宝座：强大的标注策略-词汇增强-对抗训练-远程监督-假阴性降噪-交替训练？"><a href="#Q6-如何登顶关系抽取冠军宝座：强大的标注策略-词汇增强-对抗训练-远程监督-假阴性降噪-交替训练？" class="headerlink" title="Q6:如何登顶关系抽取冠军宝座：强大的标注策略+词汇增强/对抗训练/远程监督/假阴性降噪/交替训练？"></a>Q6:如何登顶关系抽取冠军宝座：强大的标注策略+词汇增强/对抗训练/远程监督/假阴性降噪/交替训练？</h2><p>废话不说，下面直接来介绍CHIP20中的关系抽取评测。这个评测任务来源于中文医学信息抽取数据集CMeIE(<a href="https://link.zhihu.com/?target=http://cmekg.pcl.ac.cn/">http://cmekg.pcl.ac.cn/</a>)，是目前最大的中文医学关系数据集，共包含近7.5万三元组数据，2.8万疾病语句和53种定义好的schema，共44种关系，如下图所示（图片来自于腾讯天衍实验室）：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowiz6g6swj213n0dt41j.jpg" alt="undefined"></p>
+<p>这个关系评测任务是一个SPO抽取问题：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowizjbq7zj20mk072aaz.jpg" alt="undefined"></p>
+<p>看到这个任务介绍后，如何快速构建强大的baseline呢？可以直接套用<strong>Q1</strong>给出的4种通用框架：</p>
+<p>**策略1：基于主语感知的层叠式指针网络(指针标注)**，抽取过程：先抽取主语subject，再抽取谓语predicate和宾语object，主要参考自ACL20的CasRel[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_6">6]</a>，JayJay做了以下几点改进（网络架构如下图所示）：</p>
+<ol>
+<li>没有随机选择主语(subject)，⽽是遍历所有不同主语的标注样本构建训练集。</li>
+<li>对subject的感知表征，引入conditional LayerNorm进⾏。</li>
+<li>对于医疗⽂本中，中英⽂和特殊标点同时出现的特殊情况，改进bert的分词器，以更好提取英⽂专有名词等。</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gowj1tnjl6j20n60mi0v7.jpg" alt="undefined"></p>
+<p>**策略2：多头选择机制(多头标注)**，是基于文献[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/326302618#ref_1">1]</a>的改进，最重要的就是关系分类器的构造，即是实体pair的一个线性分类器，每个实体pair只选取当前实体span的最后⼀个字符进⾏关系预测，如下图：</p>
+<p>综上，我们将「融合BERT与多头选择」作为一个较强的baseline。有了baseline后，又该通过哪些辅助策略稳步迭代提升呢？其实，信息抽取类的竞赛套路都差不多，比如：</p>
+<ul>
+<li><strong>词汇增强</strong>：即引入词汇信息，并适配于所对应的标注策略；这种词汇增强的方式常见于NER问题中，具体可参见JayJay之前的推文<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142615620">《</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142615620">JayLou娄杰：中文NER的正确打开方式: 词汇增强方法总结 (从Lattice LSTM到FLAT)</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142615620">》</a>。这种方式的关键在于如何引入具体的知识库信息（实体信息）；</li>
+<li></li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/">http://yc1999.github.io/2021/03/25/shua-bao-3-lu-bang-dan-xin-xi-chou-qu-guan-jun-fang-an-fen-xiang-qian-tao-ner-guan-xi-chou-qu-shi-ti-biao-zhun-hua/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/">
+                                    <span class="chip bg-color">信息抽取</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/03/27/extensively-matching-for-few-shot-learning-event-detection/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Extensively Matching for Few-shot Learning Event Detection">
+                        
+                        <span class="card-title">Extensively Matching for Few-shot Learning Event Detection</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Extensively Matching for Few-shot Learning Event Detection
+2020 ACL《用于小样本学习事件检测的广泛匹配》(Extensively Matching for Few-shot 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    论文阅读笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/few-shot/">
+                        <span class="chip bg-color">few shot</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/22/l1-he-l2-zheng-ze-hua-de-qu-bie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="l1和l2正则化的区别">
+                        
+                        <span class="card-title">l1和l2正则化的区别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            L1正则化和L2正则化是控制模型复杂度和限制过拟合的常用方法。L1正则化和L2正则化之间有一些有趣的比较。我发现这些视觉上的对比和它们的解释很容易理解。
+1. 为什么需要正则化？首先，让我们以线性回归为例。假设Y和一大堆其他Factor之间
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    深度学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="chip bg-color">面试</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/">
+                        <span class="chip bg-color">正则化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

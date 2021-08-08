@@ -1,0 +1,1116 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="算法岗面试准备, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>算法岗面试准备 | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">算法岗面试准备</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                <span class="chip bg-color">工作</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-17
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>准备算法岗的面试需要指导下面的东西：</p>
+<ol>
+<li>从迷茫到清晰的职业发展历程</li>
+<li>大厂小厂的招聘逻辑</li>
+<li>合格优秀的算法工程师的核心能力<ul>
+<li><strong>模型理解</strong></li>
+<li><strong>数据分析</strong></li>
+<li><strong>工程能力</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="从迷茫到清晰"><a href="#从迷茫到清晰" class="headerlink" title="从迷茫到清晰"></a>从迷茫到清晰</h2><p>说到算法岗位，现在网上的第一反应可能就是内卷，算法岗位也号称是内卷最严重的岗位。针对这个问题，其实之前我也有写过相关的文章。这个岗位竞争激烈不假，但我个人觉得称作内卷有些过了。就我个人的感觉，这几年的一个大趋势是<strong>从迷茫走向清晰</strong>。</p>
+<p>早在2015年我在阿里妈妈实习的时候，那个时候我觉得其实对于算法工程师这个岗位的招聘要求甚至包括工作内容其实业内是没有一个统一的标准的。可以认为包括各大公司其实对这个岗位具体的工作内容以及需要的候选人的能力要求都不太一致，不同的面试官有不同的风格，也有不同的标准。</p>
+<p>我举几个例子，第一个例子是我当初实习面试的时候，因为是本科生，的确对机器学习这个领域了解非常非常少，可以说是几乎没有。但是我依然通过了，通过的原因也很简单，因为有acm的获奖背景，面试的过程当中主要也都是一些算法题，都还算是答得不错。但是在交叉面试的时候，一位另一个部门的总监就问我有没有这块的经验？我很明确地说了，没有，但是我愿意学。接着他告诉我，算法工程师的工作内容主要和机器学习相关，因此机器学习是基本的。当时我就觉得我凉了，然而<strong>很意外地是还是通过了面试</strong>。</p>
+<p>另外一个例子是当时的一个小伙伴，他在最后转正面试的时候被要求<strong>用R语言写了一个树模型</strong>。具体是什么模型我不记得了，我只知道当时我还不会，所以没记住名字。但是了解行情的都知道，现在工业界应该已经基本上没有使用R语言的了。不论是当时的面试官对R语言比较熟悉，还是当时他的团队里用的都是R语言，都可以说明其实整个阿里内部当时对于算法工程师是没有统一标准的。实际上也的确如此，当时还有很多算法工程师和数据挖掘工程师的title混为一谈的现象。</p>
+<p>我不太清楚现在校招算法岗位会问一些什么，但是就我的了解，机器学习的模型原理以及之前的一些使用经验肯定是跑不了的。这两块的技能没有，只靠acm的奖项以及算法能力想要通过面试估计很难，更不要说是阿里妈妈这样的核心部门了。</p>
+<p>从这两个例子可以看出来，<strong>5年之前业内还是比较迷茫的，但是现在越来越清楚了</strong>，这个岗位究竟是做什么的，需要工程师有什么样的能力。并且我觉得以后应该会越来越清晰，现在可能还是会有一些个别的部门或者是上层的架构师对算法这块不是非常了解。比如工程出身的tech leader带算法团队这样的例子还不少见，但以后应该会越来越少。</p>
+<p>所谓没有985，没有名校硕士，没有paper去面试大公司的算法岗位就是炮灰就是送的说法，有一定的道理。但是我们不能只看现象胡乱总结，仔细分析背后的原因其实是对算法工程师的要求越来越明确。但是要求虽然清晰，也还有问题，问题就是<strong>这些能力不是非常方便在面试当中体现</strong>，对于校招社招都有这样的问题。社招这个问题会好些，看之前的经历就看得出来，校招这个问题相对比较严重，我们怎么知道你数据处理能力怎么样？你对模型的细节了解多少？怎么样判断你来了之后能不能hold住这一块事情？</p>
+<p>正因为有了这样的问题，所以很多面试官或者是hr才不得不抬高硬性要求。招一些基础好、背景出色人聪明的学生进来总没错，即使不对口，也可以现学。</p>
+<h2 id="招聘逻辑"><a href="#招聘逻辑" class="headerlink" title="招聘逻辑"></a>招聘逻辑</h2><p>接下来和大家聊聊各种公司的招聘逻辑，这里面我也发现了一些规律。</p>
+<p>这里面的规律就是<strong>越是小厂越务实，越是大厂越虚</strong>。这其实也很好理解，因为小厂的资金和预算都有限，所有岗位的人头都要精打细算，能不多招绝不多招。一旦招了一定是有具体的用处的，比如某一块事情人手不够，或者是某个问题没有人解决，必须要招人。在这种情况下，小厂的要求非常明确，就是技术栈越匹配越好。也就是你会的东西和他们用的东西越匹配越好，越匹配你上手和学习的成本越低，来了直接能干活的最好。</p>
+<p>大厂则不然，越大的厂越不然。原因也简单，大厂招聘的目的除了满足人力需求之外，还有其他的意义就是<strong>人才储备</strong>。比如清华姚班一年毕业30人，这30人如果都去了腾讯，会给腾讯的发展起到多大的帮助？如果你是老马你能接受这样的事情吗？肯定不行，因为优秀的人才的数量是有限的，虽然竞争的人多，但是头部用户一直就那么多。其他公司多招走了一些，留给你们公司的就少一些。身为大公司肯定是会努力争取的，<strong>包括招聘实习生什么的，其实本质上的目的都是招聘人才进行储备。</strong></p>
+<p>某种程度上来说，<strong>大公司把一个优秀的学生培养成优秀工程师花费的代价要小于去市场上招聘一个同样优秀的工程师的代价</strong>。算法岗位当中至少有80%以上的顶级人才都在大公司手里攥着，广大二线、三线的小公司争抢剩下的20%。大公司想要在市场上招聘一个优秀的工程师是非常难的，远远比大家想的要难。这样的人手里往往不缺offer，加上大公司里层级以及待遇的限制，想要抢得过那些财大气粗的二线公司真的不容易。</p>
+<p>所以面试小公司的核心逻辑就是对口，他们需要的能力你有，他们需要的技术你会，就行了，你搞出很多花里胡哨的东西来其实没什么用。有些小公司的面试官连acm是什么都不知道，你和他说你是亚洲区的银牌有用么？</p>
+<p>大公司的招聘要求就比较琐碎了，一般来说比较<strong>看重基础</strong>。这里的基础并不仅仅是基础知识，准确地说是基础能力。比如数据结构和算法的能力，比如思维的灵活度，也就是给你出个算法题，看你能不能灵活地做出来。<strong>再比如机器学习的基础，模型的一些基础原理等等。</strong></p>
+<p>除了基础之外另外一个很重要的是你的<strong>软实力</strong>，比如你的表达能力，你的情商，遇到困难的时候的反应。比如遇到难题你有没有一个清晰的思考过程，简单尝试了一下就放弃了还是愿意不停地努力。还有你的性格，比如你是服从性的还是比较有主见的，如果你很有个性，老板可能会觉得你比较难管，用术语来说就是管理成本有点高，这也会让面试官打退堂鼓。</p>
+<p>还有一点常说的是<strong>潜力</strong>，潜力这是一个很虚的概念，完全是面试官的主观感受，很难有实际的支撑。根据我的理解大概是这么几个方面，一个是<strong>智商</strong>，聪明的人学东西快，潜力高，这个是毋庸置疑的。即使你很多东西不会，如果你能让面试官觉得你能很快学会，这些不是问题，那么这就不是一个减分项。还有<strong>年龄</strong>，比如中间经过了一些曲折浪费了几年比其他应聘者年长很多（两岁以上），可能会让面试官觉得你潜力折损。再比如你过去的一些经历，比如你在某个领域坚韧不拔从0做起，成长迅速，也会让面试官觉得你潜力不错。</p>
+<p>这样说起来<strong>实践的能力反而是加分项而不是主要的了</strong>，这也有一定的道理。因为对于大公司而言，整个技术架构往往都是自己独立建的，和外面的都不一样。也就是说除非之前在里面待过的，否则几乎找不到技术栈完全懂的。再加上校招生原本实战经验就要少一些，<strong>相比于招一个立即能上手的，更加倾向于能够快速学会的。</strong></p>
+<h2 id="核心能力"><a href="#核心能力" class="headerlink" title="核心能力"></a>核心能力</h2><p>由于我已经很久没有接触校招了，所以也很难说校招面试应该怎么样准备，只能说说如果是我来招聘，我会喜欢什么样的学生。也可以理解成我理解的一个合格优秀的算法工程师应该有的能力。</p>
+<h3 id="模型理解"><a href="#模型理解" class="headerlink" title="模型理解"></a>模型理解</h3><p>算法工程师和模型打交道，那么理解模型是必须的。其实<strong>不用说每一个模型都精通，这没有必要</strong>，面试的时候问的模型也不一定用得到。但更多地是看重这个人在<strong>学习的时候的习惯</strong>，他是浅尝辄止呢，还是会刨根究底，究竟能够学到怎样的地步。</p>
+<p>在实际的工作当中我们可能会面临各种各样的情况，比如说新加了特征但是没有效果，比如升级了模型效果反而变差了等等，这些情况都是有可能发生的。当我们遇到这些情况之后，需要我们根据已知的信息来推理和猜测导致的原因从而针对性的采取相应的手段。因此这就需要我们对当前的模型有比较深入地了解，否则推导原因做出改进也就无从谈起。</p>
+<p><strong>所以面试的时候问起哪个模型都不重要，重要的是你能不能体现出你有过深入的研究和理解。</strong></p>
+<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><p>算法工程师一直和数据打交道，那么<strong>分析数据、清洗数据、做数据的能力也必不可少</strong>。说起来简单的数据分析，这当中其实牵扯很多，简单来说至少有两个关键点。</p>
+<p>第一个关键点是<strong>处理数据的能力</strong>，比如SQL、hive、spark、MapReduce这些常用的数据处理的工具会不会，会多少？是一个都不会呢，还是至少会一点。由于各个公司的技术栈不同，一般不会抱着候选人必须刚好会和我们一样的期待去招人，但是候选人如果一无所知肯定也是不行的。由于学生时代其实很少接触这种实践的内容，很多人对这些都一无所知，如果你会一两个，其实就是加分项。</p>
+<p>第二个关键点是<strong>对数据的理解力</strong>，举个简单的例子，比如说现在的样本训练了模型之后效果不好，我们要分析它的原因，你该怎么下手？这个问题日常当中经常遇到，也非常考验算法工程师对数据的分析能力以及他的经验。数据是水，模型是船，我们要把船驶向远方，只懂船只构造是不行的，还需要对水文、天象也有了解。这样才能从数据当中捕捉到trick，对一些现象有更深入的看法和理解。</p>
+<h3 id="工程能力"><a href="#工程能力" class="headerlink" title="工程能力"></a>工程能力</h3><p>虽然是算法工程师，但是并不代表工程能力不重要，相反工程能力也很重要。当然这往往不会成为招聘的硬性指标， 比如考察你之前做过什么工程项目之类的。但是<strong>会在你的代码测试环节有所体现</strong>，你的代码风格，你的编码能力都是你面试的考察点之一。</p>
+<p>并不只是在面试当中如此，在实际工作当中，工程能力也很关键。往小了说可以开发一些工具、脚本方便自己或者是团队当中其他人的日常工作，往大了说，你也可以成为团队当中的开发担当，负责其团队当中最工程的工作。比如说<strong>复现一篇paper，或者是从头撸一个模型</strong>。这其实也是一种差异化竞争的手段，你合理地负担起别人负担不了的工作，那么自然就会成为你的业绩。</p>
+<p>时代在变化，行业在发展，如今的校招会问些什么早已经和当年不同了。但不管怎么说，这个岗位以及面试官对于人才的核心诉求几乎是没有变过的，我们从核心出发去构建简历、准备面试，相信一定可以有所收获。</p>
+<p>作者：一枚程序媛酱<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/406974583/answer/1508488223">https://www.zhihu.com/question/406974583/answer/1508488223</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：一枚程序媛酱<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/406974583/answer/1508488223">https://www.zhihu.com/question/406974583/answer/1508488223</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：一枚程序媛酱<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/406974583/answer/1508488223">https://www.zhihu.com/question/406974583/answer/1508488223</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：一枚程序媛酱<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/406974583/answer/1508488223">https://www.zhihu.com/question/406974583/answer/1508488223</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>作者：一枚程序媛酱<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/406974583/answer/1508488223">https://www.zhihu.com/question/406974583/answer/1508488223</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/10/17/suan-fa-gang-mian-shi-zhun-bei/">http://yc1999.github.io/2020/10/17/suan-fa-gang-mian-shi-zhun-bei/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B7%A5%E4%BD%9C/">
+                                    <span class="chip bg-color">工作</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/30/shi-shang-zui-lan-de-4-chong-xue-xi-fang-fa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="史上最烂的4种学习方法">
+                        
+                        <span class="card-title">史上最烂的4种学习方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            机械式记忆记忆有三个过程：
+
+编码
+存储
+提取
+
+机械式记忆可以完全前面两步，也就是成功编码存储进我们的脑子，但是不能被我们提取出来。
+认知通化理论将学习
+
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="post-category">
+                                    学习方法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B9%B2%E8%B4%A7/">
+                        <span class="chip bg-color">干货</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/10/qing-hua-da-xue-2021-nian-tui-jian-mian-shi-zhi-shuo-zhi-bo-sheng-lu-xing-zheng-shi-bao-ming-shou-xu-de-tong-zhi-ji-zi-ge-fu-shen-yao-qiu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求">
+                        
+                        <span class="card-title">清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            清华大学2021年推荐免试直硕、直博生履行正式报名手续的通知及资格复审要求1. 外校推免生查询拟录取信息即日起，被我校拟录取的外校推免生可登录“清华大学研究生招生网”（http://yz.tsinghua.edu.cn/）查询拟录取信息。
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%9D%E7%A0%94/">
+                        <span class="chip bg-color">保研</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="多分类，多标签模型的Accuracy, Precision, Recall和F1-score, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>多分类，多标签模型的Accuracy, Precision, Recall和F1-score | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1gljpsvf998j20xc0goq48.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">多分类，多标签模型的Accuracy, Precision, Recall和F1-score</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                机器学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-11
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，机器学习分类模型常用评价指标有Accuracy, Precision, Recall和F1-score，而回归模型最常用指标有MAE和RMSE。但是我们真正了解这些评价指标的意义吗？</p>
+<p><strong>在具体场景（如不均衡多分类）中到底应该以哪种指标为主要参考呢？多分类模型和二分类模型的评价指标有啥区别？多分类问题中，为什么Accuracy = micro precision = micro recall = micro F1-score? 什么时候用macro, weighted, micro precision/ recall/ F1-score?</strong></p>
+<p>这几天为了回复严谨（划去: 刁难）的reviewer，我查阅了一些文章，总算是梳理清楚啦。在这里分享给大家，权当做个总结。今天要讲的主要分为以下两点：</p>
+<ul>
+<li><strong>二分类</strong>模型的常见指标<strong>快速回顾</strong></li>
+<li><strong>多分类</strong>模型的常见指标<strong>详细解析</strong></li>
+<li><strong>多标签</strong>模型的常见指标<strong>详细解析</strong></li>
+</ul>
+<p>在探讨这些问题前，让我们先回顾一下最常见的指标Accuracy到底有哪些不足。</p>
+<p>Accuracy是分类问题中最常用的指标，<strong>它计算了分类正确的预测数与总预测数的比值</strong>。但是，<font color="red"><strong>对于不平衡数据集而言，Accuracy并不是一个好指标</strong></font>。为啥？</p>
+<p>假设我们有100张图片，其中91张图片是「狗」，5张是「猫」，4张是「猪」，我们希望训练一个三分类器，能正确识别图片里动物的类别。其中，狗这个类别就是大多数类 (majority class)。当大多数类中样本（狗）的数量远超过其他类别（猫、猪）时，如果采用Accuracy来评估分类器的好坏，那么即便模型性能很差 (如无论输入什么图片，都预测为「狗」)，也可以得到较高的Accuracy Score（如91%）。此时，虽然Accuracy Score很高，但是意义不大。<strong>当数据异常不平衡时，Accuracy评估方法的缺陷尤为显著。</strong></p>
+<p>因此，我们需要引入Precision （精准度），Recall （召回率）和F1-score评估指标。考虑到二分类，多分类，多标签模型中，评估指标的计算方法<strong>略有不同</strong>，我们将其分开讨论。</p>
+<h2 id="二分类模型的常见指标快速回顾"><a href="#二分类模型的常见指标快速回顾" class="headerlink" title="二分类模型的常见指标快速回顾"></a>二分类模型的常见指标快速回顾</h2><p>在二分类问题中，假设该样本一共有两种类别：Positive和Negative。当分类器预测结束，我们可以绘制出混淆矩阵（confusion matrix）。其中分类结果分为如下几种：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0af2bd2decf49bbb45e31ef7091625e9_720w.jpg"></p>
+<ul>
+<li>True Positive (TP): 把正样本成功预测为正。</li>
+<li>True Negative (TN)：把负样本成功预测为负。</li>
+<li>False Positive (FP)：把负样本错误地预测为正。</li>
+<li>False Negative (FN)：把正样本错误的预测为负。</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-763b2bc2e358ead002eca8d94e104db4_720w.jpg"></p>
+<p>在二分类模型中，Accuracy，Precision，Recall和F1 score的定义如下：</p>
+<p><img src="https://www.zhihu.com/equation?tex=Accuracy+=+%5Cfrac%7BTP+TN%7D%7BTP+TN+FP+FN%7D"></p>
+<p><img src="https://www.zhihu.com/equation?tex=Precision+=+%5Cfrac%7BTP%7D%7BTP+FP%7D"></p>
+<p><img src="https://www.zhihu.com/equation?tex=Recall+=+%5Cfrac%7BTP%7D%7BTP+FN%7D"></p>
+<p><img src="https://www.zhihu.com/equation?tex=F1%5Ctext%7B-%7Dscore+=+%5Cfrac%7B2%5Ctimes+%5Ctext%7BPrecision%7D+%5Ctimes+%5Ctext%7BRecall%7D%7D%7B+%5Ctext%7BPrecision%7D+%5Ctext%7BRecall%7D%7D"></p>
+<blockquote>
+<p>F1-score的计算方式在数学中称为：调和平均。</p>
+</blockquote>
+<p>其中，Precision着重评估<strong>在预测为Positive的所有数据中，真实Positve的数据到底占多少？</strong>Recall着重评估：<strong>在所有的Positive数据中，到底有多少数据被成功预测为Positive?</strong></p>
+<p>举个例子，一个医院新开发了一套癌症AI诊断系统，想评估其性能好坏。我们把病人得了癌症定义为Positive，没得癌症定义为Negative。那么， 到底该用什么指标进行评估呢？</p>
+<p>如用Precision对系统进行评估，那么其回答的问题就是：</p>
+<pre><code class="text">在诊断为癌症的一堆人中，到底有多少人真得了癌症？
+</code></pre>
+<p>如用Recall对系统进行评估，那么其回答的问题就是：</p>
+<pre><code class="text">在一堆得了癌症的病人中，到底有多少人能被成功检测出癌症？
+</code></pre>
+<p>如用Accuracy对系统进行评估，那么其回答的问题就是：</p>
+<pre><code class="text">在一堆癌症病人和正常人中，有多少人被系统给出了正确诊断结果（患癌或没患癌）？
+</code></pre>
+<p><strong>OK，那啥时候应该更注重Recall而不是Precision呢？</strong></p>
+<blockquote>
+<p>当False Negative (FN)的成本代价很高 (后果很严重)，希望尽量避免产生FN时，应该着重考虑提高Recall指标。</p>
+</blockquote>
+<p>在上述例子里，False Negative是得了癌症的病人没有被诊断出癌症，这种情况是最应该避免的。我们宁可把健康人误诊为癌症 (FP)，也不能让真正患病的人检测不出癌症 (FN) 而耽误治疗离世。在这里，癌症诊断系统的目标是：尽可能提高Recall值，哪怕牺牲一部分Precision。</p>
+<p><strong>那啥时候应该更注重Precision而不是Recall呢？</strong></p>
+<blockquote>
+<p>当False Positive (FP)的成本代价很高 (后果很严重)时，即期望尽量避免产生FP时，应该着重考虑提高Precision指标。</p>
+</blockquote>
+<p>以垃圾邮件屏蔽系统为例，垃圾邮件为Positive，正常邮件为Negative，False Positive是把正常邮件识别为垃圾邮件，这种情况是最应该避免的（你能容忍一封重要工作邮件直接进了垃圾箱，被不知不觉删除吗？）。我们宁可把垃圾邮件标记为正常邮件 (FN)，也不能让正常邮件直接进垃圾箱 (FP)。在这里，垃圾邮件屏蔽系统的目标是：尽可能提高Precision值，哪怕牺牲一部分recall。</p>
+<p>而F1-score是Precision和Recall两者的综合。</p>
+<p>举个更有意思的例子（我拍脑袋想出来的，绝对原创哈），假设检察机关想将罪犯捉拿归案，需要对所有人群进行分析，以判断某人犯了罪（Positive），还是没犯罪（Negative）。显然，检察机关希望不漏掉一个罪人（提高recall），也不错怪一个好人（提高precision），所以就需要同时权衡recall和precision两个指标。</p>
+<p>尤其在上个世纪，中国司法体制会更偏向Recall，即「天网恢恢，疏而不漏，任何罪犯都插翅难飞」。而西方司法系统会更偏向Precision，即「绝不冤枉一个好人，但是难免有罪犯成为漏网之鱼，逍遥法外」。到底是哪种更好呢？显然，极端并不可取。Precision和Recall都应该越高越好，也就是F1应该越高越好。</p>
+<p>呼，二分类问题的常见指标和试用场景终于讲完了。咦，说好的快速回顾呢？</p>
+<h2 id="多分类模型的常见指标详细解析"><a href="#多分类模型的常见指标详细解析" class="headerlink" title="多分类模型的常见指标详细解析"></a>多分类模型的常见指标详细解析</h2><p>在多分类（大于两个类）问题中，假设我们要开发一个动物识别系统，来区分输入图片是猫，狗还是猪。给定分类器一堆动物图片，产生了如下结果混淆矩阵。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-e1cf922d05b7e1bf266620577e6fd253_720w.jpg"></p>
+<p>在混淆矩阵中，正确的分类样本（Actual label = Predicted label）分布在左上到右下的对角线上。其中，Accuracy的定义为分类正确（对角线上）的样本数与总样本数的比值。<font color="red"><strong>Accuracy度量的是全局样本预测情况。而对于Precision和Recall而言，每个类都需要单独计算其Precision和Recall</strong></font>。</p>
+<p><img src="https://pic4.zhimg.com/v2-77e85aad7db38c1f4a2116af5fb10a5b_r.jpg"></p>
+<p>比如，对类别「猪」而言，其Precision和Recall分别为:</p>
+<p><img src="https://www.zhihu.com/equation?tex=Precision+=+%5Cfrac%7BTP%7D%7BTP+FP%7D+=+%5Cfrac%7B20%7D%7B20+50%7D+=+2/7"></p>
+<p><img src="https://www.zhihu.com/equation?tex=Recall+=+%5Cfrac%7BTP%7D%7BTP+FN%7D+=+%5Cfrac%7B20%7D%7B20+10%7D+=+2/3"></p>
+<p>也就是，</p>
+<p><img src="https://www.zhihu.com/equation?tex=P_%7Bcat%7D=8/15,+P_%7Bdog%7D+=+17/23,P_%7Bpig%7D=2/7"> （P代表Precision）</p>
+<p><img src="https://www.zhihu.com/equation?tex=R_%7Bcat%7D=4/7,+R_%7Bdog%7D+=+17/32,R_%7Bpig%7D=2/3"> （R代表Recall）</p>
+<p>如果想评估该识别系统的总体功能，必须考虑猫、狗、猪三个类别的综合预测性能。那么，<strong>到底要怎么综合这三个类别的Precision呢？</strong>是简单加起来做平均吗？通常来说， 我们有如下几种解决方案（也可参考<a href="https://link.zhihu.com/?target=https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html">scikit-learn官网</a>）：</p>
+<h3 id="1-Macro-average方法"><a href="#1-Macro-average方法" class="headerlink" title="1. Macro-average方法"></a><strong>1. Macro-average方法</strong></h3><p>该方法最简单，直接将不同类别的评估指标（Precision/ Recall/ F1-score）加起来求平均，给所有类别相同的权重。<strong>该方法能够平等看待每个类别，但是它的值会受稀有类别影响。</strong></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BMacro-Precision%7D+=+%5Cfrac%7B%7BP%7D_%7Bcat%7D++P_%7Bdog%7D+++P_%7Bpig%7D+%7D%7B3%7D+=+0.5194"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BMacro-Recall%7D+=+%5Cfrac%7BR_%7Bcat%7D+++R_%7Bdog%7D+++R_%7Bpig%7D+%7D%7B3%7D+=+0.5898"></p>
+<h3 id="2-Weighted-average方法"><a href="#2-Weighted-average方法" class="headerlink" title="2. Weighted-average方法"></a><strong>2. Weighted-average方法</strong></h3><p>该方法给不同类别不同权重（权重根据该类别的真实分布比例确定），每个类别乘权重后再进行相加。<strong>该方法考虑了类别不平衡情况，它的值更容易受到常见类（majority class）的影响</strong>。</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BW%7D_%7Bcat%7D+:+%5Ctext%7BW%7D_%7Bdog%7D+:+%5Ctext%7BW%7D_%7Bpig%7D+=+%5Ctext%7BN%7D_%7Bcat%7D+:+%5Ctext%7BN%7D_%7Bdog%7D+:%5Ctext%7BN%7D_%7Bpig%7D++=+%5Cfrac%7B7%7D%7B26%7D+:+%5Cfrac%7B16%7D%7B26%7D:+%5Cfrac%7B3%7D%7B26%7D"> (W代表权重，N代表样本在该类别下的真实数目)</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BWeighted-Precision%7D+=+%7BP%7D_%7Bcat%7D%5Ctimes+W_%7Bcat%7D++++%7BP%7D_%7Bdog%7D%5Ctimes+W_%7Bdog%7D++++%7BP%7D_%7Bpig%7D%5Ctimes+W_%7Bpig%7D+=+0.6314"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BWeighted-Recall%7D+=+%7BR%7D_%7Bcat%7D%5Ctimes+W_%7Bcat%7D++++%7BR%7D_%7Bdog%7D%5Ctimes+W_%7Bdog%7D++++%7BR%7D_%7Bpig%7D%5Ctimes+W_%7Bpig%7D+=+0.5577"></p>
+<h3 id="3-Micro-average方法"><a href="#3-Micro-average方法" class="headerlink" title="3. Micro-average方法"></a><strong>3. Micro-average方法</strong></h3><p>该方法把每个类别的TP, FP, FN先相加之后，在根据二分类的公式进行计算。</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BMicro-Precision%7D+=+%5Cfrac%7B%7BTP%7D_%7Bcat%7D+++%7BTP%7D_%7Bdog%7D+++%7BTP%7D_%7Bpig%7D%7D%7B+%7BTP%7D_%7Bcat%7D+++%7BTP%7D_%7Bdog%7D+++%7BTP%7D_%7Bpig%7D+++%7BFP%7D_%7Bcat%7D+++%7BFP%7D_%7Bdog%7D+++%7BFP%7D_%7Bpig%7D%7D+=+0.5577+"></p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BMicro-Recall%7D+=+%5Cfrac%7B%7BTP%7D_%7Bcat%7D+++%7BTP%7D_%7Bdog%7D+++%7BTP%7D_%7Bpig%7D%7D%7B+%7BTP%7D_%7Bcat%7D+++%7BTP%7D_%7Bdog%7D+++%7BTP%7D_%7Bpig%7D+++%7BFN%7D_%7Bcat%7D+++%7BFN%7D_%7Bdog%7D+++%7BFN%7D_%7Bpig%7D%7D=0.5577"></p>
+<p>其中，特别有意思的是，<strong>Micro-precision和Micro-recall竟然始终相同！</strong>这是为啥呢？</p>
+<p>这是因为在某一类中的False Positive样本，一定是其他某类别的False Negative样本。听起来有点抽象？举个例子，比如说系统错把「狗」预测成「猫」，那么对于狗而言，其错误类型就是False Negative，对于猫而言，其错误类型就是False Positive。于此同时，Micro-precision和Micro-recall的数值都等于Accuracy，因为它们计算了对角线样本数和总样本数的比值，总结就是：</p>
+<p><img src="https://www.zhihu.com/equation?tex=%5Ctext%7BMicro-Precision%7D+=+%5Ctext%7BMicro-Recall%7D+=+%5Ctext%7BMicro-F1+score%7D+=+%5Ctext%7BAccuracy%7D+"></p>
+<p>最后，我们运行一下代码，检验手动计算结果是否和Sklearn包结果一致：</p>
+<pre><code class="python">import numpy as np
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, average_precision_score,precision_score,f1_score,recall_score
+
+# create confusion matrix
+y_true = np.array([-1]*70 + [0]*160 + [1]*30)
+y_pred = np.array([-1]*40 + [0]*20 + [1]*20 + 
+                  [-1]*30 + [0]*80 + [1]*30 + 
+                  [-1]*5 + [0]*15 + [1]*20)
+cm = confusion_matrix(y_true, y_pred)
+conf_matrix = pd.DataFrame(cm, index=['Cat','Dog','Pig'], columns=['Cat','Dog','Pig'])
+
+# plot size setting
+fig, ax = plt.subplots(figsize = (4.5,3.5))
+sns.heatmap(conf_matrix, annot=True, annot_kws={"size": 19}, cmap="Blues")
+plt.ylabel('True label', fontsize=18)
+plt.xlabel('Predicted label', fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.savefig('confusion.pdf', bbox_inches='tight')
+plt.show()
+</code></pre>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glk4z653u6j20ci09qdg9.jpg"></p>
+<pre><code class="python">print('-----Macro-----')
+print('Macro precision',precision_score(y_true,y_pred,average='macro'))
+print('Macro recall',recall_score(y_true,y_pred,average='macro'))
+print('Macro f1-score',f1_score(y_true,y_pred,average='macro'))
+
+print('-----Weighted-----')
+print('Weighted precision',precision_score(y_true,y_pred,average='weighted'))
+print('Weighted recall',recall_score(y_true,y_pred,average='weighted'))
+print('Weighted f1-score',f1_score(y_true,y_pred,average='weighted'))
+
+print('-----Micro-----')
+print('Micro precision',precision_score(y_true,y_pred,average='micro'))
+print('Micro recall',recall_score(y_true,y_pred,average='micro'))
+print('Micro f1-score',f1_score(y_true,y_pred,average='micro'))
+</code></pre>
+<pre><code class="text">-----Macro-----
+Macro precision 0.5193926846100759
+Macro recall 0.589781746031746
+Macro f1-score 0.5233019853709507
+-----Weighted-----
+Weighted precision 0.6314062748845358
+Weighted recall 0.5576923076923077
+Weighted f1-score 0.575114540631782
+-----Micro-----
+Micro precision 0.5576923076923077
+Micro recall 0.5576923076923077
+Micro f1-score 0.5576923076923077
+</code></pre>
+<p>运算结果完全一致。</p>
+<h2 id="多标签模型的常见指标详细解析"><a href="#多标签模型的常见指标详细解析" class="headerlink" title="多标签模型的常见指标详细解析"></a>多标签模型的常见指标详细解析</h2><p>前面讲解了二分类和多分类模型的评价指标，那么对于多标签分类模型，它的评价指标又是怎么计算的呢？</p>
+<p>在针对multilabel分类计算F score的时候，通常有macro和micro两种average的方法。Python的scikit-learn库在计算f1 score也提供了micro和macro两种选择，具体在multilabel的情况下，怎么计算F1-score，在网上查阅了很多博客和资料都没有给出一个明确的用列子解释的步骤，这边我自己通过整合资料代码验证出了macro和micro两种F1-score的计算方法。</p>
+<p>请看下面的简单例子：</p>
+<p>让$N=3,L=3$，一共有3个data，每个data有3个预备分类。</p>
+<pre><code class="python">y_gt = np.array([[1,0,1],[0,1,1],[0,1,0]])
+y_pred = np.array([[0,0,1],[1,1,1],[1,1,1]])
+
+print("Macro f1-score:",f1_score(y_gt,y_pred,average='macro'))
+print('Micro f1-score:',f1_score(y_gt,y_pred,average='micro'))
+</code></pre>
+<pre><code class="text">Macro f1-score: 0.6
+Micro f1-score: 0.6666666666666666
+</code></pre>
+<p>对于每一个class，我们都需要先算一个2x2的confusion matrix，里面分别标明了对于这一个class的TP，FP，FN和TN。<font color="red"><strong>其实做法和多分类是一样的。</strong></font></p>
+<h3 id="1-Macro-average方法-1"><a href="#1-Macro-average方法-1" class="headerlink" title="1. Macro-average方法"></a>1. Macro-average方法</h3><p>对于macro，我们通过每一个class的confusion matrix算出它的precision和recall，并计算出对与那个class的F1 score，最后通过平均所有class的F1 score得到F1 macro</p>
+<p><strong>Class 0：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">gt\pred</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"><strong>0</strong></td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>$P_0 = \frac{0}{0+2}=0, R_0 = \frac{0}{0+1}=0$</p>
+<p>$F1_0=\frac{2\times0\times0}{0+0}=0$</p>
+<p><strong>Class 1：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">gt\pred</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>0</strong></td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>$P_1 = \frac{2}{2+0}=1, R_1 = \frac{2}{2+0}=1$</p>
+<p>$F1_1=\frac{2\times1\times1}{1+1}=1$</p>
+<p><strong>Class 2:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">gt\pred</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>0</strong></td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<p>$P_2 = \frac{2}{2+1}=\frac{2}{3}, R_2 = \frac{2}{2+0}=1$</p>
+<p>$F1_2=\frac{2\times{\frac{2}{3}}\times1}{\frac{2}{3}+1}=\frac{4}{5}$</p>
+<p>$F1_{macro}=\frac{1}{N}(F1_0+ F1_1+…+F1_N)=\frac{1}{3}(F1_0+F1_1+F1_2)=\frac{1}{3}(0+1+\frac{4}{5})=0.6$</p>
+<h3 id="2-Micro-average方法"><a href="#2-Micro-average方法" class="headerlink" title="2. Micro-average方法"></a>2. Micro-average方法</h3><p>对于micro，我们把所有class的binary confusion matrix整合成一个大的2x2confusion matrix，然后并对于整合成的confusion matrix算出一个precision和recall值（$P_{comb}$ and $R_{comb}$），最后通过公式得到$F1_{micro}$ score。</p>
+<p><strong>Combined all classes:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">gt\pred</th>
+<th align="center">1</th>
+<th align="center">0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>1</strong></td>
+<td align="center">4</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"><strong>0</strong></td>
+<td align="center">3</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>$P_{comb}=\frac{4}{4+3}=\frac{4}{7}, R_{comb}=\frac{4}{4+1}=\frac{4}{5}$</p>
+<p>$F1_{micro}=\frac{2P_{comb}R_{comb}}{P_{comb}+R_{comb}}=\frac{2\times\frac{4}{7}\times\frac{4}{5}}{\frac{4}{7}+\frac{4}{5}}=0.66666666…$</p>
+<p><font color="red">注意区别在多标签模型中，其Micro-average得到的precision，recall和F1-score并不是相等的。</font></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fledlingbird/p/10675922.html">多分类模型Accuracy, Precision, Recall和F1-score的超级无敌深入探讨</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fledlingbird/p/10675922.html">Multilabel(多标签分类)metrics：hamming loss，F score</a></li>
+<li><a href="https://link.zhihu.com/?target=https://lawtomated.com/accuracy-precision-recall-and-f1-scores-for-lawyers/">4 Things You Need to Know about AI: Accuracy, Precision, Recall and F1 scores</a></li>
+<li><a href="https://link.zhihu.com/?target=https://towardsdatascience.com/multi-class-metrics-made-simple-part-i-precision-and-recall-9250280bddc2">Multi-Class Metrics Made Simple, Part I: Precision and Recall</a></li>
+<li><a href="https://link.zhihu.com/?target=https://tech.labs.oliverwyman.com/blog/2019/10/17/accuracy-precision-recal-elixir/">Accuracy, Precision and Recall: Multi-class Performance Metrics for Supervised Learning</a></li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/">http://yc1999.github.io/2020/12/11/duo-fen-lei-mo-xing-accuracy-precision-recall-he-f1-score-de-chao-ji-wu-di-shen-ru-tan-tao/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/12/a-semi-supervised-graph-attentive-network-for-financial-fraud-detection/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gllcwqjlfzj22yo1o0axg.jpg" class="responsive-img" alt="A Semi-supervised Graph Attentive Network for Financial Fraud Detection">
+                        
+                        <span class="card-title">A Semi-supervised Graph Attentive Network for Financial Fraud Detection</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            支付宝2019ICDM论文，论文采用node-level + view-level的方式构造用户的embedding，最后以supervised loss+ unsupervised loss的方式构造损失函数，良好地利用了labeled和unlabeled的数据。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">论文笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%87%91%E8%9E%8D%E5%8F%8D%E6%AC%BA%E8%AF%88/">
+                        <span class="chip bg-color">金融反欺诈</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/10/xiang-jie-shen-du-xue-xi-zhong-de-normalization-bn-ln-wn/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1glj2dj8brsj20m80bltdq.jpg" class="responsive-img" alt="详解深度学习中的Normalization，BN/LN/WN">
+                        
+                        <span class="card-title">详解深度学习中的Normalization，BN/LN/WN</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+原文地址：https://zhuanlan.zhihu.com/p/33173246
+
+深度神经网络模型训练之难众所周知，其中一个重要的现象就是 Internal Covariate Shift. Batch Norm 大法自 2015 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

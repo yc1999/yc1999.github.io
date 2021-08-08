@@ -1,0 +1,1162 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【ESE680 GNN】Lecture 4: Graph Neural Networks, 杨程的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【ESE680 GNN】Lecture 4: Graph Neural Networks | 杨程的博客</title>
+    <link rel="icon" type="image/png" href="/myicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <span class="logo-span">杨程的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <div class="logo-name">杨程的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://ww1.sinaimg.cn/large/9b63ed6fgy1glc4i4neayj215m0bwdhy.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【ESE680 GNN】Lecture 4: Graph Neural Networks</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-04
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>这节课主要是从<strong>频域</strong>的角度出发介绍GNN，带大家入门GNN。</p>
+<ul>
+<li><p>首先讲解graph filters；</p>
+</li>
+<li><p>然后通过【graph filter+pointwise nonlinearity】的构造graph perceptron，多个graph perceptron的叠加就是</p>
+<p>the most simplest GNN了。</p>
+</li>
+<li><p>最后，在最基本的GNN的基础上，我们引入filter banks和multiple-input-multiple-output graph filters，得到MIMO GNNs。而MIMO GNNs就是我们常见的GNN了。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="Graph-Convolutional-Filter"><a href="#Graph-Convolutional-Filter" class="headerlink" title="Graph Convolutional Filter"></a>Graph Convolutional Filter</h2><h3 id="Graph-Convolutional-Filter的输入"><a href="#Graph-Convolutional-Filter的输入" class="headerlink" title="Graph Convolutional Filter的输入"></a>Graph Convolutional Filter的输入</h3><p>从频域的角度出发，Graph Convolutional Filter的输入和输出是Graph Signals。</p>
+<h3 id="Graph-Convolutional-Filter的优化目标"><a href="#Graph-Convolutional-Filter的优化目标" class="headerlink" title="Graph Convolutional Filter的优化目标"></a>Graph Convolutional Filter的优化目标</h3><p>Empirical Risk Minimization通常包含3个组成成分：<br><img src="https://img-blog.csdnimg.cn/20201204185558684.png"><br>而机器学习的目标就是在function class里面找到损失最小的那个function：<br><img src="https://img-blog.csdnimg.cn/20201204185908488.png"><br>那么，对于GNN来说，它的function class是什么呢？就是graph convolutional filters！</p>
+<blockquote>
+<p>注意啦，在课程中graph convolutional filters和graph filters指的都是同一种东西。</p>
+</blockquote>
+<p>给定GSO（Graph Shift Operator）$S$，其感受野为$K$的graph convolutional filters可以统一表示成下方的形式：<br><img src="https://img-blog.csdnimg.cn/2020120419093549.png"><br>在这个function class里面，$S$和$h$都应该是超参数，但是由于往往$S$都是给定的，所以超参数只剩下h了。所以，<strong>GNN的优化目标</strong>就是：<br><img src="https://img-blog.csdnimg.cn/20201204191801999.png"></p>
+<h3 id="Graph-Convolutional-Filter的输出"><a href="#Graph-Convolutional-Filter的输出" class="headerlink" title="Graph Convolutional Filter的输出"></a>Graph Convolutional Filter的输出</h3><p>从频域的角度出发，Graph Neural Networks的输入和输出是Graph Signals。</p>
+<p>但是当我们训练集上的$y$不是graph signal的时候，可以在GNN输出上加一层Readout Layer（其Transformation Matrix为$A$），将GNN输出的graph signal变成和$y$相同的维度，具体的流程图如下：<br><img src="https://img-blog.csdnimg.cn/20201204192220915.png"><br>相应的，优化目标变成了：<br><img src="https://img-blog.csdnimg.cn/20201204192734587.png"><br>那么这个$A$如何定义呢？可能我们的第一想法是将其设置为超参数，但是老师说这是不可取的，$A$最好根据实际情况，自己进行定义，例如可以定义为：<br><img src="https://img-blog.csdnimg.cn/20201204192458213.png"></p>
+<blockquote>
+<p>其实在使用PyG的Cora数据集时，里面有使用<code>train_mask</code>和<code>test_mask</code>，它们就可以看做是read out specific nodes的操作~</p>
+</blockquote>
+<h2 id="Graph-Neural-Networks（GNNs）"><a href="#Graph-Neural-Networks（GNNs）" class="headerlink" title="Graph Neural Networks（GNNs）"></a>Graph Neural Networks（GNNs）</h2><h3 id="Graph-Perceptron"><a href="#Graph-Perceptron" class="headerlink" title="Graph Perceptron"></a>Graph Perceptron</h3><p><strong>Simplest GNN是由很多graph perceptron构成的</strong>，一个graph perceptron只是在Graph Convolutional Filter之后添加了一些东西，其结构如下：<br><img src="https://img-blog.csdnimg.cn/2020120419330124.png"></p>
+<ul>
+<li>第一个component是一个graph filter；</li>
+<li>第二个component是一个Pointwise Nonlinearties👇<h4 id="Pointwise-Nonlinearties"><a href="#Pointwise-Nonlinearties" class="headerlink" title="Pointwise Nonlinearties"></a>Pointwise Nonlinearties</h4>首先是What？</li>
+</ul>
+<p>这种Pointwise非线性函数通过下面的操作图就能理解它是什么运作的了：<br><img src="https://img-blog.csdnimg.cn/20201204193615985.png"><br>我们常见的Pointwise Nonlinearities有：<br><img src="https://img-blog.csdnimg.cn/20201204193717666.png"><br>那么Why呢？<br>老师给出的答案：</p>
+<ol>
+<li><strong>Pointwise nonlinearities decrease variability. =&gt; They function as demodulators.</strong></li>
+<li>Graph lters have limited expressive power because they can only learn linear maps。所以需要引入nonlinearity。<br>我没有理解。。。<h4 id="Graph-Perceptron的优化目标"><a href="#Graph-Perceptron的优化目标" class="headerlink" title="Graph Perceptron的优化目标"></a>Graph Perceptron的优化目标</h4>正是引入了Pointwise Nonlinearities的概念，所以Graph Perceptron的优化目标和Graph Convolutional Filter有点点不同：<br><img src="https://img-blog.csdnimg.cn/20201204194625583.png"><br>其中：<br><img src="https://img-blog.csdnimg.cn/20201204194603180.png"></li>
+</ol>
+<h3 id="GNN的结构"><a href="#GNN的结构" class="headerlink" title="GNN的结构"></a>GNN的结构</h3><p><strong>Simplest GNN是由很多graph perceptron构成的</strong>，对于一个拥有3层graph perceptron的GNN来说，其结构为：<br><img src="https://img-blog.csdnimg.cn/20201204195157684.png"></p>
+<h3 id="GNN的优化目标"><a href="#GNN的优化目标" class="headerlink" title="GNN的优化目标"></a>GNN的优化目标</h3><p>通过上面的结构我们可以总结出GNN的function class为：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201204195334651.png"><br>那么它的优化目标，就是<strong>找到一组最合适的$\mathcal{H}$使得loss最小</strong>：<br><img src="https://img-blog.csdnimg.cn/20201204195809941.png"></p>
+<blockquote>
+<p>其实想想参数的数量是$K \times L$个。</p>
+</blockquote>
+<h3 id="GNN-vs-Graph-Filters"><a href="#GNN-vs-Graph-Filters" class="headerlink" title="GNN vs. Graph Filters"></a>GNN vs. Graph Filters</h3><table>
+<thead>
+<tr>
+<th>比较方面</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>结构</td>
+<td>GNN是在Graph Filter的基础上增加了<strong>pointwise nonlinearities</strong>和<strong>layer compositions</strong>；</td>
+</tr>
+<tr>
+<td>效果</td>
+<td>GNN表现更加优秀</td>
+</tr>
+<tr>
+<td>迁移性</td>
+<td>两者都具有迁移性，我们可以将$x$和$S$都看作模型的input，那么就可以在多个图之间共享$\mathcal{H}$了。</td>
+</tr>
+</tbody></table>
+<h3 id="GNN-v-s-CNN"><a href="#GNN-v-s-CNN" class="headerlink" title="GNN v.s. CNN"></a>GNN v.s. CNN</h3><p>GNNs are proper generalizations of CNNs</p>
+<h3 id="GNN-vs-FCNN"><a href="#GNN-vs-FCNN" class="headerlink" title="GNN vs. FCNN"></a>GNN vs. FCNN</h3><p>首先，回顾一下，我们常见的FCNN（Fully Connected Neural Network）的执行流程：<br><img src="https://img-blog.csdnimg.cn/20201204201231293.png?type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3ljX2N5MTk5OQ==,size_16,color_FFFFFF,t_70"><br>由于GNN可以看作是FCNN的子类，GNN只是对FCNN里面的$\mathcal{H}$增加了限制，因此FCNN的效果一定是不会弱于GNN的：<br><img src="https://img-blog.csdnimg.cn/20201204201639514.png"><br><strong>那为什么我们还要使用GNN呢？</strong></p>
+<p>这就回到我们机器学习课上面讲的<strong>过拟合</strong>和<strong>模型泛化性</strong>了，GNN在这两个方面表现得更好。</p>
+<blockquote>
+<p>Because it exploits internal symmetries of graph signals codified in the graph shift operator，涉及到了Permutation Equivariance of Graph Neural Network的知识，这里就不多讲了。</p>
+</blockquote>
+<h2 id="Graph-Filter-Banks"><a href="#Graph-Filter-Banks" class="headerlink" title="Graph Filter Banks"></a>Graph Filter Banks</h2><p><strong>A Graph Filter Bank = A Set of Filters</strong></p>
+<p>我们用$h^f$表示第$f$个filter，将$x$分别输入多个filter之后可以得到：<br><img src="https://img-blog.csdnimg.cn/20201204202743332.png"><br>上图的结果就是将我们的feature matrix从$N \times 1$变成了$N \times F$大小，扩充了feature matrix的维度。</p>
+<h3 id="Output-Energy-of-a-Graph-Filter-in-the-GFT-Domain"><a href="#Output-Energy-of-a-Graph-Filter-in-the-GFT-Domain" class="headerlink" title="Output Energy of a Graph Filter in the GFT Domain"></a>Output Energy of a Graph Filter in the GFT Domain</h3><p>接下来介绍一个关于Graph Filter的output energy的定理：<br><img src="https://img-blog.csdnimg.cn/20201204203320800.png"><br>定理的证明如下：<br><img src="https://img-blog.csdnimg.cn/20201204203639678.png"></p>
+<h2 id="Multiple-Feature-GNNs"><a href="#Multiple-Feature-GNNs" class="headerlink" title="Multiple Feature GNNs"></a>Multiple Feature GNNs</h2><blockquote>
+<p>至此，我们所讲的graph signal都是$N \times 1$大小的，也就是每个结点只有一个特征，但是实际生活中的图上，结点的特征通常是多维度的，那么怎么处理多维特征的情况呢？<br><strong>前面我们介绍了filter bank，引入它的作用就在于实现处理多维特征。</strong></p>
+</blockquote>
+<p>对于输入的特征矩阵$\mathbf{X} \in \mathbb{R}^{N \times F}$，<font color="red">我们的处理思想就是对每一维的feature都进行filter bank操作。</font></p>
+<h3 id="Multiple-Input-Multiple-Output-MIMO-Graph-Filters"><a href="#Multiple-Input-Multiple-Output-MIMO-Graph-Filters" class="headerlink" title="Multiple-Input-Multiple-Output (MIMO) Graph Filters"></a>Multiple-Input-Multiple-Output (MIMO) Graph Filters</h3><p>假设现在有一个Feature Matrix $\mathbf{X} = [\mathbf{x}^1,…,\mathbf{x}^f,…,\mathbf{x}^F]$，对于其中的每一个$\mathbf{x}^f$都使用一个大小为$G$的filter bank。</p>
+<p>下面是对某一个$\mathbf{x}^f$使用一个大小为$G$的filter bank的示例：<br><img src="https://img-blog.csdnimg.cn/2020120420515215.png"><br>下面是所有的$\mathbf{x}^f$使用一个大小为$G$的filter bank的结果：<img src="https://img-blog.csdnimg.cn/20201204205214193.png"><br>可以想象，如果不做任何的处理，最终将会产生$F \times G$个特征维度，随着网络越来越深，这样的增长会限制我们的运行速度。<font color="red"><strong>因此，在这里，我们采用了上图中相加的方式。</strong></font>其公式表示为：<br><img src="https://img-blog.csdnimg.cn/20201204205413646.png"><br>最后的矩阵计算公式也非常的漂亮，只不过要多思考一下为什么是这样的矩阵计算公式：<br><img src="https://img-blog.csdnimg.cn/20201204205845685.png"></p>
+<blockquote>
+<p>Tips：上面的矩阵乘法是从<strong>列向量线性组合</strong>的角度看待的。</p>
+</blockquote>
+<h3 id="MIMO-GNN"><a href="#MIMO-GNN" class="headerlink" title="MIMO GNN"></a>MIMO GNN</h3><p>跟graph perceptron类比，我们将MIMO Graph Filters后面再加一个pointwise nonlinearity，就组成了MIMO perceptron。</p>
+<p>再进行类比，叠加MIMO perceptron就构成了MIMO GNN（也就是我们最常用的GNN）了。<br><img src="https://img-blog.csdnimg.cn/20201204205920793.png"><br>对于拥有三个MIMO perceptron的MIMO GNN，它的执行流程图如下所示：<br><img src="https://img-blog.csdnimg.cn/20201204210004247.png"><br>再次总结一下，GNN每一层的操作如下：<br><img src="https://img-blog.csdnimg.cn/20201204232041380.png"></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CarlYoung</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/">http://yc1999.github.io/2020/12/04/ese680-gnn-lecture-4-graph-neural-networks/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CarlYoung</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/05/shen-du-chang-wen-tong-guo-zui-jin-liang-nian-de-8-pian-lun-wen-quan-mian-fen-xi-he-zong-jie-ji-yu-tu-shen-jing-wang-luo-gnn-de-qi-zha-jian-ce/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测">
+                        
+                        <span class="card-title">深度长文: 通过最近两年的8篇论文全面分析和总结基于图神经网络GNN的欺诈检测</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+文章转载自深度长文: 通过最两年的8篇论文全面分析和总结基于图神经网络GNN 欺诈检测
+
+[TOC]
+欺诈检测（风控）是一个近两年业界和学界颇受关注的话题，其应用方向包括金融欺诈检测，风险控制，网络水军识别，黑产灰产识别等。
+本公众号之前
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GNN/" class="post-category">
+                                    GNN
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%BC%E8%BF%B0/">
+                        <span class="chip bg-color">综述</span>
+                    </a>
+                    
+                    <a href="/tags/GNN/">
+                        <span class="chip bg-color">GNN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/02/torch-nn-yu-torch-nn-functional-de-qu-bie/">
+                    <div class="card-image">
+                        
+                        <img src="http://ww1.sinaimg.cn/large/9b63ed6fgy1gl9va01qbbj22gw1e07wh.jpg" class="responsive-img" alt="torch.nn 与 torch.nn.functional 的区别">
+                        
+                        <span class="card-title">torch.nn 与 torch.nn.functional 的区别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            torch.nn可以理解为类，torch.nn.functional可以理解为函数，它们在使用上有一些区别
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PyTorch/" class="post-category">
+                                    PyTorch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                        <span class="chip bg-color">转载</span>
+                    </a>
+                    
+                    <a href="/tags/PyTorch/">
+                        <span class="chip bg-color">PyTorch</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">CarlYoung</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/yc1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:yc1043301600@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
