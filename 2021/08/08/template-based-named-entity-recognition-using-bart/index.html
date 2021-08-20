@@ -505,7 +505,10 @@
 <li><strong><font color="red">Problem 3</font></strong>: <strong>这些方法十分依赖source domain和target domain之间的textual pattern similarity</strong>（也可以称为是writing styles，比如新闻领域和评论领域，它们俩的风格就不太一样）。如果两者的textual pattern不相同，那么会导致模型性能的下降。</li>
 </ul>
 <p>为了解决<code>pre-trained model with a softmax/CRF output layer</code>和<code>distance-based methods</code>两种few-shot NER方法存在的3个问题，本文提出基于模板，利用生成式语言模型解决few-shot NER问题。</p>
-<h2 id="Contributions-创新点"><a href="#Contributions-创新点" class="headerlink" title="Contributions(创新点)"></a>Contributions(创新点)</h2><h2 id="Method——Template-Based-Method"><a href="#Method——Template-Based-Method" class="headerlink" title="Method——Template-Based Method"></a>Method——Template-Based Method</h2><img src="http://ww1.sinaimg.cn/mw690/002QqMizly1gt9nprqmlnj60pk0mfwmk02.jpg" style="zoom: 80%;">
+<h2 id="Contributions-创新点"><a href="#Contributions-创新点" class="headerlink" title="Contributions(创新点)"></a>Contributions(创新点)</h2><ol>
+<li>能够进行zero-shot</li>
+</ol>
+<h2 id="Method——Template-Based-Method"><a href="#Method——Template-Based-Method" class="headerlink" title="Method——Template-Based Method"></a>Method——Template-Based Method</h2><img src="http://ww1.sinaimg.cn/mw690/002QqMizly1gt9nprqmlnj60pk0mfwmk02.jpg" style="zoom: 80%;">
 
 <p>如上图所示，本文将few-shot NER看作是在<strong>seq2seq框架下的language model ranking problem</strong>。其中，source sequence是原始文本——$\mathbf{X} = {x_1,…,x_n}$​​​​，而target sequence则是被待分类span $x_{i:j}$​​ 和entity type $y_k$​​ 填充上的Template—— $\mathbf{T}$${y_k,x_{i:j}} = {t_1,…,t_m} $​​​​​​​​​。</p>
 <p>其实文章的基本思想还是非常好理解的，下面从Template Creation，Inference，Training 3个方面介绍文章的方法：</p>
@@ -545,11 +548,43 @@
 <li>ATIS</li>
 </ol>
 <h3 id="对比的方法"><a href="#对比的方法" class="headerlink" title="对比的方法"></a>对比的方法</h3><ol>
+<li>Sequnece Labelling BERT</li>
 <li>Sam Wiseman and Karl Stratos. 2019. Label-agnostic sequence labeling by copying nearest neighbors. In Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics, pages 5363–5369, Florence, Italy. Association for Computational Linguistics.</li>
 <li>Yi Yang and Arzoo Katiyar. 2020. Simple and effective few-shot named entity recognition with structured nearest neighbor learning. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 6365–6375, Online. Association for Computational Linguistics.</li>
 <li>Morteza Ziyadi, Yuting Sun, Abhishek Goswami, Jade Huang, and Weizhu Chen. 2020. Example-based named entity recognition.</li>
+<li>Jiaxin Huang, Chunyuan Li, Krishan Subudhi, Damien Jose, Shobana Balakrishnan, Weizhu Chen, Baolin Peng, Jianfeng Gao, and Jiawei Han. 2020. Few- shot named entity recognition: A comprehensive study.</li>
 </ol>
-<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="有价值的参考文献"><a href="#有价值的参考文献" class="headerlink" title="有价值的参考文献"></a>有价值的参考文献</h3><h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><h3 id="不懂的地方"><a href="#不懂的地方" class="headerlink" title="不懂的地方"></a>不懂的地方</h3><h3 id="可以借鉴的地方"><a href="#可以借鉴的地方" class="headerlink" title="可以借鉴的地方"></a>可以借鉴的地方</h3>
+<h3 id="Template-Influence"><a href="#Template-Influence" class="headerlink" title="Template Influence"></a>Template Influence</h3><p>在Prompt-based Learning中，template的选择是一个非常重要的，不同的template带来的结果可能会差异特别大！为此，论文在CoNLL03的development set上进行了对比实验，实验结果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gtaa893w00j20mp040jsv.jpg"></p>
+<p>从上面的结果来看，好像是语言表达越复杂（或者说更高级？）的template带来的性能越差。</p>
+<h3 id="CoNLL03-Results"><a href="#CoNLL03-Results" class="headerlink" title="CoNLL03 Results"></a>CoNLL03 Results</h3><p>首先，文章只在CoNLL03这一个数据集上进行实验，实验设定包含两种：</p>
+<ol>
+<li>standard NER setting</li>
+<li>in-domain few-show NER setting</li>
+</ol>
+<h4 id="Standard-NER-setting"><a href="#Standard-NER-setting" class="headerlink" title="Standard NER setting"></a>Standard NER setting</h4><p>这种设定就是标准的实验设定，其实验结果为：</p>
+<img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gtab09k6ohj20fb0dmn2a.jpg" style="zoom:80%;">
+
+<p>由上面的结果可以发现，虽然本文提出的方法没有超越SOTA，但是也是性能还是不错的。例如，相比于<code>Sequence Labeling BERT</code>和<code>Sequence Labeling BART</code>，它能够明显地提升Recall值。其中的原因估计是本文提出的方法采用的是枚举&lt;candidate_span&gt;的方式，从而能够提高Recall。</p>
+<p>此外，采用多个template融合的方式的<code>multi-template BART</code>比只使用单个template的<code>Template BART</code>的性能要好一些，主要的提升的方面是Precision值，说明，不同的template捕获的信息是不同的，集成template是一个可以探索的方向。</p>
+<h4 id="In-domain-Few-Shot-NER-Setting"><a href="#In-domain-Few-Shot-NER-Setting" class="headerlink" title="In-domain Few-Shot NER Setting"></a>In-domain Few-Shot NER Setting</h4><p>所谓的in-domain是相对于cross-domain而言的，in-domain表示source entity type和target entity type是属于同一题材下的entity type，并且它们的文本表述风格也是一致的。例如这里使用的是新闻数据集CoNLL03，并将其中的PER，ORG实体类型作为source entity type，而将LOC，MISC作为target entity type。</p>
+<img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gtabeelm9wj20g804wmy8.jpg" alt="" style="zoom:80%;">
+
+<p>从上面的结果来看，论文的方法无论是在source entity type还是target entity type都是完胜<code>Sequence Labeling BERT</code>的。<strong>但是，我们都知道<code>Sequence Labeling BERT</code>是一个弱baseline，这样做是不是并没有什么代表性啊？不应该和专业的few-shot NER技术进行对比吗？（可能是因为比不过吧？不然为啥只作为cross-domain的比较，没有做in-domain的比较）</strong></p>
+<h3 id="Cross-domain-Few-Shot-NER-Result"><a href="#Cross-domain-Few-Shot-NER-Result" class="headerlink" title="Cross-domain Few-Shot NER Result"></a>Cross-domain Few-Shot NER Result</h3><p>在cross-domain的实验设定下，source-domain是CoNLL03，而target domain是MIT Movie，MIT restaurant和ATIS。</p>
+<img src="http://ww1.sinaimg.cn/large/9b63ed6fly1gtac0jnijmj20qb0iin5e.jpg" style="zoom:80%;">
+
+<ol>
+<li>对比不使用source domain，直接进行training from scratch的方法，使用source domain的方法要更好，<strong>说明本文提出的模型确实能够实现source domain向target domain的知识迁移</strong>，并且其带来的提升比<code>Sequence Labeling BERT</code>要大一些，作者认为其中的原因在于——One possible explanation is that our model makes more use of the correlations between different entity type labels in the vocabulary as mentioned earlier, which BERT cannot achieve due to treating the output as discrete class labels.（不太了解这句话是什么意思）</li>
+<li>对于traditional method（即<code>Sequence Labeling BERT</code>和<code>Sequence Labeling BART</code>），无论是target domain上的样本数量少（10个）还是多（500）个，<code>Template-based BART</code>都要优于traditional method。<strong>这可能得益于本文采用的Template-based method</strong>，不需要重新定义output layer，从而保留了source-domain原有的信息，实现了<strong>continual learning</strong>；</li>
+<li>对比distance-based method，本文提出的方法不仅能够在instance数量极少的情况下超过distance-based method。而且随着样本数量的增加，distance-based method的性能几乎没有很大的提升，而本文的方法则有，<strong>这可能得益于本文的方法使用instances更新了模型的参数，从而能学到更好的特征，而distance-based method并没有</strong>；</li>
+</ol>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><h4 id="Impact-of-entity-frequencies-in-training-data"><a href="#Impact-of-entity-frequencies-in-training-data" class="headerlink" title="Impact of entity frequencies in training data"></a>Impact of entity frequencies in training data</h4><h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><h3 id="有价值的参考文献"><a href="#有价值的参考文献" class="headerlink" title="有价值的参考文献"></a>有价值的参考文献</h3><h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><h3 id="不懂的地方"><a href="#不懂的地方" class="headerlink" title="不懂的地方"></a>不懂的地方</h3><ol>
+<li><strong>为什么不直接使用MLM</strong>来解决这个问题呢？</li>
+<li>由于对生成类LM并不太了解，不知道代码实现的时候，是怎么做到Seq2Seq的训练的？请问公式4中的$t_{1:c-1}$是gold的，还是decoder的预测结果呢？（我猜是gold）</li>
+<li>论文中举例说“in Bangkok”可能被识别成“ORG”，“Bangkok”可能被识别成“LOC”。<strong>由于数据集中本身不存在嵌套实体现象，因此对于嵌套的实体，采用概率值高的作为最终的结果。</strong>那么，具体在编程实现方面是怎么进行的？总不可能暴力枚举吧？</li>
+</ol>
+<h3 id="可以借鉴的地方"><a href="#可以借鉴的地方" class="headerlink" title="可以借鉴的地方"></a>可以借鉴的地方</h3>
             </div>
             <hr/>
 
@@ -789,29 +824,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/08/08/template-based-named-entity-recognition-using-bart/">
+                <a href="/2021/08/14/adaprompt-adaptive-prompt-based-finetuning-for-relation-extraction/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Template-Based Named Entity Recognition Using BART">
                         
-                        <span class="card-title">Template-Based Named Entity Recognition Using BART</span>
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction">
+                        
+                        <span class="card-title">AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用
+                            Motivations &amp; Contributions近期，关于Prompt-based的论文有很多，其核心思想在于利用Pre-trained Language Model的原有预训练任务（最常见的就是MLM），在不引入新的参数的情
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -828,20 +863,19 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/NER/">
-                        <span class="chip bg-color">NER</span>
+                    <a href="/tags/Few-shot-Learning/">
+                        <span class="chip bg-color">Few-shot Learning</span>
                     </a>
                     
-                    <a href="/tags/Few-Shot-Learning/">
-                        <span class="chip bg-color">Few-Shot Learning</span>
+                    <a href="/tags/Relation-Extraction/">
+                        <span class="chip bg-color">Relation Extraction</span>
                     </a>
                     
-                    <a href="/tags/Prompt-based-Learning/">
-                        <span class="chip bg-color">Prompt-based Learning</span>
+                    <a href="/tags/Prompt-based-learning/">
+                        <span class="chip bg-color">Prompt-based learning</span>
                     </a>
                     
                 </div>
