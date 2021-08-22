@@ -457,7 +457,166 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="Prompt-Engineering"><a href="#Prompt-Engineering" class="headerlink" title="Prompt Engineering"></a>Prompt Engineering</h2><h3 id="Prompt-Shape"><a href="#Prompt-Shape" class="headerlink" title="Prompt Shape"></a>Prompt Shape</h3><p>Prompt shape主要分为两种：</p>
+<ol>
+<li><p><strong>cloze prompts</strong>。这种就是常见的完型填空式，多用于text classification任务，通常用Masked LM求解；</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpuopri5hj604e06aaac02.jpg" style="zoom:67%;"></li>
+<li><p><strong>prefix prompts</strong>。这种是在文本的最后才出现待填充位置，多用于text generation任务，通常用Prefix LM或者是Encoder-Decoder LM；</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpupxjs1yj60e205u75v02.jpg" style="zoom:67%;"></li>
+</ol>
+<h3 id="Manual-Template-Engineering"><a href="#Manual-Template-Engineering" class="headerlink" title="Manual Template Engineering"></a>Manual Template Engineering</h3><p>这个很好理解，就是人为的去根据先验知识设计一些“看似”有效的模板。</p>
+<h3 id="Automated-Template-Learning"><a href="#Automated-Template-Learning" class="headerlink" title="Automated Template Learning"></a>Automated Template Learning</h3><p><strong>Manual Template Engineering</strong>的优点是它非常直接的，其次确实能够在某些任务上能够取得不错的结果（例如情感二分类任务）。但是它还是存在许多的不足的：</p>
+<ol>
+<li>人工去构造一些模板，以及一个一个去验证这些模板的性能是一件非常苦逼的事情；</li>
+<li>人的智力是有限，模板的可选空间是无限的，人工选择的模板并不一定是最优的模板；</li>
+</ol>
+<p>因此，Automated Template Learning就应运而生了，该方法让机器自己去寻找合适的模板。根据得到的模板的类别，可分为两类：</p>
+<ol>
+<li><strong>Discrete Prompts</strong>: Prompts是真实的文本。以情感二分类为例，就是<code>“[X]我觉得很[Z]”</code>;</li>
+<li><strong>Continuous Prompts</strong>: The prompt is instead described directly in the embedding space of the underlying LM。也就是说，此时不会再有具体的文本来表示template了；</li>
+</ol>
+<p>如果从另外一个角度区分的话，模板又可分为两类：</p>
+<ol>
+<li><strong>Static</strong>: $f_{prompt}(x)$是静态的，对于每个input $x$，它的操作流程都是一样的；</li>
+<li><strong>Dynamic</strong>: $f_{prompt}(x)$是动态的，对不同的input $x$使用的template可能是不同的；</li>
+</ol>
+<p>以上两个分类方式是可以排列组合的。</p>
+<h4 id="Discrete-Prompts"><a href="#Discrete-Prompts" class="headerlink" title="Discrete Prompts"></a>Discrete Prompts</h4><h5 id="D1-Prompt-Mining"><a href="#D1-Prompt-Mining" class="headerlink" title="D1: Prompt Mining"></a>D1: Prompt Mining</h5><p>这种方法利用了外部知识库。对于输入$x$和输出$y$，在外部知识库（例如Wikipedia）中检索同时包含$x$和$y$的句子，然后找到该句子中$x$和$y$之间的<em>middle words</em>和<em>dependency paths</em>，将出现频率最高的<em>middle words</em>和<em>dependency paths</em>作为template，例如“<code>[X] middle words [Z]</code>”;</p>
+<blockquote>
+<p>这种方法并没有使用到深度学习或者机器学习来筛选模板，而是采用的一种假设——知识库中$x$和$y$之间的词语可能是好的template。</p>
+</blockquote>
+<h5 id="D2-Prompting-Paraphrasing"><a href="#D2-Prompting-Paraphrasing" class="headerlink" title="D2: Prompting Paraphrasing"></a>D2: Prompting Paraphrasing</h5><p>这种方法从1个种子Prompt（通常都是人工撰写的）出发，然后对这个种子Prompt进行不断地改写（paraphrasing），从而选择改写过程中性能最优的那一个。改写的方法有很多，例如：</p>
+<ol>
+<li>回译；</li>
+<li>同义词替换；</li>
+</ol>
+<p>还有一种方法是先将种子Template运用到input $x$之上，然后对生成的Prompt进行改写，这样就能为不同的$x$生成不同的Prompt。</p>
+<h5 id="D3-Gradient-based-Search"><a href="#D3-Gradient-based-Search" class="headerlink" title="D3: Gradient-based Search"></a>D3: Gradient-based Search</h5><p>该方法采用基于Gradient的搜索方法，在正式的tokens上搜索最佳的Prompt。</p>
+<blockquote>
+<p>这种方法不太清楚。</p>
+</blockquote>
+<h5 id="D4-Prompt-Generation"><a href="#D4-Prompt-Generation" class="headerlink" title="D4: Prompt Generation"></a>D4: Prompt Generation</h5><p>该方法将Prompts的生成看做是一个text generation的任务，使用一些生成模型来执行这项任务。例如之前看的论文LM-BFF就使用T5来进行模板的生成，生成的流程大致如下：</p>
+<ol>
+<li>指定模板中需要进行文本生成的位置；</li>
+<li>使用input $x$和包含占位符的模板，进行生成，得到占位符处的单词；</li>
+</ol>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gto3qzkhpkj60iw0ax41y02.jpg" style="zoom:67%;">
+
+<blockquote>
+<p>但是，我觉得这种方式有一个小小的问题就是，在T5上是最佳的模板，但是不一定在BERT/RoBERTa上是最佳的模板啊？不过，这种方式已经算是最接近PLM内部知识的Prompt生成方法了。</p>
+</blockquote>
+<h5 id="Prompt-Scoring"><a href="#Prompt-Scoring" class="headerlink" title="Prompt Scoring"></a>Prompt Scoring</h5><p>这种方式首先人工构造一大批candidate templates，然后将input $x$填充上这些candidate templates得到candidate prompts。再使用一个单向的语言模型来为这些candidate prompts打分，选择分数最高的那个作为最终的template，这样就可以做到对于每个input都有不同的templates。</p>
+<blockquote>
+<p><strong>Discrete Prompts小结</strong>：这种离散的Prompts的优点就是在于其良好的可解释性，得到的Prompts都是人类可以看懂的。但是，我们真的需要人能看懂Prompts吗？我们好像是只需要机器能够看懂Prompts就行了？机器能够看懂的话，直接用向量表示不就可以了？何必要先用文字，然后再将文字变成向量呢？这就催生了Continuous Prompts。</p>
+</blockquote>
+<h4 id="Continuous-Prompts"><a href="#Continuous-Prompts" class="headerlink" title="Continuous Prompts"></a>Continuous Prompts</h4><p>如前面的小结所说，Continuous Prompts存在着两个优点：</p>
+<ol>
+<li>脱离了自然语言的束缚，直接在向量空间内进行“搜索”；</li>
+<li>template不再受到PLM的参数限制，template可以有自己的参数（就是Embedding Look-up Table），而这个参数可以根据下游任务不断进行调整；</li>
+</ol>
+<h5 id="C1-Prefix-Tuning"><a href="#C1-Prefix-Tuning" class="headerlink" title="C1: Prefix Tuning"></a>C1: Prefix Tuning</h5><p>这种方式是<strong>在input之前拼接上一系列task-specific vectors，同时保持PLM的参数固定（不参与梯度下降）</strong>。从数学形式上来看，这表示在给定trainable prefix matrix和frozen PLM的基础上，优化下面的<code>log-likelihood objective</code>：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gto51jzyocj60ld02kglx02.jpg" style="zoom:67%;">
+
+<h5 id="C2-Tuning-Initialized-with-Discrete-Prompts"><a href="#C2-Tuning-Initialized-with-Discrete-Prompts" class="headerlink" title="C2: Tuning Initialized with Discrete Prompts"></a>C2: Tuning Initialized with Discrete Prompts</h5><p>该方法的思想相当于是结合Discrete Prompts和Continuous Prompts两者。<strong>它首先使用Discrete Prompts作为种子Embedding，然后不断地Finetuning其Embedding，得到最佳的Continuous Prompts。</strong></p>
+<h5 id="C3-Hard-Soft-Prompt-Hybird-Tuning"><a href="#C3-Hard-Soft-Prompt-Hybird-Tuning" class="headerlink" title="C3: Hard-Soft Prompt Hybird Tuning"></a>C3: Hard-Soft Prompt Hybird Tuning</h5><p>这种方法不是使用一个纯粹的learnable prompt template，而是在一个hard prompt template中插入部分可以tunable embeddings。</p>
+<h2 id="Answer-Engineering"><a href="#Answer-Engineering" class="headerlink" title="Answer Engineering"></a>Answer Engineering</h2><p>Answer Engineering的目标在于得到一个answer space $\mathcal{Z}$，以及一个answer space到original output $\mathcal{Y}$的映射。在进行Answer Engineering的时候，需要进行两个方面的考虑：</p>
+<ol>
+<li>decide the <em>answer shape</em></li>
+<li>choosing an <em>answer space design method</em></li>
+</ol>
+<h3 id="Answer-Shape"><a href="#Answer-Shape" class="headerlink" title="Answer Shape"></a>Answer Shape</h3><p>答案的形状决定了答案的粒度。一些常见的选择包括：</p>
+<ol>
+<li><strong>Tokens</strong>: One of the tokens in the pre-trained LM’s vocabulary, or a subset of the vocabulary.</li>
+<li><strong>Span</strong>: A short multi-token span. These are usually used together with <strong>cloze prompts</strong>.</li>
+<li><strong>Sentence</strong>: A sentence or document. These are commonly used with <strong>prefix prompts</strong>.</li>
+</ol>
+<p>不同的task需要的answer shape是不同的，例如对于classification tasks，relation extraction，named entity recognition这类任务，可能使用tokens和span更好。而对于生成式的任务，使用sentence会更好。</p>
+<h3 id="Answer-Space-Design-Methods"><a href="#Answer-Space-Design-Methods" class="headerlink" title="Answer Space Design Methods"></a>Answer Space Design Methods</h3><h4 id="Manual-Design"><a href="#Manual-Design" class="headerlink" title="Manual Design"></a>Manual Design</h4><p>这种是最简单的方法，就是使用人力的方式。常见的策略包括以下几种：</p>
+<ol>
+<li><p><strong>Unconstrained Spaces</strong></p>
+<p>answer space $\mathcal{Z}$ 通常是包含所有tokens（例如整个词汇表），或者固定长度的span，或者token sequences的空间。此时，从$\mathcal{Z}$到$\mathcal{Y}$的映射通常是identity mapping。</p>
+</li>
+<li><p><strong>Constrained Spaces</strong></p>
+<p>answer space $\mathcal{Z}$ 被限定在一个有限的空间上。这种策略通常是用在分类任务上的。例如，对于情感分析，可能就将其限定在<code>“开心”，“难过”，“愤怒”</code>这几个固定的词汇上。</p>
+</li>
+</ol>
+<blockquote>
+<p>感觉对于分类任务来说，确实Constraint Space要比Unconstrained Space要好得多，因为分类任务的类别是有限的，固定词汇就可以让机器几种注意力在有限的类别上，否则采用Unconstrained Spaces（例如整个此表），会影响实验结果吧？</p>
+</blockquote>
+<h4 id="Discrete-Answer-Search"><a href="#Discrete-Answer-Search" class="headerlink" title="Discrete Answer Search"></a>Discrete Answer Search</h4><p>这里主要是介绍automatic discrete answer search。</p>
+<h5 id="Answer-Paraphrasing"><a href="#Answer-Paraphrasing" class="headerlink" title="Answer Paraphrasing"></a>Answer Paraphrasing</h5><p>与Prompt类似，answer也有改写。给定一个初始的answer space $\mathcal{Z}^{\prime}$，然后使用改写来expand answer space。方法的话，跟Prompt也是类似的，可以采用回译之类的。</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gto7juuklzj60ds01lt8s02.jpg" style="zoom: 50%;">
+
+<p>在进行推理的时候，采用如上的计算公式。</p>
+<h5 id="Prune-then-Search"><a href="#Prune-then-Search" class="headerlink" title="Prune-then-Search"></a>Prune-then-Search</h5><p>在这个方法之中，首先会定义一个初始的pruned answer space $\mathcal{Z}^{\prime}$，然后使用特定的算法在这个空间内进行搜索，最后得到answer space $\mathcal{Z}$。例如在论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.15723">LM-BFF</a>中，首先基于Training Examples，预测不同类别样本在<code>[Z]</code>处的概率，从而为每个类别筛选出$k$个候选的answer word，如下公式所示：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtogf3jnvgj609o026dfs02.jpg" style="zoom: 80%;">
+
+<p>然后，将所有类别的候选answer word进行组合，在training examples上做零样本训练，最后得到候选的$N$个组合，最后这N个组合再在Dev Dataset上进行性能比较，得到最终的answer space。</p>
+<h5 id="Label-Decomposition"><a href="#Label-Decomposition" class="headerlink" title="Label Decomposition"></a>Label Decomposition</h5><p>这种方式就是上周看的那篇基于Prompt的关系抽取论文用的方法。</p>
+<h4 id="Continuous-Answer-Search"><a href="#Continuous-Answer-Search" class="headerlink" title="Continuous Answer Search"></a>Continuous Answer Search</h4><p>目前来看的话，很少有工作使用soft answer tokens进行实验的。目前来看，只有一篇论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2101.00121">Warp: Word-level adversarial reprogramming</a>使用到了这种方法，它为每一个类别赋予了一个virtual token，这些token会与prompt token embedding一起进行训练优化。</p>
+<h2 id="Multi-Prompt-Learning"><a href="#Multi-Prompt-Learning" class="headerlink" title="Multi-Prompt Learning"></a>Multi-Prompt Learning</h2><p>在Prompt Engineering中，介绍的都是为每个input $x$ 构建一个 $prompt$，但是是否可以为一个input $x$构建多个 $prompt$呢？这就出现了一个研究方向——Multi-Prompt Learning：</p>
+<p><img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpm06hro2j60vp0iywnr02.jpg"></p>
+<ul>
+<li>Prompt Ensembling（集成）</li>
+<li>Prompt Augmentation（增强）</li>
+<li>Prompt Composition（组合）</li>
+<li>Prompt Decomposition（分解）</li>
+</ul>
+<h3 id="Prompt-Ensembling"><a href="#Prompt-Ensembling" class="headerlink" title="Prompt Ensembling"></a>Prompt Ensembling</h3><blockquote>
+<p>这种集成的思想感觉只能用在inference阶段？正常的训练阶段应该不需要的吧？</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpm8l2lu5j609o05tq4402.jpg"></p>
+<p>Prompt Ensembling跟机器学习中的集成学习的思想是一样的，目前的大部分研究也是从集成学习中找的思路。</p>
+<h4 id="Uniform-Averaging"><a href="#Uniform-Averaging" class="headerlink" title="Uniform Averaging"></a>Uniform Averaging</h4><p>这种方式比较直接，就是采用统一平均的方式：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpml1wpe1j60eq01h3ym02.jpg" style="zoom: 50%;">
+
+<h4 id="Weighted-Averaging"><a href="#Weighted-Averaging" class="headerlink" title="Weighted Averaging"></a>Weighted Averaging</h4><p>考虑到不同的Prompt之间的重要程度是不一样的，所以有不少工作选择对Prompt进行加权。对于权重的选择，可以是根据Prompt Performance人为设置的，也可以是training set上通过不断学习得到的。</p>
+<h4 id="Majority-voting"><a href="#Majority-voting" class="headerlink" title="Majority voting"></a>Majority voting</h4><p>采用投票的方式</p>
+<h4 id="Knowledge-Distillation"><a href="#Knowledge-Distillation" class="headerlink" title="Knowledge Distillation"></a>Knowledge Distillation</h4><p>前面提到的集成方法中，使用的都是同一个Model，只是对不同的Prompt的结果进行集成。其实也可以使用多个deep learning models进行集成，需要用到knowledge distillation。例如，在论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2001.07676">Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference</a>中，其对每一个manually-created template-answer pair训练一个模型，然后集成它们对unlabeled dataset进行标记。示意图如下：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpnikhootj611z0icqid02.jpg" style="zoom:67%;">
+
+<h4 id="Prompt-Augmentation"><a href="#Prompt-Augmentation" class="headerlink" title="Prompt Augmentation"></a>Prompt Augmentation</h4><p>Prompt Augmentation也被称作demonstration learning。在论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.15723">Making Pre-trained Language Models Better Few-shot Learners</a>中使用了这种方法，示意图如下：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpnyi7ggzj61a408ptep02.jpg" style="zoom:67%;">
+
+<p>这种方法的思想是借助LM能够从示例中学习到一些特征。在该方法中，主要面临的挑战包括以下两个方面：</p>
+<ol>
+<li>Sample Selection：如何选择最有效的examples？</li>
+<li>Sample Ordering：怎么去排列组合选择出来的各个examples？</li>
+</ol>
+<h5 id="Sample-Selection"><a href="#Sample-Selection" class="headerlink" title="Sample Selection"></a>Sample Selection</h5><p>由于标注数据集中的example的质量是层次不齐的，所以选择不同的example可能会带来截然不同的结果。为了解决这个问题，论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.15723">Making Pre-trained Language Models Better Few-shot Learners</a>在进行数据预处理的时候，得到数据集中每个example的sentence embedding，然后为当前的input $x$选择sentence Embedding最相近的那些examples。</p>
+<h5 id="Sample-Ordering"><a href="#Sample-Ordering" class="headerlink" title="Sample Ordering"></a>Sample Ordering</h5><p>论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.08786">Fantastically ordered prompts and where to find them: Overcoming few-shot prompt order sensitivity</a>发现examples之间不同的排列组合可能会对结果带来非常大的影响，为了解决这个问题，其提出了一种entropy-based method来为不同的candidate permutations进行排序。</p>
+<h4 id="Prompt-Composition"><a href="#Prompt-Composition" class="headerlink" title="Prompt Composition"></a>Prompt Composition</h4><img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpoly5l77j60fc09rjty02.jpg" alt="" style="zoom:67%;">
+
+<p>对于可以基于更基本的子任务组合的可组合任务，还可以使用多个sub-prompts执行<strong>prompt composition</strong>，每个sub-prompt对应一个sub-task，然后基于这些sub-prompt定义一个composite prompt。例如上图中的实体关系抽取问题，对于这个问题需要知道每个实体的类型，以及实体对之间的关系。因此，实体关系抽取是一个composite task，可以先定义entity recognition的sub prompts和relation classification的sub prompts。然后将它们组合形成实体关系抽取的prompt。</p>
+<blockquote>
+<p>这个方法是在论文<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2105.11259.pdf">PTR: Prompt Tuning with Rules for Text Classification</a>中提出的，但是我还没怎么看懂。</p>
+</blockquote>
+<h4 id="Prompt-Decomposition"><a href="#Prompt-Decomposition" class="headerlink" title="Prompt Decomposition"></a>Prompt Decomposition</h4><img src="http://ww1.sinaimg.cn/large/002QqMizly1gtpoyenl2pj60av06sdh702.jpg" style="zoom: 80%;">
+
+<p>对于一些序列标注问题，例如NER，任务的目标是识别出句子中的每一个实体，但是如果为一个example只生成一个prompt的话，求解难度是十分大的，所以在论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.01760">Template-Based Named Entity Recognition Using BART</a>中，使用枚举span的方法来生成多个sub-prompts已达到任务要求。</p>
+<h2 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h2><p>Prompt-based Learning作为一个新兴的课题，仍然还是存在许多挑战的。下面是通过综述提出的一些挑战：</p>
+<h3 id="Prompt-Design"><a href="#Prompt-Design" class="headerlink" title="Prompt Design"></a>Prompt Design</h3><h4 id="Task-beyond-Classification-and-Generation"><a href="#Task-beyond-Classification-and-Generation" class="headerlink" title="Task beyond Classification and Generation"></a>Task beyond Classification and Generation</h4><p>目前Prompt-based learning主要是用在text classification和generation-based task上，在信息抽取任务上应用非常少，其中一个重要的原因就是在信息抽取任务中，对prompt的设计不如分类和生成任务来的直观。要想解决这个问题，可以从两个方面进行考虑：</p>
+<ol>
+<li>将信息抽取任务转化成text classification或者text generation的任务；</li>
+<li>进行合适的Answer Engineering，使得structure outputs can be expressed in a appropriate textual format（也就是建立起两者之间的映射）；</li>
+</ol>
+<h4 id="Prompting-with-Structured-Information"><a href="#Prompting-with-Structured-Information" class="headerlink" title="Prompting with Structured Information"></a>Prompting with Structured Information</h4><p>在许多的NLP任务中，都是存在着结构化信息的，例如树，图，表等等结构信息。如何有效地将这些结构化信息融入到Prompt Engineering和Answer Engineering当中是一个比较重要的挑战。</p>
+<blockquote>
+<p>例如，以我做的事件抽取任务为例，很多的方法都有用到<strong>句法依存树</strong>这种树形的结构信息，如何将这种结构化信息融入到Prompt-based Learning当中，可能是一个不错的突破点；</p>
+</blockquote>
+<h4 id="Entanglement-of-Template-and-Answer"><a href="#Entanglement-of-Template-and-Answer" class="headerlink" title="Entanglement of Template and Answer"></a>Entanglement of Template and Answer</h4><p>目前的Prompt-based Learning研究方法都是将Template和Answer分开进行寻找的，如何同时寻找最优的Template和Answer是一个还未开始探索的领域。</p>
+<h3 id="Answer-Engineering-1"><a href="#Answer-Engineering-1" class="headerlink" title="Answer Engineering"></a>Answer Engineering</h3><h4 id="Many-class-and-Long-answer-Classification-Tasks"><a href="#Many-class-and-Long-answer-Classification-Tasks" class="headerlink" title="Many-class and Long-answer Classification Tasks"></a>Many-class and Long-answer Classification Tasks</h4><p>对于<strong>分类任务</strong>来说，其在Answer Engineering上还存在以下两个问题：</p>
+<ol>
+<li>当多分类任务的输出类别实在是特别多的时候，怎么选择一个合适的answer space是一个复杂且困难的组合优化问题（因为要考虑的类别实在是太多了，每个类别对应了什么词都要考虑清楚，无疑是呈指数级增长的）；</li>
+<li>目前绝大多数论文中的answer都是single-token，如果answer是multi-tokens，怎么进行解码，目前也没有一个很好地解决办法；</li>
+</ol>
+<h4 id="Multiple-Answers-for-Generation-Tasks"><a href="#Multiple-Answers-for-Generation-Tasks" class="headerlink" title="Multiple Answers for Generation Tasks"></a>Multiple Answers for Generation Tasks</h4><p>对于<strong>文本生成</strong>任务，合理的答案可以是语义相同但语法不同的。到目前为止，几乎所有的研究都是依靠single answer来生成文本。如何更好地进行multiple answers的Prompt-based Learning仍然是一个开放的研究问题。</p>
+<h2 id="事件抽取难点所在"><a href="#事件抽取难点所在" class="headerlink" title="事件抽取难点所在"></a>事件抽取难点所在</h2><ol>
+<li>事件抽取是一个抽取式的任务，最常见的就是BIO和start，end span的范式了。</li>
+<li>  this is a xxx event. 因为触发词之间是存在语义相似性的。在看过多个文本之后，对某个事件类型应该拥有那个事件触发词应该是有明显感知的吧？或者说是暴力枚举的方式？ 对每一个词，或者两个词进行一次标记？其中存在训练时的负样本问题。</li>
+<li>结构化信息的留存——句法依存树</li>
+</ol>
+
             </div>
             <hr/>
 
@@ -702,7 +861,11 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Prompt EngineeringPrompt ShapePrompt shape主要分为两种：
+
+cloze prompts。这种就是常见的完型填空式，多用于text classification任务，通常用Masked LM求解；
+
+
                         
                     </div>
                     <div class="publish-info">
@@ -745,9 +908,11 @@
 
   IDEA VIM YYDS！
 
+  LeetCode刷刷刷！
+
   基本确定了目标：算法工程师中偏工程的那一部分，而不是偏算法研究那一部分。
 
-  为了锤炼自己的工程能力，争取Github的
+  为了锤炼自
                         
                     </div>
                     <div class="publish-info">
