@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8月中旬至9月中旬计划, 杨程的博客">
+    <meta name="keywords" content="torch.nn.Module.register_buffer()的使用, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8月中旬至9月中旬计划 | 杨程的博客</title>
+    <title>torch.nn.Module.register_buffer()的使用 | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -307,12 +307,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8月中旬至9月中旬计划</h1>
+                    <h1 class="description center-align post-title">torch.nn.Module.register_buffer()的使用</h1>
                 </div>
             </div>
         </div>
@@ -429,23 +429,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AE%A1%E5%88%92/">
-                                <span class="chip bg-color">计划</span>
+                            <a href="/tags/PyTorch/">
+                                <span class="chip bg-color">PyTorch</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E8%AE%A1%E5%88%92/" class="post-category">
-                                计划
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -454,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-15
+                    2021-08-26
                 </div>
                 
 
@@ -470,54 +461,69 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="8月中旬至9月中旬计划"><a href="#8月中旬至9月中旬计划" class="headerlink" title="8月中旬至9月中旬计划"></a>8月中旬至9月中旬计划</h1><ul>
-<li><p><input disabled="" type="checkbox">  课程学习：<strong>MIT 大学计算机教育中缺失的一门课</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  IDEA VIM YYDS！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  LeetCode刷刷刷！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  代码多练习才能慢慢掌握！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  基本确定了目标：<strong>算法工程师中偏工程的那一部分，而不是偏算法研究那一部分。</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  为了锤炼自己的工程能力，争取Github的repository中每日都有所更新，这样到时候写简历也好写一些，可以让面试官看到个人的成长；</p>
+                <p>在使用<code>torch.nn.Module</code>类编写深度学习模型的时候，我们通常会在里面定义很多的<code>Parameters</code>（比如<code>nn.Linear</code>等等）。这些<code>Parameters</code>是会随着模型的不断训练而更新的。</p>
+<p>但是，<strong>如果我们需要定义一些不变的常量该怎么办呢？</strong></p>
+<p>例如在论文CasEE的源码中，需要定义一个<code>type_indices</code>的常量：</p>
+<pre><code class="python">class TypeCls(nn.Module):
+    def __init__(self, config):
+        super(TypeCls, self).__init__()
+        self.type_emb = nn.Embedding(config.type_num, config.hidden_size)
+        self.type_indices = torch.arange(0, config.type_num, 1).long()
+        self.dropout = nn.Dropout(config.decoder_dropout)
+
+        self.config = config
+        self.Predictor = AdaptiveAdditionPredictor(config.hidden_size, dropout_rate=config.decoder_dropout)
+
+    def forward(self, text_rep, mask):
+        type_emb = self.type_emb(self.type_indices)
+        pred = self.Predictor(type_emb, text_rep, mask)  # [b, c]
+        p_type = torch.sigmoid(pred)
+        return p_type, type_emb
+</code></pre>
+<p>第一感觉，可能就是像我上面那样直接声明了。在纯<code>cpu</code>的环境下，这是没有问题的，运行也不会出问题。但是，到了<code>multiple gpus</code>的环境下，运行就会出现下面的报错：</p>
+<pre><code class="python">"RuntimeError: Input, output and indices must be on the current device"
+</code></pre>
+<p>原因在于，<code>self.type_indices</code>并没有跟Module中的<code>Parameters</code>一样分配到各个gpu上，它只存在于cpu上，所以报错了。</p>
+<p>此时，就需要<code>torch.nn.Module.register_buffer()</code>来帮忙：</p>
+<pre><code class="python">class TypeCls(nn.Module):
+    def __init__(self, config):
+        super(TypeCls, self).__init__()
+        self.type_emb = nn.Embedding(config.type_num, config.hidden_size)
+        self.register_buffer('type_indices', torch.arange(0, config.type_num, 1).long())
+        self.dropout = nn.Dropout(config.decoder_dropout)
+
+        self.config = config
+        self.Predictor = AdaptiveAdditionPredictor(config.hidden_size, dropout_rate=config.decoder_dropout)
+
+    def forward(self, text_rep, mask):
+        type_emb = self.type_emb(self.type_indices)
+        pred = self.Predictor(type_emb, text_rep, mask)  # [b, c]
+        p_type = torch.sigmoid(pred)
+        return p_type, type_emb
+</code></pre>
+<p>它之所以能够实现将<code>self.type_indices</code>分配到多个gpu上，是因为<code>Module</code>的下面这个函数：</p>
+<pre><code class="python">def _replicate_for_data_parallel(self):
+    replica = self.__new__(type(self))
+    replica.__dict__ = self.__dict__.copy()
+
+    # replicas do not have parameters themselves, the replicas reference the original
+    # module.
+    replica._parameters = OrderedDict()
+    replica._buffers = replica._buffers.copy()
+    replica._modules = replica._modules.copy()
+    replica._is_replica = True
+
+    return replica
+</code></pre>
+<p>代码<code>replica._buffers = replica._buffers.copy()</code>保证了<code>self.type_indices</code>分配到多个gpu上。</p>
+<p>具体关于该方法的使用可以参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html">PyTorch官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46653437/article/details/112775569">torch.nn.Module.register_buffer(name, tensor)</a></li>
+</ol>
 <blockquote>
-<p>wait a minute！可不是不看论文啊！还是要看论文的！</p>
+<p>后记，这个用法还是在huggingface transformers的BERT源码里面看到的，也算是解决了我的一个多年的难题了——如何在multiple gpus下复制常量。</p>
 </blockquote>
-</li>
-<li><p><input disabled="" type="checkbox">  多向实验室同学请教</p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：严格把控玩手机的时间，<strong>目前争取降低到每天4小时（循序渐进）</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：早睡早起，晚上睡觉前绝对不玩手机</p>
-<blockquote>
-<p>心理暗示：B站是什么臭鱼烂虾，知乎是什么臭鱼烂虾；微信公众号是什么臭鱼烂虾；</p>
-</blockquote>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：在清深找一个运动 or 健身伙伴</p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：控制每天的饮食，制定每天的食谱，补充水果之类的</p>
-</li>
-<li><p><input disabled="" type="checkbox">  保持听力健康，严格控制每天戴耳机的时间</p>
-<blockquote>
-<ul>
-<li>佩戴时常不超过60分钟</li>
-<li>播放音量不超过60%</li>
-<li>不在噪音超过60分贝的环境里用耳机</li>
-<li>戴耳机时间差不多1小时就得摘下来歇5-10分钟左右</li>
-</ul>
-</blockquote>
-</li>
-<li><p><del>参与<strong>达观杯金融事件标签分类任务</strong></del></p>
-</li>
-<li><p><input disabled="" type="checkbox">  ACL 2021事件抽取论文的整理和高质量阅读</p>
-</li>
-<li><p><input disabled="" type="checkbox">  ==<strong>大智若愚，不争不显不露</strong>==</p>
-</li>
-<li><p><input disabled="" type="checkbox">  关注实验室：<strong>腾讯天衍实验室</strong>，<strong>百度人工智能研究所</strong></p>
-</li>
-</ul>
 
             </div>
             <hr/>
@@ -543,7 +549,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2021/08/15/8-yue-zhong-xun-zhi-9-yue-zhong-xun-ji-hua/">http://yc1999.github.io/2021/08/15/8-yue-zhong-xun-zhi-9-yue-zhong-xun-ji-hua/</a>
+                    <a href="http://yc1999.github.io/2021/08/26/torch-nn-module-register-buffer-de-shi-yong/">http://yc1999.github.io/2021/08/26/torch-nn-module-register-buffer-de-shi-yong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,8 +587,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AE%A1%E5%88%92/">
-                                    <span class="chip bg-color">计划</span>
+                                <a href="/tags/PyTorch/">
+                                    <span class="chip bg-color">PyTorch</span>
                                 </a>
                             
                         </div>
@@ -750,33 +756,31 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/08/20/pre-train-prompt-and-predict-a-systematic-survey-of-prompting-methods-in-natural-language-processing/">
+                <a href="/2021/08/26/torch-nn-module-register-buffer-de-shi-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="torch.nn.Module.register_buffer()的使用">
                         
-                        <span class="card-title">Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing</span>
+                        <span class="card-title">torch.nn.Module.register_buffer()的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Prompt EngineeringPrompt ShapePrompt shape主要分为两种：
-
-cloze prompts。这种就是常见的完型填空式，多用于text classification任务，通常用Masked LM求解；
-
-
+                            在使用torch.nn.Module类编写深度学习模型的时候，我们通常会在里面定义很多的Parameters（比如nn.Linear等等）。这些Parameters是会随着模型的不断训练而更新的。
+但是，如果我们需要定义一些不变的常量该怎么
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -784,6 +788,15 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PyTorch/">
+                        <span class="chip bg-color">PyTorch</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -795,24 +808,24 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/14/adaprompt-adaptive-prompt-based-finetuning-for-relation-extraction/">
+                <a href="/2021/08/22/casee-a-joint-learning-framework-with-cascade-decoding-for-overlapping-event-extraction/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction">
                         
-                        <span class="card-title">AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction</span>
+                        <span class="card-title">CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Motivations &amp; Contributions近期，关于Prompt-based的论文有很多，其核心思想在于利用Pre-trained Language Model的原有预训练任务（最常见的就是MLM），在不引入新的参数的情
+                            CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event ExtractionBackground &amp; Contributions事件
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-22
                             </span>
                         <span class="publish-author">
                             
@@ -822,10 +835,6 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                                     NLP
                                 </a>
                             
-                            <a href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/" class="post-category">
-                                    信息抽取
-                                </a>
-                            
                             
                         </span>
                     </div>
@@ -833,16 +842,8 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Few-shot-Learning/">
-                        <span class="chip bg-color">Few-shot Learning</span>
-                    </a>
-                    
-                    <a href="/tags/Relation-Extraction/">
-                        <span class="chip bg-color">Relation Extraction</span>
-                    </a>
-                    
-                    <a href="/tags/Prompt-based-learning/">
-                        <span class="chip bg-color">Prompt-based learning</span>
+                    <a href="/tags/Event-Extraction/">
+                        <span class="chip bg-color">Event Extraction</span>
                     </a>
                     
                 </div>

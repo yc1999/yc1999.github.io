@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="8月中旬至9月中旬计划, 杨程的博客">
+    <meta name="keywords" content="CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction, 杨程的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>8月中旬至9月中旬计划 | 杨程的博客</title>
+    <title>CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction | 杨程的博客</title>
     <link rel="icon" type="image/png" href="/myicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -307,12 +307,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">8月中旬至9月中旬计划</h1>
+                    <h1 class="description center-align post-title">CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction</h1>
                 </div>
             </div>
         </div>
@@ -429,8 +429,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%AE%A1%E5%88%92/">
-                                <span class="chip bg-color">计划</span>
+                            <a href="/tags/Event-Extraction/">
+                                <span class="chip bg-color">Event Extraction</span>
                             </a>
                         
                     </div>
@@ -441,8 +441,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E5%88%92/" class="post-category">
-                                计划
+                            <a href="/categories/NLP/" class="post-category">
+                                NLP
                             </a>
                         
                     </div>
@@ -454,7 +454,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-15
+                    2021-08-22
                 </div>
                 
 
@@ -470,54 +470,166 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="8月中旬至9月中旬计划"><a href="#8月中旬至9月中旬计划" class="headerlink" title="8月中旬至9月中旬计划"></a>8月中旬至9月中旬计划</h1><ul>
-<li><p><input disabled="" type="checkbox">  课程学习：<strong>MIT 大学计算机教育中缺失的一门课</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  IDEA VIM YYDS！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  LeetCode刷刷刷！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  代码多练习才能慢慢掌握！</p>
-</li>
-<li><p><input disabled="" type="checkbox">  基本确定了目标：<strong>算法工程师中偏工程的那一部分，而不是偏算法研究那一部分。</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  为了锤炼自己的工程能力，争取Github的repository中每日都有所更新，这样到时候写简历也好写一些，可以让面试官看到个人的成长；</p>
+                <h1 id="CasEE-A-Joint-Learning-Framework-with-Cascade-Decoding-for-Overlapping-Event-Extraction"><a href="#CasEE-A-Joint-Learning-Framework-with-Cascade-Decoding-for-Overlapping-Event-Extraction" class="headerlink" title="CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction"></a>CasEE: A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction</h1><h2 id="Background-amp-Contributions"><a href="#Background-amp-Contributions" class="headerlink" title="Background &amp; Contributions"></a>Background &amp; Contributions</h2><p>事件抽取这个话题算是老生常谈了，这篇论文着眼于解决以往事件抽取论文忽视的一个问题——<strong>重叠事件抽取</strong>。</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxxpczdu6j60if0ertca02.jpg" style="zoom: 67%;">
+
+<p>文章将overlapping event extraction分为3种情况：</p>
+<ol>
+<li><strong>A word may serve as triggers with different event types across several events.</strong> 如上图所示，单词<em>acquired</em>既是事件<em>Investment</em>的触发词，也是事件<em>Share Transfer</em>的触发词；</li>
+<li>*<em>A word may serve as arguments with different roles across several events.*<em>如上图所示，词组</em>Shengyue Network*既是事件</em>Investment<em>的</em>object<em>论元，也是事件</em>Share Transfer<em>的</em>subject*论元；</li>
+<li>*<em>A word may serve as arguments playing different roles in one event.*<em>如上图所示，词组</em>Fudan Industry*同时充当了事件</em>Share Reduction<em>的</em>subject<em>和</em>target*论元；</li>
+</ol>
+<p>为了解决上述的overlapping的问题，本文就提出了<strong>A Joint Learning Framework with Cascade Decoding for Overlapping Event Extraction</strong>。其实这个思想是来源于之前看过一篇实体关系联合抽取论文——<a target="_blank" rel="noopener" href="https://ebooks.iospress.nl/publication/55151">Joint Extraction of Entities and Relations Based on a Novel Decomposition Strategy</a>。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtwc7ee00jj611y0kl4ac02.jpg"></p>
+<p>如上图，论文采用<strong>联合多任务（Joint Multi-tasks）</strong>的范式解决Overlapping Event Extraction，主要包含<strong>三个子任务</strong>：</p>
+<ol>
+<li><strong>Type Detection</strong></li>
+<li><strong>Trigger Extraction</strong></li>
+<li><strong>Argument Extraction</strong></li>
+</ol>
+<p>这三个子任务<strong>共享了同一个BERT Encoder</strong>，从而在Feature的层面上将3者联系起来。</p>
+<h3 id="Type-Detection-Decoder"><a href="#Type-Detection-Decoder" class="headerlink" title="Type Detection Decoder"></a>Type Detection Decoder</h3><p>在不考虑Overlapping Event Extraction的情况下，解决事件抽取问题时，是分为Event Detection和Argument Extraction两个子任务，其中Event Detection会同时解决Type Detection和Trigger Extraction（通常是序列标注框架）。但是，这种Event Detection的方式是无法解决Overlapped trigger的问题的（即一个触发词能够触发多个事件。</p>
 <blockquote>
-<p>wait a minute！可不是不看论文啊！还是要看论文的！</p>
+<p>其实感觉也是可以解决的。。。<strong>感觉多定义几个CRF层就好了啊。。。</strong>这是一个有待实验尝试的地方，也是可以锻炼编码能力的地方）</p>
 </blockquote>
-</li>
-<li><p><input disabled="" type="checkbox">  多向实验室同学请教</p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：严格把控玩手机的时间，<strong>目前争取降低到每天4小时（循序渐进）</strong></p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：早睡早起，晚上睡觉前绝对不玩手机</p>
+<p>本质上，<strong>Type Detection就是一个Text Classification的任务</strong>，对于文本分类任务，很容易的，可以想到使用BERT的<code>[CLS]</code>来做文本分类任务，而这个<code>[CLS]</code>的Embedding就作为了当前sentence的Embedding。这也是最trivial的一种方式，使用huggingface transformers中的<code>BertForClassification</code>类就可以实现了。</p>
+<p>但是，这样的方式未免太简单了？于是论文提出了一种更加复杂的方式来得到<code>Sentence Embedding</code>。文章称之为sentence embedding adaptive to the type。具体的数学形式如下：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxiaj3k61j60fl04odgb02.jpg" style="zoom:67%;">
+
+<p>首先，定义一个Event Type Embedding Matrix $\mathbf{C}$，其大小为$\mathbb{R}^{|\mathcal{C}| \times d}$，$\mathbf{c}$就是其中一个事件类型的embedding。上述执行的操作就是一个attention的操作，得到event-type specific sentence embedding。因此，对于每个sentence，它会得到$|\mathcal{C}|$个sentence embedding，每个都特定于一个event type。</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxj2nu9rkj60cf0750u802.jpg" style="zoom:67%;">
+
+<p>上述操作，对应于Model Architecture的上图部分。</p>
+<p>在得到好的sentence embedding之后，就是对sentence embedding进行分类了，与其重新定义一个Classifier层，不如直接复用之前的Event Type Embedding Matrix用来做相似度计算，而且这个相似度计算的函数也可以复用上述的$\delta()$：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxjg0vrdej60fq01nt8n02.jpg" style="zoom:67%;">
+
 <blockquote>
-<p>心理暗示：B站是什么臭鱼烂虾，知乎是什么臭鱼烂虾；微信公众号是什么臭鱼烂虾；</p>
+<p>使用sigmoid而不是用softmax是因为这是一个multi-label的任务。</p>
 </blockquote>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：在清深找一个运动 or 健身伙伴</p>
-</li>
-<li><p><input disabled="" type="checkbox">  自律：控制每天的饮食，制定每天的食谱，补充水果之类的</p>
-</li>
-<li><p><input disabled="" type="checkbox">  保持听力健康，严格控制每天戴耳机的时间</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxjj4pbq4j60bz069jsq02.jpg" style="zoom:67%;">
+
+<p>上述操作，对应于Model Architecture的上图部分。</p>
+<h3 id="Trigger-Extraction-Decoder"><a href="#Trigger-Extraction-Decoder" class="headerlink" title="Trigger Extraction Decoder"></a>Trigger Extraction Decoder</h3><img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxjq82j0aj60lx0b9af802.jpg" style="zoom:67%;">
+
+<p>如上图，在Trigger Extraction Decoder部分包含三个层：</p>
+<ol>
+<li>Condition fusion layer</li>
+<li>Self-attention layer</li>
+<li>Binary taggers</li>
+</ol>
+<p>其中，Condition fusion layer使用的就是之前毕设用到的conditional layer normalization</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxow0ovqqj60d202jt8t02.jpg" style="zoom: 80%;">
+
+<p>使用这个层的目的是<strong>为了将Event Type的Embedding融入到句子中每个token的Embedding之中。</strong></p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxp091s8cj60hg06egoq02.jpg" alt="" style="zoom:67%;">
+
+<p>上图中红框部分就是Condition fusion layer的操作部分。</p>
+<p>接下来的操作就比较常规了，直接放到<strong>Self-Attention Layer</strong>和binary taggers中得到最终的结果就好。</p>
+<h3 id="Argument-Extraction-Decoder"><a href="#Argument-Extraction-Decoder" class="headerlink" title="Argument Extraction Decoder"></a>Argument Extraction Decoder</h3><img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxp9wx3g2j60ip0c8q8502.jpg" style="zoom: 80%;">
+
+<p>为了解决Overlapping Argument的问题，文章同样不采用单层的CRF，而是使用多层的start-end指针网络。如上图所示，每个argument role都有其专属的start-end，这样就解决了overlapping的问题。</p>
+<p>同样的，参考在Trigger Extraction Decoder的操作，这里也分为3个步骤：</p>
+<ol>
+<li>condition fusion layer</li>
+<li>self-attention layer</li>
+<li>binary taggers</li>
+</ol>
+<p>condition fusion layer的输入是融入了event type embedding和trigger embedding的句子中每个token的Embedding。在具体是实现上，就是用conditional layer normalization融合trigger embedding和trigger extraction decoder中的condition fusion layer的output。如下图所示：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxpeh4m8kj60ic08842l02.jpg" style="zoom: 80%;">
+
+<p>之后过一个self-attention layer，在此之后，值得注意的是，在过binary taggers之前，还加入了每个token距离当前trigger的距离的positional embedding。最后才过的binary tagger得到最终的结果。</p>
+<h3 id="Model-Training"><a href="#Model-Training" class="headerlink" title="Model Training"></a>Model Training</h3><p>最终，模型的训练函数如下：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxpy1ubucj60in05yt9b02.jpg" style="zoom: 67%;">
+
+<p>模型的目标就是极大似然估计。</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><h3 id="Dataset-and-Evaluation-Metric"><a href="#Dataset-and-Evaluation-Metric" class="headerlink" title="Dataset and Evaluation Metric"></a>Dataset and Evaluation Metric</h3><p><strong>由于在ACE 2005数据集中，不存在overlapping trigger的问题</strong>（这个也是我之前并没有意识到的），并且只存在10%的overlapping argument的句子存在overlapping argument的问题，所以其并不是一个很好的用于验证本文方法的数据集。所以，本文使用了一个新的数据集——FewFC：</p>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxr461bn0j60in0apmzr02.jpg" style="zoom:67%;">
+
+<p>如上图所示，Overlap : Normal的比例在3 : 10。</p>
+<p>在evaluation metric的方式选择上，采用的是常见的metric：</p>
+<table>
+<thead>
+<tr>
+<th>metric</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Trigger Identification(TI)</strong></td>
+<td>A trigger is correctly identified if the predicted trigger span matches with a golden span</td>
+</tr>
+<tr>
+<td><strong>Trigger Classification(TC)</strong></td>
+<td>A trigger is correctly classified if it is correctly identified and assigned to the correct type</td>
+</tr>
+<tr>
+<td><strong>Argument Identification(AI)</strong></td>
+<td>An argument is correctly identified if its event type is correctly recognized and the predicted argument span matches with a golden span<strong>（不需要考虑看Trigger吗？看代码实现，不需要考虑）</strong></td>
+</tr>
+<tr>
+<td><strong>Argument Classification(TC)</strong></td>
+<td>An argument is correctly classified if it is correctly identified and the predicted role matches with a golden role.</td>
+</tr>
+</tbody></table>
+<p>采用Precision，Recall和F measure进行度量。</p>
+<h3 id="Comparison-Methods"><a href="#Comparison-Methods" class="headerlink" title="Comparison Methods"></a>Comparison Methods</h3><p>以下的方法用于对比实验：</p>
+<h4 id="Joint-sequence-labeling-methods"><a href="#Joint-sequence-labeling-methods" class="headerlink" title="Joint sequence labeling methods"></a>Joint sequence labeling methods</h4><p>将event extraction定义为一个联合序列标注任务；</p>
 <blockquote>
-<ul>
-<li>佩戴时常不超过60分钟</li>
-<li>播放音量不超过60%</li>
-<li>不在噪音超过60分贝的环境里用耳机</li>
-<li>戴耳机时间差不多1小时就得摘下来歇5-10分钟左右</li>
-</ul>
+<p>还是需要完成event type detection，trigger extraction和argument extraction。根据我直观来看，event type detection和trigger extraction可以合并到一起。</p>
 </blockquote>
-</li>
-<li><p><del>参与<strong>达观杯金融事件标签分类任务</strong></del></p>
-</li>
-<li><p><input disabled="" type="checkbox">  ACL 2021事件抽取论文的整理和高质量阅读</p>
-</li>
-<li><p><input disabled="" type="checkbox">  ==<strong>大智若愚，不争不显不露</strong>==</p>
-</li>
-<li><p><input disabled="" type="checkbox">  关注实验室：<strong>腾讯天衍实验室</strong>，<strong>百度人工智能研究所</strong></p>
-</li>
-</ul>
+<ol>
+<li>BERT-softmax：使用BERT作为textual encoder，然后接一个softmax classifier用于分类event trigger和arguments；</li>
+<li>BERT-CRF：仍然使用BERT作为textual encoder，然后接一个CRF Layer用于分类event trigger和arguments，使用CRF的优点在于CRF可以捕获label dependency；</li>
+<li>BERT-CRF-Joint：将type和role的label结合在一起，使用B/I/O-type-role作为label。</li>
+</ol>
+<h4 id="Pipelined-event-extraction-methods"><a href="#Pipelined-event-extraction-methods" class="headerlink" title="Pipelined event extraction methods"></a>Pipelined event extraction methods</h4><p>将event extraction定义为一个pipeline的任务。</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PLMEE</td>
+<td>这个方法能够解决overlapping argument role的问题，其解决办法也是为每个argument role生成一个start-end tagger pair。</td>
+</tr>
+<tr>
+<td>MQAEE-1</td>
+<td>采用MRC的方式。首先预测事件类型，然后同时预测overlapping triggers和overlapping arguments。包括两个模型：<br>1. A BERT classifier to detect event types;<br>2. A MRC BERT to extract triggers and arguments</td>
+</tr>
+<tr>
+<td>MQAEE-2</td>
+<td>采用MRC的方式。首先同时预测带有事件类型的trigger，然后根据trigger预测arguments。包括两个模型：<br>1. A MRC BERT to extract all triggers with types.<br>2. A MRC BERT to extract arguments in different roles.</td>
+</tr>
+<tr>
+<td>MQAEE-3</td>
+<td>采用MRC的方式。首先预测事件类型，然后预测trigger，最后预测arguments。包括三个模型：<br>1. A BERT classifier to detect event types<br>2. A MRC BERT to extract triggers with different types.<br>3. A MRC BERT to extract ar- guments in different roles.</td>
+</tr>
+</tbody></table>
+<h3 id="Main-Results"><a href="#Main-Results" class="headerlink" title="Main Results"></a>Main Results</h3><p><img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxuvkp9z5j612e0du7af02.jpg"></p>
+<ol>
+<li><strong>Compared to the joint sequence labeling methods</strong>。如上所示，在F1值上，CasEE比所有的joint sequence labeling methods都要好。在Recall值上面，CasEE更是会超出10个百分点。这说明了CasEE对于解决overlapping的问题是很好的。在Precision上，CasEE就不及joint sequence labeling methods了，这是因为CasEE为了解决Overlapping的问题，扩大了搜索的范围，从而使得Precision降低了，这个问题有待解决。</li>
+<li><strong>Compared to the pipeline methods</strong>。如上所示，CasEE仍然在F1值上取得胜利。达到这样的提升的原因，可能是CasEE采用Joint的方式，实现了三个subtask之间的信息交流。</li>
+</ol>
+<p>⭐<strong>综上，可以归纳出 CasEE 比sequence labeling methods好在能够解决multi-label的问题，比pipeline好在能够实现三个subtasks之间在feature层面的交互。</strong>⭐</p>
+<h2 id="论文代码结果"><a href="#论文代码结果" class="headerlink" title="论文代码结果"></a>论文代码结果</h2><p><img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxx49ta9dj609a03eta102.jpg"></p>
+<p>从代码的结果来看，在Event Detection上的结果没有达到论文的结果。在Argument Extraction上与论文报告的结果基本一致。这篇论文代码写的非常好，后面会再次对代码进行学习，特别是在一些评价指标上的模块化代码。</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><ol>
+<li>关于这个Overlapping的问题，在NER，RE中非常的常见。在事件抽取任务中还有待研究，做事件抽取的paper，用的数据集几乎全是ACE 2005，而ACE 2005并不存在这种Overlapping的现象，所以大家也就鲜有考虑了；</li>
+<li>本文的数据集FewFC其实是2020 CCKS的一个比赛——面向金融领域的小样本跨类迁移事件抽取的数据集。而本文的方法，其实就是这个比赛第一名的团队的解决方案；</li>
+<li>关于overlapping trigger的问题，是否考虑为每一种事件类型都建立一个CRF曾，这样不就可以解决overlapping的问题了吗？之后可以在他源码的基础上进行修改（TODO）</li>
+<li>论文提出的方法在存在overlapping的数据集上表现效果可以，但是在不存在overlapping的数据集上就不再是SOTA了：</li>
+</ol>
+<img src="http://ww1.sinaimg.cn/large/002QqMizgy1gtxzeo8mvej60h50avaci02.jpg" style="zoom:67%;">
+
+<p>但是，我觉得论文中使用的Type Detection Decoder，Conditional Layer Normalization，Positional Embedding都是以后在解决事件抽取任务上可以用上的。</p>
+<ol>
+<li>不同的注意力机制的不同，不理解为什么可以这么做，如何选择不同的注意力机制？</li>
+<li>Conditional Layer Normalization</li>
+<li>极大似然估计</li>
+<li><strong>怎么实现BERT-Softmax，BERT-CRF以及BERT-CRF-Joint的？</strong></li>
+</ol>
 
             </div>
             <hr/>
@@ -543,7 +655,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yc1999.github.io/2021/08/15/8-yue-zhong-xun-zhi-9-yue-zhong-xun-ji-hua/">http://yc1999.github.io/2021/08/15/8-yue-zhong-xun-zhi-9-yue-zhong-xun-ji-hua/</a>
+                    <a href="http://yc1999.github.io/2021/08/22/casee-a-joint-learning-framework-with-cascade-decoding-for-overlapping-event-extraction/">http://yc1999.github.io/2021/08/22/casee-a-joint-learning-framework-with-cascade-decoding-for-overlapping-event-extraction/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -581,8 +693,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AE%A1%E5%88%92/">
-                                    <span class="chip bg-color">计划</span>
+                                <a href="/tags/Event-Extraction/">
+                                    <span class="chip bg-color">Event Extraction</span>
                                 </a>
                             
                         </div>
@@ -754,6 +866,52 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/08/26/torch-nn-module-register-buffer-de-shi-yong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="torch.nn.Module.register_buffer()的使用">
+                        
+                        <span class="card-title">torch.nn.Module.register_buffer()的使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在使用torch.nn.Module类编写深度学习模型的时候，我们通常会在里面定义很多的Parameters（比如nn.Linear等等）。这些Parameters是会随着模型的不断训练而更新的。
+但是，如果我们需要定义一些不变的常量该怎么
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CarlYoung
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PyTorch/">
+                        <span class="chip bg-color">PyTorch</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/08/20/pre-train-prompt-and-predict-a-systematic-survey-of-prompting-methods-in-natural-language-processing/">
                     <div class="card-image">
                         
@@ -774,9 +932,9 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -784,67 +942,6 @@ cloze prompts。这种就是常见的完型填空式，多用于text classificat
                             
                         </span>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/08/14/adaprompt-adaptive-prompt-based-finetuning-for-relation-extraction/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction">
-                        
-                        <span class="card-title">AdaPrompt: Adaptive Prompt-based Finetuning for Relation Extraction</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Motivations &amp; Contributions近期，关于Prompt-based的论文有很多，其核心思想在于利用Pre-trained Language Model的原有预训练任务（最常见的就是MLM），在不引入新的参数的情
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-14
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/NLP/" class="post-category">
-                                    NLP
-                                </a>
-                            
-                            <a href="/categories/NLP/%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96/" class="post-category">
-                                    信息抽取
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Few-shot-Learning/">
-                        <span class="chip bg-color">Few-shot Learning</span>
-                    </a>
-                    
-                    <a href="/tags/Relation-Extraction/">
-                        <span class="chip bg-color">Relation Extraction</span>
-                    </a>
-                    
-                    <a href="/tags/Prompt-based-learning/">
-                        <span class="chip bg-color">Prompt-based learning</span>
-                    </a>
-                    
                 </div>
                 
             </div>
